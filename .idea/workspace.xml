@@ -4,27 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea488597-f4e2-49aa-b467-1e44621e87b4" name="Changes" comment="Created Files and Set Properties&#10;setUp Function made&#10;Annotations added">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/entities/Share.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/entities/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/main/InputHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/main/Reader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/managers/ShareManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/managers/UserManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/log4j.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/cf4361f7-4957-4a41-abe2-804304d8b976.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/cf4361f7-4957-4a41-abe2-804304d8b976.xml" afterDir="false" />
+    <list default="true" id="ea488597-f4e2-49aa-b467-1e44621e87b4" name="Changes" comment="log4j.properties added. log4j=OFF&#10;Logs disabled*&#10;User and Shares can be added&#10;Already existing Objects won't be replaced">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/Authentication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/Event.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/Operator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/Session.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Session.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/user/User.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/hibernate.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/hibernate.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,7 +136,7 @@
       <option name="presentableId" value="Default" />
       <updated>1709728323668</updated>
       <workItem from="1709728324754" duration="9798000" />
-      <workItem from="1709793590210" duration="13944000" />
+      <workItem from="1709793590210" duration="14568000" />
     </task>
     <task id="LOCAL-00001" summary="Created Files and Set Properties&#10;setUp Function made&#10;Annotations added">
       <option name="closed" value="true" />
@@ -164,7 +146,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709794170678</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="log4j.properties added. log4j=OFF&#10;Logs disabled*&#10;User and Shares can be added&#10;Already existing Objects won't be replaced">
+      <option name="closed" value="true" />
+      <created>1709808505523</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1709808505523</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -172,7 +162,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Created Files and Set Properties&#10;setUp Function made&#10;Annotations added" />
-    <option name="LAST_COMMIT_MESSAGE" value="Created Files and Set Properties&#10;setUp Function made&#10;Annotations added" />
+    <MESSAGE value="log4j.properties added. log4j=OFF&#10;Logs disabled*&#10;User and Shares can be added&#10;Already existing Objects won't be replaced" />
+    <option name="LAST_COMMIT_MESSAGE" value="log4j.properties added. log4j=OFF&#10;Logs disabled*&#10;User and Shares can be added&#10;Already existing Objects won't be replaced" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
