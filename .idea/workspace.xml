@@ -4,9 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea488597-f4e2-49aa-b467-1e44621e87b4" name="Changes" comment="log4j.properties added. log4j=OFF&#10;Logs disabled*&#10;User and Shares can be added&#10;Already existing Objects won't be replaced">
+    <list default="true" id="ea488597-f4e2-49aa-b467-1e44621e87b4" name="Changes" comment="disabled warnings in build.gradle">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/cf4361f7-4957-4a41-abe2-804304d8b976.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/cf4361f7-4957-4a41-abe2-804304d8b976.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/Share.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Share.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/InputHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/InputHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/Reader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Reader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/Session.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Session.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/managers/ShareManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managers/ShareManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/managers/UserManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managers/UserManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,6 +37,11 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="Shares.inc_2" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Shares.inc_2" type="f1a62948:ProjectNode" />
+                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
               </path>
             </expand>
             <select />
@@ -137,6 +149,9 @@
       <updated>1709728323668</updated>
       <workItem from="1709728324754" duration="9798000" />
       <workItem from="1709793590210" duration="14568000" />
+      <workItem from="1709808789070" duration="9132000" />
+      <workItem from="1709821577430" duration="2571000" />
+      <workItem from="1709882318390" duration="967000" />
     </task>
     <task id="LOCAL-00001" summary="Created Files and Set Properties&#10;setUp Function made&#10;Annotations added">
       <option name="closed" value="true" />
@@ -154,16 +169,36 @@
       <option name="project" value="LOCAL" />
       <updated>1709808505523</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="disabled warnings in build.gradle">
+      <option name="closed" value="true" />
+      <created>1709808925112</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1709808925112</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Created Files and Set Properties&#10;setUp Function made&#10;Annotations added" />
     <MESSAGE value="log4j.properties added. log4j=OFF&#10;Logs disabled*&#10;User and Shares can be added&#10;Already existing Objects won't be replaced" />
-    <option name="LAST_COMMIT_MESSAGE" value="log4j.properties added. log4j=OFF&#10;Logs disabled*&#10;User and Shares can be added&#10;Already existing Objects won't be replaced" />
+    <MESSAGE value="disabled warnings in build.gradle" />
+    <option name="LAST_COMMIT_MESSAGE" value="disabled warnings in build.gradle" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
@@ -175,15 +210,6 @@
           <properties class="org.hibernate.internal.util.config.ConfigurationException" package="org.hibernate.internal.util.config" />
           <option name="timeStamp" value="1" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/main/Reader.java</url>
-          <line>65</line>
-          <properties class="main.Reader" method="getPassword">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

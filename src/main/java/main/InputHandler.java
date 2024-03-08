@@ -15,7 +15,7 @@ public class InputHandler {
     private SessionFactory sessionFactory;
     private UserManager userManager;
     private ShareManager shareManager;
-
+    private User loggedInUser;
     /**
      * The In.
      */
@@ -33,37 +33,147 @@ public class InputHandler {
     /**
      * Start.
      */
+    public void login() {
+        String username = in.getStringAnswer("Username:");
+        String pass = in.getStringAnswer("Password:");
+        User user = userManager.getUserWithPass(username, pass);
+        if (user != null) {
+            loggedInUser = user;
+            System.out.println("Login succeeded!");
+        } else {
+            System.out.println("Couldn't find User!");
+        }
+    }
+
+    /**
+     * Start.
+     */
     public void start() {
         while (true) {
-            int selection = in.getIntAnswer("User[1] / Share[2]");
-            switch (selection) {
-                case 1 -> createUser();
-                case 2 -> createShare();
+            switch (in.getIntAnswer("""
+                    [1] User
+                    [2] Share
+                    """)) {
+                case 1 -> userStart();
+                case 2 -> shareStart();
                 case 3 -> {
                     return;
                 }
-                default -> System.out.println("Wrong");
+                default -> System.out.println("Wrong Input!");
             }
         }
     }
 
+    private void userStart() {
+        switch (in.getIntAnswer("""
+                [1] Login
+                [2] Create User
+                [3] Change User
+                [4] Delete User""")) {
+            case 1 -> login();
+            case 2 -> createUser();
+            case 3 -> changeUser();
+            case 4 -> deleteUser();
+        }
+    }
+
+    private void shareStart() {
+        switch (in.getIntAnswer("""
+                [1] Create Share
+                [2] Delete Share""")) {
+            case 1 -> createShare();
+            case 2 -> deleteShare();
+        }
+    }
+
+    private void changeUser() {
+        boolean userChanged = false;
+        switch (in.getIntAnswer("""
+                [1] Change Username
+                [2] Change Firstname
+                [3] Change Lastname
+                [4] Change E-Mail
+                [5] Change Password""")) {
+            case 1 -> userChanged = editUsername();
+            case 2 -> userChanged = editFirstname();
+            case 3 -> userChanged = editLastname();
+            case 4 -> userChanged = editEmail();
+            case 5 -> userChanged = editPassword();
+            default -> System.out.println("This Function does not exist!");
+        }
+        if (userChanged) {
+            System.out.println("Changes saved!");
+        }
+    }
+
+    private boolean editUsername() {
+        String username = in.getStringAnswer("Set new Username:");
+        if (userManager.getUserByUsername(username) == null) {
+            loggedInUser.username = username;
+        }
+        return userManager.save(loggedInUser);
+    }
+
+    private boolean editFirstname() {
+        loggedInUser.firstname = in.getStringAnswer("Firstname:");
+        return userManager.save(loggedInUser);
+    }
+
+    private boolean editLastname() {
+        loggedInUser.lastname = in.getStringAnswer("Lastname:");
+        return userManager.save(loggedInUser);
+    }
+
+    private boolean editEmail() {
+        loggedInUser.email = in.getStringAnswer("E-Mail:");
+        return userManager.save(loggedInUser);
+    }
+
+    private boolean editPassword() {
+        String password = in.getStringAnswer("Password:");
+        if (password.equals(loggedInUser.password)) {
+            return userManager.save(loggedInUser);
+        }
+        return false;
+    }
+
+
     private void createUser() {
-        if (userManager.addUser(getUserInformation())) {
+        if (userManager.add(getNewUser())) {
             System.out.println("User was created successfully!");
         } else {
-            System.out.println("User creation failed successfully!");
+            System.out.println("User creation failed!");
+        }
+    }
+
+    private void deleteUser() {
+        String username = in.getStringAnswer("Username:");
+        String pass = in.getStringAnswer("Password:");
+        if (userManager.delete(username, pass)) {
+            System.out.println("User deletion successfully!");
+        } else {
+            System.out.println("User deletion successfully!");
         }
     }
 
     private void createShare() {
-        if (shareManager.addShare(getShareInformation())) {
+        if (shareManager.add(getNewShare())) {
             System.out.println("Share was created successfully!");
         } else {
-            System.out.println("Share creation failed successfully!");
+            System.out.println("Share creation failed!");
         }
     }
 
-    private User getUserInformation() {
+    private void deleteShare() {
+        String name = in.getStringAnswer("Name:");
+        if (shareManager.delete(name)) {
+            System.out.println("Share deletion successfully!");
+        } else {
+            System.out.println("Share deletion successfully!");
+        }
+    }
+
+    private User getNewUser() {
         User user = new User();
         user.username = in.getStringAnswer("Username:");
         user.firstname = in.getStringAnswer("Firstname:");
@@ -72,7 +182,8 @@ public class InputHandler {
         user.password = in.getPassword("Password:");
         return user;
     }
-    private Share getShareInformation() {
+
+    private Share getNewShare() {
         Share share = new Share();
         share.name = in.getStringAnswer("Name:");
         share.shortl = in.getStringAnswer("Shortl:");

@@ -11,6 +11,7 @@ import java.util.UUID;
  * The type Share.
  */
 @Entity
+@Getter
 @Table(name = "share")
 public class Share {
     /**
@@ -26,7 +27,6 @@ public class Share {
      */
     @Column(name = "name")
     @Setter
-    @Getter
     public String name;
 
     /**
@@ -34,7 +34,6 @@ public class Share {
      */
     @Column(name = "shortl")
     @Setter
-    @Getter
     public String shortl;
 
     /**
@@ -42,7 +41,6 @@ public class Share {
      */
     @Column(name = "pricepershare")
     @Setter
-    @Getter
     public double pricePerShare;
 
     /**
@@ -50,7 +48,6 @@ public class Share {
      */
     @Column(name = "stockreturn")
     @Setter
-    @Getter
     public double stockReturn;
 
     /**
@@ -58,7 +55,6 @@ public class Share {
      */
     @Column(name = "existingsharesamount")
     @Setter
-    @Getter
     public int existingSharesAmount;
 
     /**
@@ -66,7 +62,6 @@ public class Share {
      */
     @Column(name = "dateOfEntry")
     @Setter
-    @Getter
     public LocalDateTime date;
 }
 

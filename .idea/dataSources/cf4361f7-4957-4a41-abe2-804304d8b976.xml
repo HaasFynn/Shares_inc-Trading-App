@@ -1163,7 +1163,7 @@ test\\_%|schema||&apos;&apos;||UPDATE|G</Grants>
     </schema>
     <schema id="331" parent="1" name="new_shares">
       <Current>1</Current>
-      <LastIntrospectionLocalTimestamp>2024-03-07.10:25:25</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2024-03-07.10:56:21</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_general_ci</CollationName>
     </schema>
     <schema id="332" parent="1" name="performance_schema">

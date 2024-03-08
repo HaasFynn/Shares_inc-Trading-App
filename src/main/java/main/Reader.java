@@ -23,9 +23,9 @@ public class Reader {
         try {
             System.out.println(question);
             return in.readLine();
-        } catch (IOException ignored) {
+        } catch (Exception e) {
+            return "";
         }
-        return "";
     }
 
     /**
@@ -35,12 +35,14 @@ public class Reader {
      * @return the int answer
      */
     public int getIntAnswer(String question) {
+        do {
         try {
             System.out.println(question);
             return Integer.parseInt(in.readLine());
-        } catch (IOException ignored) {
+        } catch (Exception e) {
+            System.out.println("Incorrect Input! Please use Numbers only!");
         }
-        return 0;
+        } while (true);
     }
 
     /**
@@ -50,12 +52,14 @@ public class Reader {
      * @return the double answer
      */
     public double getDoubleAnswer(String question) {
-        try {
-            System.out.println(question);
-            return Double.parseDouble(in.readLine());
-        } catch (IOException ignored) {
-        }
-        return 0.0;
+        do {
+            try {
+                System.out.println(question);
+                return Double.parseDouble(in.readLine());
+            } catch (Exception e) {
+                System.out.println("Incorrect Input! Please use Numbers only!");
+            }
+        } while (true);
     }
 
     /**
@@ -76,7 +80,7 @@ public class Reader {
                 } else {
                     System.out.println("Password Does not Equal. Try Again!");
                 }
-            } catch (IOException ignored) {
+            } catch (Exception ignored) {
             }
         } while (true);
     }

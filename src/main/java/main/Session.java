@@ -1,4 +1,5 @@
 package main;
+
 import entities.Share;
 import entities.User;
 

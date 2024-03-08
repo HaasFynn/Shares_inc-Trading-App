@@ -1,9 +1,8 @@
 package managers;
 
-import entities.User;
 import entities.Share;
+import entities.User;
 import jakarta.persistence.NoResultException;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import java.util.concurrent.atomic.AtomicReference;
@@ -31,10 +30,10 @@ public class ShareManager {
      * @param share the share
      * @return the boolean
      */
-    public boolean addShare(Share share) {
+    public boolean add(Share share) {
         AtomicReference<Boolean> exists = new AtomicReference<>(false);
         sessionFactory.inTransaction(session -> {
-            if (shareExists(share, session)) {
+            if (getExistingShare(share.name) == null) {
                 session.persist(share);
                 exists.set(true);
             }
@@ -42,16 +41,36 @@ public class ShareManager {
         return exists.get();
     }
 
-    private static boolean shareExists(Share share, Session session) {
-        Share existingShare;
+    private Share getExistingShare(String name) {
+        final AtomicReference<Share> existingShare = new AtomicReference<>();
         try {
-            existingShare = (Share) session.createQuery("from Share s where s.name = :name")
-                    .setParameter("name", share.name)
-                    .getSingleResult();
+            sessionFactory.inTransaction(session ->
+                    existingShare.set(
+                            (Share) session.createQuery("from Share s where s.name = :name")
+                                    .setParameter("name", name)
+                                    .getSingleResult()
+                    ));
         } catch (NoResultException e) {
-            existingShare = null;
+            existingShare.set(null);
         }
-        return existingShare != null;
+        return existingShare.get();
     }
 
+    /**
+     * Delete boolean.
+     *
+     * @param name the name
+     * @return the boolean
+     */
+    public boolean delete(String name) {
+        Share share = getExistingShare(name);
+        AtomicReference<Boolean> exists = new AtomicReference<>(false);
+        if (share != null) {
+            sessionFactory.inTransaction(session -> {
+                session.delete(share);
+                exists.set(true);
+            });
+        }
+        return exists.get();
+    }
 }

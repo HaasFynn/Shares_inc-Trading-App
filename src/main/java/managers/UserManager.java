@@ -1,9 +1,7 @@
 package managers;
 
-import entities.Share;
 import entities.User;
 import jakarta.persistence.NoResultException;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import java.util.concurrent.atomic.AtomicReference;
@@ -30,10 +28,10 @@ public class UserManager {
      * @param user the user
      * @return the boolean
      */
-    public boolean addUser(User user) {
+    public boolean add(User user) {
         AtomicReference<Boolean> exists = new AtomicReference<>(false);
         sessionFactory.inTransaction(session -> {
-            if (userExists(user, session)) {
+            if (getUserWithPass(user.username, user.password) == null) {
                 session.persist(user);
                 exists.set(true);
             }
@@ -41,16 +39,69 @@ public class UserManager {
         return exists.get();
     }
 
-    private static boolean userExists(User user, Session session) {
-        Share existingUser;
+    public User getUserWithPass(String username, String pass) {
+        final AtomicReference<User> existingUser = new AtomicReference<>();
         try {
-            existingUser = (Share) session.createQuery("from User u where u.username = :username")
-                    .setParameter("username", user.username)
-                    .getSingleResult();
+            sessionFactory.inTransaction(session ->
+                    existingUser.set(
+                            (User) session.createQuery("from User u where u.username = :username and u.password = :password")
+                                    .setParameter("username", username)
+                                    .setParameter("password", pass)
+                                    .getSingleResult()
+                    ));
         } catch (NoResultException e) {
-            existingUser = null;
+            existingUser.set(null);
         }
-        return existingUser != null;
+        return existingUser.get();
+    }
+
+    public User getUserByUsername(String username) {
+        final AtomicReference<User> existingUser = new AtomicReference<>();
+        try {
+            sessionFactory.inTransaction(session ->
+                    existingUser.set(
+                            (User) session.createQuery("from User u where u.username = :username")
+                                    .setParameter("username", username)
+                                    .getSingleResult()
+                    ));
+        } catch (NoResultException e) {
+            existingUser.set(null);
+        }
+        return existingUser.get();
+    }
+
+    /**
+     * Save boolean.
+     *
+     * @param user the user
+     * @return the boolean
+     */
+    public boolean save(User user) {
+        AtomicReference<Boolean> exists = new AtomicReference<>(false);
+        sessionFactory.inTransaction(session -> {
+            session.save(user);
+            exists.set(true);
+        });
+        return exists.get();
+    }
+
+    /**
+     * Delete boolean.
+     *
+     * @param username the username
+     * @param pass     the pass
+     * @return the boolean
+     */
+    public boolean delete(String username, String pass) {
+        User user = getUserWithPass(username, pass);
+        AtomicReference<Boolean> exists = new AtomicReference<>(false);
+        if (user != null) {
+            sessionFactory.inTransaction(session -> {
+                session.delete(user);
+                exists.set(true);
+            });
+        }
+        return exists.get();
     }
 
 }
