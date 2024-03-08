@@ -1,7 +1,6 @@
 package managers;
 
 import entities.Share;
-import entities.User;
 import jakarta.persistence.NoResultException;
 import org.hibernate.SessionFactory;
 
@@ -12,7 +11,7 @@ import java.util.concurrent.atomic.AtomicReference;
  */
 public class ShareManager {
 
-    private SessionFactory sessionFactory;
+    private final SessionFactory sessionFactory;
 
 
     /**
@@ -28,49 +27,64 @@ public class ShareManager {
      * Add share boolean.
      *
      * @param share the share
-     * @return the boolean
+     * @return <p>if action succeeded</p>
      */
     public boolean add(Share share) {
-        AtomicReference<Boolean> exists = new AtomicReference<>(false);
+        var succeeded = new AtomicReference<>(false);
         sessionFactory.inTransaction(session -> {
-            if (getExistingShare(share.name) == null) {
+            if (getShareByName(share.name) == null) {
                 session.persist(share);
-                exists.set(true);
+                succeeded.set(true);
             }
         });
-        return exists.get();
+        return succeeded.get();
     }
 
-    private Share getExistingShare(String name) {
-        final AtomicReference<Share> existingShare = new AtomicReference<>();
+    private Share getShareByName(String name) {
+        final var existingShare = new AtomicReference<>();
         try {
             sessionFactory.inTransaction(session ->
                     existingShare.set(
-                            (Share) session.createQuery("from Share s where s.name = :name")
+                            session.createQuery("from Share s where s.name = :name")
                                     .setParameter("name", name)
                                     .getSingleResult()
                     ));
         } catch (NoResultException e) {
             existingShare.set(null);
         }
-        return existingShare.get();
+        return (Share) existingShare.get();
+    }
+
+    /**
+     * Save boolean.
+     *
+     * @param share the share
+     * @return <p>if action succeeded</p>
+     */
+    public boolean save(Share share) {
+        var succeeded = new AtomicReference<>(false);
+        sessionFactory.inTransaction(session -> {
+            session.merge(share);
+            succeeded.set(true);
+        });
+        return succeeded.get();
     }
 
     /**
      * Delete boolean.
      *
      * @param name the name
-     * @return the boolean
+     * @return <p>if action succeeded</p>
      */
     public boolean delete(String name) {
-        Share share = getExistingShare(name);
-        AtomicReference<Boolean> exists = new AtomicReference<>(false);
+        Share share = getShareByName(name);
+        var succeeded = new AtomicReference<>(false);
         if (share != null) {
             sessionFactory.inTransaction(session -> {
-                session.delete(share);
-                exists.set(true);
+                session.remove(share);
+                succeeded.set(true);
             });
         }
-        return exists.get();
+        return succeeded.get();
     }
 }

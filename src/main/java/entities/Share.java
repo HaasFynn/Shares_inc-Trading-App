@@ -15,7 +15,7 @@ import java.util.UUID;
 @Table(name = "share")
 public class Share {
     /**
-     * The Id.
+     * The ID.
      */
     @Column(name = "id")
     @Id

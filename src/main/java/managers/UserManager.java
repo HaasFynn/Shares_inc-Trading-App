@@ -10,7 +10,7 @@ import java.util.concurrent.atomic.AtomicReference;
  * The type User manager.
  */
 public class UserManager {
-    private SessionFactory sessionFactory;
+    private final SessionFactory sessionFactory;
 
 
     /**
@@ -26,25 +26,25 @@ public class UserManager {
      * Add user boolean.
      *
      * @param user the user
-     * @return the boolean
+     * @return <p>if action succeeded</p>
      */
     public boolean add(User user) {
-        AtomicReference<Boolean> exists = new AtomicReference<>(false);
+        var succeeded = new AtomicReference<>(false);
         sessionFactory.inTransaction(session -> {
             if (getUserWithPass(user.username, user.password) == null) {
                 session.persist(user);
-                exists.set(true);
+                succeeded.set(true);
             }
         });
-        return exists.get();
+        return succeeded.get();
     }
 
     public User getUserWithPass(String username, String pass) {
-        final AtomicReference<User> existingUser = new AtomicReference<>();
+        final var existingUser = new AtomicReference<>();
         try {
             sessionFactory.inTransaction(session ->
                     existingUser.set(
-                            (User) session.createQuery("from User u where u.username = :username and u.password = :password")
+                            session.createQuery("from User u where u.username = :username and u.password = :password")
                                     .setParameter("username", username)
                                     .setParameter("password", pass)
                                     .getSingleResult()
@@ -52,37 +52,37 @@ public class UserManager {
         } catch (NoResultException e) {
             existingUser.set(null);
         }
-        return existingUser.get();
+        return (User) existingUser.get();
     }
 
     public User getUserByUsername(String username) {
-        final AtomicReference<User> existingUser = new AtomicReference<>();
+        final var existingUser = new AtomicReference<>();
         try {
             sessionFactory.inTransaction(session ->
                     existingUser.set(
-                            (User) session.createQuery("from User u where u.username = :username")
+                            session.createQuery("from User u where u.username = :username")
                                     .setParameter("username", username)
                                     .getSingleResult()
                     ));
         } catch (NoResultException e) {
             existingUser.set(null);
         }
-        return existingUser.get();
+        return (User) existingUser.get();
     }
 
     /**
      * Save boolean.
      *
      * @param user the user
-     * @return the boolean
+     * @return <p>if action succeeded</p>
      */
     public boolean save(User user) {
-        AtomicReference<Boolean> exists = new AtomicReference<>(false);
+        var succeeded = new AtomicReference<>(false);
         sessionFactory.inTransaction(session -> {
-            session.save(user);
-            exists.set(true);
+            session.merge(user);
+            succeeded.set(true);
         });
-        return exists.get();
+        return succeeded.get();
     }
 
     /**
@@ -90,18 +90,18 @@ public class UserManager {
      *
      * @param username the username
      * @param pass     the pass
-     * @return the boolean
+     * @return <p>if action succeeded</p>
      */
     public boolean delete(String username, String pass) {
         User user = getUserWithPass(username, pass);
-        AtomicReference<Boolean> exists = new AtomicReference<>(false);
+        var succeeded = new AtomicReference<>(false);
         if (user != null) {
             sessionFactory.inTransaction(session -> {
-                session.delete(user);
-                exists.set(true);
+                session.remove(user);
+                succeeded.set(true);
             });
         }
-        return exists.get();
+        return succeeded.get();
     }
 
 }

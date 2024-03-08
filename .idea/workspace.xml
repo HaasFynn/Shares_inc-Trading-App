@@ -4,16 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea488597-f4e2-49aa-b467-1e44621e87b4" name="Changes" comment="disabled warnings in build.gradle">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/cf4361f7-4957-4a41-abe2-804304d8b976.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/cf4361f7-4957-4a41-abe2-804304d8b976.xml" afterDir="false" />
+    <list default="true" id="ea488597-f4e2-49aa-b467-1e44621e87b4" name="Changes" comment="Original Commit didnt go through March 7th&#10;Changed:&#10;System works (asking user stuff)&#10;To be done:&#10;- Db gets cleared after every start&#10;- On changing User Inf, user doesn't update it duplicates entry with new Inf">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/entities/Share.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Share.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/main/InputHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/InputHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/Reader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Reader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/Session.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Session.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/managers/ShareManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managers/ShareManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/managers/UserManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managers/UserManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/hibernate.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/hibernate.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,6 +58,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP" />
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
@@ -99,6 +99,10 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
+    &quot;ChangesTree.GroupingKeys&quot;: [
+      &quot;directory&quot;,
+      &quot;module&quot;
+    ],
     &quot;DatabaseDriversLRU&quot;: [
       &quot;mysql&quot;
     ]
@@ -151,7 +155,8 @@
       <workItem from="1709793590210" duration="14568000" />
       <workItem from="1709808789070" duration="9132000" />
       <workItem from="1709821577430" duration="2571000" />
-      <workItem from="1709882318390" duration="967000" />
+      <workItem from="1709882318390" duration="8720000" />
+      <workItem from="1709892647657" duration="1230000" />
     </task>
     <task id="LOCAL-00001" summary="Created Files and Set Properties&#10;setUp Function made&#10;Annotations added">
       <option name="closed" value="true" />
@@ -177,7 +182,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709808925112</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Original Commit didnt go through March 7th&#10;Changed:&#10;System works (asking user stuff)&#10;To be done:&#10;- Db gets cleared after every start&#10;- On changing User Inf, user doesn't update it duplicates entry with new Inf">
+      <option name="closed" value="true" />
+      <created>1709883785615</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1709883785615</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -198,7 +211,8 @@
     <MESSAGE value="Created Files and Set Properties&#10;setUp Function made&#10;Annotations added" />
     <MESSAGE value="log4j.properties added. log4j=OFF&#10;Logs disabled*&#10;User and Shares can be added&#10;Already existing Objects won't be replaced" />
     <MESSAGE value="disabled warnings in build.gradle" />
-    <option name="LAST_COMMIT_MESSAGE" value="disabled warnings in build.gradle" />
+    <MESSAGE value="Original Commit didnt go through March 7th&#10;Changed:&#10;System works (asking user stuff)&#10;To be done:&#10;- Db gets cleared after every start&#10;- On changing User Inf, user doesn't update it duplicates entry with new Inf" />
+    <option name="LAST_COMMIT_MESSAGE" value="Original Commit didnt go through March 7th&#10;Changed:&#10;System works (asking user stuff)&#10;To be done:&#10;- Db gets cleared after every start&#10;- On changing User Inf, user doesn't update it duplicates entry with new Inf" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
@@ -210,6 +224,25 @@
           <properties class="org.hibernate.internal.util.config.ConfigurationException" package="org.hibernate.internal.util.config" />
           <option name="timeStamp" value="1" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/main/InputHandler.java</url>
+          <line>75</line>
+          <properties class="main.InputHandler" method="changeUser">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/main/InputHandler.java</url>
+          <line>76</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/main/InputHandler.java</url>
+          <line>80</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
