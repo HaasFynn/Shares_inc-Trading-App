@@ -19,8 +19,8 @@ public class Share {
      */
     @Column(name = "id")
     @Id
-    @GeneratedValue
-    public UUID Id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    public long Id;
 
     /**
      * The Name.
@@ -63,6 +63,10 @@ public class Share {
     @Column(name = "dateOfEntry")
     @Setter
     public LocalDateTime date;
+
+    public Share() {
+        this.date = LocalDateTime.now();
+    }
 }
 
 

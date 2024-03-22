@@ -1,6 +1,7 @@
 package entities;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,8 +20,8 @@ public class User {
      */
     @Column(name = "id")
     @Id
-    @GeneratedValue
-    public UUID Id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    public long Id;
 
     /**
      * The Username.
@@ -76,6 +77,7 @@ public class User {
      */
     public User() {
         this.accountBalance = 1000.0;
+        this.date = LocalDateTime.now();
     }
 
 }

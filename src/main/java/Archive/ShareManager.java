@@ -1,10 +1,11 @@
-package managers;
+package Archive;
 
 import entities.Share;
 import jakarta.persistence.NoResultException;
+import jakarta.transaction.Transactional;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-
-import java.util.concurrent.atomic.AtomicReference;
+import org.hibernate.Transaction;
 
 /**
  * The type Share manager.
@@ -29,30 +30,21 @@ public class ShareManager {
      * @param share the share
      * @return <p>if action succeeded</p>
      */
+    @Transactional
     public boolean add(Share share) {
-        var succeeded = new AtomicReference<>(false);
-        sessionFactory.inTransaction(session -> {
-            if (getShareByName(share.name) == null) {
-                session.persist(share);
-                succeeded.set(true);
-            }
-        });
-        return succeeded.get();
+        return false;
+    }
+
+    private boolean shareExists(String shareName) {
+        return getShareByName(shareName) == null;
     }
 
     private Share getShareByName(String name) {
-        final var existingShare = new AtomicReference<>();
-        try {
-            sessionFactory.inTransaction(session ->
-                    existingShare.set(
-                            session.createQuery("from Share s where s.name = :name")
-                                    .setParameter("name", name)
-                                    .getSingleResult()
-                    ));
+        try (Session session = sessionFactory.openSession()) {
+            return session.createQuery("from Share s where s.name = :name", Share.class).setParameter("name", name).getSingleResultOrNull();
         } catch (NoResultException e) {
-            existingShare.set(null);
+            return null;
         }
-        return (Share) existingShare.get();
     }
 
     /**
@@ -62,12 +54,10 @@ public class ShareManager {
      * @return <p>if action succeeded</p>
      */
     public boolean save(Share share) {
-        var succeeded = new AtomicReference<>(false);
         sessionFactory.inTransaction(session -> {
             session.merge(share);
-            succeeded.set(true);
         });
-        return succeeded.get();
+        return true;
     }
 
     /**
@@ -78,13 +68,22 @@ public class ShareManager {
      */
     public boolean delete(String name) {
         Share share = getShareByName(name);
-        var succeeded = new AtomicReference<>(false);
         if (share != null) {
-            sessionFactory.inTransaction(session -> {
-                session.remove(share);
-                succeeded.set(true);
-            });
+            Transaction tx = null;
+            try (Session session = sessionFactory.openSession()) {
+                tx = session.beginTransaction();
+                tx.begin();
+                session.createMutationQuery("delete from Share s where s.name = :username")
+                        .setParameter("name", share.name)
+                        .executeUpdate();
+                tx.commit();
+            } catch (Exception e) {
+                if (tx != null) {
+                    tx.rollback();
+                }
+            }
+            return true;
         }
-        return succeeded.get();
+        return false;
     }
 }

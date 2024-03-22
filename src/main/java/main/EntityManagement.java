@@ -3,7 +3,7 @@ package main;
 import entities.Share;
 import entities.User;
 
-import org.hibernate.SessionFactory;
+import jakarta.persistence.EntityManagerFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -13,24 +13,24 @@ import static java.time.LocalDateTime.now;
 /**
  * The type Session.
  */
-public class Session {
+public class EntityManagement {
 
-    private static SessionFactory sessionFactory = null;
+    private static EntityManagerFactory entityManagerFactory = null;
 
     /**
-     * Create session factory session factory.
+     * Create session factory.
      *
      * @return the session factory
      */
-    protected static SessionFactory createSessionFactory() {
-        if (sessionFactory != null) {
-            return sessionFactory;
+    protected static EntityManagerFactory createEntityManagerFactory() {
+        if (entityManagerFactory != null) {
+            return entityManagerFactory;
         }
         final StandardServiceRegistry registry =
                 new StandardServiceRegistryBuilder()
                         .loadProperties("hibernate.properties").build();
         try {
-            sessionFactory =
+            entityManagerFactory =
                     new MetadataSources(registry)
                             .addAnnotatedClass(Share.class)
                             .addAnnotatedClass(User.class)
@@ -39,6 +39,6 @@ public class Session {
         } catch (Exception e) {
             StandardServiceRegistryBuilder.destroy(registry);
         }
-        return sessionFactory;
+        return entityManagerFactory;
     }
 }

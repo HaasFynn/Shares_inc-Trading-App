@@ -36,12 +36,12 @@ public class Reader {
      */
     public int getIntAnswer(String question) {
         do {
-        try {
-            System.out.println(question);
-            return Integer.parseInt(in.readLine());
-        } catch (Exception e) {
-            System.out.println("Incorrect Input! Please use Numbers only!");
-        }
+            try {
+                System.out.println(question);
+                return Integer.parseInt(in.readLine());
+            } catch (Exception e) {
+                System.out.println("Incorrect Input! Please use Numbers only!");
+            }
         } while (true);
     }
 
@@ -73,7 +73,7 @@ public class Reader {
             try {
                 System.out.println(question);
                 String pass = in.readLine();
-                System.out.println("Passwort wiederholen:");
+                System.out.println("Repeat Password:");
                 String checkPass = in.readLine();
                 if (pass.equals(checkPass)) {
                     return pass;
