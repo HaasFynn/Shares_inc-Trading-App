@@ -1,9 +1,10 @@
 package dao;
 
 import entities.User;
+import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
-import jakarta.transaction.Transaction;
+import jakarta.persistence.TransactionRequiredException;
 import jakarta.transaction.Transactional;
 
 import java.util.List;
@@ -41,36 +42,42 @@ public class UserDao implements Dao<User> {
                 .getResultList();
     }
 
-    //TODO Transactional fixxen
-
     @Override
-    public void add(User user) {
-        begin();
-        entityManager.persist(user);
-        commit();
+    public boolean add(User user) {
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.persist(user);
+            entityManager.getTransaction().commit();
+        } catch (EntityExistsException e) {
+            return false;
+        }
+        return true;
     }
 
     @Transactional
     @Override
-    public void update(User user) {
-        begin();
-        entityManager.merge(user);
-        commit();
+    public boolean update(User user) {
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.merge(user);
+            entityManager.getTransaction().commit();
+        } catch (TransactionRequiredException e) {
+            return false;
+        }
+        return true;
     }
 
 
     @Override
-    public void delete(User user) {
-        begin();
-        entityManager.remove(user);
-        commit();
+    public boolean delete(User user) {
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.remove(user);
+            entityManager.getTransaction().commit();
+        } catch (TransactionRequiredException e) {
+            return false;
+        }
+        return true;
     }
 
-    private void begin() {
-        entityManager.getTransaction().begin();
-    }
-
-    private void commit() {
-        entityManager.getTransaction().commit();
-    }
 }

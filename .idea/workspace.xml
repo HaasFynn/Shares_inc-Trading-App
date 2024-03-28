@@ -4,29 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea488597-f4e2-49aa-b467-1e44621e87b4" name="Changes" comment="Password now for Userchanges required&#10;Updated deprecated hibernate methods&#10;  save() -&gt; merge()">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Archive/UserManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/creators/ShareCreator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/Dao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/ShareDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/UserDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/lombok.config" afterDir="false" />
+    <list default="true" id="ea488597-f4e2-49aa-b467-1e44621e87b4" name="Changes" comment="Transaction verwendet&#10;EntityManager verwendet&#10;Dao's erstellt">
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/cf4361f7-4957-4a41-abe2-804304d8b976.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/cf4361f7-4957-4a41-abe2-804304d8b976.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/creators/ShareCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/creators/ShareCreator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/Dao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/Dao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/ShareDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/ShareDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/UserDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/entities/Share.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Share.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/InputHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/InputHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/EntityManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/functional/EntityManagement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/InputHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/functional/InputHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/Reader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Reader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/Session.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/EntityManagement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/managers/ShareManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Archive/ShareManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/managers/UserManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/Reader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/functional/Reader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/hibernate.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/hibernate.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/lombok.config" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,6 +75,23 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;HaasFynn&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="e869b32c-ba71-48d8-99d8-bdcfb12d47bf" />
+        <option name="url" value="https://github.com/HaasFynn/shares_gradle.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/jakarta.persistence/jakarta.persistence-api/3.1.0/8d479b8d71750d5c2b8e58034b80231994cba6ec/jakarta.persistence-api-3.1.0-sources.jar!/jakarta/persistence/EntityManager.java" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
 }</component>
@@ -101,41 +113,42 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Gradle.Shares.inc_2 [:Main.main()].executor": "Run",
-    "Gradle.Shares_gradle [:Main.main()].executor": "Run",
-    "Gradle.shares_gradle [:Main.main()].executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.go.formatter.settings.were.checked": "true",
-    "RunOnceActivity.go.migrated.go.modules.settings": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
-    "go.import.settings.migrated": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/fhaas/OneDrive - Ergon Informatik AG/Desktop/files/Erste Aufgaben/Java/shares_gradle",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Gradle.Build shares_gradle.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Shares.inc_2 [:Main.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Shares_gradle [:Main.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.shares_gradle [:Main.main()].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/fhaas/OneDrive - Ergon Informatik AG/Desktop/files/Erste Aufgaben/Java/shares_gradle&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "ChangesTree.GroupingKeys": [
-      "directory",
-      "module"
+  &quot;keyToStringList&quot;: {
+    &quot;ChangesTree.GroupingKeys&quot;: [
+      &quot;directory&quot;,
+      &quot;module&quot;
     ],
-    "DatabaseDriversLRU": [
-      "mysql"
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\fhaas\OneDrive - Ergon Informatik AG\Desktop\Erste Aufgaben\Java\Shares.inc_2\src\main\resources" />
@@ -193,7 +206,15 @@
       <workItem from="1710600880349" duration="7000" />
       <workItem from="1710773043008" duration="54000" />
       <workItem from="1711089243789" duration="3383000" />
-      <workItem from="1711092835905" duration="15479000" />
+      <workItem from="1711092835905" duration="15983000" />
+      <workItem from="1711350905500" duration="221000" />
+      <workItem from="1711533419081" duration="128000" />
+      <workItem from="1711541849466" duration="6000" />
+      <workItem from="1711611090549" duration="31000" />
+      <workItem from="1711611134031" duration="2246000" />
+      <workItem from="1711614240762" duration="2891000" />
+      <workItem from="1711620450081" duration="1955000" />
+      <workItem from="1711622441847" duration="2593000" />
     </task>
     <task id="LOCAL-00001" summary="Created Files and Set Properties&#10;setUp Function made&#10;Annotations added">
       <option name="closed" value="true" />
@@ -235,7 +256,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709896757018</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Transaction verwendet&#10;EntityManager verwendet&#10;Dao's erstellt">
+      <option name="closed" value="true" />
+      <created>1711112708605</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1711112708605</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -258,7 +287,8 @@
     <MESSAGE value="disabled warnings in build.gradle" />
     <MESSAGE value="Original Commit didnt go through March 7th&#10;Changed:&#10;System works (asking user stuff)&#10;To be done:&#10;- Db gets cleared after every start&#10;- On changing User Inf, user doesn't update it duplicates entry with new Inf" />
     <MESSAGE value="Password now for Userchanges required&#10;Updated deprecated hibernate methods&#10;  save() -&gt; merge()" />
-    <option name="LAST_COMMIT_MESSAGE" value="Password now for Userchanges required&#10;Updated deprecated hibernate methods&#10;  save() -&gt; merge()" />
+    <MESSAGE value="Transaction verwendet&#10;EntityManager verwendet&#10;Dao's erstellt" />
+    <option name="LAST_COMMIT_MESSAGE" value="Transaction verwendet&#10;EntityManager verwendet&#10;Dao's erstellt" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
@@ -270,19 +300,14 @@
           <properties class="org.hibernate.internal.util.config.ConfigurationException" package="org.hibernate.internal.util.config" />
           <option name="timeStamp" value="1" />
         </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="org.hibernate.exception.SQLGrammarException" package="org.hibernate.exception" />
+          <option name="timeStamp" value="18" />
+        </breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/entities/User.java</url>
-          <line>21</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/dao/UserDao.java</url>
-          <line>22</line>
-          <properties class="dao.UserDao" method="getByUsername">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="6" />
+          <url>file://$PROJECT_DIR$/src/main/java/functional/EntityManagement.java</url>
+          <line>34</line>
+          <option name="timeStamp" value="11" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

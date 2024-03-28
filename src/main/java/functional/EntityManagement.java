@@ -1,4 +1,4 @@
-package main;
+package functional;
 
 import entities.Share;
 import entities.User;
@@ -17,11 +17,6 @@ public class EntityManagement {
 
     private static EntityManagerFactory entityManagerFactory = null;
 
-    /**
-     * Create session factory.
-     *
-     * @return the session factory
-     */
     protected static EntityManagerFactory createEntityManagerFactory() {
         if (entityManagerFactory != null) {
             return entityManagerFactory;

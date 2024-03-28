@@ -1,6 +1,8 @@
 package main;
 
 
+import functional.InputHandler;
+
 /**
  * The type Main.
  */

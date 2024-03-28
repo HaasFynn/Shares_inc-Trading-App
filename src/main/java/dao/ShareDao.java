@@ -1,9 +1,9 @@
 package dao;
 
 import entities.Share;
+import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityTransaction;
-import jakarta.transaction.Transactional;
+import jakarta.persistence.TransactionRequiredException;
 
 import java.util.List;
 
@@ -33,32 +33,40 @@ public class ShareDao implements Dao<Share> {
 
 
     @Override
-    public void add(Share share) {
-        begin();
-        entityManager.persist(share);
-        commit();
+    public boolean add(Share share) {
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.persist(share);
+            entityManager.getTransaction().commit();
+        } catch (EntityExistsException e) {
+            return false;
+        }
+        return true;
     }
 
     @Override
-    public void update(Share share) {
-        begin();
-        entityManager.merge(share);
-        commit();
+    public boolean update(Share share) {
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.merge(share);
+            entityManager.getTransaction().commit();
+        } catch (TransactionRequiredException e) {
+            return false;
+        }
+        return true;
     }
 
 
     @Override
-    public void delete(Share share) {
-        begin();
-        entityManager.remove(share);
-        commit();
+    public boolean delete(Share share) {
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.remove(share);
+            entityManager.getTransaction().commit();
+        } catch (TransactionRequiredException e) {
+            return false;
+        }
+        return true;
     }
 
-    private void begin() {
-        entityManager.getTransaction().begin();
-    }
-
-    private void commit() {
-        entityManager.getTransaction().commit();
-    }
 }

@@ -1,5 +1,6 @@
-package main;
+package functional;
 
+import creators.ShareCreator;
 import dao.ShareDao;
 import dao.UserDao;
 import entities.Share;
@@ -7,17 +8,20 @@ import entities.User;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
+import java.time.LocalDateTime;
+
 /**
  * The type Input handler.
  */
 public class InputHandler {
     @PersistenceContext
-    private final EntityManager entityManager;
-    private final UserDao userDao;
-    private final ShareDao shareDao;
+    private EntityManager entityManager;
+    private UserDao userDao;
+    private ShareDao shareDao;
     private User loggedInUser;
+
     /**
-     * The In.
+     * Instance of the "Reader" class
      */
     Reader in = new Reader();
 
@@ -25,10 +29,14 @@ public class InputHandler {
      * Instantiates a new Input handler.
      */
     public InputHandler() {
-        this.entityManager = EntityManagement.createEntityManagerFactory().createEntityManager();
-        this.userDao = new UserDao(entityManager);
-        this.shareDao = new ShareDao(entityManager);
-        this.loggedInUser = null;
+        try {
+            this.entityManager = EntityManagement.createEntityManagerFactory().createEntityManager();
+            this.userDao = new UserDao(entityManager);
+            this.shareDao = new ShareDao(entityManager);
+            this.loggedInUser = null;
+        } catch (IllegalStateException e) {
+            System.out.println("Exception Thrown");
+        }
     }
 
     /**
@@ -54,12 +62,12 @@ public class InputHandler {
         switch (in.getIntAnswer("""
                 [1] Login
                 [2] Create User
-                [3] Change User
+                [3] Edit User
                 [4] Delete User
                 [5] Return""")) {
             case 1 -> login();
             case 2 -> createUser();
-            case 3 -> changeUser();
+            case 3 -> editUser();
             case 4 -> deleteUser();
         }
     }
@@ -67,14 +75,24 @@ public class InputHandler {
     private void shareStart() {
         switch (in.getIntAnswer("""
                 [1] Create Share
-                [2] Delete Share
-                [3] Return""")) {
+                [2] Generate Shares
+                [3] Delete Share
+                [4] Return""")) {
             case 1 -> createShare();
-            case 2 -> deleteShare();
+            case 2 -> generateShares();
+            case 3 -> deleteShare();
         }
     }
 
-    private void changeUser() {
+    private void generateShares() {
+        int amount = in.getIntAnswer("How many shares would you like to generate?");
+        for (int i = 0; i < amount; i++) {
+            shareDao.add(ShareCreator.getNewShare());
+        }
+        System.out.println("Successfully created " + amount + " shares!");
+    }
+
+    private void editUser() {
         if (loggedInUser == null) {
             System.out.println("You're not logged in!");
         } else {
@@ -91,7 +109,7 @@ public class InputHandler {
                 case 3 -> userChanged = editLastname();
                 case 4 -> userChanged = editEmail();
                 case 5 -> userChanged = editPassword();
-                default -> System.out.println("This Function does not exist!");
+                default -> System.out.println("This function does not exist!");
             }
             if (userChanged) {
                 System.out.println("Changes saved!");
@@ -108,8 +126,7 @@ public class InputHandler {
                 return false;
             } else {
                 loggedInUser.username = username;
-                userDao.update(loggedInUser);
-                return true;
+                return userDao.update(loggedInUser);
             }
         }
         System.out.println("Wrong Password!");
@@ -120,8 +137,7 @@ public class InputHandler {
         String pass = in.getStringAnswer("Password:");
         if (passwordsEqual(pass)) {
             loggedInUser.lastname = in.getStringAnswer("New Firstname:");
-            userDao.update(loggedInUser);
-            return true;
+            return userDao.update(loggedInUser);
         }
         System.out.println("Wrong Password!");
         return false;
@@ -131,8 +147,7 @@ public class InputHandler {
         String pass = in.getStringAnswer("Password:");
         if (passwordsEqual(pass)) {
             loggedInUser.lastname = in.getStringAnswer("New Lastname:");
-            userDao.update(loggedInUser);
-            return true;
+            return userDao.update(loggedInUser);
         }
         System.out.println("Wrong Password!");
         return false;
@@ -142,20 +157,17 @@ public class InputHandler {
         String pass = in.getStringAnswer("Password:");
         if (passwordsEqual(pass)) {
             loggedInUser.email = in.getStringAnswer("New E-Mail:");
-            userDao.update(loggedInUser);
-            return true;
+            return userDao.update(loggedInUser);
         }
         System.out.println("Wrong Password!");
         return false;
-
     }
 
     private boolean editPassword() {
         String oldPass = in.getStringAnswer("Old Password");
         if (passwordsEqual(oldPass)) {
             loggedInUser.password = in.getPassword("New Password:");
-            userDao.update(loggedInUser);
-            return true;
+            return userDao.update(loggedInUser);
         }
         System.out.println("Wrong Password!");
         return false;
@@ -173,14 +185,13 @@ public class InputHandler {
             loggedInUser = user;
             System.out.println("Login succeeded!");
         } else {
-            System.out.println("Couldn't find User!");
+            System.out.println("Couldn't find user!");
         }
     }
 
     private void createUser() {
         User user = getNewUser();
-        userDao.add(user);
-        if (userDao.getByUsername(user.username) != null) {
+        if (userDao.add(user)) {
             System.out.println("User was created successfully!");
         } else {
             System.out.println("User creation failed!");
@@ -190,20 +201,16 @@ public class InputHandler {
     private void deleteUser() {
         String username = in.getStringAnswer("Username:");
         String password = in.getStringAnswer("Password:");
-        userDao.delete(userDao.getByPassword(username, password));
-        User user = userDao.getByUsername(username);
-
-        if (user == null) {
+        if (userDao.delete(userDao.getByPassword(username, password))) {
             System.out.println("User deletion successfully!");
         } else {
-            System.out.println("User deletion successfully!");
+            System.out.println("Was not able to delete User!");
         }
     }
 
     private void createShare() {
         Share share = getNewShare();
-        shareDao.add(share);
-        if (shareDao.getByName(share.name) != null) {
+        if (shareDao.add(share)) {
             System.out.println("Share was created successfully!");
         } else {
             System.out.println("Share creation failed!");
@@ -212,12 +219,11 @@ public class InputHandler {
 
     private void deleteShare() {
         String name = in.getStringAnswer("Name:");
-        shareDao.delete(shareDao.getByName(name));
-        Share share = shareDao.getByName(name);
-        if (share == null) {
+
+        if (shareDao.delete(shareDao.getByName(name))) {
             System.out.println("Share deletion successfully!");
         } else {
-            System.out.println("Share deletion successfully!");
+            System.out.println("Was not able to delete share!!");
         }
     }
 
@@ -238,6 +244,7 @@ public class InputHandler {
         share.pricePerShare = in.getDoubleAnswer("PricePerShare:");
         share.stockReturn = in.getDoubleAnswer("Stockreturn:");
         share.existingSharesAmount = in.getIntAnswer("existingSharesAmount:");
+        share.date = LocalDateTime.now();
         return share;
     }
 

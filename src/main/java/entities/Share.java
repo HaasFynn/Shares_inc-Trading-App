@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 /**
  * The type Share.
@@ -64,9 +63,6 @@ public class Share {
     @Setter
     public LocalDateTime date;
 
-    public Share() {
-        this.date = LocalDateTime.now();
-    }
 }
 
 
