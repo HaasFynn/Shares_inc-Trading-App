@@ -46,10 +46,34 @@ public class InputHandler {
         while (true) {
             switch (in.getIntAnswer("""
                     [1] User management
-                    [2] Share actions""")) {
+                    [2] Share actions
+                    [3] Trade
+                    [4] Return
+                    """)) {
                 case 1 -> userStart();
                 case 2 -> shareStart();
-                case 3 -> {
+                case 3 -> trade();
+                case 4 -> {
+                    return;
+                }
+                default -> System.out.println("Wrong Input!");
+            }
+        }
+    }
+
+    // TODO Create Buy, Sell, ShowPortfolio Functions
+    private void trade() {
+        while (true) {
+            switch (in.getIntAnswer("""
+                    [1] Buy
+                    [2] Sell
+                    [3] Show Portfolio
+                    [4] Return
+                    """)) {
+                case 1 -> buy();
+                case 2 -> sell();
+                case 3 -> showPortfolio();
+                case 4 -> {
                     return;
                 }
                 default -> System.out.println("Wrong Input!");
@@ -74,13 +98,11 @@ public class InputHandler {
 
     private void shareStart() {
         switch (in.getIntAnswer("""
-                [1] Create Share
-                [2] Generate Shares
-                [3] Delete Share
-                [4] Return""")) {
-            case 1 -> createShare();
-            case 2 -> generateShares();
-            case 3 -> deleteShare();
+                [1] Generate Shares
+                [2] Delete Share
+                [3] Return""")) {
+            case 1 -> generateShares();
+            case 2 -> deleteShare();
         }
     }
 

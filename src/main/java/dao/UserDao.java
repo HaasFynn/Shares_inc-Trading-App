@@ -11,11 +11,9 @@ import java.util.List;
 
 public class UserDao implements Dao<User> {
     private final EntityManager entityManager;
-    private final EntityTransaction transaction;
 
     public UserDao(EntityManager entityManager) {
         this.entityManager = entityManager;
-        this.transaction = this.entityManager.getTransaction();
     }
 
     @Override

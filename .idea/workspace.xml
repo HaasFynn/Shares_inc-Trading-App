@@ -4,24 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea488597-f4e2-49aa-b467-1e44621e87b4" name="Changes" comment="Transaction verwendet&#10;EntityManager verwendet&#10;Dao's erstellt">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+    <list default="true" id="ea488597-f4e2-49aa-b467-1e44621e87b4" name="Changes" comment="Databases recreated&#10;Try Catches added to db actions&#10;edited README.md">
+      <change afterPath="$PROJECT_DIR$/src/main/java/Archive/share_user_sql.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/cf4361f7-4957-4a41-abe2-804304d8b976.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/cf4361f7-4957-4a41-abe2-804304d8b976.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/creators/ShareCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/creators/ShareCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/Dao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/Dao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/ShareDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/ShareDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/UserDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/entities/Share.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Share.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/EntityManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/functional/EntityManagement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/InputHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/functional/InputHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/Reader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/functional/Reader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/hibernate.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/hibernate.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/lombok.config" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -214,7 +202,9 @@
       <workItem from="1711611134031" duration="2246000" />
       <workItem from="1711614240762" duration="2891000" />
       <workItem from="1711620450081" duration="1955000" />
-      <workItem from="1711622441847" duration="2593000" />
+      <workItem from="1711622441847" duration="4114000" />
+      <workItem from="1711636791907" duration="1940000" />
+      <workItem from="1711639926804" duration="1207000" />
     </task>
     <task id="LOCAL-00001" summary="Created Files and Set Properties&#10;setUp Function made&#10;Annotations added">
       <option name="closed" value="true" />
@@ -264,7 +254,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711112708605</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Databases recreated&#10;Try Catches added to db actions&#10;edited README.md">
+      <option name="closed" value="true" />
+      <created>1711628371980</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1711628371980</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -288,7 +286,8 @@
     <MESSAGE value="Original Commit didnt go through March 7th&#10;Changed:&#10;System works (asking user stuff)&#10;To be done:&#10;- Db gets cleared after every start&#10;- On changing User Inf, user doesn't update it duplicates entry with new Inf" />
     <MESSAGE value="Password now for Userchanges required&#10;Updated deprecated hibernate methods&#10;  save() -&gt; merge()" />
     <MESSAGE value="Transaction verwendet&#10;EntityManager verwendet&#10;Dao's erstellt" />
-    <option name="LAST_COMMIT_MESSAGE" value="Transaction verwendet&#10;EntityManager verwendet&#10;Dao's erstellt" />
+    <MESSAGE value="Databases recreated&#10;Try Catches added to db actions&#10;edited README.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="Databases recreated&#10;Try Catches added to db actions&#10;edited README.md" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>

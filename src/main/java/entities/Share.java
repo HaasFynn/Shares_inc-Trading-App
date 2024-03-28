@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
  */
 @Entity
 @Getter
-@Table(name = "share")
+@Table(name = "shares")
 public class Share {
     /**
      * The ID.
