@@ -26,42 +26,42 @@ public class Share {
      */
     @Column(name = "name")
     @Setter
-    public String name;
+    private String name;
 
     /**
      * The Shortl.
      */
     @Column(name = "shortl")
     @Setter
-    public String shortl;
+    private String shortl;
 
     /**
      * The Price per share.
      */
     @Column(name = "pricepershare")
     @Setter
-    public double pricePerShare;
+    private double pricePerShare;
 
     /**
      * The Stock return.
      */
     @Column(name = "stockreturn")
     @Setter
-    public double stockReturn;
+    private double stockReturn;
 
     /**
      * The Existing shares amount.
      */
     @Column(name = "existingsharesamount")
     @Setter
-    public int existingSharesAmount;
+    private int existingSharesAmount;
 
     /**
      * The Date.
      */
     @Column(name = "dateOfEntry")
     @Setter
-    public LocalDateTime date;
+    private LocalDateTime date;
 
 }
 

@@ -22,12 +22,12 @@ public class ShareCreator {
     public static Share getNewShare() {
         Share share = new Share();
         int randNameIndex = randEntry(nameList);
-        share.name = nameList[randNameIndex];
-        share.shortl = shortlList[randNameIndex];
-        share.pricePerShare = randomEntry(ppsList);
-        share.stockReturn = randomEntry(dividendList);
-        share.existingSharesAmount = randomEntry(existingShares);
-        share.date = LocalDateTime.now();
+        share.setName(nameList[randNameIndex]);
+        share.setShortl(shortlList[randNameIndex]);
+        share.setPricePerShare(randomEntry(ppsList));
+        share.setStockReturn(randomEntry(dividendList));
+        share.setExistingSharesAmount(randomEntry(existingShares));
+        share.setDate(LocalDateTime.now());
         return share;
     }
 

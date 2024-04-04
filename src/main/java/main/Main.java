@@ -1,7 +1,13 @@
 package main;
 
 
+import dao.*;
+import entities.Portfolio;
+import entities.Share;
+import entities.User;
+import functional.EntityManagement;
 import functional.InputHandler;
+import jakarta.persistence.EntityManager;
 
 /**
  * The type Main.
@@ -13,7 +19,11 @@ public class Main {
      * @param args the input arguments
      */
     public static void main(String[] args) {
-        new InputHandler().start();
+        EntityManager entityManager = EntityManagement.createEntityManagerFactory().createEntityManager();
+        UserDaoImpl userDao = new UserDaoImpl(entityManager);
+        ShareDaoImpl shareDao = new ShareDaoImpl(entityManager);
+        PortfolioDaoImpl portfolioDao = new PortfolioDaoImpl(entityManager);
+        new InputHandler(userDao, shareDao, portfolioDao).start();
     }
 
 }

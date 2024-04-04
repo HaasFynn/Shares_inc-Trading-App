@@ -32,25 +32,25 @@ public class UserManager {
      */
     public boolean add(User user) {
 
-            Transaction tx = null;
-            try (Session session = sessionFactory.openSession()) {
-                if (userExists(user.username)) {
-                    tx = session.beginTransaction();
-                    tx.begin();
-                    session.persist(user);
-                    tx.commit();
-                }
-            } catch (Exception e) {
-                if (tx != null) {
-                    tx.rollback();
-                }
+        Transaction tx = null;
+        try (Session session = sessionFactory.openSession()) {
+            if (userExists(user.getUsername())) {
+                tx = session.beginTransaction();
+                tx.begin();
+                session.persist(user);
+                tx.commit();
             }
-            return true;
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+        }
+        return true;
     }
 
     private boolean userExists(String username) {
         User user = getUserByUsername(username);
-        return Objects.equals(user.username, "") || Objects.equals(user.email, "");
+        return Objects.equals(user.getUsername(), "") || Objects.equals(user.getEmail(), "");
     }
 
     public User getUserWithPass(String username, String pass) {

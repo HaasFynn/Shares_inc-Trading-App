@@ -17,7 +17,7 @@ public class EntityManagement {
 
     private static EntityManagerFactory entityManagerFactory = null;
 
-    protected static EntityManagerFactory createEntityManagerFactory() {
+    public static EntityManagerFactory createEntityManagerFactory() {
         if (entityManagerFactory != null) {
             return entityManagerFactory;
         }

@@ -74,7 +74,7 @@ public class ShareManager {
                 tx = session.beginTransaction();
                 tx.begin();
                 session.createMutationQuery("delete from Share s where s.name = :username")
-                        .setParameter("name", share.name)
+                        .setParameter("name", share.getName())
                         .executeUpdate();
                 tx.commit();
             } catch (Exception e) {

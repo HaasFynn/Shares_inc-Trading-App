@@ -26,49 +26,49 @@ public class User {
      */
     @Column(name = "username")
     @Setter
-    public String username;
+    private String username;
 
     /**
      * The Firstname.
      */
     @Column(name = "firstname")
     @Setter
-    public String firstname;
+    private String firstname;
 
     /**
      * The Lastname.
      */
     @Column(name = "lastname")
     @Setter
-    public String lastname;
+    private String lastname;
 
     /**
      * The Email.
      */
     @Column(name = "email")
     @Setter
-    public String email;
+    private String email;
 
     /**
      * The Password.
      */
     @Column(name = "password")
     @Setter
-    public String password;
+    private String password;
 
     /**
      * The Account balance.
      */
     @Column(name = "accountBalance")
     @Setter
-    public double accountBalance;
+    private double accountBalance;
 
     /**
      * The Date.
      */
     @Column(name = "creationDate")
     @Setter
-    public LocalDateTime date;
+    private LocalDateTime date;
 
     /**
      * Instantiates a new User.
