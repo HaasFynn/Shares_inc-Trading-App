@@ -11,9 +11,9 @@ public interface PortfolioDao {
 
     List<Portfolio> getAll();
 
-    boolean add(Portfolio t);
+    boolean add(Portfolio portfolio);
 
-    boolean update(Portfolio t);
+    boolean update(Portfolio portfolio);
 
-    boolean delete(Portfolio t);
+    boolean delete(Portfolio portfolio);
 }

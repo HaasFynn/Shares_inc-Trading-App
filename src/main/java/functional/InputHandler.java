@@ -113,7 +113,7 @@ public class InputHandler {
         if (sellAmountOfShares <= 0) {
             System.out.println("Invalid number of shares");
         }
-        Portfolio portfolio = portfolioDao.get(loggedInUser.Id, share.Id);
+        Portfolio portfolio = portfolioDao.get(share.Id, loggedInUser.Id);
         if (portfolio.getAmount() < sellAmountOfShares) {
             System.out.println("Sorry, you tried to sell too many shares...");
         } else {
@@ -134,10 +134,11 @@ public class InputHandler {
     private static void printPortfolio(List<Portfolio> userPortfolio, List<Share> shareList) {
         System.out.println("Portfolio: \n");
         System.out.println("======================");
-        for (int i = 0; i < userPortfolio.size(); i++) {
+        for (int i = 1; i < userPortfolio.size(); i++) {
             System.out.println(i + ". Share:");
             System.out.println("Name: " + shareList.get(i).getName());
             System.out.println("Amount of your shares: " + userPortfolio.get(i).getAmount());
+            System.out.println("Worth of your shares: " + userPortfolio.get(i).getAmount() * shareList.get(i).getPricePerShare());
             System.out.println("======================\n");
         }
         System.out.println("======================\n");
@@ -203,9 +204,13 @@ public class InputHandler {
 
     private void generateShares() {
         int amount = in.getIntAnswer("How many shares would you like to generate?");
-        for (int i = 0; i < amount; i++) {
-            shareDao.add(ShareCreator.getNewShare());
+        long startTime = System.currentTimeMillis();
+        try {
+            shareDao.addAll(ShareCreator.createNewShares(amount));
+        } catch (Exception ignored) {
         }
+        long endTime = System.currentTimeMillis();
+        System.out.println("Generated shares in " + (endTime - startTime)/1000 + "s");
         System.out.println("Successfully created " + amount + " shares!");
     }
 

@@ -1,4 +1,4 @@
-package Archive;
+package archive;
 
 import entities.User;
 import jakarta.persistence.NoResultException;

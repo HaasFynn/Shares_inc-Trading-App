@@ -3,6 +3,7 @@ package dao;
 import entities.User;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.TransactionRequiredException;
 
 import java.util.List;
@@ -21,23 +22,25 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User getByUsername(String username) {
-        return entityManager.createQuery("FROM User u WHERE u.username = :username", User.class).
-                setParameter("username", username).
-                getResultStream().findFirst().orElse(null);
+        try {
+            return entityManager.createQuery("FROM User u WHERE u.username = :username", User.class).setParameter("username", username).getResultStream().findFirst().orElse(null);
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 
     @Override
     public User getByPassword(String username, String password) {
-        return entityManager.createQuery("FROM User u WHERE u.username = :username AND u.password = :password", User.class)
-                .setParameter("username", username)
-                .setParameter("password", password)
-                .getSingleResult();
+        try {
+            return entityManager.createQuery("FROM User u WHERE u.username = :username AND u.password = :password", User.class).setParameter("username", username).setParameter("password", password).getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 
     @Override
     public List<User> getAll() {
-        return entityManager.createQuery("FROM User", User.class)
-                .getResultList();
+        return entityManager.createQuery("FROM User", User.class).getResultList();
     }
 
     @Override
@@ -63,6 +66,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public boolean delete(User user) {
+        if (user == null) return false;
         entityManager.getTransaction().begin();
         entityManager.remove(user);
         entityManager.getTransaction().commit();

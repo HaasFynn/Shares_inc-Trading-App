@@ -11,9 +11,11 @@ public interface ShareDao {
 
     List<Share> getAll();
 
-    boolean add(Share t);
+    boolean add(Share share);
 
-    boolean update(Share t);
+    boolean addAll(Share... share);
 
-    boolean delete(Share t);
+    boolean update(Share share);
+
+    boolean delete(Share share);
 }

@@ -38,7 +38,11 @@ public class Reader {
         do {
             try {
                 System.out.println(question);
-                return Integer.parseInt(in.readLine());
+                int answer = Integer.parseInt(in.readLine());
+                if (answer >= 0) {
+                    return answer;
+                }
+                System.out.println("Incorrect Input, please use non negative number!");
             } catch (Exception e) {
                 System.out.println("Incorrect Input! Please use Numbers only!");
             }

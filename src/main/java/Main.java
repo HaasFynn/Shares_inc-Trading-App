@@ -1,10 +1,4 @@
-package main;
-
-
 import dao.*;
-import entities.Portfolio;
-import entities.Share;
-import entities.User;
 import functional.EntityManagement;
 import functional.InputHandler;
 import jakarta.persistence.EntityManager;

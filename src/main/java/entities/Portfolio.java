@@ -4,13 +4,14 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
 @Entity
+@Getter
 @Table(name = "share_portfolio")
 public class Portfolio {
 
+    @Column(name = "id")
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     @Column(name = "share_id")
@@ -19,8 +20,9 @@ public class Portfolio {
     @Column(name = "user_id")
     private long userId;
 
-    @Setter
+
     @Column(name = "amount")
+    @Setter
     private int amount;
 
     public Portfolio() {

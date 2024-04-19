@@ -3,7 +3,7 @@ package dao;
 import entities.Portfolio;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.TransactionRequiredException;
+import jakarta.persistence.NoResultException;
 
 import java.util.List;
 
@@ -21,10 +21,14 @@ public class PortfolioDaoImpl implements PortfolioDao {
 
     @Override
     public Portfolio get(long shareId, long userId) {
-        return entityManager.createQuery("FROM Portfolio p WHERE p.shareId = :shareId AND p.userId = :userId", Portfolio.class)
-                .setParameter("shareId", shareId)
-                .setParameter("userId", userId)
-                .getResultStream().findFirst().orElse(null);
+        try {
+            return entityManager.createQuery("FROM Portfolio p WHERE p.shareId = :shareId AND p.userId = :userId", Portfolio.class)
+                    .setParameter("shareId", shareId)
+                    .setParameter("userId", userId)
+                    .getResultStream().findFirst().orElse(null);
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 
     @Override

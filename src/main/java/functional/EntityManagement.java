@@ -1,5 +1,6 @@
 package functional;
 
+import entities.Portfolio;
 import entities.Share;
 import entities.User;
 
@@ -29,6 +30,7 @@ public class EntityManagement {
                     new MetadataSources(registry)
                             .addAnnotatedClass(Share.class)
                             .addAnnotatedClass(User.class)
+                            .addAnnotatedClass(Portfolio.class)
                             .buildMetadata()
                             .buildSessionFactory();
         } catch (Exception e) {

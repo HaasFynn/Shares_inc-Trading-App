@@ -13,9 +13,9 @@ public interface UserDao {
 
     List<User> getAll();
 
-    boolean add(User t);
+    boolean add(User user);
 
-    boolean update(User t);
+    boolean update(User user);
 
-    boolean delete(User t);
+    boolean delete(User user);
 }
