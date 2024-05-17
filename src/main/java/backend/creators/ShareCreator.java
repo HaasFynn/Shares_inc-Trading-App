@@ -20,7 +20,7 @@ public class ShareCreator {
     private static final Integer[] existingShares = new Integer[]{1500, 321, 800, 243, 1200, 198, 1000, 276, 500, 154, 1500, 232, 700, 189, 900, 211, 1100, 176, 1000, 209, 1300, 245, 600, 132, 1400, 267, 800, 190, 1000, 212, 1200, 154, 900, 232};
 
 
-    public static Share[] createNewShares(int givenAmount) throws Exception {
+    public static Share[] createNewShares(int givenAmount) {
         /*amount = Math.min(amount, nameList.length);
         List<Integer> indices = new ArrayList<>(IntStream.range(0, amount).boxed().toList());
         Collections.shuffle(indices);*/

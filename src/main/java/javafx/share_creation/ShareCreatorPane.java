@@ -1,0 +1,92 @@
+package javafx.share_creation;
+
+import backend.LanguagePack;
+import backend.dao.ShareDaoImpl;
+import backend.functional.EntityManagement;
+import javafx.beans.binding.StringBinding;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+
+public class ShareCreatorPane extends GridPane{
+
+    private final ShareCreatorController controller;
+    private final Font font;
+
+    public ShareCreatorPane(Font font) {
+        this.controller = new ShareCreatorController(this, new ShareDaoImpl(EntityManagement.createEntityManagerFactory().createEntityManager()));
+        this.font = font;
+        create();
+    }
+
+    VBox mainBox;
+    Text title;
+    VBox inputBox;
+    Label inputLabel;
+    TextField inputField;
+    Button submitButton;
+
+    public void create() {
+        setMinSize(200, 150);
+        setVgap(10);
+        add(getMainBox(), 0, 0);
+    }
+
+    private VBox getMainBox() {
+        mainBox = new VBox();
+        mainBox.setSpacing(10);
+        mainBox.getChildren().addAll(getTitle(), getInputBox());
+        return mainBox;
+    }
+
+    private Text getTitle() {
+        title = new Text();
+        title.textProperty().bind(getValueByKey("title")); //share.creator.title
+        title.getStyleClass().addAll("h1", "strong");
+        title.setFont(font);
+        return title;
+    }
+
+    private VBox getInputBox() {
+        inputBox = new VBox();
+        inputBox.setSpacing(5);
+        inputBox.getChildren().addAll(
+                getInputLabel(),
+                getInputField(),
+                getSubmitButton()
+        );
+        return inputBox;
+    }
+
+    private Label getInputLabel() {
+        inputLabel = new Label();
+        inputLabel.textProperty().bind(getValueByKey("title")); //share.creator.input.label
+        inputLabel.getStyleClass().add("lbl-default");
+        inputLabel.setFont(font);
+        return inputLabel;
+    }
+
+    private TextField getInputField() {
+        inputField = new TextField();
+        inputField.promptTextProperty().bind(getValueByKey("title"));
+        inputField.getStyleClass().add("p");
+        inputField.setFont(font);
+        return inputField;
+    }
+
+    private Button getSubmitButton() {
+        submitButton = new Button();
+        submitButton.textProperty().bind(getValueByKey("title")); //share.creator.submit.button
+        submitButton.getStyleClass().addAll("btn-sm", "btn-success");
+        submitButton.setFont(font);
+        return submitButton;
+    }
+
+    private StringBinding getValueByKey(String key) {
+        return LanguagePack.createStringBinding(key);
+    }
+}
