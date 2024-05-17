@@ -1,6 +1,6 @@
-import dao.*;
-import functional.EntityManagement;
-import functional.InputHandler;
+import backend.dao.*;
+import backend.functional.EntityManagement;
+import backend.functional.InputHandler;
 import jakarta.persistence.EntityManager;
 
 /**

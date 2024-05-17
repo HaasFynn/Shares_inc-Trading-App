@@ -1,6 +1,6 @@
-package creators;
+package backend.creators;
 
-import entities.Share;
+import backend.entities.Share;
 
 import java.io.*;
 import java.net.HttpURLConnection;

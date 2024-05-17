@@ -1,6 +1,6 @@
-package archive;
+package backend.archive;
 
-import entities.User;
+import backend.entities.User;
 import jakarta.persistence.NoResultException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
