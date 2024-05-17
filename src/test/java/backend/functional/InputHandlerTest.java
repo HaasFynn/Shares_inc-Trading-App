@@ -1,14 +1,13 @@
-package functional;
+package backend.functional;
 
-import com.sun.tools.javac.Main;
-import creators.ShareCreator;
-import dao.PortfolioDaoImpl;
-import dao.ShareDaoImpl;
-import dao.UserDaoImpl;
-import entities.User;
+import backend.creators.ShareCreator;
+import backend.dao.ShareDaoImpl;
+import backend.dao.UserDaoImpl;
+import backend.entities.User;
 import jakarta.persistence.EntityManager;
 import org.junit.jupiter.api.Test;
 
+import backend.functional.EntityManagement;
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.*;

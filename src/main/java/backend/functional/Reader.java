@@ -1,4 +1,4 @@
-package functional;
+package backend.functional;
 
 
 import java.io.BufferedReader;

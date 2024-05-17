@@ -1,6 +1,6 @@
-package archive;
+package backend.archive;
 
-import entities.Share;
+import backend.entities.Share;
 import jakarta.persistence.NoResultException;
 import jakarta.transaction.Transactional;
 import org.hibernate.Session;
