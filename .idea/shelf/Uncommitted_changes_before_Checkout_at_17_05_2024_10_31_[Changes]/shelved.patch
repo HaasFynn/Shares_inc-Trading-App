@@ -1,0 +1,334 @@
+Index: src/main/java/Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import dao.*;\r\nimport functional.EntityManagement;\r\nimport functional.InputHandler;\r\nimport jakarta.persistence.EntityManager;\r\n\r\n/**\r\n * The type Main.\r\n */\r\npublic class Main {\r\n    /**\r\n     * The entry point of application.\r\n     *\r\n     * @param args the input arguments\r\n     */\r\n    public static void main(String[] args) {\r\n        EntityManager entityManager = EntityManagement.createEntityManagerFactory().createEntityManager();\r\n        UserDaoImpl userDao = new UserDaoImpl(entityManager);\r\n        ShareDaoImpl shareDao = new ShareDaoImpl(entityManager);\r\n        PortfolioDaoImpl portfolioDao = new PortfolioDaoImpl(entityManager);\r\n        new InputHandler(userDao, shareDao, portfolioDao).start();\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Main.java b/src/main/java/Main.java
+--- a/src/main/java/Main.java	(revision 1be03b1c531da12a9ca1bbac5f543af059c05c94)
++++ b/src/main/java/Main.java	(date 1715934650797)
+@@ -1,10 +1,12 @@
+-import dao.*;
++import dao.PortfolioDaoImpl;
++import dao.ShareDaoImpl;
++import dao.UserDaoImpl;
+ import functional.EntityManagement;
+ import functional.InputHandler;
+ import jakarta.persistence.EntityManager;
+ 
+ /**
+- * The type Main.
++ * The type java.Main.
+  */
+ public class Main {
+     /**
+Index: src/test/java/functional/InputHandlerTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package functional;\r\n\r\nimport com.sun.tools.javac.Main;\r\nimport creators.ShareCreator;\r\nimport dao.PortfolioDaoImpl;\r\nimport dao.ShareDaoImpl;\r\nimport dao.UserDaoImpl;\r\nimport entities.User;\r\nimport jakarta.persistence.EntityManager;\r\nimport org.junit.jupiter.api.Test;\r\n\r\nimport java.util.concurrent.TimeUnit;\r\n\r\nimport static org.junit.jupiter.api.Assertions.*;\r\n\r\nclass InputHandlerTest {\r\n    EntityManager entityManager = EntityManagement.createEntityManagerFactory().createEntityManager();\r\n    UserDaoImpl userDao = new UserDaoImpl(entityManager);\r\n\r\n    @Test\r\n    void doesLoginWork() {\r\n        createTestAccount();\r\n        User user = new User();\r\n        user.setUsername(\"test\");\r\n        user.setEmail(\"john.doe@gmail.com\");\r\n        user.setPassword(\"1234\");\r\n        assertEquals(user.getUsername().toLowerCase(), userDao.getByUsername(\"Test\").getUsername().toLowerCase());\r\n    }\r\n\r\n    void createTestAccount() {\r\n        User user = new User();\r\n        user.setUsername(\"Test\");\r\n        user.setEmail(\"john.doe@gmail.com\");\r\n        user.setPassword(\"1234\");\r\n        userDao.add(user);\r\n    }\r\n\r\n    @Test\r\n    void doSharesGetAddedEveryTime() {\r\n        EntityManager entityManager = EntityManagement.createEntityManagerFactory().createEntityManager();\r\n        ShareDaoImpl shareDao = new ShareDaoImpl(entityManager);\r\n\r\n\r\n        assertThrows(Exception.class, () -> {\r\n            for (int i = 1; i <= 10; i++) {\r\n                TimeUnit.SECONDS.sleep(3);\r\n                shareDao.addAll(ShareCreator.createNewShares(100));\r\n                System.out.println(\"Didnt Work this time. Attempt number: \" + i);\r\n            }\r\n        });\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/test/java/functional/InputHandlerTest.java b/src/test/java/functional/InputHandlerTest.java
+--- a/src/test/java/functional/InputHandlerTest.java	(revision 1be03b1c531da12a9ca1bbac5f543af059c05c94)
++++ b/src/test/java/functional/InputHandlerTest.java	(date 1715934650706)
+@@ -1,14 +1,13 @@
+ package functional;
+ 
+-import com.sun.tools.javac.Main;
+-import creators.ShareCreator;
+-import dao.PortfolioDaoImpl;
+-import dao.ShareDaoImpl;
+-import dao.UserDaoImpl;
+-import entities.User;
++import backend.ShareCreator;
++import backend.dao.ShareDaoImpl;
++import backend.dao.UserDaoImpl;
++import backend.entities.User;
+ import jakarta.persistence.EntityManager;
+ import org.junit.jupiter.api.Test;
+ 
++import backend.functional.EntityManagement;
+ import java.util.concurrent.TimeUnit;
+ 
+ import static org.junit.jupiter.api.Assertions.*;
+Index: src/main/java/entities/User.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package entities;\r\n\r\nimport jakarta.persistence.*;\r\nimport lombok.Getter;\r\nimport lombok.Setter;\r\n\r\nimport java.time.LocalDateTime;\r\n\r\n/**\r\n * The type User.\r\n */\r\n@Getter\r\n@Entity\r\n@Table(name = \"users\")\r\npublic class User {\r\n    /**\r\n     * The Id.\r\n     */\r\n    @Column(name = \"id\")\r\n    @Id\r\n    @GeneratedValue(strategy = GenerationType.AUTO)\r\n    public long Id;\r\n\r\n    /**\r\n     * The Username.\r\n     */\r\n    @Column(name = \"username\")\r\n    @Setter\r\n    private String username;\r\n\r\n    /**\r\n     * The Firstname.\r\n     */\r\n    @Column(name = \"firstname\")\r\n    @Setter\r\n    private String firstname;\r\n\r\n    /**\r\n     * The Lastname.\r\n     */\r\n    @Column(name = \"lastname\")\r\n    @Setter\r\n    private String lastname;\r\n\r\n    /**\r\n     * The Email.\r\n     */\r\n    @Column(name = \"email\")\r\n    @Setter\r\n    private String email;\r\n\r\n    /**\r\n     * The Password.\r\n     */\r\n    @Column(name = \"password\")\r\n    @Setter\r\n    private String password;\r\n\r\n    /**\r\n     * The Account balance.\r\n     */\r\n    @Column(name = \"accountBalance\")\r\n    @Setter\r\n    private double accountBalance;\r\n\r\n    /**\r\n     * The Date.\r\n     */\r\n    @Column(name = \"creationDate\")\r\n    @Setter\r\n    private LocalDateTime date;\r\n\r\n    /**\r\n     * Instantiates a new User.\r\n     */\r\n    public User() {\r\n        this.accountBalance = 1000.0;\r\n        this.date = LocalDateTime.now();\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/entities/User.java b/src/main/java/entities/User.java
+--- a/src/main/java/entities/User.java	(revision 1be03b1c531da12a9ca1bbac5f543af059c05c94)
++++ b/src/main/java/entities/User.java	(date 1715934650743)
+@@ -1,4 +1,4 @@
+-package entities;
++package backend.entities;
+ 
+ import jakarta.persistence.*;
+ import lombok.Getter;
+Index: src/main/java/functional/EntityManagement.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package functional;\r\n\r\nimport entities.Portfolio;\r\nimport entities.Share;\r\nimport entities.User;\r\n\r\nimport jakarta.persistence.EntityManagerFactory;\r\nimport org.hibernate.boot.MetadataSources;\r\nimport org.hibernate.boot.registry.StandardServiceRegistry;\r\nimport org.hibernate.boot.registry.StandardServiceRegistryBuilder;\r\n\r\nimport static java.time.LocalDateTime.now;\r\n\r\n/**\r\n * The type Session.\r\n */\r\npublic class EntityManagement {\r\n\r\n    private static EntityManagerFactory entityManagerFactory = null;\r\n\r\n    public static EntityManagerFactory createEntityManagerFactory() {\r\n        if (entityManagerFactory != null) {\r\n            return entityManagerFactory;\r\n        }\r\n        final StandardServiceRegistry registry =\r\n                new StandardServiceRegistryBuilder()\r\n                        .loadProperties(\"hibernate.properties\").build();\r\n        try {\r\n            entityManagerFactory =\r\n                    new MetadataSources(registry)\r\n                            .addAnnotatedClass(Share.class)\r\n                            .addAnnotatedClass(User.class)\r\n                            .addAnnotatedClass(Portfolio.class)\r\n                            .buildMetadata()\r\n                            .buildSessionFactory();\r\n        } catch (Exception e) {\r\n            StandardServiceRegistryBuilder.destroy(registry);\r\n        }\r\n        return entityManagerFactory;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/functional/EntityManagement.java b/src/main/java/functional/EntityManagement.java
+--- a/src/main/java/functional/EntityManagement.java	(revision 1be03b1c531da12a9ca1bbac5f543af059c05c94)
++++ b/src/main/java/functional/EntityManagement.java	(date 1715934650751)
+@@ -1,8 +1,8 @@
+-package functional;
++package backend.functional;
+ 
+-import entities.Portfolio;
+-import entities.Share;
+-import entities.User;
++import backend.entities.Portfolio;
++import backend.entities.Share;
++import backend.entities.User;
+ 
+ import jakarta.persistence.EntityManagerFactory;
+ import org.hibernate.boot.MetadataSources;
+Index: src/main/java/archive/UserManager.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package archive;\r\n\r\nimport entities.User;\r\nimport jakarta.persistence.NoResultException;\r\nimport org.hibernate.Session;\r\nimport org.hibernate.SessionFactory;\r\nimport org.hibernate.Transaction;\r\n\r\nimport java.util.Objects;\r\n\r\n/**\r\n * The type User manager.\r\n */\r\npublic class UserManager {\r\n    private final SessionFactory sessionFactory;\r\n\r\n\r\n    /**\r\n     * Instantiates a new User manager.\r\n     *\r\n     * @param sessionFactory the session factory\r\n     */\r\n    public UserManager(SessionFactory sessionFactory) {\r\n        this.sessionFactory = sessionFactory;\r\n    }\r\n\r\n    /**\r\n     * Add user boolean.\r\n     *\r\n     * @param user the user\r\n     * @return <p>if action succeeded</p>\r\n     */\r\n    public boolean add(User user) {\r\n\r\n        Transaction tx = null;\r\n        try (Session session = sessionFactory.openSession()) {\r\n            if (userExists(user.getUsername())) {\r\n                tx = session.beginTransaction();\r\n                tx.begin();\r\n                session.persist(user);\r\n                tx.commit();\r\n            }\r\n        } catch (Exception e) {\r\n            if (tx != null) {\r\n                tx.rollback();\r\n            }\r\n        }\r\n        return true;\r\n    }\r\n\r\n    private boolean userExists(String username) {\r\n        User user = getUserByUsername(username);\r\n        return Objects.equals(user.getUsername(), \"\") || Objects.equals(user.getEmail(), \"\");\r\n    }\r\n\r\n    public User getUserWithPass(String username, String pass) {\r\n        try (Session session = sessionFactory.openSession()) {\r\n            return session\r\n                    .createQuery(\"from User u where u.username = :username and u.password = :password\", User.class)\r\n                    .setParameter(\"username\", username)\r\n                    .setParameter(\"password\", pass).getSingleResultOrNull();\r\n        } catch (NoResultException e) {\r\n            return null;\r\n        }\r\n    }\r\n\r\n    public User getUserByUsername(String username) {\r\n        try (Session session = sessionFactory.openSession()) {\r\n            return session\r\n                    .createQuery(\"from User u where u.username = :username\", User.class)\r\n                    .setParameter(\"username\", username).getSingleResultOrNull();\r\n        } catch (NoResultException e) {\r\n            return null;\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Save boolean.\r\n     *\r\n     * @param user the user\r\n     * @return <p>if action succeeded</p>\r\n     */\r\n    public boolean save(User user) {\r\n        sessionFactory.inTransaction(session -> {\r\n            session.merge(user);\r\n        });\r\n        return true;\r\n    }\r\n\r\n    /**\r\n     * Delete boolean.\r\n     *\r\n     * @param username the username\r\n     * @param password the password\r\n     * @return <p>if action succeeded</p>\r\n     */\r\n    public boolean delete(String username, String password) {\r\n        Transaction tx = null;\r\n        try (Session session = sessionFactory.openSession()) {\r\n            tx = session.beginTransaction();\r\n            tx.begin();\r\n            session\r\n                    .createMutationQuery(\"delete from User u where u.username = :username and u.password = :password\")\r\n                    .setParameter(\"username\", username)\r\n                    .setParameter(\"password\", password).executeUpdate();\r\n            tx.commit();\r\n        } catch (Exception e) {\r\n            if (tx != null) {\r\n                tx.rollback();\r\n            }\r\n            return false;\r\n        }\r\n        return true;\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/archive/UserManager.java b/src/main/java/archive/UserManager.java
+--- a/src/main/java/archive/UserManager.java	(revision 1be03b1c531da12a9ca1bbac5f543af059c05c94)
++++ b/src/main/java/archive/UserManager.java	(date 1715934650758)
+@@ -1,6 +1,6 @@
+-package archive;
++package backend.archive;
+ 
+-import entities.User;
++import backend.entities.User;
+ import jakarta.persistence.NoResultException;
+ import org.hibernate.Session;
+ import org.hibernate.SessionFactory;
+Index: src/main/java/functional/InputHandler.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package functional;\r\n\r\nimport creators.ShareCreator;\r\nimport dao.PortfolioDao;\r\nimport dao.ShareDao;\r\nimport dao.UserDao;\r\nimport entities.Portfolio;\r\nimport entities.Share;\r\nimport entities.User;\r\nimport jakarta.persistence.PersistenceContext;\r\n\r\nimport java.time.LocalDateTime;\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\n\r\n/**\r\n * The type Input handler.\r\n */\r\npublic class InputHandler {\r\n    @PersistenceContext\r\n    private UserDao userDao;\r\n    private ShareDao shareDao;\r\n    private PortfolioDao portfolioDao;\r\n    private User loggedInUser;\r\n\r\n    /**\r\n     * Instance of the \"Reader\" class\r\n     */\r\n    Reader in = new Reader();\r\n\r\n    /**\r\n     * Instantiates a new Input handler.\r\n     */\r\n\r\n    public InputHandler(UserDao userDao, ShareDao shareDao, PortfolioDao portfolioDao) {\r\n        this.userDao = userDao;\r\n        this.shareDao = shareDao;\r\n        this.portfolioDao = portfolioDao;\r\n    }\r\n\r\n    /**\r\n     * Start.\r\n     */\r\n    public void start() {\r\n        while (true) {\r\n            switch (in.getIntAnswer(\"\"\"\r\n                    [1] User management\r\n                    [2] Share actions\r\n                    [3] Trade\r\n                    \"\"\")) {\r\n                case 1 -> userStart();\r\n                case 2 -> shareStart();\r\n                case 3 -> trade();\r\n                default -> System.out.println(\"Wrong Input!\");\r\n            }\r\n        }\r\n    }\r\n\r\n    // TODO Create Buy(), Sell(), showPortfolio() Functions\r\n    private void trade() {\r\n        if (loggedInUser == null) {\r\n            System.out.println(\"Please register first!\");\r\n            return;\r\n        }\r\n        while (true) {\r\n            switch (in.getIntAnswer(\"\"\"\r\n                    [1] Buy\r\n                    [2] Sell\r\n                    [3] Show Portfolio\r\n                    [4] Return\r\n                    \"\"\")) {\r\n                case 1 -> buy();\r\n                case 2 -> sell();\r\n                case 3 -> showPortfolio();\r\n                case 4 -> {\r\n                    return;\r\n                }\r\n                default -> System.out.println(\"Wrong Input!\");\r\n            }\r\n        }\r\n    }\r\n\r\n    private void buy() {\r\n        Share share = shareDao.getByName(in.getStringAnswer(\"Whats the name of the share you would like to buy?\"));\r\n        if (share == null) {\r\n            System.out.println(\"No Such Share\");\r\n            return;\r\n        }\r\n        int amountOfShares = in.getIntAnswer(\"How many shares would you like to purchase?\");\r\n        if (amountOfShares <= 0) {\r\n            System.out.println(\"Invalid number of shares\");\r\n            return;\r\n        }\r\n        if (userHasEnoughMoney(share, amountOfShares)) {\r\n            System.out.println(\"Insufficient Funds\");\r\n            return;\r\n        }\r\n        if (!portfolioDao.add(createPortfolio(share.Id, amountOfShares))) {\r\n            System.out.println(\"Sorry share could not be purchased\");\r\n        } else {\r\n            withdrawMoney(share);\r\n            System.out.println(\"Successfully purchased\");\r\n        }\r\n    }\r\n\r\n    private void sell() {\r\n        Share share = shareDao.getByName(in.getStringAnswer(\"Whats the name of the share you would like to sell?\"));\r\n        if (share == null) {\r\n            System.out.println(\"No Such Share\");\r\n            return;\r\n        }\r\n        int sellAmountOfShares = in.getIntAnswer(\"How many shares would you like to sell?\");\r\n        if (sellAmountOfShares <= 0) {\r\n            System.out.println(\"Invalid number of shares\");\r\n        }\r\n        Portfolio portfolio = portfolioDao.get(share.Id, loggedInUser.Id);\r\n        if (portfolio.getAmount() < sellAmountOfShares) {\r\n            System.out.println(\"Sorry, you tried to sell too many shares...\");\r\n        } else {\r\n            updatePortfolio(portfolio, sellAmountOfShares);\r\n            depositMoney(share.getPricePerShare() * sellAmountOfShares);\r\n        }\r\n    }\r\n\r\n    private void showPortfolio() {\r\n        List<Portfolio> userPortfolio = portfolioDao.getAll();\r\n        List<Share> shareList = new ArrayList<>();\r\n        for (Portfolio p : userPortfolio) {\r\n            shareList.add(shareDao.get(p.getShareId()));\r\n        }\r\n        printPortfolio(userPortfolio, shareList);\r\n    }\r\n\r\n    private static void printPortfolio(List<Portfolio> userPortfolio, List<Share> shareList) {\r\n        System.out.println(\"Portfolio: \\n\");\r\n        System.out.println(\"======================\");\r\n        for (int i = 1; i < userPortfolio.size(); i++) {\r\n            System.out.println(i + \". Share:\");\r\n            System.out.println(\"Name: \" + shareList.get(i).getName());\r\n            System.out.println(\"Amount of your shares: \" + userPortfolio.get(i).getAmount());\r\n            System.out.println(\"Worth of your shares: \" + userPortfolio.get(i).getAmount() * shareList.get(i).getPricePerShare());\r\n            System.out.println(\"======================\\n\");\r\n        }\r\n        System.out.println(\"======================\\n\");\r\n    }\r\n\r\n    private void depositMoney(double depositAmount) {\r\n        loggedInUser.setAccountBalance(depositAmount);\r\n        userDao.update(loggedInUser);\r\n    }\r\n\r\n    private void updatePortfolio(Portfolio portfolio, int oldAmountOfShares) {\r\n        int amountOfShares = portfolio.getAmount() - oldAmountOfShares;\r\n        portfolio.setAmount(amountOfShares);\r\n        portfolioDao.update(portfolio);\r\n    }\r\n\r\n    private void withdrawMoney(Share share) {\r\n        loggedInUser.setAccountBalance(loggedInUser.getAccountBalance() - share.getPricePerShare());\r\n    }\r\n\r\n    private boolean userHasEnoughMoney(Share share, int amountOfShares) {\r\n        return loggedInUser.getAccountBalance() - (share.getPricePerShare() * amountOfShares) < 0;\r\n    }\r\n\r\n    private Portfolio createPortfolio(long shareId, int amount) {\r\n        return new Portfolio(loggedInUser.Id, shareId, amount);\r\n    }\r\n\r\n\r\n    private void userStart() {\r\n        switch (in.getIntAnswer(\"\"\"\r\n                [1] Login\r\n                [2] Create User\r\n                [3] Edit User\r\n                [4] Delete User\r\n                [5] Return\"\"\")) {\r\n            case 1 -> login();\r\n            case 2 -> createUser();\r\n            case 3 -> {\r\n                if (loggedInUser == null) {\r\n                    System.out.println(\"Please login first!\");\r\n                    break;\r\n                }\r\n                if (editUser()) {\r\n                    System.out.println(\"Changes Saved!\");\r\n                    break;\r\n                }\r\n                System.out.println(\"Changes could not be saved!\");\r\n            }\r\n            case 4 -> deleteUser();\r\n        }\r\n    }\r\n\r\n    private void shareStart() {\r\n        switch (in.getIntAnswer(\"\"\"\r\n                [1] Generate Shares\r\n                [2] Delete Share\r\n                [3] Return\"\"\")) {\r\n            case 1 -> generateShares();\r\n            case 2 -> deleteShare();\r\n        }\r\n    }\r\n\r\n    private void generateShares() {\r\n        int amount = in.getIntAnswer(\"How many shares would you like to generate?\");\r\n        long startTime = System.currentTimeMillis();\r\n        try {\r\n            shareDao.addAll(ShareCreator.createNewShares(amount));\r\n        } catch (Exception ignored) {\r\n        }\r\n        long endTime = System.currentTimeMillis();\r\n        System.out.println(\"Generated shares in \" + (endTime - startTime)/1000 + \"s\");\r\n        System.out.println(\"Successfully created \" + amount + \" shares!\");\r\n    }\r\n\r\n    private boolean editUser() {\r\n        switch (in.getIntAnswer(\"\"\"\r\n                [1] Change Username\r\n                [2] Change Firstname\r\n                [3] Change Lastname\r\n                [4] Change E-Mail\r\n                [5] Change Password\r\n                [6] Return\"\"\")) {\r\n            case 1 -> {\r\n                return editUsername();\r\n            }\r\n            case 2 -> {\r\n                return editFirstname();\r\n            }\r\n            case 3 -> {\r\n                return editLastname();\r\n            }\r\n            case 4 -> {\r\n                return editEmail();\r\n            }\r\n            case 5 -> {\r\n                return editPassword();\r\n            }\r\n            default -> System.out.println(\"This function does not exist!\");\r\n        }\r\n        return false;\r\n    }\r\n\r\n    private boolean editUsername() {\r\n        String pass = in.getStringAnswer(\"Password:\");\r\n        String username = in.getStringAnswer(\"New Username:\");\r\n        if (passwordsEqual(pass)) {\r\n            if (userDao.getByUsername(username) == null) {\r\n                System.out.println(\"Username already exists!\");\r\n                return false;\r\n            }\r\n            loggedInUser.setUsername(username);\r\n            return userDao.update(loggedInUser);\r\n        }\r\n        System.out.println(\"Wrong Password!\");\r\n        return false;\r\n    }\r\n\r\n    private boolean editFirstname() {\r\n        String pass = in.getStringAnswer(\"Password:\");\r\n        if (passwordsEqual(pass)) {\r\n            loggedInUser.setLastname(in.getStringAnswer(\"New Firstname:\"));\r\n            return userDao.update(loggedInUser);\r\n        }\r\n        System.out.println(\"Wrong Password!\");\r\n        return false;\r\n    }\r\n\r\n    private boolean editLastname() {\r\n        String pass = in.getStringAnswer(\"Password:\");\r\n        if (passwordsEqual(pass)) {\r\n            loggedInUser.setLastname(in.getStringAnswer(\"New Lastname:\"));\r\n            return userDao.update(loggedInUser);\r\n        }\r\n        System.out.println(\"Wrong Password!\");\r\n        return false;\r\n    }\r\n\r\n    private boolean editEmail() {\r\n        String pass = in.getStringAnswer(\"Password:\");\r\n        if (passwordsEqual(pass)) {\r\n            loggedInUser.setEmail(in.getStringAnswer(\"New Email:\"));\r\n            return userDao.update(loggedInUser);\r\n        }\r\n        System.out.println(\"Wrong Password!\");\r\n        return false;\r\n    }\r\n\r\n    private boolean editPassword() {\r\n        String oldPass = in.getStringAnswer(\"Old Password\");\r\n        if (passwordsEqual(oldPass)) {\r\n            loggedInUser.setPassword(in.getStringAnswer(\"Password:\"));\r\n            return userDao.update(loggedInUser);\r\n        }\r\n        System.out.println(\"Wrong Password!\");\r\n        return false;\r\n    }\r\n\r\n    private boolean passwordsEqual(String oldPass) {\r\n        return oldPass.equals(loggedInUser.getPassword());\r\n    }\r\n\r\n    public void login() {\r\n        String username = in.getStringAnswer(\"Username:\");\r\n        String pass = in.getStringAnswer(\"Password:\");\r\n        User user = userDao.getByPassword(username, pass);\r\n        if (user == null) {\r\n            System.out.println(\"Couldn't find user!\");\r\n            return;\r\n        }\r\n        loggedInUser = user;\r\n        System.out.println(\"Login succeeded!\");\r\n    }\r\n\r\n    private void createUser() {\r\n        User user = getNewUser();\r\n        if (!userDao.add(user)) {\r\n            System.out.println(\"User creation failed!\");\r\n            return;\r\n        }\r\n        System.out.println(\"User was created successfully!\");\r\n    }\r\n\r\n    private void deleteUser() {\r\n        String username = in.getStringAnswer(\"Username:\");\r\n        String password = in.getStringAnswer(\"Password:\");\r\n        if (!userDao.delete(userDao.getByPassword(username, password))) {\r\n            System.out.println(\"Was not able to delete User!\");\r\n            return;\r\n        }\r\n        System.out.println(\"User deletion successfully!\");\r\n    }\r\n\r\n    private void createShare() {\r\n        Share share = getNewShare();\r\n        if (!shareDao.add(share)) {\r\n            System.out.println(\"Share creation failed!\");\r\n            return;\r\n        }\r\n        System.out.println(\"Share was created successfully!\");\r\n    }\r\n\r\n    private void deleteShare() {\r\n        String name = in.getStringAnswer(\"Name:\");\r\n        if (!shareDao.delete(shareDao.getByName(name))) {\r\n            System.out.println(\"Was not able to delete share!!\");\r\n            return;\r\n        }\r\n        System.out.println(\"Share deletion successfully!\");\r\n\r\n    }\r\n\r\n    private User getNewUser() {\r\n        User user = new User();\r\n        user.setUsername(in.getStringAnswer(\"Username:\"));\r\n        user.setFirstname(in.getStringAnswer(\"Firstname:\"));\r\n        user.setLastname(in.getStringAnswer(\"Lastname:\"));\r\n        user.setEmail(in.getStringAnswer(\"E-Mail:\"));\r\n        user.setPassword(in.getPassword(\"Password:\"));\r\n        return user;\r\n    }\r\n\r\n    private Share getNewShare() {\r\n        Share share = new Share();\r\n        share.setName(in.getStringAnswer(\"Name:\"));\r\n        share.setShortl(in.getStringAnswer(\"Shortl:\"));\r\n        share.setPricePerShare(in.getDoubleAnswer(\"PricePerShare:\"));\r\n        share.setStockReturn(in.getDoubleAnswer(\"Stockreturn:\"));\r\n        share.setExistingSharesAmount(in.getIntAnswer(\"existingSharesAmount:\"));\r\n        share.setDate(LocalDateTime.now());\r\n        return share;\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/functional/InputHandler.java b/src/main/java/functional/InputHandler.java
+--- a/src/main/java/functional/InputHandler.java	(revision 1be03b1c531da12a9ca1bbac5f543af059c05c94)
++++ b/src/main/java/functional/InputHandler.java	(date 1715934650764)
+@@ -1,12 +1,12 @@
+-package functional;
++package backend.functional;
+ 
+-import creators.ShareCreator;
+-import dao.PortfolioDao;
+-import dao.ShareDao;
+-import dao.UserDao;
+-import entities.Portfolio;
+-import entities.Share;
+-import entities.User;
++import backend.ShareCreator;
++import backend.dao.PortfolioDao;
++import backend.dao.ShareDao;
++import backend.dao.UserDao;
++import backend.entities.Portfolio;
++import backend.entities.Share;
++import backend.entities.User;
+ import jakarta.persistence.PersistenceContext;
+ 
+ import java.time.LocalDateTime;
+Index: src/main/java/creators/ShareCreator.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/creators/ShareCreator.java b/src/main/java/ShareCreator.java
+rename from src/main/java/creators/ShareCreator.java
+rename to src/main/java/ShareCreator.java
+--- a/src/main/java/creators/ShareCreator.java	(revision 1be03b1c531da12a9ca1bbac5f543af059c05c94)
++++ b/src/main/java/ShareCreator.java	(date 1715934650716)
+@@ -1,6 +1,6 @@
+-package creators;
++package backend;
+ 
+-import entities.Share;
++import backend.entities.Share;
+ 
+ import java.io.*;
+ import java.net.HttpURLConnection;
+Index: src/main/java/archive/ShareManager.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package archive;\r\n\r\nimport entities.Share;\r\nimport jakarta.persistence.NoResultException;\r\nimport jakarta.transaction.Transactional;\r\nimport org.hibernate.Session;\r\nimport org.hibernate.SessionFactory;\r\nimport org.hibernate.Transaction;\r\n\r\n/**\r\n * The type Share manager.\r\n */\r\npublic class ShareManager {\r\n\r\n    private final SessionFactory sessionFactory;\r\n\r\n\r\n    /**\r\n     * Instantiates a new Share manager.\r\n     *\r\n     * @param sessionFactory the session factory\r\n     */\r\n    public ShareManager(SessionFactory sessionFactory) {\r\n        this.sessionFactory = sessionFactory;\r\n    }\r\n\r\n    /**\r\n     * Add share boolean.\r\n     *\r\n     * @param share the share\r\n     * @return <p>if action succeeded</p>\r\n     */\r\n    @Transactional\r\n    public boolean add(Share share) {\r\n        return false;\r\n    }\r\n\r\n    private boolean shareExists(String shareName) {\r\n        return getShareByName(shareName) == null;\r\n    }\r\n\r\n    private Share getShareByName(String name) {\r\n        try (Session session = sessionFactory.openSession()) {\r\n            return session.createQuery(\"from Share s where s.name = :name\", Share.class).setParameter(\"name\", name).getSingleResultOrNull();\r\n        } catch (NoResultException e) {\r\n            return null;\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Save boolean.\r\n     *\r\n     * @param share the share\r\n     * @return <p>if action succeeded</p>\r\n     */\r\n    public boolean save(Share share) {\r\n        sessionFactory.inTransaction(session -> {\r\n            session.merge(share);\r\n        });\r\n        return true;\r\n    }\r\n\r\n    /**\r\n     * Delete boolean.\r\n     *\r\n     * @param name the name\r\n     * @return <p>if action succeeded</p>\r\n     */\r\n    public boolean delete(String name) {\r\n        Share share = getShareByName(name);\r\n        if (share != null) {\r\n            Transaction tx = null;\r\n            try (Session session = sessionFactory.openSession()) {\r\n                tx = session.beginTransaction();\r\n                tx.begin();\r\n                session.createMutationQuery(\"delete from Share s where s.name = :username\")\r\n                        .setParameter(\"name\", share.getName())\r\n                        .executeUpdate();\r\n                tx.commit();\r\n            } catch (Exception e) {\r\n                if (tx != null) {\r\n                    tx.rollback();\r\n                }\r\n            }\r\n            return true;\r\n        }\r\n        return false;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/archive/ShareManager.java b/src/main/java/archive/ShareManager.java
+--- a/src/main/java/archive/ShareManager.java	(revision 1be03b1c531da12a9ca1bbac5f543af059c05c94)
++++ b/src/main/java/archive/ShareManager.java	(date 1715934650771)
+@@ -1,6 +1,6 @@
+-package archive;
++package backend.archive;
+ 
+-import entities.Share;
++import backend.entities.Share;
+ import jakarta.persistence.NoResultException;
+ import jakarta.transaction.Transactional;
+ import org.hibernate.Session;
+Index: src/main/java/entities/Share.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package entities;\r\n\r\nimport jakarta.persistence.*;\r\nimport lombok.Getter;\r\nimport lombok.Setter;\r\n\r\nimport java.time.LocalDateTime;\r\n\r\n/**\r\n * The type Share.\r\n */\r\n@Entity\r\n@Getter\r\n@Table(name = \"shares\")\r\npublic class Share {\r\n    /**\r\n     * The ID.\r\n     */\r\n    @Column(name = \"id\")\r\n    @Id\r\n    @GeneratedValue(strategy = GenerationType.AUTO)\r\n    public long Id;\r\n\r\n    /**\r\n     * The Name.\r\n     */\r\n    @Column(name = \"name\")\r\n    @Setter\r\n    private String name;\r\n\r\n    /**\r\n     * The Shortl.\r\n     */\r\n    @Column(name = \"shortl\")\r\n    @Setter\r\n    private String shortl;\r\n\r\n    /**\r\n     * The Price per share.\r\n     */\r\n    @Column(name = \"pricepershare\")\r\n    @Setter\r\n    private double pricePerShare;\r\n\r\n    /**\r\n     * The Stock return.\r\n     */\r\n    @Column(name = \"stockreturn\")\r\n    @Setter\r\n    private double stockReturn;\r\n\r\n    /**\r\n     * The Existing shares amount.\r\n     */\r\n    @Column(name = \"existingsharesamount\")\r\n    @Setter\r\n    private int existingSharesAmount;\r\n\r\n    /**\r\n     * The Date.\r\n     */\r\n    @Column(name = \"dateOfEntry\")\r\n    @Setter\r\n    private LocalDateTime date;\r\n\r\n}\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/entities/Share.java b/src/main/java/entities/Share.java
+--- a/src/main/java/entities/Share.java	(revision 1be03b1c531da12a9ca1bbac5f543af059c05c94)
++++ b/src/main/java/entities/Share.java	(date 1715934650776)
+@@ -1,4 +1,4 @@
+-package entities;
++package backend.entities;
+ 
+ import jakarta.persistence.*;
+ import lombok.Getter;
+Index: src/main/java/entities/Portfolio.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package entities;\r\n\r\nimport jakarta.persistence.*;\r\nimport lombok.Getter;\r\nimport lombok.Setter;\r\n\r\n@Entity\r\n@Getter\r\n@Table(name = \"share_portfolio\")\r\npublic class Portfolio {\r\n\r\n    @Column(name = \"id\")\r\n    @Id\r\n    @GeneratedValue(strategy = GenerationType.AUTO)\r\n    private long id;\r\n\r\n    @Column(name = \"share_id\")\r\n    private long shareId;\r\n\r\n    @Column(name = \"user_id\")\r\n    private long userId;\r\n\r\n\r\n    @Column(name = \"amount\")\r\n    @Setter\r\n    private int amount;\r\n\r\n    public Portfolio() {\r\n    }\r\n\r\n    public Portfolio(long userId, long shareId, int amount) {\r\n        this.userId = userId;\r\n        this.shareId = shareId;\r\n        this.amount = amount;\r\n    }\r\n\r\n    @Override\r\n    public String toString() {\r\n        return \"\";\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/entities/Portfolio.java b/src/main/java/entities/Portfolio.java
+--- a/src/main/java/entities/Portfolio.java	(revision 1be03b1c531da12a9ca1bbac5f543af059c05c94)
++++ b/src/main/java/entities/Portfolio.java	(date 1715934650783)
+@@ -1,4 +1,4 @@
+-package entities;
++package backend.entities;
+ 
+ import jakarta.persistence.*;
+ import lombok.Getter;
+Index: src/main/java/functional/Reader.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package functional;\r\n\r\n\r\nimport java.io.BufferedReader;\r\nimport java.io.IOException;\r\nimport java.io.InputStreamReader;\r\n\r\n/**\r\n * The type Reader.\r\n */\r\npublic class Reader {\r\n\r\n    private final BufferedReader in = new BufferedReader(new InputStreamReader(System.in));\r\n\r\n\r\n    /**\r\n     * Gets string answer.\r\n     *\r\n     * @param question the question\r\n     * @return the string answer\r\n     */\r\n    public String getStringAnswer(String question) {\r\n        try {\r\n            System.out.println(question);\r\n            return in.readLine();\r\n        } catch (Exception e) {\r\n            return \"\";\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Gets int answer.\r\n     *\r\n     * @param question the question\r\n     * @return the int answer\r\n     */\r\n    public int getIntAnswer(String question) {\r\n        do {\r\n            try {\r\n                System.out.println(question);\r\n                int answer = Integer.parseInt(in.readLine());\r\n                if (answer >= 0) {\r\n                    return answer;\r\n                }\r\n                System.out.println(\"Incorrect Input, please use non negative number!\");\r\n            } catch (Exception e) {\r\n                System.out.println(\"Incorrect Input! Please use Numbers only!\");\r\n            }\r\n        } while (true);\r\n    }\r\n\r\n    /**\r\n     * Gets double answer.\r\n     *\r\n     * @param question the question\r\n     * @return the double answer\r\n     */\r\n    public double getDoubleAnswer(String question) {\r\n        do {\r\n            try {\r\n                System.out.println(question);\r\n                return Double.parseDouble(in.readLine());\r\n            } catch (Exception e) {\r\n                System.out.println(\"Incorrect Input! Please use Numbers only!\");\r\n            }\r\n        } while (true);\r\n    }\r\n\r\n    /**\r\n     * Gets password.\r\n     *\r\n     * @param question the question\r\n     * @return the password\r\n     */\r\n    public String getPassword(String question) {\r\n        do {\r\n            try {\r\n                System.out.println(question);\r\n                String pass = in.readLine();\r\n                System.out.println(\"Repeat Password:\");\r\n                String checkPass = in.readLine();\r\n                if (pass.equals(checkPass)) {\r\n                    return pass;\r\n                } else {\r\n                    System.out.println(\"Password Does not Equal. Try Again!\");\r\n                }\r\n            } catch (Exception ignored) {\r\n            }\r\n        } while (true);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/functional/Reader.java b/src/main/java/functional/Reader.java
+--- a/src/main/java/functional/Reader.java	(revision 1be03b1c531da12a9ca1bbac5f543af059c05c94)
++++ b/src/main/java/functional/Reader.java	(date 1715934650789)
+@@ -1,8 +1,7 @@
+-package functional;
++package backend.functional;
+ 
+ 
+ import java.io.BufferedReader;
+-import java.io.IOException;
+ import java.io.InputStreamReader;
+ 
+ /**
+Index: src/main/java/LanguagePack.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/LanguagePack.java b/src/main/java/LanguagePack.java
+new file mode 100644
+--- /dev/null	(date 1715934650698)
++++ b/src/main/java/LanguagePack.java	(date 1715934650698)
+@@ -0,0 +1,49 @@
++import javafx.beans.binding.Bindings;
++import javafx.beans.binding.StringBinding;
++import javafx.beans.property.ObjectProperty;
++import javafx.beans.property.SimpleObjectProperty;
++
++import java.text.MessageFormat;
++import java.util.*;
++
++import static javax.swing.JComponent.getDefaultLocale;
++
++public class LanguagePack {
++
++    private static final ObjectProperty<Locale> locale;
++
++    static {
++        locale = new SimpleObjectProperty<>(getDefaultLocale());
++        locale.addListener((observable, oldValue, newValue) -> Locale.setDefault(newValue));
++    }
++
++    public static StringBinding createStringBinding(final String key, Object... args) {
++        return Bindings.createStringBinding(() -> get(key, args), locale);
++    }
++
++    public static String get(final String key, final Object... args) {
++        ResourceBundle bundle = ResourceBundle.getBundle("locale.language", getLocale());
++        return MessageFormat.format(bundle.getString(key), args);
++    }
++
++    public static void setLocale(Locale locale) {
++        localeProperty().set(locale);
++        Locale.setDefault(locale);
++    }
++
++    public static ObjectProperty<Locale> localeProperty() {
++        return locale;
++    }
++
++    public static Locale getLocale() {
++        return locale.get();
++    }
++
++    public static List<Locale> getSupportedLocales() {
++        return new ArrayList<>(Arrays.asList(Locale.GERMAN, Locale.ENGLISH));
++    }
++
++    public static List<String> getSupportedLocaleStrings() {
++        return new ArrayList<>(Arrays.asList(Locale.GERMAN.toString(), Locale.ENGLISH.toString()));
++    }
++}
+Index: src/main/java/javafx/ScreenBuilder.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/javafx/ScreenBuilder.java b/src/main/java/javafx/ScreenBuilder.java
+new file mode 100644
+--- /dev/null	(date 1715934650735)
++++ b/src/main/java/javafx/ScreenBuilder.java	(date 1715934650735)
+@@ -0,0 +1,21 @@
++package javafx;
++
++import javafx.scene.Node;
++import javafx.scene.layout.BorderPane;
++import javafx.scene.layout.Region;
++import javafx.scene.text.Text;
++import javafx.util.Builder;
++
++public class ScreenBuilder implements Builder<Region> {
++
++    @Override
++    public Region build() {
++        BorderPane results = new BorderPane();
++        results.setTop(createTop());
++        return results;
++    }
++
++    private Node createTop() {
++        return new Text("This is the Screen Title");
++    }
++}
+diff --git a/src/main/resources/locale/language_de.properties b/src/main/resources/locale/language_de.properties
+new file mode 100644
+diff --git a/src/main/resources/locale/language_en.properties b/src/main/resources/locale/language_en.properties
+new file mode 100644
+diff --git a/src/main/java/javafx/share_creation/ShareCreatorController.java b/src/main/java/javafx/share_creation/ShareCreatorController.java
+new file mode 100644
+diff --git a/src/main/java/javafx/share_creation/ShareCreator.java b/src/main/java/javafx/share_creation/ShareCreator.java
+new file mode 100644
+diff --git a/src/main/java/javafx/share_creation/ShareCreatorScene.java b/src/main/java/javafx/share_creation/ShareCreatorScene.java
+new file mode 100644

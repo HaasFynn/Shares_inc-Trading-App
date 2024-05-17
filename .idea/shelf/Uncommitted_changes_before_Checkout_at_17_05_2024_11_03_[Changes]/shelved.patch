@@ -1,0 +1,16 @@
+Index: src/test/java/backend/functional/InputHandlerTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package backend.functional;\r\n\r\nimport backend.creators.ShareCreator;\r\nimport backend.dao.ShareDaoImpl;\r\nimport backend.dao.UserDaoImpl;\r\nimport backend.entities.User;\r\nimport jakarta.persistence.EntityManager;\r\nimport org.junit.jupiter.api.Test;\r\n\r\nimport backend.functional.EntityManagement;\r\nimport java.util.concurrent.TimeUnit;\r\n\r\nimport static org.junit.jupiter.api.Assertions.*;\r\n\r\nclass InputHandlerTest {\r\n    EntityManager entityManager = EntityManagement.createEntityManagerFactory().createEntityManager();\r\n    UserDaoImpl userDao = new UserDaoImpl(entityManager);\r\n\r\n    @Test\r\n    void doesLoginWork() {\r\n        createTestAccount();\r\n        User user = new User();\r\n        user.setUsername(\"test\");\r\n        user.setEmail(\"john.doe@gmail.com\");\r\n        user.setPassword(\"1234\");\r\n        assertEquals(user.getUsername().toLowerCase(), userDao.getByUsername(\"Test\").getUsername().toLowerCase());\r\n    }\r\n\r\n    void createTestAccount() {\r\n        User user = new User();\r\n        user.setUsername(\"Test\");\r\n        user.setEmail(\"john.doe@gmail.com\");\r\n        user.setPassword(\"1234\");\r\n        userDao.add(user);\r\n    }\r\n\r\n    @Test\r\n    void doSharesGetAddedEveryTime() {\r\n        EntityManager entityManager = EntityManagement.createEntityManagerFactory().createEntityManager();\r\n        ShareDaoImpl shareDao = new ShareDaoImpl(entityManager);\r\n\r\n\r\n        assertThrows(Exception.class, () -> {\r\n            for (int i = 1; i <= 10; i++) {\r\n                TimeUnit.SECONDS.sleep(3);\r\n                shareDao.addAll(ShareCreator.createNewShares(100));\r\n                System.out.println(\"Didnt Work this time. Attempt number: \" + i);\r\n            }\r\n        });\r\n    }\r\n}
+===================================================================
+diff --git a/src/test/java/backend/functional/InputHandlerTest.java b/src/test/java/backend/functional/InputHandlerTest.java
+--- a/src/test/java/backend/functional/InputHandlerTest.java	
++++ b/src/test/java/backend/functional/InputHandlerTest.java	
+@@ -7,7 +7,6 @@
+ import jakarta.persistence.EntityManager;
+ import org.junit.jupiter.api.Test;
+ 
+-import backend.functional.EntityManagement;
+ import java.util.concurrent.TimeUnit;
+ 
+ import static org.junit.jupiter.api.Assertions.*;

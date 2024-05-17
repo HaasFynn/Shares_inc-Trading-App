@@ -1,0 +1,682 @@
+Index: build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>plugins {\r\n    id 'java'\r\n    id 'org.springframework.boot' version '3.2.4'\r\n}\r\n\r\ngroup = 'org.example'\r\nversion = '1.0-SNAPSHOT'\r\n\r\nrepositories {\r\n    mavenCentral()\r\n}\r\n\r\ndependencies {\r\n    testImplementation platform('org.junit:junit-bom:5.9.1')\r\n    testImplementation 'org.junit.jupiter:junit-jupiter'\r\n    //Hibernate / Jakarta\r\n    implementation \"org.hibernate.orm:hibernate-core:6.4.4.Final\"\r\n    implementation \"jakarta.transaction:jakarta.transaction-api\"\r\n    //Mysql Connector\r\n    implementation 'mysql:mysql-connector-java:8.0.33'\r\n    //Lombok\r\n    compileOnly 'org.projectlombok:lombok:1.18.30'\r\n    annotationProcessor 'org.projectlombok:lombok:1.18.30'\r\n    testCompileOnly 'org.projectlombok:lombok:1.18.30'\r\n    testAnnotationProcessor 'org.projectlombok:lombok:1.18.30'\r\n    //mail Format\r\n    compileOnly 'javax.mail:mail:1.4.7'\r\n        //Apache Log4j\r\n        implementation 'org.apache.logging.log4j:log4j-api:2.23.0'\r\n        implementation 'org.apache.logging.log4j:log4j-core:2.23.0'\r\n}\r\n\r\ntest {\r\n    useJUnitPlatform()\r\n}\r\n\r\ntasks.withType(JavaCompile).configureEach {\r\n    options.compilerArgs += ['-Xlint:none']\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/build.gradle b/build.gradle
+--- a/build.gradle	
++++ b/build.gradle	
+@@ -1,15 +1,22 @@
+ plugins {
+     id 'java'
+     id 'org.springframework.boot' version '3.2.4'
++    id 'org.openjfx.javafxplugin' version '0.0.13'
++    id 'org.beryx.jlink' version '2.25.0'
+ }
+ 
+-group = 'org.example'
++group = ''
+ version = '1.0-SNAPSHOT'
+ 
+ repositories {
+     mavenCentral()
+ }
+ 
++javafx {
++    version = '20.0.1'
++    modules = ['javafx.controls', 'javafx.fxml']
++}
++
+ dependencies {
+     testImplementation platform('org.junit:junit-bom:5.9.1')
+     testImplementation 'org.junit.jupiter:junit-jupiter'
+@@ -25,9 +32,14 @@
+     testAnnotationProcessor 'org.projectlombok:lombok:1.18.30'
+     //mail Format
+     compileOnly 'javax.mail:mail:1.4.7'
+-        //Apache Log4j
+-        implementation 'org.apache.logging.log4j:log4j-api:2.23.0'
+-        implementation 'org.apache.logging.log4j:log4j-core:2.23.0'
++    //Apache Log4j
++    implementation 'org.apache.logging.log4j:log4j-api:2.23.0'
++    implementation 'org.apache.logging.log4j:log4j-core:2.23.0'
++
++    //javaFX
++    //BootstrapFx
++    implementation 'org.kordamp.bootstrapfx:bootstrapfx-core:0.4.0'
++
+ }
+ 
+ test {
+Index: src/main/java/Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import dao.*;\r\nimport functional.EntityManagement;\r\nimport functional.InputHandler;\r\nimport jakarta.persistence.EntityManager;\r\n\r\n/**\r\n * The type Main.\r\n */\r\npublic class Main {\r\n    /**\r\n     * The entry point of application.\r\n     *\r\n     * @param args the input arguments\r\n     */\r\n    public static void main(String[] args) {\r\n        EntityManager entityManager = EntityManagement.createEntityManagerFactory().createEntityManager();\r\n        UserDaoImpl userDao = new UserDaoImpl(entityManager);\r\n        ShareDaoImpl shareDao = new ShareDaoImpl(entityManager);\r\n        PortfolioDaoImpl portfolioDao = new PortfolioDaoImpl(entityManager);\r\n        new InputHandler(userDao, shareDao, portfolioDao).start();\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Main.java b/src/main/java/Main.java
+--- a/src/main/java/Main.java	
++++ b/src/main/java/Main.java	
+@@ -1,10 +1,12 @@
+-import dao.*;
++import dao.PortfolioDaoImpl;
++import dao.ShareDaoImpl;
++import dao.UserDaoImpl;
+ import functional.EntityManagement;
+ import functional.InputHandler;
+ import jakarta.persistence.EntityManager;
+ 
+ /**
+- * The type Main.
++ * The type java.Main.
+  */
+ public class Main {
+     /**
+Index: src/main/java/functional/Reader.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package functional;\r\n\r\n\r\nimport java.io.BufferedReader;\r\nimport java.io.IOException;\r\nimport java.io.InputStreamReader;\r\n\r\n/**\r\n * The type Reader.\r\n */\r\npublic class Reader {\r\n\r\n    private final BufferedReader in = new BufferedReader(new InputStreamReader(System.in));\r\n\r\n\r\n    /**\r\n     * Gets string answer.\r\n     *\r\n     * @param question the question\r\n     * @return the string answer\r\n     */\r\n    public String getStringAnswer(String question) {\r\n        try {\r\n            System.out.println(question);\r\n            return in.readLine();\r\n        } catch (Exception e) {\r\n            return \"\";\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Gets int answer.\r\n     *\r\n     * @param question the question\r\n     * @return the int answer\r\n     */\r\n    public int getIntAnswer(String question) {\r\n        do {\r\n            try {\r\n                System.out.println(question);\r\n                int answer = Integer.parseInt(in.readLine());\r\n                if (answer >= 0) {\r\n                    return answer;\r\n                }\r\n                System.out.println(\"Incorrect Input, please use non negative number!\");\r\n            } catch (Exception e) {\r\n                System.out.println(\"Incorrect Input! Please use Numbers only!\");\r\n            }\r\n        } while (true);\r\n    }\r\n\r\n    /**\r\n     * Gets double answer.\r\n     *\r\n     * @param question the question\r\n     * @return the double answer\r\n     */\r\n    public double getDoubleAnswer(String question) {\r\n        do {\r\n            try {\r\n                System.out.println(question);\r\n                return Double.parseDouble(in.readLine());\r\n            } catch (Exception e) {\r\n                System.out.println(\"Incorrect Input! Please use Numbers only!\");\r\n            }\r\n        } while (true);\r\n    }\r\n\r\n    /**\r\n     * Gets password.\r\n     *\r\n     * @param question the question\r\n     * @return the password\r\n     */\r\n    public String getPassword(String question) {\r\n        do {\r\n            try {\r\n                System.out.println(question);\r\n                String pass = in.readLine();\r\n                System.out.println(\"Repeat Password:\");\r\n                String checkPass = in.readLine();\r\n                if (pass.equals(checkPass)) {\r\n                    return pass;\r\n                } else {\r\n                    System.out.println(\"Password Does not Equal. Try Again!\");\r\n                }\r\n            } catch (Exception ignored) {\r\n            }\r\n        } while (true);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/functional/Reader.java b/src/main/java/functional/Reader.java
+--- a/src/main/java/functional/Reader.java	
++++ b/src/main/java/functional/Reader.java	
+@@ -1,8 +1,7 @@
+-package functional;
++package backend.functional;
+ 
+ 
+ import java.io.BufferedReader;
+-import java.io.IOException;
+ import java.io.InputStreamReader;
+ 
+ /**
+Index: src/main/java/archive/UserManager.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package archive;\r\n\r\nimport entities.User;\r\nimport jakarta.persistence.NoResultException;\r\nimport org.hibernate.Session;\r\nimport org.hibernate.SessionFactory;\r\nimport org.hibernate.Transaction;\r\n\r\nimport java.util.Objects;\r\n\r\n/**\r\n * The type User manager.\r\n */\r\npublic class UserManager {\r\n    private final SessionFactory sessionFactory;\r\n\r\n\r\n    /**\r\n     * Instantiates a new User manager.\r\n     *\r\n     * @param sessionFactory the session factory\r\n     */\r\n    public UserManager(SessionFactory sessionFactory) {\r\n        this.sessionFactory = sessionFactory;\r\n    }\r\n\r\n    /**\r\n     * Add user boolean.\r\n     *\r\n     * @param user the user\r\n     * @return <p>if action succeeded</p>\r\n     */\r\n    public boolean add(User user) {\r\n\r\n        Transaction tx = null;\r\n        try (Session session = sessionFactory.openSession()) {\r\n            if (userExists(user.getUsername())) {\r\n                tx = session.beginTransaction();\r\n                tx.begin();\r\n                session.persist(user);\r\n                tx.commit();\r\n            }\r\n        } catch (Exception e) {\r\n            if (tx != null) {\r\n                tx.rollback();\r\n            }\r\n        }\r\n        return true;\r\n    }\r\n\r\n    private boolean userExists(String username) {\r\n        User user = getUserByUsername(username);\r\n        return Objects.equals(user.getUsername(), \"\") || Objects.equals(user.getEmail(), \"\");\r\n    }\r\n\r\n    public User getUserWithPass(String username, String pass) {\r\n        try (Session session = sessionFactory.openSession()) {\r\n            return session\r\n                    .createQuery(\"from User u where u.username = :username and u.password = :password\", User.class)\r\n                    .setParameter(\"username\", username)\r\n                    .setParameter(\"password\", pass).getSingleResultOrNull();\r\n        } catch (NoResultException e) {\r\n            return null;\r\n        }\r\n    }\r\n\r\n    public User getUserByUsername(String username) {\r\n        try (Session session = sessionFactory.openSession()) {\r\n            return session\r\n                    .createQuery(\"from User u where u.username = :username\", User.class)\r\n                    .setParameter(\"username\", username).getSingleResultOrNull();\r\n        } catch (NoResultException e) {\r\n            return null;\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Save boolean.\r\n     *\r\n     * @param user the user\r\n     * @return <p>if action succeeded</p>\r\n     */\r\n    public boolean save(User user) {\r\n        sessionFactory.inTransaction(session -> {\r\n            session.merge(user);\r\n        });\r\n        return true;\r\n    }\r\n\r\n    /**\r\n     * Delete boolean.\r\n     *\r\n     * @param username the username\r\n     * @param password the password\r\n     * @return <p>if action succeeded</p>\r\n     */\r\n    public boolean delete(String username, String password) {\r\n        Transaction tx = null;\r\n        try (Session session = sessionFactory.openSession()) {\r\n            tx = session.beginTransaction();\r\n            tx.begin();\r\n            session\r\n                    .createMutationQuery(\"delete from User u where u.username = :username and u.password = :password\")\r\n                    .setParameter(\"username\", username)\r\n                    .setParameter(\"password\", password).executeUpdate();\r\n            tx.commit();\r\n        } catch (Exception e) {\r\n            if (tx != null) {\r\n                tx.rollback();\r\n            }\r\n            return false;\r\n        }\r\n        return true;\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/archive/UserManager.java b/src/main/java/archive/UserManager.java
+--- a/src/main/java/archive/UserManager.java	
++++ b/src/main/java/archive/UserManager.java	
+@@ -1,6 +1,6 @@
+-package archive;
++package backend.archive;
+ 
+-import entities.User;
++import backend.entities.User;
+ import jakarta.persistence.NoResultException;
+ import org.hibernate.Session;
+ import org.hibernate.SessionFactory;
+Index: src/main/java/archive/ShareManager.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package archive;\r\n\r\nimport entities.Share;\r\nimport jakarta.persistence.NoResultException;\r\nimport jakarta.transaction.Transactional;\r\nimport org.hibernate.Session;\r\nimport org.hibernate.SessionFactory;\r\nimport org.hibernate.Transaction;\r\n\r\n/**\r\n * The type Share manager.\r\n */\r\npublic class ShareManager {\r\n\r\n    private final SessionFactory sessionFactory;\r\n\r\n\r\n    /**\r\n     * Instantiates a new Share manager.\r\n     *\r\n     * @param sessionFactory the session factory\r\n     */\r\n    public ShareManager(SessionFactory sessionFactory) {\r\n        this.sessionFactory = sessionFactory;\r\n    }\r\n\r\n    /**\r\n     * Add share boolean.\r\n     *\r\n     * @param share the share\r\n     * @return <p>if action succeeded</p>\r\n     */\r\n    @Transactional\r\n    public boolean add(Share share) {\r\n        return false;\r\n    }\r\n\r\n    private boolean shareExists(String shareName) {\r\n        return getShareByName(shareName) == null;\r\n    }\r\n\r\n    private Share getShareByName(String name) {\r\n        try (Session session = sessionFactory.openSession()) {\r\n            return session.createQuery(\"from Share s where s.name = :name\", Share.class).setParameter(\"name\", name).getSingleResultOrNull();\r\n        } catch (NoResultException e) {\r\n            return null;\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Save boolean.\r\n     *\r\n     * @param share the share\r\n     * @return <p>if action succeeded</p>\r\n     */\r\n    public boolean save(Share share) {\r\n        sessionFactory.inTransaction(session -> {\r\n            session.merge(share);\r\n        });\r\n        return true;\r\n    }\r\n\r\n    /**\r\n     * Delete boolean.\r\n     *\r\n     * @param name the name\r\n     * @return <p>if action succeeded</p>\r\n     */\r\n    public boolean delete(String name) {\r\n        Share share = getShareByName(name);\r\n        if (share != null) {\r\n            Transaction tx = null;\r\n            try (Session session = sessionFactory.openSession()) {\r\n                tx = session.beginTransaction();\r\n                tx.begin();\r\n                session.createMutationQuery(\"delete from Share s where s.name = :username\")\r\n                        .setParameter(\"name\", share.getName())\r\n                        .executeUpdate();\r\n                tx.commit();\r\n            } catch (Exception e) {\r\n                if (tx != null) {\r\n                    tx.rollback();\r\n                }\r\n            }\r\n            return true;\r\n        }\r\n        return false;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/archive/ShareManager.java b/src/main/java/archive/ShareManager.java
+--- a/src/main/java/archive/ShareManager.java	
++++ b/src/main/java/archive/ShareManager.java	
+@@ -1,6 +1,6 @@
+-package archive;
++package backend.archive;
+ 
+-import entities.Share;
++import backend.entities.Share;
+ import jakarta.persistence.NoResultException;
+ import jakarta.transaction.Transactional;
+ import org.hibernate.Session;
+Index: src/main/java/entities/Share.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package entities;\r\n\r\nimport jakarta.persistence.*;\r\nimport lombok.Getter;\r\nimport lombok.Setter;\r\n\r\nimport java.time.LocalDateTime;\r\n\r\n/**\r\n * The type Share.\r\n */\r\n@Entity\r\n@Getter\r\n@Table(name = \"shares\")\r\npublic class Share {\r\n    /**\r\n     * The ID.\r\n     */\r\n    @Column(name = \"id\")\r\n    @Id\r\n    @GeneratedValue(strategy = GenerationType.AUTO)\r\n    public long Id;\r\n\r\n    /**\r\n     * The Name.\r\n     */\r\n    @Column(name = \"name\")\r\n    @Setter\r\n    private String name;\r\n\r\n    /**\r\n     * The Shortl.\r\n     */\r\n    @Column(name = \"shortl\")\r\n    @Setter\r\n    private String shortl;\r\n\r\n    /**\r\n     * The Price per share.\r\n     */\r\n    @Column(name = \"pricepershare\")\r\n    @Setter\r\n    private double pricePerShare;\r\n\r\n    /**\r\n     * The Stock return.\r\n     */\r\n    @Column(name = \"stockreturn\")\r\n    @Setter\r\n    private double stockReturn;\r\n\r\n    /**\r\n     * The Existing shares amount.\r\n     */\r\n    @Column(name = \"existingsharesamount\")\r\n    @Setter\r\n    private int existingSharesAmount;\r\n\r\n    /**\r\n     * The Date.\r\n     */\r\n    @Column(name = \"dateOfEntry\")\r\n    @Setter\r\n    private LocalDateTime date;\r\n\r\n}\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/entities/Share.java b/src/main/java/entities/Share.java
+--- a/src/main/java/entities/Share.java	
++++ b/src/main/java/entities/Share.java	
+@@ -1,4 +1,4 @@
+-package entities;
++package backend.entities;
+ 
+ import jakarta.persistence.*;
+ import lombok.Getter;
+Index: src/main/java/entities/Portfolio.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package entities;\r\n\r\nimport jakarta.persistence.*;\r\nimport lombok.Getter;\r\nimport lombok.Setter;\r\n\r\n@Entity\r\n@Getter\r\n@Table(name = \"share_portfolio\")\r\npublic class Portfolio {\r\n\r\n    @Column(name = \"id\")\r\n    @Id\r\n    @GeneratedValue(strategy = GenerationType.AUTO)\r\n    private long id;\r\n\r\n    @Column(name = \"share_id\")\r\n    private long shareId;\r\n\r\n    @Column(name = \"user_id\")\r\n    private long userId;\r\n\r\n\r\n    @Column(name = \"amount\")\r\n    @Setter\r\n    private int amount;\r\n\r\n    public Portfolio() {\r\n    }\r\n\r\n    public Portfolio(long userId, long shareId, int amount) {\r\n        this.userId = userId;\r\n        this.shareId = shareId;\r\n        this.amount = amount;\r\n    }\r\n\r\n    @Override\r\n    public String toString() {\r\n        return \"\";\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/entities/Portfolio.java b/src/main/java/entities/Portfolio.java
+--- a/src/main/java/entities/Portfolio.java	
++++ b/src/main/java/entities/Portfolio.java	
+@@ -1,4 +1,4 @@
+-package entities;
++package backend.entities;
+ 
+ import jakarta.persistence.*;
+ import lombok.Getter;
+Index: src/main/java/creators/ShareCreator.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/creators/ShareCreator.java b/src/main/java/ShareCreator.java
+rename from src/main/java/creators/ShareCreator.java
+rename to src/main/java/ShareCreator.java
+--- a/src/main/java/creators/ShareCreator.java	
++++ b/src/main/java/ShareCreator.java	
+@@ -1,6 +1,6 @@
+-package creators;
++package backend;
+ 
+-import entities.Share;
++import backend.entities.Share;
+ 
+ import java.io.*;
+ import java.net.HttpURLConnection;
+Index: src/main/java/entities/User.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package entities;\r\n\r\nimport jakarta.persistence.*;\r\nimport lombok.Getter;\r\nimport lombok.Setter;\r\n\r\nimport java.time.LocalDateTime;\r\n\r\n/**\r\n * The type User.\r\n */\r\n@Getter\r\n@Entity\r\n@Table(name = \"users\")\r\npublic class User {\r\n    @Column(name = \"id\")\r\n    @Id\r\n    @GeneratedValue(strategy = GenerationType.AUTO)\r\n    public long Id;\r\n\r\n    @Column(name = \"username\")\r\n    @Setter\r\n    private String username;\r\n\r\n    @Column(name = \"firstname\")\r\n    @Setter\r\n    private String firstname;\r\n\r\n    @Column(name = \"lastname\")\r\n    @Setter\r\n    private String lastname;\r\n\r\n    @Column(name = \"email\")\r\n    @Setter\r\n    private String email;\r\n\r\n    @Column(name = \"password\")\r\n    @Setter\r\n    private String password;\r\n\r\n    @Column(name = \"accountBalance\")\r\n    @Setter\r\n    private double accountBalance;\r\n\r\n    @Column(name = \"creationDate\")\r\n    @Setter\r\n    private LocalDateTime date;\r\n\r\n    public User() {\r\n        this.accountBalance = 1000.0;\r\n        this.date = LocalDateTime.now();\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/entities/User.java b/src/main/java/entities/User.java
+--- a/src/main/java/entities/User.java	
++++ b/src/main/java/entities/User.java	
+@@ -1,4 +1,4 @@
+-package entities;
++package backend.entities;
+ 
+ import jakarta.persistence.*;
+ import lombok.Getter;
+Index: src/main/java/functional/InputHandler.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package functional;\r\n\r\nimport creators.ShareCreator;\r\nimport dao.PortfolioDao;\r\nimport dao.ShareDao;\r\nimport dao.UserDao;\r\nimport entities.Portfolio;\r\nimport entities.Share;\r\nimport entities.User;\r\nimport jakarta.persistence.PersistenceContext;\r\n\r\nimport java.time.LocalDateTime;\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\n\r\n/**\r\n * The type Input handler.\r\n */\r\npublic class InputHandler {\r\n    @PersistenceContext\r\n    private UserDao userDao;\r\n    private ShareDao shareDao;\r\n    private PortfolioDao portfolioDao;\r\n    private User loggedInUser;\r\n\r\n    /**\r\n     * Instance of the \"Reader\" class\r\n     */\r\n    Reader in = new Reader();\r\n\r\n    /**\r\n     * Instantiates a new Input handler.\r\n     */\r\n\r\n    public InputHandler(UserDao userDao, ShareDao shareDao, PortfolioDao portfolioDao) {\r\n        this.userDao = userDao;\r\n        this.shareDao = shareDao;\r\n        this.portfolioDao = portfolioDao;\r\n    }\r\n\r\n    /**\r\n     * Start.\r\n     */\r\n    public void start() {\r\n        while (true) {\r\n            switch (in.getIntAnswer(\"\"\"\r\n                    [1] User management\r\n                    [2] Share actions\r\n                    [3] Trade\r\n                    \"\"\")) {\r\n                case 1 -> userStart();\r\n                case 2 -> shareStart();\r\n                case 3 -> trade();\r\n                default -> System.out.println(\"Wrong Input!\");\r\n            }\r\n        }\r\n    }\r\n\r\n    private void trade() {\r\n        if (loggedInUser == null) {\r\n            System.out.println(\"Please register first!\");\r\n            return;\r\n        }\r\n        while (true) {\r\n            switch (in.getIntAnswer(\"\"\"\r\n                    [1] Buy\r\n                    [2] Sell\r\n                    [3] Show Portfolio\r\n                    [4] Return\r\n                    \"\"\")) {\r\n                case 1 -> buy();\r\n                case 2 -> sell();\r\n                case 3 -> showPortfolio();\r\n                case 4 -> {\r\n                    return;\r\n                }\r\n                default -> System.out.println(\"Wrong Input!\");\r\n            }\r\n        }\r\n    }\r\n\r\n    private void buy() {\r\n        Share share = shareDao.getByName(in.getStringAnswer(\"Whats the name of the share you would like to buy?\"));\r\n        if (share == null) {\r\n            System.out.println(\"No Such Share\");\r\n            return;\r\n        }\r\n        int amountOfShares = in.getIntAnswer(\"How many shares would you like to purchase?\");\r\n        if (amountOfShares <= 0) {\r\n            System.out.println(\"Invalid number of shares\");\r\n            return;\r\n        }\r\n        if (userHasEnoughMoney(share, amountOfShares)) {\r\n            System.out.println(\"Insufficient Funds\");\r\n            return;\r\n        }\r\n        if (!portfolioDao.add(createPortfolio(share.Id, amountOfShares))) {\r\n            System.out.println(\"Sorry share could not be purchased\");\r\n        } else {\r\n            withdrawMoney(share);\r\n            System.out.println(\"Successfully purchased\");\r\n        }\r\n    }\r\n\r\n    private void sell() {\r\n        Share share = shareDao.getByName(in.getStringAnswer(\"Whats the name of the share you would like to sell?\"));\r\n        if (share == null) {\r\n            System.out.println(\"No Such Share\");\r\n            return;\r\n        }\r\n        int sellAmountOfShares = in.getIntAnswer(\"How many shares would you like to sell?\");\r\n        if (sellAmountOfShares <= 0) {\r\n            System.out.println(\"Invalid number of shares\");\r\n        }\r\n        Portfolio portfolio = portfolioDao.get(share.Id, loggedInUser.Id);\r\n        if (portfolio.getAmount() < sellAmountOfShares) {\r\n            System.out.println(\"Sorry, you tried to sell too many shares...\");\r\n        } else {\r\n            updatePortfolio(portfolio, sellAmountOfShares);\r\n            depositMoney(share.getPricePerShare() * sellAmountOfShares);\r\n            System.out.println(\"Successfully sold!\");\r\n        }\r\n    }\r\n\r\n    private void showPortfolio() {\r\n        List<Portfolio> userPortfolio = portfolioDao.getAllFromUser(loggedInUser.Id);\r\n        List<Share> shareList = new ArrayList<>();\r\n        for (Portfolio p : userPortfolio) {\r\n            shareList.add(shareDao.get(p.getShareId()));\r\n        }\r\n        printPortfolio(userPortfolio, shareList);\r\n    }\r\n\r\n    private static void printPortfolio(List<Portfolio> userPortfolio, List<Share> shareList) {\r\n        System.out.println(\"Portfolio: \\n\");\r\n        System.out.println(\"======================\");\r\n        for (int i = 0; i < userPortfolio.size(); i++) {\r\n            System.out.println((i + 1)+ \". Share:\");\r\n            System.out.println(\"Name: \" + shareList.get(i).getName());\r\n            System.out.println(\"Amount of your shares: \" + userPortfolio.get(i).getAmount());\r\n            System.out.println(\"Worth of your shares: \" + userPortfolio.get(i).getAmount() * shareList.get(i).getPricePerShare());\r\n            System.out.println(\"======================\\n\");\r\n        }\r\n        System.out.println(\"======================\\n\");\r\n    }\r\n\r\n    private void depositMoney(double depositAmount) {\r\n        loggedInUser.setAccountBalance(depositAmount);\r\n        userDao.update(loggedInUser);\r\n    }\r\n\r\n    private void updatePortfolio(Portfolio portfolio, int oldAmountOfShares) {\r\n        int amountOfShares = portfolio.getAmount() - oldAmountOfShares;\r\n        portfolio.setAmount(amountOfShares);\r\n        portfolioDao.update(portfolio);\r\n    }\r\n\r\n    private void withdrawMoney(Share share) {\r\n        loggedInUser.setAccountBalance(loggedInUser.getAccountBalance() - share.getPricePerShare());\r\n    }\r\n\r\n    private boolean userHasEnoughMoney(Share share, int amountOfShares) {\r\n        return loggedInUser.getAccountBalance() - (share.getPricePerShare() * amountOfShares) < 0;\r\n    }\r\n\r\n    private Portfolio createPortfolio(long shareId, int amount) {\r\n        return new Portfolio(loggedInUser.Id, shareId, amount);\r\n    }\r\n\r\n\r\n    private void userStart() {\r\n        switch (in.getIntAnswer(\"\"\"\r\n                [1] Login\r\n                [2] Create User\r\n                [3] Edit User\r\n                [4] Delete User\r\n                [5] Return\"\"\")) {\r\n            case 1 -> login();\r\n            case 2 -> createUser();\r\n            case 3 -> {\r\n                if (loggedInUser == null) {\r\n                    System.out.println(\"Please login first!\");\r\n                    break;\r\n                }\r\n                if (editUser()) {\r\n                    System.out.println(\"Changes Saved!\");\r\n                    break;\r\n                }\r\n                System.out.println(\"Changes could not be saved!\");\r\n            }\r\n            case 4 -> deleteUser();\r\n        }\r\n    }\r\n\r\n    private void shareStart() {\r\n        switch (in.getIntAnswer(\"\"\"\r\n                [1] Generate Shares\r\n                [2] Delete Share\r\n                [3] Return\"\"\")) {\r\n            case 1 -> generateShares();\r\n            case 2 -> deleteShare();\r\n        }\r\n    }\r\n\r\n    private void generateShares() {\r\n        int amount;\r\n        do {\r\n            amount = in.getIntAnswer(\"How many shares would you like to generate? (min: 1 max: 100)\");\r\n        } while (amount < 1 || amount > 100);\r\n        long startTime = System.currentTimeMillis();\r\n        try {\r\n            Share[] shares = ShareCreator.createNewShares(amount);\r\n            shareDao.addAll(shares);\r\n        } catch (Exception e) {\r\n            e.printStackTrace();\r\n        }\r\n        long endTime = System.currentTimeMillis();\r\n        System.out.println(\"Generated shares in \" + (double) (endTime - startTime)/1000 + \"s\");\r\n        System.out.println(\"Successfully created \" + amount + \" shares!\");\r\n    }\r\n\r\n    private boolean editUser() {\r\n        switch (in.getIntAnswer(\"\"\"\r\n                [1] Change Username\r\n                [2] Change Firstname\r\n                [3] Change Lastname\r\n                [4] Change E-Mail\r\n                [5] Change Password\r\n                [6] Return\"\"\")) {\r\n            case 1 -> {\r\n                return editUsername();\r\n            }\r\n            case 2 -> {\r\n                return editFirstname();\r\n            }\r\n            case 3 -> {\r\n                return editLastname();\r\n            }\r\n            case 4 -> {\r\n                return editEmail();\r\n            }\r\n            case 5 -> {\r\n                return editPassword();\r\n            }\r\n            default -> System.out.println(\"This function does not exist!\");\r\n        }\r\n        return false;\r\n    }\r\n\r\n    private boolean editUsername() {\r\n        String pass = in.getStringAnswer(\"Password:\");\r\n        String username = in.getStringAnswer(\"New Username:\");\r\n        if (passwordsEqual(pass)) {\r\n            if (userDao.getByUsername(username) == null) {\r\n                System.out.println(\"Username already exists!\");\r\n                return false;\r\n            }\r\n            loggedInUser.setUsername(username);\r\n            return userDao.update(loggedInUser);\r\n        }\r\n        System.out.println(\"Wrong Password!\");\r\n        return false;\r\n    }\r\n\r\n    private boolean editFirstname() {\r\n        String pass = in.getStringAnswer(\"Password:\");\r\n        if (passwordsEqual(pass)) {\r\n            loggedInUser.setLastname(in.getStringAnswer(\"New Firstname:\"));\r\n            return userDao.update(loggedInUser);\r\n        }\r\n        System.out.println(\"Wrong Password!\");\r\n        return false;\r\n    }\r\n\r\n    private boolean editLastname() {\r\n        String pass = in.getStringAnswer(\"Password:\");\r\n        if (passwordsEqual(pass)) {\r\n            loggedInUser.setLastname(in.getStringAnswer(\"New Lastname:\"));\r\n            return userDao.update(loggedInUser);\r\n        }\r\n        System.out.println(\"Wrong Password!\");\r\n        return false;\r\n    }\r\n\r\n    private boolean editEmail() {\r\n        String pass = in.getStringAnswer(\"Password:\");\r\n        if (passwordsEqual(pass)) {\r\n            loggedInUser.setEmail(in.getStringAnswer(\"New Email:\"));\r\n            return userDao.update(loggedInUser);\r\n        }\r\n        System.out.println(\"Wrong Password!\");\r\n        return false;\r\n    }\r\n\r\n    private boolean editPassword() {\r\n        String oldPass = in.getStringAnswer(\"Old Password\");\r\n        if (passwordsEqual(oldPass)) {\r\n            loggedInUser.setPassword(in.getStringAnswer(\"Password:\"));\r\n            return userDao.update(loggedInUser);\r\n        }\r\n        System.out.println(\"Wrong Password!\");\r\n        return false;\r\n    }\r\n\r\n    private boolean passwordsEqual(String oldPass) {\r\n        return oldPass.equals(loggedInUser.getPassword());\r\n    }\r\n\r\n    public void login() {\r\n        String username = in.getStringAnswer(\"Username:\");\r\n        String pass = in.getStringAnswer(\"Password:\");\r\n        User user = userDao.getByPassword(username, pass);\r\n        if (user == null) {\r\n            System.out.println(\"Couldn't find user!\");\r\n            return;\r\n        }\r\n        loggedInUser = user;\r\n        System.out.println(\"Login succeeded!\");\r\n    }\r\n\r\n    private void createUser() {\r\n        User user = getNewUser();\r\n        if (!userDao.add(user)) {\r\n            System.out.println(\"User creation failed!\");\r\n            return;\r\n        }\r\n        System.out.println(\"User was created successfully!\");\r\n    }\r\n\r\n    private void deleteUser() {\r\n        String username = in.getStringAnswer(\"Username:\");\r\n        String password = in.getStringAnswer(\"Password:\");\r\n        if (!userDao.delete(userDao.getByPassword(username, password))) {\r\n            System.out.println(\"Was not able to delete User!\");\r\n            return;\r\n        }\r\n        System.out.println(\"User deletion successfully!\");\r\n    }\r\n\r\n    private void createShare() {\r\n        Share share = getNewShare();\r\n        if (!shareDao.add(share)) {\r\n            System.out.println(\"Share creation failed!\");\r\n            return;\r\n        }\r\n        System.out.println(\"Share was created successfully!\");\r\n    }\r\n\r\n    private void deleteShare() {\r\n        String name = in.getStringAnswer(\"Name:\");\r\n        if (!shareDao.delete(shareDao.getByName(name))) {\r\n            System.out.println(\"Was not able to delete share!!\");\r\n            return;\r\n        }\r\n        System.out.println(\"Share deletion successfully!\");\r\n\r\n    }\r\n\r\n    private User getNewUser() {\r\n        User user = new User();\r\n        user.setUsername(in.getStringAnswer(\"Username:\"));\r\n        user.setFirstname(in.getStringAnswer(\"Firstname:\"));\r\n        user.setLastname(in.getStringAnswer(\"Lastname:\"));\r\n        user.setEmail(in.getStringAnswer(\"E-Mail:\"));\r\n        user.setPassword(in.getPassword(\"Password:\"));\r\n        return user;\r\n    }\r\n\r\n    private Share getNewShare() {\r\n        Share share = new Share();\r\n        share.setName(in.getStringAnswer(\"Name:\"));\r\n        share.setShortl(in.getStringAnswer(\"Shortl:\"));\r\n        share.setPricePerShare(in.getDoubleAnswer(\"PricePerShare:\"));\r\n        share.setStockReturn(in.getDoubleAnswer(\"Stockreturn:\"));\r\n        share.setExistingSharesAmount(in.getIntAnswer(\"existingSharesAmount:\"));\r\n        share.setDate(LocalDateTime.now());\r\n        return share;\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/functional/InputHandler.java b/src/main/java/functional/InputHandler.java
+--- a/src/main/java/functional/InputHandler.java	
++++ b/src/main/java/functional/InputHandler.java	
+@@ -1,12 +1,12 @@
+-package functional;
++package backend.functional;
+ 
+-import creators.ShareCreator;
+-import dao.PortfolioDao;
+-import dao.ShareDao;
+-import dao.UserDao;
+-import entities.Portfolio;
+-import entities.Share;
+-import entities.User;
++import backend.ShareCreator;
++import backend.dao.PortfolioDao;
++import backend.dao.ShareDao;
++import backend.dao.UserDao;
++import backend.entities.Portfolio;
++import backend.entities.Share;
++import backend.entities.User;
+ import jakarta.persistence.PersistenceContext;
+ 
+ import java.time.LocalDateTime;
+Index: src/main/java/functional/EntityManagement.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package functional;\r\n\r\nimport entities.Portfolio;\r\nimport entities.Share;\r\nimport entities.User;\r\n\r\nimport jakarta.persistence.EntityManagerFactory;\r\nimport org.hibernate.boot.MetadataSources;\r\nimport org.hibernate.boot.registry.StandardServiceRegistry;\r\nimport org.hibernate.boot.registry.StandardServiceRegistryBuilder;\r\n\r\nimport static java.time.LocalDateTime.now;\r\n\r\n/**\r\n * The type Session.\r\n */\r\npublic class EntityManagement {\r\n\r\n    private static EntityManagerFactory entityManagerFactory = null;\r\n\r\n    public static EntityManagerFactory createEntityManagerFactory() {\r\n        if (entityManagerFactory != null) {\r\n            return entityManagerFactory;\r\n        }\r\n        final StandardServiceRegistry registry =\r\n                new StandardServiceRegistryBuilder()\r\n                        .loadProperties(\"hibernate.properties\").build();\r\n        try {\r\n            entityManagerFactory =\r\n                    new MetadataSources(registry)\r\n                            .addAnnotatedClass(Share.class)\r\n                            .addAnnotatedClass(User.class)\r\n                            .addAnnotatedClass(Portfolio.class)\r\n                            .buildMetadata()\r\n                            .buildSessionFactory();\r\n        } catch (Exception e) {\r\n            StandardServiceRegistryBuilder.destroy(registry);\r\n        }\r\n        return entityManagerFactory;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/functional/EntityManagement.java b/src/main/java/functional/EntityManagement.java
+--- a/src/main/java/functional/EntityManagement.java	
++++ b/src/main/java/functional/EntityManagement.java	
+@@ -1,8 +1,8 @@
+-package functional;
++package backend.functional;
+ 
+-import entities.Portfolio;
+-import entities.Share;
+-import entities.User;
++import backend.entities.Portfolio;
++import backend.entities.Share;
++import backend.entities.User;
+ 
+ import jakarta.persistence.EntityManagerFactory;
+ import org.hibernate.boot.MetadataSources;
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"ea488597-f4e2-49aa-b467-1e44621e87b4\" name=\"Changes\" comment=\"Dao System recreated&#10;Test Area added&#10;Clean Coded\">\r\n      <change beforePath=\"$PROJECT_DIR$/.env\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.env\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/dataSources.local.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/dataSources.local.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/creators/ShareCreator.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/creators/ShareCreator.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/dao/PortfolioDao.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/dao/PortfolioDao.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/dao/PortfolioDaoImpl.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/dao/PortfolioDaoImpl.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/dao/ShareDaoImpl.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/dao/ShareDaoImpl.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/dao/UserDaoImpl.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/dao/UserDaoImpl.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/entities/User.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/entities/User.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/functional/InputHandler.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/functional/InputHandler.java\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"ComposerSettings\">\r\n    <execution />\r\n  </component>\r\n  <component name=\"ExternalProjectsData\">\r\n    <projectState path=\"$PROJECT_DIR$\">\r\n      <ProjectState />\r\n    </projectState>\r\n  </component>\r\n  <component name=\"ExternalProjectsManager\">\r\n    <system id=\"GRADLE\">\r\n      <state>\r\n        <task path=\"$PROJECT_DIR$\">\r\n          <activation />\r\n        </task>\r\n        <projects_view>\r\n          <tree_state>\r\n            <expand>\r\n              <path>\r\n                <item name=\"\" type=\"6a2764b6:ExternalProjectsStructure$RootNode\" />\r\n                <item name=\"Shares.inc_2\" type=\"f1a62948:ProjectNode\" />\r\n              </path>\r\n              <path>\r\n                <item name=\"\" type=\"6a2764b6:ExternalProjectsStructure$RootNode\" />\r\n                <item name=\"Shares.inc_2\" type=\"f1a62948:ProjectNode\" />\r\n                <item name=\"Tasks\" type=\"e4a08cd1:TasksNode\" />\r\n              </path>\r\n              <path>\r\n                <item name=\"\" type=\"6a2764b6:ExternalProjectsStructure$RootNode\" />\r\n                <item name=\"Shares.inc_2\" type=\"f1a62948:ProjectNode\" />\r\n                <item name=\"Tasks\" type=\"e4a08cd1:TasksNode\" />\r\n                <item name=\"build\" type=\"c8890929:TasksNode$1\" />\r\n              </path>\r\n              <path>\r\n                <item name=\"\" type=\"6a2764b6:ExternalProjectsStructure$RootNode\" />\r\n                <item name=\"Shares.inc_2\" type=\"f1a62948:ProjectNode\" />\r\n                <item name=\"Tasks\" type=\"e4a08cd1:TasksNode\" />\r\n                <item name=\"help\" type=\"c8890929:TasksNode$1\" />\r\n              </path>\r\n              <path>\r\n                <item name=\"\" type=\"6a2764b6:ExternalProjectsStructure$RootNode\" />\r\n                <item name=\"Shares.inc_2\" type=\"f1a62948:ProjectNode\" />\r\n                <item name=\"Tasks\" type=\"e4a08cd1:TasksNode\" />\r\n                <item name=\"verification\" type=\"c8890929:TasksNode$1\" />\r\n              </path>\r\n              <path>\r\n                <item name=\"\" type=\"6a2764b6:ExternalProjectsStructure$RootNode\" />\r\n                <item name=\"Shares.inc_2\" type=\"f1a62948:ProjectNode\" />\r\n                <item name=\"Dependencies\" type=\"6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode\" />\r\n              </path>\r\n            </expand>\r\n            <select />\r\n          </tree_state>\r\n        </projects_view>\r\n      </state>\r\n    </system>\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Interface\" />\r\n        <option value=\"Class\" />\r\n        <option value=\"JUnit5 Test Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;lastFilter&quot;: {\r\n    &quot;state&quot;: &quot;OPEN&quot;,\r\n    &quot;assignee&quot;: &quot;HaasFynn&quot;\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\">{\r\n  &quot;selectedUrlAndAccountId&quot;: {\r\n    &quot;url&quot;: &quot;https://github.com/HaasFynn/shares_gradle.git&quot;,\r\n    &quot;accountId&quot;: &quot;e869b32c-ba71-48d8-99d8-bdcfb12d47bf&quot;\r\n  }\r\n}</component>\r\n  <component name=\"HighlightingSettingsPerFile\">\r\n    <setting file=\"jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/jakarta.persistence/jakarta.persistence-api/3.1.0/8d479b8d71750d5c2b8e58034b80231994cba6ec/jakarta.persistence-api-3.1.0-sources.jar!/jakarta/persistence/EntityManager.java\" root0=\"FORCE_HIGHLIGHTING\" />\r\n  </component>\r\n  <component name=\"KubernetesApiProvider\">{\r\n  &quot;isMigrated&quot;: true\r\n}</component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"PhpWorkspaceProjectConfiguration\" interpreter_name=\"PHP\" />\r\n  <component name=\"ProblemsViewState\">\r\n    <option name=\"selectedTabId\" value=\"CurrentFile\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 6\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2dJZongccS4HzYZ0ATMXcMtOPAs\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,\r\n    &quot;Application.Main.executor&quot;: &quot;Run&quot;,\r\n    &quot;Gradle.Build shares_gradle.executor&quot;: &quot;Run&quot;,\r\n    &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,\r\n    &quot;Gradle.InputHandlerTest.doSharesGetAddedEveryTime.executor&quot;: &quot;Run&quot;,\r\n    &quot;Gradle.InputHandlerTest.doesLoginWork.executor&quot;: &quot;Run&quot;,\r\n    &quot;Gradle.InputHandlerTest.shouldFail.executor&quot;: &quot;Run&quot;,\r\n    &quot;Gradle.Shares.inc_2 [:Main.main()].executor&quot;: &quot;Run&quot;,\r\n    &quot;Gradle.Shares_gradle [:Main.main()].executor&quot;: &quot;Run&quot;,\r\n    &quot;Gradle.shares_gradle [:Main.main()].executor&quot;: &quot;Run&quot;,\r\n    &quot;Gradle.shares_gradle [build].executor&quot;: &quot;Run&quot;,\r\n    &quot;Gradle.shares_gradle [clean].executor&quot;: &quot;Run&quot;,\r\n    &quot;Gradle.shares_gradle [dependencies].executor&quot;: &quot;Run&quot;,\r\n    &quot;Gradle.shares_gradle [test].executor&quot;: &quot;Run&quot;,\r\n    &quot;Java Scratch.ChatGPTAPIExample.executor&quot;: &quot;Run&quot;,\r\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,\r\n    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,\r\n    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,\r\n    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,\r\n    &quot;git-widget-placeholder&quot;: &quot;master&quot;,\r\n    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,\r\n    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,\r\n    &quot;last_opened_file_path&quot;: &quot;C:/Users/fhaas/OneDrive - Ergon Informatik AG/Desktop/files/Erste Aufgaben/Java/Shares.inc&quot;,\r\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,\r\n    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,\r\n    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,\r\n    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,\r\n    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,\r\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\r\n  },\r\n  &quot;keyToStringList&quot;: {\r\n    &quot;ChangesTree.GroupingKeys&quot;: [\r\n      &quot;directory&quot;,\r\n      &quot;module&quot;\r\n    ],\r\n    &quot;DatabaseDriversLRU&quot;: [\r\n      &quot;mysql&quot;\r\n    ],\r\n    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [\r\n      &quot;JAVA&quot;\r\n    ]\r\n  }\r\n}</component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\fhaas\\OneDrive - Ergon Informatik AG\\Desktop\\Erste Aufgaben\\Java\\Shares.inc_2\\src\\main\\resources\" />\r\n    </key>\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\fhaas\\OneDrive - Ergon Informatik AG\\Desktop\\files\\Erste Aufgaben\\Java\\shares_gradle\" />\r\n      <recent name=\"C:\\Users\\fhaas\\AppData\\Roaming\\JetBrains\\IntelliJIdea2024.1\\scratches\" />\r\n      <recent name=\"C:\\Users\\fhaas\\OneDrive - Ergon Informatik AG\\Desktop\\Erste Aufgaben\\Java\\Shares.inc_2\\src\\main\\resources\" />\r\n    </key>\r\n    <key name=\"CreateTestDialog.Recents.Supers\">\r\n      <recent name=\"\" />\r\n    </key>\r\n    <key name=\"MoveClassesOrPackagesDialog.RECENTS_KEY\">\r\n      <recent name=\"\" />\r\n    </key>\r\n    <key name=\"CreateTestDialog.RecentsKey\">\r\n      <recent name=\"functional\" />\r\n    </key>\r\n    <key name=\"CopyClassDialog.RECENTS_KEY\">\r\n      <recent name=\"dao\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"Application.Main\">\r\n    <configuration name=\"Main\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"Main\" />\r\n      <module name=\"Shares.inc_2.main\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"InputHandlerTest.doSharesGetAddedEveryTime\" type=\"GradleRunConfiguration\" factoryName=\"Gradle\" temporary=\"true\">\r\n      <ExternalSystemSettings>\r\n        <option name=\"executionName\" />\r\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$\" />\r\n        <option name=\"externalSystemIdString\" value=\"GRADLE\" />\r\n        <option name=\"scriptParameters\" value=\"\" />\r\n        <option name=\"taskDescriptions\">\r\n          <list />\r\n        </option>\r\n        <option name=\"taskNames\">\r\n          <list>\r\n            <option value=\":test\" />\r\n            <option value=\"--tests\" />\r\n            <option value=\"&quot;functional.InputHandlerTest.doSharesGetAddedEveryTime&quot;\" />\r\n          </list>\r\n        </option>\r\n        <option name=\"vmOptions\" />\r\n      </ExternalSystemSettings>\r\n      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>\r\n      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>\r\n      <DebugAllEnabled>false</DebugAllEnabled>\r\n      <RunAsTest>true</RunAsTest>\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"shares_gradle [build]\" type=\"GradleRunConfiguration\" factoryName=\"Gradle\" temporary=\"true\">\r\n      <ExternalSystemSettings>\r\n        <option name=\"executionName\" />\r\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$\" />\r\n        <option name=\"externalSystemIdString\" value=\"GRADLE\" />\r\n        <option name=\"scriptParameters\" />\r\n        <option name=\"taskDescriptions\">\r\n          <list />\r\n        </option>\r\n        <option name=\"taskNames\">\r\n          <list>\r\n            <option value=\"build\" />\r\n          </list>\r\n        </option>\r\n        <option name=\"vmOptions\" />\r\n      </ExternalSystemSettings>\r\n      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>\r\n      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>\r\n      <DebugAllEnabled>false</DebugAllEnabled>\r\n      <RunAsTest>false</RunAsTest>\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"shares_gradle [clean]\" type=\"GradleRunConfiguration\" factoryName=\"Gradle\" temporary=\"true\">\r\n      <ExternalSystemSettings>\r\n        <option name=\"executionName\" />\r\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$\" />\r\n        <option name=\"externalSystemIdString\" value=\"GRADLE\" />\r\n        <option name=\"scriptParameters\" />\r\n        <option name=\"taskDescriptions\">\r\n          <list />\r\n        </option>\r\n        <option name=\"taskNames\">\r\n          <list>\r\n            <option value=\"clean\" />\r\n          </list>\r\n        </option>\r\n        <option name=\"vmOptions\" />\r\n      </ExternalSystemSettings>\r\n      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>\r\n      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>\r\n      <DebugAllEnabled>false</DebugAllEnabled>\r\n      <RunAsTest>false</RunAsTest>\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"ChatGPTAPIExample\" type=\"Java Scratch\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"ChatGPTAPIExample\" />\r\n      <option name=\"SCRATCH_FILE_URL\" value=\"file://$APPLICATION_CONFIG_DIR$/scratches/ChatGPTAPIExample.java\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Gradle.shares_gradle [build]\" />\r\n        <item itemvalue=\"Gradle.shares_gradle [clean]\" />\r\n        <item itemvalue=\"Application.Main\" />\r\n        <item itemvalue=\"Gradle.InputHandlerTest.doSharesGetAddedEveryTime\" />\r\n        <item itemvalue=\"Java Scratch.ChatGPTAPIExample\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"ea488597-f4e2-49aa-b467-1e44621e87b4\" name=\"Changes\" comment=\"\" />\r\n      <created>1709728323668</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1709728323668</updated>\r\n      <workItem from=\"1709728324754\" duration=\"9798000\" />\r\n      <workItem from=\"1709793590210\" duration=\"14568000\" />\r\n      <workItem from=\"1709808789070\" duration=\"9132000\" />\r\n      <workItem from=\"1709821577430\" duration=\"2571000\" />\r\n      <workItem from=\"1709882318390\" duration=\"8720000\" />\r\n      <workItem from=\"1709892647657\" duration=\"1880000\" />\r\n      <workItem from=\"1709896987014\" duration=\"3653000\" />\r\n      <workItem from=\"1710315726481\" duration=\"317000\" />\r\n      <workItem from=\"1710317640217\" duration=\"26000\" />\r\n      <workItem from=\"1710412328342\" duration=\"102000\" />\r\n      <workItem from=\"1710488899421\" duration=\"10000\" />\r\n      <workItem from=\"1710600880349\" duration=\"7000\" />\r\n      <workItem from=\"1710773043008\" duration=\"54000\" />\r\n      <workItem from=\"1711089243789\" duration=\"3383000\" />\r\n      <workItem from=\"1711092835905\" duration=\"15983000\" />\r\n      <workItem from=\"1711350905500\" duration=\"221000\" />\r\n      <workItem from=\"1711533419081\" duration=\"128000\" />\r\n      <workItem from=\"1711541849466\" duration=\"6000\" />\r\n      <workItem from=\"1711611090549\" duration=\"31000\" />\r\n      <workItem from=\"1711611134031\" duration=\"2246000\" />\r\n      <workItem from=\"1711614240762\" duration=\"2891000\" />\r\n      <workItem from=\"1711620450081\" duration=\"1955000\" />\r\n      <workItem from=\"1711622441847\" duration=\"4114000\" />\r\n      <workItem from=\"1711636791907\" duration=\"1940000\" />\r\n      <workItem from=\"1711639926804\" duration=\"2092000\" />\r\n      <workItem from=\"1712211060208\" duration=\"15902000\" />\r\n      <workItem from=\"1712297294295\" duration=\"1851000\" />\r\n      <workItem from=\"1712299226774\" duration=\"321000\" />\r\n      <workItem from=\"1712328041102\" duration=\"250000\" />\r\n      <workItem from=\"1712822644276\" duration=\"297000\" />\r\n      <workItem from=\"1712823128153\" duration=\"1896000\" />\r\n      <workItem from=\"1712833062471\" duration=\"7268000\" />\r\n      <workItem from=\"1712902877850\" duration=\"1602000\" />\r\n      <workItem from=\"1712908635254\" duration=\"49000\" />\r\n      <workItem from=\"1712908965040\" duration=\"265000\" />\r\n      <workItem from=\"1713362263603\" duration=\"176000\" />\r\n      <workItem from=\"1713432608604\" duration=\"26455000\" />\r\n      <workItem from=\"1713527502981\" duration=\"315000\" />\r\n      <workItem from=\"1713533924230\" duration=\"1175000\" />\r\n      <workItem from=\"1714973875466\" duration=\"1829000\" />\r\n      <workItem from=\"1714998311841\" duration=\"568000\" />\r\n      <workItem from=\"1715754372783\" duration=\"892000\" />\r\n      <workItem from=\"1715755285996\" duration=\"4462000\" />\r\n      <workItem from=\"1715760085007\" duration=\"1983000\" />\r\n      <workItem from=\"1715765032398\" duration=\"3985000\" />\r\n      <workItem from=\"1715840251732\" duration=\"3083000\" />\r\n      <workItem from=\"1715850636729\" duration=\"1851000\" />\r\n      <workItem from=\"1715931058455\" duration=\"75000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Created Files and Set Properties&#10;setUp Function made&#10;Annotations added\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1709794170678</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1709794170678</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"log4j.properties added. log4j=OFF&#10;Logs disabled*&#10;User and Shares can be added&#10;Already existing Objects won't be replaced\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1709808505523</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1709808505523</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"disabled warnings in build.gradle\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1709808925112</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1709808925112</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"Original Commit didnt go through March 7th&#10;Changed:&#10;System works (asking user stuff)&#10;To be done:&#10;- Db gets cleared after every start&#10;- On changing User Inf, user doesn't update it duplicates entry with new Inf\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1709883785615</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1709883785615</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"Password now for Userchanges required&#10;Updated deprecated hibernate methods&#10;  save() -&gt; merge()\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1709896757018</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1709896757018</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"Transaction verwendet&#10;EntityManager verwendet&#10;Dao's erstellt\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1711112708605</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1711112708605</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"Databases recreated&#10;Try Catches added to db actions&#10;edited README.md\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1711628371980</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1711628371980</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"User_Share Connection Table created\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1711641422767</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1711641422768</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"Dao System recreated&#10;Test Area added&#10;Clean Coded\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1712242367870</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1712242367870</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"10\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"UnknownFeatures\">\r\n    <option featureType=\"com.intellij.fileTypeFactory\" implementationName=\".env\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Created Files and Set Properties&#10;setUp Function made&#10;Annotations added\" />\r\n    <MESSAGE value=\"log4j.properties added. log4j=OFF&#10;Logs disabled*&#10;User and Shares can be added&#10;Already existing Objects won't be replaced\" />\r\n    <MESSAGE value=\"disabled warnings in build.gradle\" />\r\n    <MESSAGE value=\"Original Commit didnt go through March 7th&#10;Changed:&#10;System works (asking user stuff)&#10;To be done:&#10;- Db gets cleared after every start&#10;- On changing User Inf, user doesn't update it duplicates entry with new Inf\" />\r\n    <MESSAGE value=\"Password now for Userchanges required&#10;Updated deprecated hibernate methods&#10;  save() -&gt; merge()\" />\r\n    <MESSAGE value=\"Transaction verwendet&#10;EntityManager verwendet&#10;Dao's erstellt\" />\r\n    <MESSAGE value=\"Databases recreated&#10;Try Catches added to db actions&#10;edited README.md\" />\r\n    <MESSAGE value=\"User_Share Connection Table created\" />\r\n    <MESSAGE value=\"Dao System recreated&#10;Test Area added&#10;Clean Coded\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Dao System recreated&#10;Test Area added&#10;Clean Coded\" />\r\n  </component>\r\n  <component name=\"VgoProject\">\r\n    <settings-migrated>true</settings-migrated>\r\n  </component>\r\n  <component name=\"XDebuggerManager\">\r\n    <breakpoint-manager>\r\n      <breakpoints>\r\n        <breakpoint enabled=\"true\" type=\"java-exception\">\r\n          <properties class=\"org.hibernate.internal.util.config.ConfigurationException\" package=\"org.hibernate.internal.util.config\" />\r\n          <option name=\"timeStamp\" value=\"1\" />\r\n        </breakpoint>\r\n        <breakpoint enabled=\"true\" type=\"java-exception\">\r\n          <properties class=\"org.hibernate.exception.SQLGrammarException\" package=\"org.hibernate.exception\" />\r\n          <option name=\"timeStamp\" value=\"18\" />\r\n        </breakpoint>\r\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\r\n          <url>file://$PROJECT_DIR$/src/main/java/functional/EntityManagement.java</url>\r\n          <line>36</line>\r\n          <option name=\"timeStamp\" value=\"11\" />\r\n        </line-breakpoint>\r\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\r\n          <url>file://$PROJECT_DIR$/src/main/java/dao/ShareDaoImpl.java</url>\r\n          <line>65</line>\r\n          <option name=\"timeStamp\" value=\"20\" />\r\n        </line-breakpoint>\r\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\r\n          <url>file://$PROJECT_DIR$/src/main/java/creators/ShareCreator.java</url>\r\n          <line>27</line>\r\n          <option name=\"timeStamp\" value=\"24\" />\r\n        </line-breakpoint>\r\n        <line-breakpoint enabled=\"true\" type=\"java-method\">\r\n          <url>file://$PROJECT_DIR$/src/main/java/creators/ShareCreator.java</url>\r\n          <line>22</line>\r\n          <properties class=\"creators.ShareCreator\" method=\"createNewShares\">\r\n            <option name=\"EMULATED\" value=\"true\" />\r\n            <option name=\"WATCH_EXIT\" value=\"false\" />\r\n          </properties>\r\n          <option name=\"timeStamp\" value=\"21\" />\r\n        </line-breakpoint>\r\n      </breakpoints>\r\n    </breakpoint-manager>\r\n    <watches-manager>\r\n      <configuration name=\"GradleRunConfiguration\">\r\n        <watch expression=\"shares\" />\r\n        <watch expression=\"entityManager\" language=\"JAVA\" />\r\n        <watch expression=\"userPortfolio.get(0).shareId\" />\r\n      </configuration>\r\n    </watches-manager>\r\n  </component>\r\n  <component name=\"XSLT-Support.FileAssociations.UIState\">\r\n    <expand />\r\n    <select />\r\n  </component>\r\n  <component name=\"com.intellij.coverage.CoverageDataManagerImpl\">\r\n    <SUITE FILE_PATH=\"coverage/Shares_inc_2$InputHandlerTest_doesLoginWork.ic\" NAME=\"InputHandlerTest.doesLoginWork Coverage Results\" MODIFIED=\"1712239112274\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"idea\" COVERAGE_BY_TEST_ENABLED=\"false\" COVERAGE_TRACING_ENABLED=\"false\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	
++++ b/.idea/workspace.xml	
+@@ -4,17 +4,34 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="ea488597-f4e2-49aa-b467-1e44621e87b4" name="Changes" comment="Dao System recreated&#10;Test Area added&#10;Clean Coded">
+-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
++    <list default="true" id="ea488597-f4e2-49aa-b467-1e44621e87b4" name="Changes" comment="refactor whole project">
++      <change afterPath="$PROJECT_DIR$/src/main/java/LanguagePack.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/java/javafx/ScreenBuilder.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/java/javafx/share_creation/ShareCreator.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/java/javafx/share_creation/ShareCreatorController.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/java/javafx/share_creation/ShareCreatorScene.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/resources/locale/language_de.properties" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/resources/locale/language_en.properties" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/creators/ShareCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/creators/ShareCreator.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/PortfolioDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/PortfolioDao.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/PortfolioDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/PortfolioDaoImpl.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/ShareDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/ShareDaoImpl.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/UserDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/UserDaoImpl.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/User.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/functional/InputHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/functional/InputHandler.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/java/Main.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/archive/ShareManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/java/archive/ShareManager.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/archive/UserManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/java/archive/UserManager.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/archive/share_user_sql.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/java/archive/share_user_sql.sql" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/creators/ShareCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/java/ShareCreator.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/dao/PortfolioDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/java/dao/PortfolioDao.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/dao/PortfolioDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/java/dao/PortfolioDaoImpl.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/dao/ShareDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/java/dao/ShareDao.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/dao/ShareDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/java/dao/ShareDaoImpl.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/java/dao/UserDao.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/dao/UserDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/java/dao/UserDaoImpl.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/entities/Portfolio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/java/entities/Portfolio.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/entities/Share.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/java/entities/Share.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/java/entities/User.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/functional/EntityManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/java/functional/EntityManagement.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/functional/InputHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/java/functional/InputHandler.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/functional/Reader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/java/functional/Reader.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/test/java/functional/InputHandlerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/functional/InputHandlerTest.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -81,12 +98,17 @@
+     <option name="RECENT_TEMPLATES">
+       <list>
+         <option value="Interface" />
+-        <option value="Class" />
+         <option value="JUnit5 Test Class" />
++        <option value="Class" />
+       </list>
+     </option>
+   </component>
+   <component name="Git.Settings">
++    <option name="RECENT_BRANCH_BY_REPOSITORY">
++      <map>
++        <entry key="$PROJECT_DIR$" value="master" />
++      </map>
++    </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+   </component>
+   <component name="GitHubPullRequestSearchHistory">{
+@@ -125,63 +147,66 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent">{
+-  &quot;keyToString&quot;: {
+-    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
+-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+-    &quot;Gradle.Build shares_gradle.executor&quot;: &quot;Run&quot;,
+-    &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
+-    &quot;Gradle.InputHandlerTest.doSharesGetAddedEveryTime.executor&quot;: &quot;Run&quot;,
+-    &quot;Gradle.InputHandlerTest.doesLoginWork.executor&quot;: &quot;Run&quot;,
+-    &quot;Gradle.InputHandlerTest.shouldFail.executor&quot;: &quot;Run&quot;,
+-    &quot;Gradle.Shares.inc_2 [:Main.main()].executor&quot;: &quot;Run&quot;,
+-    &quot;Gradle.Shares_gradle [:Main.main()].executor&quot;: &quot;Run&quot;,
+-    &quot;Gradle.shares_gradle [:Main.main()].executor&quot;: &quot;Run&quot;,
+-    &quot;Gradle.shares_gradle [build].executor&quot;: &quot;Run&quot;,
+-    &quot;Gradle.shares_gradle [clean].executor&quot;: &quot;Run&quot;,
+-    &quot;Gradle.shares_gradle [dependencies].executor&quot;: &quot;Run&quot;,
+-    &quot;Gradle.shares_gradle [test].executor&quot;: &quot;Run&quot;,
+-    &quot;Java Scratch.ChatGPTAPIExample.executor&quot;: &quot;Run&quot;,
+-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
+-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+-    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
+-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+-    &quot;last_opened_file_path&quot;: &quot;C:/Users/fhaas/OneDrive - Ergon Informatik AG/Desktop/files/Erste Aufgaben/Java/Shares.inc&quot;,
+-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
+-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
++  <component name="PropertiesComponent"><![CDATA[{
++  "keyToString": {
++    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
++    "Application.Main.executor": "Run",
++    "Gradle.Build shares_gradle.executor": "Run",
++    "Gradle.Download Sources.executor": "Run",
++    "Gradle.InputHandlerTest.doSharesGetAddedEveryTime.executor": "Run",
++    "Gradle.InputHandlerTest.doesLoginWork.executor": "Run",
++    "Gradle.InputHandlerTest.shouldFail.executor": "Run",
++    "Gradle.Shares.inc_2 [:Main.main()].executor": "Run",
++    "Gradle.Shares_gradle [:Main.main()].executor": "Run",
++    "Gradle.shares_gradle [:Main.main()].executor": "Run",
++    "Gradle.shares_gradle [build].executor": "Run",
++    "Gradle.shares_gradle [clean].executor": "Run",
++    "Gradle.shares_gradle [dependencies].executor": "Run",
++    "Gradle.shares_gradle [test].executor": "Run",
++    "Java Scratch.ChatGPTAPIExample.executor": "Run",
++    "RunOnceActivity.OpenProjectViewOnStart": "true",
++    "RunOnceActivity.ShowReadmeOnStart": "true",
++    "RunOnceActivity.go.formatter.settings.were.checked": "true",
++    "RunOnceActivity.go.migrated.go.modules.settings": "true",
++    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
++    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
++    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
++    "git-widget-placeholder": "javafx-visualization",
++    "go.import.settings.migrated": "true",
++    "kotlin-language-version-configured": "true",
++    "last_opened_file_path": "C:/Users/fhaas/OneDrive - Ergon Informatik AG/Desktop/files/Erste Aufgaben/Java/shares_gradle/src/main/resources",
++    "node.js.detected.package.eslint": "true",
++    "node.js.detected.package.tslint": "true",
++    "node.js.selected.package.eslint": "(autodetect)",
++    "node.js.selected.package.tslint": "(autodetect)",
++    "nodejs_package_manager_path": "npm",
++    "project.structure.last.edited": "Modules",
++    "project.structure.proportion": "0.15",
++    "project.structure.side.proportion": "0.2",
++    "settings.editor.selected.configurable": "preferences.keymap",
++    "vue.rearranger.settings.migration": "true"
+   },
+-  &quot;keyToStringList&quot;: {
+-    &quot;ChangesTree.GroupingKeys&quot;: [
+-      &quot;directory&quot;,
+-      &quot;module&quot;
++  "keyToStringList": {
++    "ChangesTree.GroupingKeys": [
++      "directory",
++      "module"
+     ],
+-    &quot;DatabaseDriversLRU&quot;: [
+-      &quot;mysql&quot;
++    "DatabaseDriversLRU": [
++      "mysql"
+     ],
+-    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+-      &quot;JAVA&quot;
++    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
++      "JAVA"
+     ]
+   }
+-}</component>
++}]]></component>
+   <component name="RecentsManager">
+     <key name="CopyFile.RECENT_KEYS">
++      <recent name="C:\Users\fhaas\OneDrive - Ergon Informatik AG\Desktop\files\Erste Aufgaben\Java\shares_gradle\src\main\resources" />
++      <recent name="C:\Users\fhaas\OneDrive - Ergon Informatik AG\Desktop\files\Erste Aufgaben\Java\shares_gradle\src\main\javafx" />
+       <recent name="C:\Users\fhaas\OneDrive - Ergon Informatik AG\Desktop\Erste Aufgaben\Java\Shares.inc_2\src\main\resources" />
+     </key>
+     <key name="MoveFile.RECENT_KEYS">
++      <recent name="C:\Users\fhaas\OneDrive - Ergon Informatik AG\Desktop\files\Erste Aufgaben\Java\shares_gradle\src\main\java" />
+       <recent name="C:\Users\fhaas\OneDrive - Ergon Informatik AG\Desktop\files\Erste Aufgaben\Java\shares_gradle" />
+       <recent name="C:\Users\fhaas\AppData\Roaming\JetBrains\IntelliJIdea2024.1\scratches" />
+       <recent name="C:\Users\fhaas\OneDrive - Ergon Informatik AG\Desktop\Erste Aufgaben\Java\Shares.inc_2\src\main\resources" />
+@@ -196,12 +221,14 @@
+       <recent name="functional" />
+     </key>
+     <key name="CopyClassDialog.RECENTS_KEY">
++      <recent name="" />
++      <recent name="javafx" />
+       <recent name="dao" />
+     </key>
+   </component>
+   <component name="RunManager" selected="Application.Main">
+     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+-      <option name="MAIN_CLASS_NAME" value="Main" />
++      <option name="MAIN_CLASS_NAME" value="java.Main" />
+       <module name="Shares.inc_2.main" />
+       <method v="2">
+         <option name="Make" enabled="true" />
+@@ -284,11 +311,11 @@
+     </configuration>
+     <recent_temporary>
+       <list>
+-        <item itemvalue="Gradle.shares_gradle [build]" />
++        <item itemvalue="Java Scratch.ChatGPTAPIExample" />
+         <item itemvalue="Gradle.shares_gradle [clean]" />
+-        <item itemvalue="Application.Main" />
++        <item itemvalue="Gradle.shares_gradle [build]" />
+         <item itemvalue="Gradle.InputHandlerTest.doSharesGetAddedEveryTime" />
+-        <item itemvalue="Java Scratch.ChatGPTAPIExample" />
++        <item itemvalue="Application.Main" />
+       </list>
+     </recent_temporary>
+   </component>
+@@ -347,7 +374,7 @@
+       <workItem from="1715765032398" duration="3985000" />
+       <workItem from="1715840251732" duration="3083000" />
+       <workItem from="1715850636729" duration="1851000" />
+-      <workItem from="1715931058455" duration="75000" />
++      <workItem from="1715931058455" duration="3083000" />
+     </task>
+     <task id="LOCAL-00001" summary="Created Files and Set Properties&#10;setUp Function made&#10;Annotations added">
+       <option name="closed" value="true" />
+@@ -421,7 +448,15 @@
+       <option name="project" value="LOCAL" />
+       <updated>1712242367870</updated>
+     </task>
+-    <option name="localTasksCounter" value="10" />
++    <task id="LOCAL-00010" summary="refactor whole project">
++      <option name="closed" value="true" />
++      <created>1715931279526</created>
++      <option name="number" value="00010" />
++      <option name="presentableId" value="LOCAL-00010" />
++      <option name="project" value="LOCAL" />
++      <updated>1715931279526</updated>
++    </task>
++    <option name="localTasksCounter" value="11" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -435,7 +470,19 @@
+       <map>
+         <entry key="MAIN">
+           <value>
+-            <State />
++            <State>
++              <option name="FILTERS">
++                <map>
++                  <entry key="branch">
++                    <value>
++                      <list>
++                        <option value="origin/chatGPT_integration" />
++                      </list>
++                    </value>
++                  </entry>
++                </map>
++              </option>
++            </State>
+           </value>
+         </entry>
+       </map>
+@@ -451,7 +498,8 @@
+     <MESSAGE value="Databases recreated&#10;Try Catches added to db actions&#10;edited README.md" />
+     <MESSAGE value="User_Share Connection Table created" />
+     <MESSAGE value="Dao System recreated&#10;Test Area added&#10;Clean Coded" />
+-    <option name="LAST_COMMIT_MESSAGE" value="Dao System recreated&#10;Test Area added&#10;Clean Coded" />
++    <MESSAGE value="refactor whole project" />
++    <option name="LAST_COMMIT_MESSAGE" value="refactor whole project" />
+   </component>
+   <component name="VgoProject">
+     <settings-migrated>true</settings-migrated>
+@@ -468,24 +516,24 @@
+           <option name="timeStamp" value="18" />
+         </breakpoint>
+         <line-breakpoint enabled="true" type="java-line">
+-          <url>file://$PROJECT_DIR$/src/main/java/functional/EntityManagement.java</url>
++          <url>file://$PROJECT_DIR$/src/main/java/java/functional/EntityManagement.java</url>
+           <line>36</line>
+           <option name="timeStamp" value="11" />
+         </line-breakpoint>
+         <line-breakpoint enabled="true" type="java-line">
+-          <url>file://$PROJECT_DIR$/src/main/java/dao/ShareDaoImpl.java</url>
++          <url>file://$PROJECT_DIR$/src/main/java/java/dao/ShareDaoImpl.java</url>
+           <line>65</line>
+           <option name="timeStamp" value="20" />
+         </line-breakpoint>
+         <line-breakpoint enabled="true" type="java-line">
+-          <url>file://$PROJECT_DIR$/src/main/java/creators/ShareCreator.java</url>
++          <url>file://$PROJECT_DIR$/src/main/java/java/ShareCreator.java</url>
+           <line>27</line>
+           <option name="timeStamp" value="24" />
+         </line-breakpoint>
+         <line-breakpoint enabled="true" type="java-method">
+-          <url>file://$PROJECT_DIR$/src/main/java/creators/ShareCreator.java</url>
++          <url>file://$PROJECT_DIR$/src/main/java/java/ShareCreator.java</url>
+           <line>22</line>
+-          <properties class="creators.ShareCreator" method="createNewShares">
++          <properties class="java.ShareCreator" method="createNewShares">
+             <option name="EMULATED" value="true" />
+             <option name="WATCH_EXIT" value="false" />
+           </properties>
+Index: src/test/java/functional/InputHandlerTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package functional;\r\n\r\nimport com.sun.tools.javac.Main;\r\nimport creators.ShareCreator;\r\nimport dao.PortfolioDaoImpl;\r\nimport dao.ShareDaoImpl;\r\nimport dao.UserDaoImpl;\r\nimport entities.User;\r\nimport jakarta.persistence.EntityManager;\r\nimport org.junit.jupiter.api.Test;\r\n\r\nimport java.util.concurrent.TimeUnit;\r\n\r\nimport static org.junit.jupiter.api.Assertions.*;\r\n\r\nclass InputHandlerTest {\r\n    EntityManager entityManager = EntityManagement.createEntityManagerFactory().createEntityManager();\r\n    UserDaoImpl userDao = new UserDaoImpl(entityManager);\r\n\r\n    @Test\r\n    void doesLoginWork() {\r\n        createTestAccount();\r\n        User user = new User();\r\n        user.setUsername(\"test\");\r\n        user.setEmail(\"john.doe@gmail.com\");\r\n        user.setPassword(\"1234\");\r\n        assertEquals(user.getUsername().toLowerCase(), userDao.getByUsername(\"Test\").getUsername().toLowerCase());\r\n    }\r\n\r\n    void createTestAccount() {\r\n        User user = new User();\r\n        user.setUsername(\"Test\");\r\n        user.setEmail(\"john.doe@gmail.com\");\r\n        user.setPassword(\"1234\");\r\n        userDao.add(user);\r\n    }\r\n\r\n    @Test\r\n    void doSharesGetAddedEveryTime() {\r\n        EntityManager entityManager = EntityManagement.createEntityManagerFactory().createEntityManager();\r\n        ShareDaoImpl shareDao = new ShareDaoImpl(entityManager);\r\n\r\n\r\n        assertThrows(Exception.class, () -> {\r\n            for (int i = 1; i <= 10; i++) {\r\n                TimeUnit.SECONDS.sleep(3);\r\n                shareDao.addAll(ShareCreator.createNewShares(100));\r\n                System.out.println(\"Didnt Work this time. Attempt number: \" + i);\r\n            }\r\n        });\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/test/java/functional/InputHandlerTest.java b/src/test/java/functional/InputHandlerTest.java
+--- a/src/test/java/functional/InputHandlerTest.java	
++++ b/src/test/java/functional/InputHandlerTest.java	
+@@ -1,14 +1,13 @@
+ package functional;
+ 
+-import com.sun.tools.javac.Main;
+-import creators.ShareCreator;
+-import dao.PortfolioDaoImpl;
+-import dao.ShareDaoImpl;
+-import dao.UserDaoImpl;
+-import entities.User;
++import backend.ShareCreator;
++import backend.dao.ShareDaoImpl;
++import backend.dao.UserDaoImpl;
++import backend.entities.User;
+ import jakarta.persistence.EntityManager;
+ import org.junit.jupiter.api.Test;
+ 
++import backend.functional.EntityManagement;
+ import java.util.concurrent.TimeUnit;
+ 
+ import static org.junit.jupiter.api.Assertions.*;
+Index: src/main/java/javafx/ScreenBuilder.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/javafx/ScreenBuilder.java b/src/main/java/javafx/ScreenBuilder.java
+new file mode 100644
+--- /dev/null	
++++ b/src/main/java/javafx/ScreenBuilder.java	
+@@ -0,0 +1,21 @@
++package javafx;
++
++import javafx.scene.Node;
++import javafx.scene.layout.BorderPane;
++import javafx.scene.layout.Region;
++import javafx.scene.text.Text;
++import javafx.util.Builder;
++
++public class ScreenBuilder implements Builder<Region> {
++
++    @Override
++    public Region build() {
++        BorderPane results = new BorderPane();
++        results.setTop(createTop());
++        return results;
++    }
++
++    private Node createTop() {
++        return new Text("This is the Screen Title");
++    }
++}
+Index: src/main/java/LanguagePack.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/LanguagePack.java b/src/main/java/LanguagePack.java
+new file mode 100644
+--- /dev/null	
++++ b/src/main/java/LanguagePack.java	
+@@ -0,0 +1,49 @@
++import javafx.beans.binding.Bindings;
++import javafx.beans.binding.StringBinding;
++import javafx.beans.property.ObjectProperty;
++import javafx.beans.property.SimpleObjectProperty;
++
++import java.text.MessageFormat;
++import java.util.*;
++
++import static javax.swing.JComponent.getDefaultLocale;
++
++public class LanguagePack {
++
++    private static final ObjectProperty<Locale> locale;
++
++    static {
++        locale = new SimpleObjectProperty<>(getDefaultLocale());
++        locale.addListener((observable, oldValue, newValue) -> Locale.setDefault(newValue));
++    }
++
++    public static StringBinding createStringBinding(final String key, Object... args) {
++        return Bindings.createStringBinding(() -> get(key, args), locale);
++    }
++
++    public static String get(final String key, final Object... args) {
++        ResourceBundle bundle = ResourceBundle.getBundle("locale.language", getLocale());
++        return MessageFormat.format(bundle.getString(key), args);
++    }
++
++    public static void setLocale(Locale locale) {
++        localeProperty().set(locale);
++        Locale.setDefault(locale);
++    }
++
++    public static ObjectProperty<Locale> localeProperty() {
++        return locale;
++    }
++
++    public static Locale getLocale() {
++        return locale.get();
++    }
++
++    public static List<Locale> getSupportedLocales() {
++        return new ArrayList<>(Arrays.asList(Locale.GERMAN, Locale.ENGLISH));
++    }
++
++    public static List<String> getSupportedLocaleStrings() {
++        return new ArrayList<>(Arrays.asList(Locale.GERMAN.toString(), Locale.ENGLISH.toString()));
++    }
++}

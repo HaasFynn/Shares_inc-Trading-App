@@ -1,0 +1,275 @@
+Index: src/main/java/dao/ShareDaoImpl.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package dao;\r\n\r\nimport entities.Share;\r\nimport jakarta.persistence.EntityExistsException;\r\nimport jakarta.persistence.EntityManager;\r\nimport jakarta.persistence.NoResultException;\r\nimport jakarta.persistence.TransactionRequiredException;\r\nimport org.hibernate.exception.ConstraintViolationException;\r\n\r\nimport java.security.spec.RSAOtherPrimeInfo;\r\nimport java.util.ArrayList;\r\nimport java.util.Arrays;\r\nimport java.util.List;\r\n\r\npublic class ShareDaoImpl implements ShareDao {\r\n    private final EntityManager entityManager;\r\n\r\n    public ShareDaoImpl(EntityManager entityManager) {\r\n        this.entityManager = entityManager;\r\n    }\r\n\r\n    @Override\r\n    public Share get(long id) {\r\n        try {\r\n            return entityManager.find(Share.class, id);\r\n        } catch (NoResultException e) {\r\n            return null;\r\n        }\r\n    }\r\n\r\n    @Override\r\n    public Share getByName(String name) {\r\n        try {\r\n            return entityManager.createQuery(\"FROM Share s WHERE s.name = :name\", Share.class)\r\n                    .setParameter(\"name\", name)\r\n                    .getResultStream().findFirst().orElse(null);\r\n        } catch (NoResultException e) {\r\n            return null;\r\n        }\r\n    }\r\n\r\n    @Override\r\n    public List<Share> getAll() {\r\n        return entityManager.createQuery(\"FROM Share\", Share.class)\r\n                .getResultList();\r\n    }\r\n\r\n\r\n    @Override\r\n    public boolean add(Share share) {\r\n        if (share == null) {\r\n            return false;\r\n        }\r\n        try {\r\n            entityManager.getTransaction().begin();\r\n            entityManager.persist(share);\r\n            entityManager.getTransaction().commit();\r\n        } catch (EntityExistsException e) {\r\n            return false;\r\n        }\r\n        return true;\r\n    }\r\n\r\n    @Override\r\n    public boolean addAll(Share... shares) {\r\n        entityManager.getTransaction().begin();\r\n        for (Share share : shares) {\r\n            if (share != null) {\r\n                entityManager.merge(share);\r\n            }\r\n        }\r\n        entityManager.getTransaction().commit();\r\n        return true;\r\n    }\r\n\r\n    @Override\r\n    public boolean update(Share share) {\r\n        try {\r\n            entityManager.getTransaction().begin();\r\n            entityManager.merge(share);\r\n            entityManager.getTransaction().commit();\r\n        } catch (IllegalArgumentException e) {\r\n            return false;\r\n        }\r\n        return true;\r\n    }\r\n\r\n\r\n    @Override\r\n    public boolean delete(Share share) {\r\n        try {\r\n            entityManager.getTransaction().begin();\r\n            entityManager.remove(share);\r\n            entityManager.getTransaction().commit();\r\n        } catch (IllegalArgumentException e) {\r\n            return false;\r\n        }\r\n        return true;\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/dao/ShareDaoImpl.java b/src/main/java/dao/ShareDaoImpl.java
+--- a/src/main/java/dao/ShareDaoImpl.java	
++++ b/src/main/java/dao/ShareDaoImpl.java	
+@@ -1,15 +1,10 @@
+-package dao;
++package backend.dao;
+ 
+-import entities.Share;
++import backend.entities.Share;
+ import jakarta.persistence.EntityExistsException;
+ import jakarta.persistence.EntityManager;
+ import jakarta.persistence.NoResultException;
+-import jakarta.persistence.TransactionRequiredException;
+-import org.hibernate.exception.ConstraintViolationException;
+ 
+-import java.security.spec.RSAOtherPrimeInfo;
+-import java.util.ArrayList;
+-import java.util.Arrays;
+ import java.util.List;
+ 
+ public class ShareDaoImpl implements ShareDao {
+Index: src/main/java/dao/PortfolioDaoImpl.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package dao;\r\n\r\nimport entities.Portfolio;\r\nimport jakarta.persistence.EntityExistsException;\r\nimport jakarta.persistence.EntityManager;\r\nimport jakarta.persistence.NoResultException;\r\n\r\nimport java.util.List;\r\n\r\npublic class PortfolioDaoImpl implements PortfolioDao {\r\n    private final EntityManager entityManager;\r\n\r\n    public PortfolioDaoImpl(EntityManager entityManager) {\r\n        this.entityManager = entityManager;\r\n    }\r\n\r\n    @Override\r\n    public Portfolio get(long id) {\r\n        return entityManager.find(Portfolio.class, id);\r\n    }\r\n\r\n    @Override\r\n    public Portfolio get(long shareId, long userId) {\r\n        try {\r\n            return entityManager.createQuery(\"FROM Portfolio p WHERE p.shareId = :shareId AND p.userId = :userId\", Portfolio.class)\r\n                    .setParameter(\"shareId\", shareId)\r\n                    .setParameter(\"userId\", userId)\r\n                    .getResultStream().findFirst().orElse(null);\r\n        } catch (NoResultException e) {\r\n            return null;\r\n        }\r\n    }\r\n\r\n    @Override\r\n    public List<Portfolio> getAll() {\r\n        return entityManager.createQuery(\"FROM Portfolio\", Portfolio.class)\r\n                .getResultList();\r\n    }\r\n    @Override\r\n    public List<Portfolio> getAllFromUser(long userId) {\r\n        try {\r\n            return entityManager.createQuery(\"FROM Portfolio p WHERE p.userId = :userId\", Portfolio.class)\r\n                    .setParameter(\"userId\", userId)\r\n                    .getResultStream().toList();\r\n        } catch (NoResultException e) {\r\n            return null;\r\n        }\r\n    }\r\n\r\n    @Override\r\n    public boolean add(Portfolio portfolio) {\r\n        try {\r\n            entityManager.getTransaction().begin();\r\n            entityManager.persist(portfolio);\r\n            entityManager.getTransaction().commit();\r\n        } catch (EntityExistsException e) {\r\n            return false;\r\n        }\r\n        return true;\r\n    }\r\n\r\n    @Override\r\n    public boolean update(Portfolio portfolio) {\r\n        try {\r\n            entityManager.getTransaction().begin();\r\n            entityManager.merge(portfolio);\r\n            entityManager.getTransaction().commit();\r\n        } catch (IllegalArgumentException e) {\r\n            return false;\r\n        }\r\n        return true;\r\n    }\r\n\r\n    @Override\r\n    public boolean delete(Portfolio portfolio) {\r\n        try {\r\n            entityManager.getTransaction().begin();\r\n            entityManager.remove(portfolio);\r\n            entityManager.getTransaction().commit();\r\n        } catch (IllegalArgumentException e) {\r\n            return false;\r\n        }\r\n        return true;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/dao/PortfolioDaoImpl.java b/src/main/java/dao/PortfolioDaoImpl.java
+--- a/src/main/java/dao/PortfolioDaoImpl.java	
++++ b/src/main/java/dao/PortfolioDaoImpl.java	
+@@ -1,6 +1,6 @@
+-package dao;
++package backend.dao;
+ 
+-import entities.Portfolio;
++import backend.entities.Portfolio;
+ import jakarta.persistence.EntityExistsException;
+ import jakarta.persistence.EntityManager;
+ import jakarta.persistence.NoResultException;
+Index: src/main/java/dao/UserDaoImpl.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package dao;\r\n\r\nimport entities.User;\r\nimport jakarta.persistence.EntityExistsException;\r\nimport jakarta.persistence.EntityManager;\r\nimport jakarta.persistence.NoResultException;\r\n\r\nimport java.util.List;\r\n\r\npublic class UserDaoImpl implements UserDao {\r\n    private final EntityManager entityManager;\r\n\r\n    public UserDaoImpl(EntityManager entityManager) {\r\n        this.entityManager = entityManager;\r\n    }\r\n\r\n    @Override\r\n    public User get(long id) {\r\n        return entityManager.find(User.class, id);\r\n    }\r\n\r\n    @Override\r\n    public User getByUsername(String username) {\r\n        try {\r\n            return entityManager.createQuery(\"FROM User u WHERE u.username = :username\", User.class).setParameter(\"username\", username).getResultStream().findFirst().orElse(null);\r\n        } catch (NoResultException e) {\r\n            return null;\r\n        }\r\n    }\r\n\r\n    @Override\r\n    public User getByPassword(String username, String password) {\r\n        try {\r\n            return entityManager.createQuery(\"FROM User u WHERE u.username = :username AND u.password = :password\", User.class).setParameter(\"username\", username).setParameter(\"password\", password).getSingleResult();\r\n        } catch (NoResultException e) {\r\n            return null;\r\n        }\r\n    }\r\n\r\n    @Override\r\n    public List<User> getAll() {\r\n        return entityManager.createQuery(\"FROM User\", User.class).getResultList();\r\n    }\r\n\r\n    @Override\r\n    public boolean add(User user) {\r\n        try {\r\n            entityManager.getTransaction().begin();\r\n            entityManager.persist(user);\r\n            entityManager.getTransaction().commit();\r\n        } catch (EntityExistsException e) {\r\n            return false;\r\n        }\r\n        return true;\r\n    }\r\n\r\n    @Override\r\n    public boolean update(User user) {\r\n        entityManager.getTransaction().begin();\r\n        entityManager.merge(user);\r\n        entityManager.getTransaction().commit();\r\n        return true;\r\n    }\r\n\r\n\r\n    @Override\r\n    public boolean delete(User user) {\r\n        if (user == null) return false;\r\n        entityManager.getTransaction().begin();\r\n        entityManager.remove(user);\r\n        entityManager.getTransaction().commit();\r\n        return true;\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/dao/UserDaoImpl.java b/src/main/java/dao/UserDaoImpl.java
+--- a/src/main/java/dao/UserDaoImpl.java	
++++ b/src/main/java/dao/UserDaoImpl.java	
+@@ -1,6 +1,6 @@
+-package dao;
++package backend.dao;
+ 
+-import entities.User;
++import backend.entities.User;
+ import jakarta.persistence.EntityExistsException;
+ import jakarta.persistence.EntityManager;
+ import jakarta.persistence.NoResultException;
+Index: src/main/java/dao/PortfolioDao.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package dao;\r\n\r\nimport entities.Portfolio;\r\n\r\nimport java.util.List;\r\n\r\npublic interface PortfolioDao {\r\n    Portfolio get(long id);\r\n\r\n    Portfolio get(long shareId, long userId);\r\n\r\n    List<Portfolio> getAll();\r\n\r\n    List<Portfolio> getAllFromUser(long userId);\r\n\r\n    boolean add(Portfolio portfolio);\r\n\r\n    boolean update(Portfolio portfolio);\r\n\r\n    boolean delete(Portfolio portfolio);\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/dao/PortfolioDao.java b/src/main/java/dao/PortfolioDao.java
+--- a/src/main/java/dao/PortfolioDao.java	
++++ b/src/main/java/dao/PortfolioDao.java	
+@@ -1,6 +1,6 @@
+-package dao;
++package backend.dao;
+ 
+-import entities.Portfolio;
++import backend.entities.Portfolio;
+ 
+ import java.util.List;
+ 
+Index: src/main/java/javafx/share_creation/ShareCreatorController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/javafx/share_creation/ShareCreatorController.java b/src/main/java/javafx/share_creation/ShareCreatorController.java
+new file mode 100644
+--- /dev/null	
++++ b/src/main/java/javafx/share_creation/ShareCreatorController.java	
+@@ -0,0 +1,14 @@
++package javafx.share_creation;
++
++public class ShareCreatorController {
++
++    ShareCreatorScene scene;
++    public ShareCreatorController(ShareCreatorScene scene) {
++        this.scene = scene;
++    }
++
++    public void handleOnEnter() {
++
++    }
++
++}
+Index: src/main/java/dao/UserDao.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package dao;\r\n\r\nimport entities.User;\r\n\r\nimport java.util.List;\r\n\r\npublic interface UserDao {\r\n    User get(long id);\r\n\r\n    User getByUsername(String username);\r\n\r\n    User getByPassword(String username, String password);\r\n\r\n    List<User> getAll();\r\n\r\n    boolean add(User user);\r\n\r\n    boolean update(User user);\r\n\r\n    boolean delete(User user);\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/dao/UserDao.java b/src/main/java/dao/UserDao.java
+--- a/src/main/java/dao/UserDao.java	
++++ b/src/main/java/dao/UserDao.java	
+@@ -1,6 +1,6 @@
+-package dao;
++package backend.dao;
+ 
+-import entities.User;
++import backend.entities.User;
+ 
+ import java.util.List;
+ 
+Index: src/main/java/dao/ShareDao.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package dao;\r\n\r\nimport entities.Share;\r\n\r\nimport java.util.List;\r\n\r\npublic interface ShareDao {\r\n    Share get(long id);\r\n\r\n    Share getByName(String name);\r\n\r\n    List<Share> getAll();\r\n\r\n    boolean add(Share share);\r\n\r\n    boolean addAll(Share... share);\r\n\r\n    boolean update(Share share);\r\n\r\n    boolean delete(Share share);\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/dao/ShareDao.java b/src/main/java/dao/ShareDao.java
+--- a/src/main/java/dao/ShareDao.java	
++++ b/src/main/java/dao/ShareDao.java	
+@@ -1,6 +1,6 @@
+-package dao;
++package backend.dao;
+ 
+-import entities.Share;
++import backend.entities.Share;
+ 
+ import java.util.List;
+ 
+Index: src/main/java/javafx/share_creation/ShareCreator.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/javafx/share_creation/ShareCreator.java b/src/main/java/javafx/share_creation/ShareCreator.java
+new file mode 100644
+--- /dev/null	
++++ b/src/main/java/javafx/share_creation/ShareCreator.java	
+@@ -0,0 +1,29 @@
++package javafx.share_creation;
++
++import javafx.ScreenBuilder;
++import javafx.scene.Scene;
++import javafx.scene.layout.Region;
++import javafx.stage.Stage;
++import javafx.stage.WindowEvent;
++
++public class ShareCreator {
++    public Stage stage;
++    public ShareCreatorScene scene;
++    public ShareCreatorController controller;
++
++    int sceneY = 400;
++    int sceneX = 750;
++
++    public void start() {
++        Region sceneRoot = new ScreenBuilder().build();
++        stage = new Stage();
++        scene = new ShareCreatorScene(sceneRoot);
++        controller = new ShareCreatorController(scene);
++        scene.configScene(stage);
++        stage.setWidth(200);
++        stage.setHeight(105);
++        stage.setResizable(false);
++        stage.setScene(scene);
++        stage.show();
++    }
++}
+Index: src/main/java/javafx/share_creation/ShareCreatorScene.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/javafx/share_creation/ShareCreatorScene.java b/src/main/java/javafx/share_creation/ShareCreatorScene.java
+new file mode 100644
+--- /dev/null	
++++ b/src/main/java/javafx/share_creation/ShareCreatorScene.java	
+@@ -0,0 +1,75 @@
++package javafx.share_creation;
++
++import javafx.geometry.Pos;
++import javafx.scene.Group;
++import javafx.scene.Parent;
++import javafx.scene.Scene;
++import javafx.scene.control.Label;
++import javafx.scene.control.PasswordField;
++import javafx.scene.image.Image;
++import javafx.scene.layout.GridPane;
++import javafx.stage.Stage;
++
++import java.LanguagePack;
++
++public class ShareCreatorScene extends Scene {
++
++    ShareCreatorController controller;
++
++    public ShareCreatorScene(Parent root) {
++        super(root);
++        this.controller = new ShareCreatorController(this);
++    }
++
++    public void configScene(Stage stage) {
++        addCSS();
++        configTitleBar(stage);
++        configGridPane();
++        controller.handleOnEnter();
++        Group root = new Group();
++        root.getChildren().add(gridPane);
++        setRoot(root);
++    }
++
++    GridPane gridPane;
++
++    Label resetPasswordLabel;
++    PasswordField passwordField;
++    Image icon;
++
++    private void addCSS() {
++        this.getStylesheets().add("status.css");
++    }
++
++    private void configTitleBar(Stage stage) {
++        stage.setTitle("Ergon Login Status");
++        setIcon(stage);
++    }
++
++    private void setIcon(Stage stage) {
++        icon = new Image("images/ergon.png");
++        stage.getIcons().add(icon);
++    }
++
++    private void configGridPane() {
++        gridPane = new GridPane();
++        gridPane.setAlignment(Pos.TOP_CENTER);
++        gridPane.setMinSize(200, 150);
++        gridPane.setVgap(10);
++        gridPane.add(getText(), 1, 1);
++        gridPane.add(getInputField(), 1, 2);
++    }
++
++
++    private Label getText() {
++        resetPasswordLabel = new Label();
++        resetPasswordLabel.textProperty().bind(LanguagePack.createStringBinding("reset.password.label"));
++        return resetPasswordLabel;
++    }
++
++    private PasswordField getInputField() {
++        passwordField = new PasswordField();
++        passwordField.promptTextProperty().bind(LanguagePack.createStringBinding("password.change.field.prompt"));
++        return passwordField;
++    }
++}
+diff --git a/src/main/resources/locale/language_de.properties b/src/main/resources/locale/language_de.properties
+new file mode 100644
+diff --git a/src/main/resources/locale/language_en.properties b/src/main/resources/locale/language_en.properties
+new file mode 100644
