@@ -56,7 +56,6 @@ public class InputHandler {
         }
     }
 
-    // TODO Create Buy(), Sell(), showPortfolio() Functions
     private void trade() {
         if (loggedInUser == null) {
             System.out.println("Please register first!");
@@ -119,11 +118,12 @@ public class InputHandler {
         } else {
             updatePortfolio(portfolio, sellAmountOfShares);
             depositMoney(share.getPricePerShare() * sellAmountOfShares);
+            System.out.println("Successfully sold!");
         }
     }
 
     private void showPortfolio() {
-        List<Portfolio> userPortfolio = portfolioDao.getAll();
+        List<Portfolio> userPortfolio = portfolioDao.getAllFromUser(loggedInUser.Id);
         List<Share> shareList = new ArrayList<>();
         for (Portfolio p : userPortfolio) {
             shareList.add(shareDao.get(p.getShareId()));
@@ -134,8 +134,8 @@ public class InputHandler {
     private static void printPortfolio(List<Portfolio> userPortfolio, List<Share> shareList) {
         System.out.println("Portfolio: \n");
         System.out.println("======================");
-        for (int i = 1; i < userPortfolio.size(); i++) {
-            System.out.println(i + ". Share:");
+        for (int i = 0; i < userPortfolio.size(); i++) {
+            System.out.println((i + 1)+ ". Share:");
             System.out.println("Name: " + shareList.get(i).getName());
             System.out.println("Amount of your shares: " + userPortfolio.get(i).getAmount());
             System.out.println("Worth of your shares: " + userPortfolio.get(i).getAmount() * shareList.get(i).getPricePerShare());
@@ -203,14 +203,19 @@ public class InputHandler {
     }
 
     private void generateShares() {
-        int amount = in.getIntAnswer("How many shares would you like to generate?");
+        int amount;
+        do {
+            amount = in.getIntAnswer("How many shares would you like to generate? (min: 1 max: 100)");
+        } while (amount < 1 || amount > 100);
         long startTime = System.currentTimeMillis();
         try {
-            shareDao.addAll(ShareCreator.createNewShares(amount));
-        } catch (Exception ignored) {
+            Share[] shares = ShareCreator.createNewShares(amount);
+            shareDao.addAll(shares);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         long endTime = System.currentTimeMillis();
-        System.out.println("Generated shares in " + (endTime - startTime)/1000 + "s");
+        System.out.println("Generated shares in " + (double) (endTime - startTime)/1000 + "s");
         System.out.println("Successfully created " + amount + " shares!");
     }
 

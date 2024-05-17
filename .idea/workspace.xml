@@ -5,28 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea488597-f4e2-49aa-b467-1e44621e87b4" name="Changes" comment="Dao System recreated&#10;Test Area added&#10;Clean Coded">
-      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/cf4361f7-4957-4a41-abe2-804304d8b976.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/cf4361f7-4957-4a41-abe2-804304d8b976.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Archive/ShareManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/archive/ShareManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Archive/UserManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/archive/UserManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Archive/share_user_sql.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/archive/share_user_sql.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/creators/ShareCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/creators/ShareCreator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dao/PortfolioDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/PortfolioDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dao/PortfolioDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/PortfolioDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/ShareDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/ShareDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dao/ShareDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/ShareDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/UserDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dao/UserDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/UserDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/Portfolio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Portfolio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/functional/EntityManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/functional/EntityManagement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/functional/InputHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/functional/InputHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/functional/Reader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/functional/Reader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/functional/InputHandlerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/functional/InputHandlerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,13 +128,16 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
     &quot;Gradle.Build shares_gradle.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
     &quot;Gradle.InputHandlerTest.doSharesGetAddedEveryTime.executor&quot;: &quot;Run&quot;,
     &quot;Gradle.InputHandlerTest.doesLoginWork.executor&quot;: &quot;Run&quot;,
     &quot;Gradle.InputHandlerTest.shouldFail.executor&quot;: &quot;Run&quot;,
     &quot;Gradle.Shares.inc_2 [:Main.main()].executor&quot;: &quot;Run&quot;,
     &quot;Gradle.Shares_gradle [:Main.main()].executor&quot;: &quot;Run&quot;,
     &quot;Gradle.shares_gradle [:Main.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.shares_gradle [build].executor&quot;: &quot;Run&quot;,
     &quot;Gradle.shares_gradle [clean].executor&quot;: &quot;Run&quot;,
     &quot;Gradle.shares_gradle [dependencies].executor&quot;: &quot;Run&quot;,
     &quot;Gradle.shares_gradle [test].executor&quot;: &quot;Run&quot;,
@@ -240,6 +231,28 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
+    <configuration name="shares_gradle [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
     <configuration name="shares_gradle [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -262,28 +275,6 @@
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="shares_gradle [dependencies]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="dependencies" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>false</RunAsTest>
-      <method v="2" />
-    </configuration>
     <configuration name="ChatGPTAPIExample" type="Java Scratch" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ChatGPTAPIExample" />
       <option name="SCRATCH_FILE_URL" value="file://$APPLICATION_CONFIG_DIR$/scratches/ChatGPTAPIExample.java" />
@@ -293,21 +284,13 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.InputHandlerTest.doSharesGetAddedEveryTime" />
+        <item itemvalue="Gradle.shares_gradle [build]" />
         <item itemvalue="Gradle.shares_gradle [clean]" />
-        <item itemvalue="Java Scratch.ChatGPTAPIExample" />
         <item itemvalue="Application.Main" />
-        <item itemvalue="Gradle.shares_gradle [dependencies]" />
+        <item itemvalue="Gradle.InputHandlerTest.doSharesGetAddedEveryTime" />
+        <item itemvalue="Java Scratch.ChatGPTAPIExample" />
       </list>
     </recent_temporary>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
-        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
-      </set>
-    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -355,6 +338,16 @@
       <workItem from="1713362263603" duration="176000" />
       <workItem from="1713432608604" duration="26455000" />
       <workItem from="1713527502981" duration="315000" />
+      <workItem from="1713533924230" duration="1175000" />
+      <workItem from="1714973875466" duration="1829000" />
+      <workItem from="1714998311841" duration="568000" />
+      <workItem from="1715754372783" duration="892000" />
+      <workItem from="1715755285996" duration="4462000" />
+      <workItem from="1715760085007" duration="1983000" />
+      <workItem from="1715765032398" duration="3985000" />
+      <workItem from="1715840251732" duration="3083000" />
+      <workItem from="1715850636729" duration="1851000" />
+      <workItem from="1715931058455" duration="75000" />
     </task>
     <task id="LOCAL-00001" summary="Created Files and Set Properties&#10;setUp Function made&#10;Annotations added">
       <option name="closed" value="true" />
@@ -479,8 +472,34 @@
           <line>36</line>
           <option name="timeStamp" value="11" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/dao/ShareDaoImpl.java</url>
+          <line>65</line>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/creators/ShareCreator.java</url>
+          <line>27</line>
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/creators/ShareCreator.java</url>
+          <line>22</line>
+          <properties class="creators.ShareCreator" method="createNewShares">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="GradleRunConfiguration">
+        <watch expression="shares" />
+        <watch expression="entityManager" language="JAVA" />
+        <watch expression="userPortfolio.get(0).shareId" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

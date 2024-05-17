@@ -4,7 +4,6 @@ import entities.User;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
-import jakarta.persistence.TransactionRequiredException;
 
 import java.util.List;
 

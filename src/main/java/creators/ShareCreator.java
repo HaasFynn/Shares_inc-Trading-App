@@ -6,14 +6,10 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.time.LocalDateTime;
-import java.util.Random;
+import java.util.*;
 
 public class ShareCreator {
     private final static Random random = new Random();
-
-    protected static int amount = 0;
-
-    private static String[] nameList;
 
     private static final String[] shortlList = new String[]{"QTI", "BGI", "AFD", "NNS", "OVV", "SFI", "RHT", "SGS", "ASI", "VBD", "EWT", "NCE", "QHH", "BSI", "AGD", "NNN", "TWV", "HCI", "CGS", "ASD", "QQT", "BNI", "AVV", "NGD", "SST", "OCI", "RPD", "ASS", "QNV", "BHI"};
 
@@ -28,30 +24,23 @@ public class ShareCreator {
         /*amount = Math.min(amount, nameList.length);
         List<Integer> indices = new ArrayList<>(IntStream.range(0, amount).boxed().toList());
         Collections.shuffle(indices);*/
-        amount = givenAmount;
-        Thread thread = new Request();
-        thread.start();
-        while (thread.isAlive()) {
-        }
-        Share[] shares = new Share[amount];
+        String[] nameList = getNameList(givenAmount);
+        Share[] shares = new Share[nameList.length];
         for (int i = 0; i < nameList.length; i++) {
-            Share share = new Share();
-            setShareInformation(share, i);
-            if (i > nameList.length - 1) {
-                break;
-            }
-            shares[i] = share;
+            shares[i] = createShareWithName(nameList[i]);
         }
         return shares;
     }
 
-    private static void setShareInformation(Share share, int i) {
-        share.setName(nameList[i]);
+    private static Share createShareWithName(String name) {
+        Share share = new Share();
+        share.setName(name);
         share.setShortl(shortlList[random.nextInt(shortlList.length - 1)]);
         share.setPricePerShare(randomEntry(ppsList));
         share.setStockReturn(randomEntry(dividendList));
         share.setExistingSharesAmount(randomEntry(existingShares));
         share.setDate(LocalDateTime.now());
+        return share;
     }
 
 
@@ -63,47 +52,55 @@ public class ShareCreator {
         return random.nextInt(list.length - 1);
     }
 
-    public static class Request extends Thread {
-        @Override
-        public void start() {
+    public static String[] getNameList(int amount) {
+        Set<String> nameSet = new HashSet<>();
+        while (nameSet.size() < amount) {
+            nameSet.addAll(retrieveNameList(amount));
+        }
+        String[] nameList = new String[nameSet.size()];
+        nameSet.toArray(nameList);
+        return nameList;
+    }
+
+    private static List<String> retrieveNameList(int amount) {
+        String response = getResponse(amount);
+        String list = extractMessageFromJSONResponse(response);
+        list = list.replaceAll("\\n", "");
+        return List.of(list.split(", "));
+    }
+
+    private static String getResponse(int amount) {
+        try {
             String url = "https://api.openai.com/v1/chat/completions";
             String apiKey = getAPIKey();
             String model = "gpt-3.5-turbo";
+            URL obj = new URL(url);
+            HttpURLConnection connection = (HttpURLConnection) obj.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Content-Type", "application/json");
+            connection.setRequestProperty("Authorization", "Bearer " + apiKey);
 
-            try {
-                URL obj = new URL(url);
-                HttpURLConnection connection = (HttpURLConnection) obj.openConnection();
-                connection.setRequestMethod("POST");
-                connection.setRequestProperty("Content-Type", "application/json");
-                connection.setRequestProperty("Authorization", "Bearer " + apiKey);
+            String prompt = "Give me a List of " + amount + " fictitious company names. Do not number them!!. seperate them by a comma";
+            String body = "{\"model\": \"" + model + "\", \"messages\": [{\"role\": \"user\", \"content\": \"" + prompt + "\"}]}";
+            connection.setDoOutput(true);
+            OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
+            writer.write(body);
+            writer.flush();
+            writer.close();
 
-                // The request body
-                String prompt = "Give me a List of " + amount + " fictitious company names. Do not number them!!. seperate them by a comma";
-                String body = "{\"model\": \"" + model + "\", \"messages\": [{\"role\": \"user\", \"content\": \"" + prompt + "\"}]}";
-                connection.setDoOutput(true);
-                OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
-                writer.write(body);
-                writer.flush();
-                writer.close();
+            BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            String line;
 
-                // Response from ChatGPT
-                BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                String line;
+            StringBuilder response = new StringBuilder();
 
-                StringBuilder response = new StringBuilder();
-
-                while ((line = br.readLine()) != null) {
-                    response.append(line);
-                }
-                br.close();
-                // calls the method to extract the message.
-                String list = extractMessageFromJSONResponse(response.toString());
-                list = list.replaceAll("\\n", "");
-                nameList = list.split(", ");
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+            while ((line = br.readLine()) != null) {
+                response.append(line);
             }
+            br.close();
+            return response.toString();
+        } catch (IOException ignored) {
         }
+        return "";
     }
 
     private static String getAPIKey() {
@@ -115,7 +112,6 @@ public class ShareCreator {
             if (parts.length == 2) {
                 return parts[1];
             }
-
             return "";
         } catch (IOException e) {
             return "";
@@ -124,10 +120,7 @@ public class ShareCreator {
 
     private static String extractMessageFromJSONResponse(String response) {
         int start = response.indexOf("content") + 11;
-
         int end = response.indexOf("\"", start);
-
         return response.substring(start, end);
-
     }
 }

@@ -36,6 +36,16 @@ public class PortfolioDaoImpl implements PortfolioDao {
         return entityManager.createQuery("FROM Portfolio", Portfolio.class)
                 .getResultList();
     }
+    @Override
+    public List<Portfolio> getAllFromUser(long userId) {
+        try {
+            return entityManager.createQuery("FROM Portfolio p WHERE p.userId = :userId", Portfolio.class)
+                    .setParameter("userId", userId)
+                    .getResultStream().toList();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
 
     @Override
     public boolean add(Portfolio portfolio) {

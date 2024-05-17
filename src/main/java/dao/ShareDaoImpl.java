@@ -5,8 +5,11 @@ import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.TransactionRequiredException;
+import org.hibernate.exception.ConstraintViolationException;
 
 import java.security.spec.RSAOtherPrimeInfo;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ShareDaoImpl implements ShareDao {
@@ -62,12 +65,8 @@ public class ShareDaoImpl implements ShareDao {
     public boolean addAll(Share... shares) {
         entityManager.getTransaction().begin();
         for (Share share : shares) {
-            try {
-                if (share != null) {
-                    entityManager.persist(share);
-                }
-            } catch (Exception e) {
-                System.out.println("Worked, but Share: " + share + " already exists and was not added!");
+            if (share != null) {
+                entityManager.merge(share);
             }
         }
         entityManager.getTransaction().commit();
