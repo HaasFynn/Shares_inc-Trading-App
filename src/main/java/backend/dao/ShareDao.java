@@ -1,6 +1,6 @@
-package dao;
+package backend.dao;
 
-import entities.Share;
+import backend.entities.Share;
 
 import java.util.List;
 

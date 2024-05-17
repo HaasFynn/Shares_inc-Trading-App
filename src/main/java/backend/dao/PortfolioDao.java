@@ -1,6 +1,6 @@
-package dao;
+package backend.dao;
 
-import entities.Portfolio;
+import backend.entities.Portfolio;
 
 import java.util.List;
 

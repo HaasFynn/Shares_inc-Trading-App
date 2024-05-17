@@ -1,12 +1,12 @@
-package functional;
+package backend.functional;
 
-import creators.ShareCreator;
-import dao.PortfolioDao;
-import dao.ShareDao;
-import dao.UserDao;
-import entities.Portfolio;
-import entities.Share;
-import entities.User;
+import backend.creators.ShareCreator;
+import backend.dao.PortfolioDao;
+import backend.dao.ShareDao;
+import backend.dao.UserDao;
+import backend.entities.Portfolio;
+import backend.entities.Share;
+import backend.entities.User;
 import jakarta.persistence.PersistenceContext;
 
 import java.time.LocalDateTime;
