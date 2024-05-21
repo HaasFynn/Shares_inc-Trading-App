@@ -1,10 +1,7 @@
 package javafx.share_creation;
 
 import javafx.assets.LanguagePack;
-import backend.dao.ShareDaoImpl;
-import backend.functional.EntityManagement;
 import javafx.beans.binding.StringBinding;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -16,14 +13,12 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 public class ShareCreatorPane extends GridPane {
-    private final Scene scene;
     private final ShareCreatorController controller;
     private final Font font;
 
-    public ShareCreatorPane(String font, Scene scene) {
-        this.scene = scene;
-        this.controller = new ShareCreatorController(this, new ShareDaoImpl(EntityManagement.createEntityManagerFactory().createEntityManager()));
-        this.font = Font.font(font);
+    public ShareCreatorPane(Font font) {
+        this.controller = new ShareCreatorController(this);
+        this.font = font;
         create();
     }
 
