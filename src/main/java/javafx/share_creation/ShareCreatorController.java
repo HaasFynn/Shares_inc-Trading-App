@@ -2,15 +2,17 @@ package javafx.share_creation;
 
 import backend.creators.ShareCreator;
 import backend.dao.ShareDao;
+import backend.dao.ShareDaoImpl;
+import backend.functional.EntityManagement;
 
 
 public class ShareCreatorController {
     private final ShareCreatorPane pane;
     private final ShareDao shareHandler;
 
-    public ShareCreatorController(ShareCreatorPane pane, ShareDao shareHandler) {
+    public ShareCreatorController(ShareCreatorPane pane) {
         this.pane = pane;
-        this.shareHandler = shareHandler;
+        this.shareHandler = new ShareDaoImpl(EntityManagement.createEntityManagerFactory().createEntityManager());
     }
 
     public void handleOnEnter() {
