@@ -14,6 +14,10 @@ public class ShareCreatorController {
     }
 
     public void handleOnEnter() {
+        if (pane.inputField.getText().isEmpty()) {
+            setStatusText("share.creator.statusText.number.min", true, "text-danger");
+            return;
+        }
         try {
             int amount = Integer.parseInt(pane.inputField.getText());
             if (shareHandler.addAll(ShareCreator.createNewShares(amount))) {
@@ -32,9 +36,7 @@ public class ShareCreatorController {
 
 
     public void handleInputValidation(String oldValue, String newValue) {
-        if (newValue.isEmpty()) {
-            return;
-        }
+        if (newValue.isEmpty()) return;
         try {
             int amount = Integer.parseInt(pane.inputField.getText());
             String key;

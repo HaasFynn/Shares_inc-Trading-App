@@ -123,6 +123,10 @@ public class ShareCreator {
     private static String extractMessageFromJSONResponse(String response) {
         int start = response.indexOf("content") + 11;
         int end = response.indexOf("\"", start);
-        return response.substring(start, end);
+        try {
+            return response.substring(start, end);
+        } catch (StringIndexOutOfBoundsException ignored) {
+            return null;
+        }
     }
 }
