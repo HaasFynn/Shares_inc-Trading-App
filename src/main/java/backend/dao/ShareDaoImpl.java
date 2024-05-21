@@ -31,9 +31,7 @@ public class ShareDaoImpl implements ShareDao {
     @Override
     public Share getByName(String name) {
         try {
-            return entityManager.createQuery("FROM Share s WHERE s.name = :name", Share.class)
-                    .setParameter("name", name)
-                    .getResultStream().findFirst().orElse(null);
+            return entityManager.createQuery("FROM Share s WHERE s.name = :name", Share.class).setParameter("name", name).getResultStream().findFirst().orElse(null);
         } catch (NoResultException e) {
             return null;
         }
@@ -41,8 +39,7 @@ public class ShareDaoImpl implements ShareDao {
 
     @Override
     public List<Share> getAll() {
-        return entityManager.createQuery("FROM Share", Share.class)
-                .getResultList();
+        return entityManager.createQuery("FROM Share", Share.class).getResultList();
     }
 
 
@@ -63,13 +60,16 @@ public class ShareDaoImpl implements ShareDao {
 
     @Override
     public boolean addAll(Share... shares) {
-        entityManager.getTransaction().begin();
         for (Share share : shares) {
             if (share != null) {
-                entityManager.merge(share);
+                try {
+                    entityManager.getTransaction().begin();
+                    entityManager.merge(share);
+                    entityManager.getTransaction().commit();
+                } catch (Exception ignored) {
+                }
             }
         }
-        entityManager.getTransaction().commit();
         return true;
     }
 
