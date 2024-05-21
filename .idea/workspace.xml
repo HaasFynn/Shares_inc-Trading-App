@@ -4,12 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea488597-f4e2-49aa-b467-1e44621e87b4" name="Changes" comment="add unversioned files">
-      <change afterPath="$PROJECT_DIR$/src/main/java/javafx/share_creation/ShareCreatorPane.java" afterDir="false" />
+    <list default="true" id="ea488597-f4e2-49aa-b467-1e44621e87b4" name="Changes" comment="add ShareCreatorPane class">
+      <change afterPath="$PROJECT_DIR$/.idea/resourceBundles.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/javafx/login/LoginController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/javafx/login/LoginPane.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/javafx/main_panel/MainPanelController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/javafx/main_panel/MainPanelPane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/LanguagePack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/assets/LanguagePack.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/backend/creators/ShareCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/creators/ShareCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/share_creation/ShareCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/share_creation/temp_ShareCreatorMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/dao/ShareDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/dao/ShareDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/ScreenBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/assets/ScreenBuilder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/javafx/share_creation/ShareCreatorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/share_creation/ShareCreatorController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/share_creation/ShareCreatorScene.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/share_creation/ShareCreatorPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/share_creation/ShareCreatorPane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/share_creation/temp_ShareCreatorMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/SharesInc.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/locale/language_de.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/locale/language_de.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/locale/language_en.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/locale/language_en.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,8 +87,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -137,7 +148,10 @@
     "Gradle.Shares.inc_2 [:Main.main()].executor": "Run",
     "Gradle.Shares_gradle [:Main.main()].executor": "Run",
     "Gradle.shares_gradle [:Main.main()].executor": "Run",
+    "Gradle.shares_gradle [:SharesInc.main()].executor": "Run",
     "Gradle.shares_gradle [:temp_ShareCreatorMain.main()].executor": "Run",
+    "Gradle.shares_gradle [buildDependents].executor": "Run",
+    "Gradle.shares_gradle [buildNeeded].executor": "Run",
     "Gradle.shares_gradle [build].executor": "Run",
     "Gradle.shares_gradle [clean].executor": "Run",
     "Gradle.shares_gradle [dependencies].executor": "Run",
@@ -200,13 +214,14 @@
       <recent name="dao" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.temp_ShareCreatorMain">
-    <configuration name="temp_ShareCreatorMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="javafx.share_creation.temp_ShareCreatorMain" />
+  <component name="RunManager" selected="Application.SharesInc">
+    <configuration name="SharesInc" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="javafx.SharesInc" />
       <module name="Shares.inc_2.main" />
+      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Users\fhaas\Documents\Ergon\JavaFx\javafx-sdk-22\lib&quot; --add-modules javafx.controls,javafx.fxml" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="javafx.share_creation.*" />
+          <option name="PATTERN" value="javafx.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -214,28 +229,26 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="InputHandlerTest.doSharesGetAddedEveryTime" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="shares_gradle [buildNeeded]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
+        <option name="scriptParameters" />
         <option name="taskDescriptions">
           <list />
         </option>
         <option name="taskNames">
           <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;functional.InputHandlerTest.doSharesGetAddedEveryTime&quot;" />
+            <option value="buildNeeded" />
           </list>
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
+      <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
     <configuration name="shares_gradle [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
@@ -282,20 +295,42 @@
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="ChatGPTAPIExample" type="Java Scratch" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ChatGPTAPIExample" />
-      <option name="SCRATCH_FILE_URL" value="file://$APPLICATION_CONFIG_DIR$/scratches/ChatGPTAPIExample.java" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+    <configuration name="shares_gradle [dependencies]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="dependencies" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Application.SharesInc" />
+      <item itemvalue="Gradle.shares_gradle [buildNeeded]" />
+      <item itemvalue="Gradle.shares_gradle [dependencies]" />
+      <item itemvalue="Gradle.shares_gradle [build]" />
+      <item itemvalue="Gradle.shares_gradle [clean]" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.temp_ShareCreatorMain" />
-        <item itemvalue="Java Scratch.ChatGPTAPIExample" />
         <item itemvalue="Gradle.shares_gradle [clean]" />
+        <item itemvalue="Application.SharesInc" />
         <item itemvalue="Gradle.shares_gradle [build]" />
-        <item itemvalue="Gradle.InputHandlerTest.doSharesGetAddedEveryTime" />
+        <item itemvalue="Gradle.shares_gradle [dependencies]" />
+        <item itemvalue="Gradle.shares_gradle [buildNeeded]" />
       </list>
     </recent_temporary>
   </component>
@@ -355,6 +390,9 @@
       <workItem from="1715840251732" duration="3083000" />
       <workItem from="1715850636729" duration="1851000" />
       <workItem from="1715931058455" duration="75000" />
+      <workItem from="1715947653181" duration="4060000" />
+      <workItem from="1716271470844" duration="310000" />
+      <workItem from="1716271804638" duration="11409000" />
     </task>
     <task id="LOCAL-00001" summary="Created Files and Set Properties&#10;setUp Function made&#10;Annotations added">
       <option name="closed" value="true" />
@@ -460,7 +498,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715938235459</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="add ShareCreatorPane class">
+      <option name="closed" value="true" />
+      <created>1715949274745</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1715949274745</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -480,7 +526,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="master" />
+                        <option value="origin/feature-share-creator" />
                       </list>
                     </value>
                   </entry>
@@ -505,7 +551,8 @@
     <MESSAGE value="Added JavaFX" />
     <MESSAGE value="solved import" />
     <MESSAGE value="add unversioned files" />
-    <option name="LAST_COMMIT_MESSAGE" value="add unversioned files" />
+    <MESSAGE value="add ShareCreatorPane class" />
+    <option name="LAST_COMMIT_MESSAGE" value="add ShareCreatorPane class" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>

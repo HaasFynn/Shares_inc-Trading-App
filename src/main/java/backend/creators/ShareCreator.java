@@ -21,9 +21,6 @@ public class ShareCreator {
 
 
     public static Share[] createNewShares(int givenAmount) {
-        /*amount = Math.min(amount, nameList.length);
-        List<Integer> indices = new ArrayList<>(IntStream.range(0, amount).boxed().toList());
-        Collections.shuffle(indices);*/
         String[] nameList = getNameList(givenAmount);
         Share[] shares = new Share[nameList.length];
         for (int i = 0; i < nameList.length; i++) {
@@ -59,7 +56,12 @@ public class ShareCreator {
         }
         String[] nameList = new String[nameSet.size()];
         nameSet.toArray(nameList);
-        return nameList;
+        ArrayList<String> finalList = new ArrayList<>(List.of(nameList));
+        while (finalList.size() > amount) {
+            finalList.remove(finalList.size() - 1);
+        }
+
+        return finalList.toArray(new String[0]);
     }
 
     private static List<String> retrieveNameList(int amount) {

@@ -1,4 +1,4 @@
-package backend;
+package javafx.assets;
 
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.StringBinding;
