@@ -8,3 +8,6 @@ The branching/commiting may be a bit wrong. Reason for that is that i had proble
 
 **Current:**
 Visualization with JavaFX
+
+
+To start add following JVM Options: --module-path "C:\Users\fhaas\Documents\Ergon\JavaFx\javafx-sdk-22\lib" --add-modules javafx.controls,javafx.fxml
