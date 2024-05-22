@@ -8,6 +8,7 @@ import backend.entities.Portfolio;
 import backend.entities.Share;
 import backend.entities.User;
 import jakarta.persistence.PersistenceContext;
+import javafx.assets.Hash;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -307,8 +308,9 @@ public class InputHandler {
     }
 
     public void login() {
+        //TODO: Implement Hashing
         String username = in.getStringAnswer("Username:");
-        String pass = in.getStringAnswer("Password:");
+        String pass = Hash.getPasswordHashed(in.getStringAnswer("Password:"));
         User user = userDao.getByPassword(username, pass);
         if (user == null) {
             System.out.println("Couldn't find user!");
@@ -362,7 +364,7 @@ public class InputHandler {
         user.setFirstname(in.getStringAnswer("Firstname:"));
         user.setLastname(in.getStringAnswer("Lastname:"));
         user.setEmail(in.getStringAnswer("E-Mail:"));
-        user.setPassword(in.getPassword("Password:"));
+        user.setPassword(Hash.getPasswordHashed(in.getStringAnswer("Password:")));
         return user;
     }
 

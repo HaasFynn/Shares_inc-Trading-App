@@ -9,6 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.Region;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import org.kordamp.bootstrapfx.BootstrapFX;
 
 public class SharesInc extends Application {
 
@@ -17,23 +18,19 @@ public class SharesInc extends Application {
         Region sceneRoot = new ScreenBuilder().build();
         Scene scene = new Scene(sceneRoot);
         config(stage, scene);
-        stage.show();
     }
 
     private void config(Stage stage, Scene scene) {
         configStage(stage, scene);
-        configScene(scene);
     }
 
     private static void configStage(Stage stage, Scene scene) {
-        stage.titleProperty().bind(LanguagePack.createStringBinding("title"));
+        stage.titleProperty().bind(LanguagePack.createStringBinding("window.title"));
         stage.getIcons().add(new Image("image/shares_inc._logo.png"));
-        stage.setWidth(815);
-        stage.setHeight(500);
+        LoginPane pane = new LoginPane(stage, Font.font("Verdana"));
+        scene.setRoot(pane);
+        scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
         stage.setScene(scene);
     }
 
-    private static void configScene(Scene scene) {
-        scene.setRoot(new LoginPane(Font.font("Verdana")));
-    }
 }
