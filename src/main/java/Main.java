@@ -12,7 +12,7 @@ public class Main {
         UserDaoImpl userDao = new UserDaoImpl(entityManager);
         ShareDaoImpl shareDao = new ShareDaoImpl(entityManager);
         PortfolioDaoImpl portfolioDao = new PortfolioDaoImpl(entityManager);
-        //new InputHandler(userDao, shareDao, portfolioDao).start(); //For Console Interface
-        SharesInc.launch(args);
+        new InputHandler(userDao, shareDao, portfolioDao).start(); //For Console Interface
+        //SharesInc.launch(args); //For JavaFX Interface
     }
 }

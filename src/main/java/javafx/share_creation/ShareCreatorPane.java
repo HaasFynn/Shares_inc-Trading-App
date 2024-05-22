@@ -2,6 +2,7 @@ package javafx.share_creation;
 
 import javafx.assets.LanguagePack;
 import javafx.beans.binding.StringBinding;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -11,17 +12,21 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 public class ShareCreatorPane extends GridPane {
+    final Stage stage;
     private final ShareCreatorController controller;
     private final Font font;
+    public final double stageHeight = 500;
+    public final double stageWidth = 400;
 
-    public ShareCreatorPane(Font font) {
+    public ShareCreatorPane(Stage stage, Font font) {
+        this.stage = stage;
         this.controller = new ShareCreatorController(this);
         this.font = font;
-        create();
+        build();
     }
-
 
     VBox mainBox;
     Text title;
@@ -31,11 +36,15 @@ public class ShareCreatorPane extends GridPane {
     Button submitButton;
     Text statusText;
 
-    void create() {
+    void build() {
         setMinSize(200, 150);
         setVgap(10);
         addListeners();
         add(getMainBox(), 0, 0);
+        stage.setHeight(stageHeight);
+        stage.setWidth(stageWidth);
+        stage.hide();
+        stage.show();
     }
 
     private void addListeners() {
@@ -50,6 +59,7 @@ public class ShareCreatorPane extends GridPane {
     private VBox getMainBox() {
         mainBox = new VBox();
         mainBox.setSpacing(10);
+        mainBox.setPadding(new Insets(20, 20, 20, 20));
         mainBox.getChildren().addAll(getTitle(), getInputBox());
         return mainBox;
     }
@@ -72,7 +82,7 @@ public class ShareCreatorPane extends GridPane {
     private Label getInputLabel() {
         inputLabel = new Label();
         inputLabel.textProperty().bind(getValueByKey("share.creator.input.label"));
-        inputLabel.getStyleClass().add("lbl-default");
+        inputLabel.getStyleClass().add("p");
         inputLabel.setFont(font);
         return inputLabel;
     }
@@ -103,7 +113,7 @@ public class ShareCreatorPane extends GridPane {
 
     private Text getStatusText() {
         statusText = new Text();
-        statusText.getStyleClass().addAll("btn-sm", "btn-success");
+        statusText.getStyleClass().addAll("p");
         statusText.setFont(font);
         statusText.setVisible(false);
         return statusText;

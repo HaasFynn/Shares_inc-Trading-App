@@ -8,11 +8,11 @@ import javafx.assets.Hash;
 import javafx.assets.LanguagePack;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.stage.Stage;
 
 import java.util.Locale;
 
 import backend.functional.EntityManagement;
+import javafx.share_creation.ShareCreatorPane;
 
 public class LoginController {
     public final LoginPane pane;
@@ -31,18 +31,7 @@ public class LoginController {
         if (user == null) {
             return;
         }
-        // TODO: change Scene & Add Pane
-    }
-
-    private void openResetWindow() {
-        try {
-            //resetMain = new ResetMain();
-            //resetMain.start(this);
-            //resetController = new ResetController(resetMain.scene, employeeHandler);
-            disableAllInputs();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        pane.getScene().setRoot(new ShareCreatorPane(pane.stage, pane.font));
     }
 
     public void enableAllInputs() {
@@ -73,29 +62,44 @@ public class LoginController {
     }
 
     public void handlePasswordResetButtonAction() {
-        //String username = pane.usernameField.getText();
-        //String hashedPassword = Hash.getPasswordHashed(pane.passwordField.getText());
-        //String errorMessage = "";
-        //if (areInputFieldsEmpty()) {
-        //    errorMessage = getValue("empty.fields");
-        //} else {
-        //    Employee employee = employeeHandler.getByUsername(username);
-        //    if (employee == null) {
-        //        errorMessage = getValue("employee.not.found");
-        //    } else if (!doesLoginMatch(employee, hashedPassword)) {
-        //        errorMessage = getValue("login.failed");
-        //    }
-        //}
-        //if (!errorMessage.isEmpty()) {
-        //    openStatusWindow(errorMessage);
-        //    return;
-        //}
-        openResetWindow();
+        String username = pane.usernameField.getText();
+        String hashedPassword = Hash.getPasswordHashed(pane.passwordField.getText());
+        String errorMessage;
+        if (areInputFieldsEmpty()) {
+            errorMessage = getValue("login.status.empty.fields");
+        } else {
+            User user = userHandler.getByPassword(username, hashedPassword);
+            errorMessage = getLoginResponse(user, hashedPassword);
+        }
+        if (errorMessage.isEmpty()) {
+            return;
+        }
+        setStatusText(errorMessage, true, "text-danger");
     }
 
-    //private boolean doesLoginMatch(Employee employee, String password) {
-    //    //return employee.getPassword().equals(Hash.getPasswordHashed(password));
-    //}
+    private String getLoginResponse(User user, String hashedPassword) {
+        if (user == null) {
+            return getValue("login.status.user.not.found");
+        }
+        if (!doesLoginMatch(user, hashedPassword)) {
+            return getValue("login.status.failed");
+        }
+        return "";
+    }
+
+    private void setStatusText(String key, boolean visible, String color) {
+        pane.statusText.textProperty().bind(pane.getValue(key));
+        pane.statusText.setVisible(visible);
+        pane.statusText.getStyleClass().add(color);
+    }
+
+    private boolean doesLoginMatch(User user, String password) {
+        return user.getPassword().equals(Hash.getPasswordHashed(password));
+    }
+
+    public void handleOpenResetBox() {
+        pane.changePasswordBox.setVisible(!pane.changePasswordBox.isVisible());
+    }
 
     public void handleExitButtonAction() {
         //Stage stage = (Stage) pane.getWindow();
