@@ -4,9 +4,10 @@ import backend.creators.ShareCreator;
 import backend.dao.ShareDao;
 import backend.dao.ShareDaoImpl;
 import backend.functional.EntityManagement;
+import javafx.Controller;
 
 
-public class ShareCreatorController {
+public class ShareCreatorController extends Controller {
     private final ShareCreatorPane pane;
     private final ShareDao shareHandler;
 

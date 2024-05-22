@@ -4,6 +4,7 @@ import backend.dao.UserDao;
 import backend.dao.UserDaoImpl;
 import backend.entities.User;
 import jakarta.persistence.EntityManager;
+import javafx.Controller;
 import javafx.assets.Hash;
 import javafx.assets.LanguagePack;
 import javafx.scene.input.KeyCode;
@@ -14,7 +15,7 @@ import java.util.Locale;
 import backend.functional.EntityManagement;
 import javafx.share_creation.ShareCreatorPane;
 
-public class LoginController {
+public class LoginController extends Controller {
     public final LoginPane pane;
     private final UserDao userHandler;
 
@@ -29,32 +30,10 @@ public class LoginController {
         String hashedPassword = Hash.getPasswordHashed(pane.passwordField.getText());
         User user = userHandler.getByPassword(username, hashedPassword);
         if (user == null) {
+            setStatusText("login.status.user.not.found", true, "text-danger");
             return;
         }
-        pane.getScene().setRoot(new ShareCreatorPane(pane.stage, pane.font));
-    }
-
-    public void enableAllInputs() {
-        changeInputFieldAvailability(false);
-        changeButtonAvailability(false);
-    }
-
-    private void disableAllInputs() {
-        changeInputFieldAvailability(true);
-        changeButtonAvailability(true);
-    }
-
-    private void changeInputFieldAvailability(boolean disableValue) {
-        pane.usernameField.setDisable(disableValue);
-        pane.passwordField.setDisable(disableValue);
-        //pane.dbSelectionBox.setDisable(disableValue);
-        //pane.getLanguageBox.setDisable(disableValue);
-    }
-
-    private void changeButtonAvailability(boolean disableValue) {
-        //pane.loginButton.setDisable(disableValue);
-        //pane.passwordResetButton.setDisable(disableValue);
-        //pane.exitButton.setDisable(disableValue);
+        pane.getScene().setRoot(new ShareCreatorPane(pane.stage, pane.font)); //Changes Pane TODO Change to MainPanel
     }
 
     private boolean areInputFieldsEmpty() {
@@ -64,25 +43,59 @@ public class LoginController {
     public void handlePasswordResetButtonAction() {
         String username = pane.usernameField.getText();
         String hashedPassword = Hash.getPasswordHashed(pane.passwordField.getText());
-        String errorMessage;
+        String newPassword = pane.newPasswordField.getText();
+        String repeatPassword = pane.repeatPasswordField.getText();
+        User user = userHandler.getByPassword(username, hashedPassword);
+        String errorKey;
         if (areInputFieldsEmpty()) {
-            errorMessage = getValue("login.status.empty.fields");
+            errorKey = "login.status.empty.fields";
+        } else if (!newPassword.equals(repeatPassword)) {
+            errorKey = "login.status.password.mismatch";
+        } else if (!doesPasswordComplieToPasswordRules(newPassword)) {
+            errorKey = "login.status.password.notRuleConform";
         } else {
-            User user = userHandler.getByPassword(username, hashedPassword);
-            errorMessage = getLoginResponse(user, hashedPassword);
+            errorKey = getLoginResponse(user, hashedPassword);
         }
-        if (errorMessage.isEmpty()) {
+        if (errorKey.isEmpty()) {
+            user.setPassword(Hash.getPasswordHashed(newPassword));
+            userHandler.update(user);
+            setStatusText("login.reset.succeed", true, "text-success");
             return;
         }
-        setStatusText(errorMessage, true, "text-danger");
+        setStatusText(errorKey, true, "text-danger");
+        System.out.println(pane.usernameField.getWidth());
+    }
+
+    private boolean doesPasswordComplieToPasswordRules(String newPassword) {
+        return isPW8DigitsLong(newPassword) && doesPWContainRightLetters(newPassword) && doesPWContainSpecialCharacters(newPassword);
+    }
+
+    private static boolean doesPWContainSpecialCharacters(String password) {
+        char[] passwordChar = password.toCharArray();
+
+        for (char letter : passwordChar) {
+            if (!Character.isAlphabetic(letter) && !Character.isDigit(letter)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static boolean doesPWContainRightLetters(String password) {
+        return (!password.equals(password.toLowerCase()) && !password.equals(password.toUpperCase()));
+    }
+
+    private static boolean isPW8DigitsLong(String password) {
+        char[] passwordLength = password.toCharArray();
+        return passwordLength.length >= 8;
     }
 
     private String getLoginResponse(User user, String hashedPassword) {
         if (user == null) {
-            return getValue("login.status.user.not.found");
+            return "login.status.user.not.found";
         }
         if (!doesLoginMatch(user, hashedPassword)) {
-            return getValue("login.status.failed");
+            return "login.status.failed";
         }
         return "";
     }
@@ -93,22 +106,21 @@ public class LoginController {
         pane.statusText.getStyleClass().add(color);
     }
 
-    private boolean doesLoginMatch(User user, String password) {
-        return user.getPassword().equals(Hash.getPasswordHashed(password));
+    private boolean doesLoginMatch(User user, String hashedPassword) {
+        return user.getPassword().equals(hashedPassword);
     }
 
     public void handleOpenResetBox() {
         pane.changePasswordBox.setVisible(!pane.changePasswordBox.isVisible());
     }
 
-    public void handleExitButtonAction() {
-        //Stage stage = (Stage) pane.getWindow();
-        //stage.close();
-    }
-
     public void handleOnEnter() {
         pane.setOnKeyPressed((KeyEvent event) -> {
             if (event.getCode() == KeyCode.ENTER) {
+                if (pane.changePasswordBox.isVisible()) {
+                    handlePasswordResetButtonAction();
+                    return;
+                }
                 handleLoginAction();
             }
             event.consume();
@@ -120,7 +132,7 @@ public class LoginController {
     }
 
 
-    private static String getValue(String key) {
+    private static String getBindingValue(String key) {
         return LanguagePack.createStringBinding(key).getValue();
     }
 }

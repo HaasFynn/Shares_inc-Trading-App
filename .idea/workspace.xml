@@ -4,21 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea488597-f4e2-49aa-b467-1e44621e87b4" name="Changes" comment="add ShareCreatorPane class">
-      <change afterPath="$PROJECT_DIR$/.idea/resourceBundles.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/javafx/login/LoginController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/javafx/login/LoginPane.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/javafx/main_panel/MainPanelController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/javafx/main_panel/MainPanelPane.java" afterDir="false" />
+    <list default="true" id="ea488597-f4e2-49aa-b467-1e44621e87b4" name="Changes" comment="finish login&#10;todo:&#10;- fix password reset&#10;- Stage size change">
+      <change afterPath="$PROJECT_DIR$/src/main/java/javafx/Controller.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/javafx/PaneParent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/backend/functional/ShareCreatorTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/LanguagePack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/assets/LanguagePack.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/backend/creators/ShareCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/creators/ShareCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/dao/ShareDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/dao/ShareDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/ScreenBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/assets/ScreenBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/SharesInc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/SharesInc.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/login/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/login/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/login/LoginPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/login/LoginPane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/main_panel/MainPanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/main_panel/MainPanelController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/javafx/share_creation/ShareCreatorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/share_creation/ShareCreatorController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/javafx/share_creation/ShareCreatorPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/share_creation/ShareCreatorPane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/share_creation/temp_ShareCreatorMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/SharesInc.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/locale/language_de.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/locale/language_de.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/locale/language_en.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/locale/language_en.properties" afterDir="false" />
     </list>
@@ -26,6 +25,12 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager">
+    <option name="groupingKeys">
+      <option value="directory" />
+      <option value="module" />
+    </option>
   </component>
   <component name="ComposerSettings">
     <execution />
@@ -95,7 +100,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="login-pane" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -145,6 +150,7 @@
     "Gradle.InputHandlerTest.doSharesGetAddedEveryTime.executor": "Run",
     "Gradle.InputHandlerTest.doesLoginWork.executor": "Run",
     "Gradle.InputHandlerTest.shouldFail.executor": "Run",
+    "Gradle.ShareCreatorTest.doesShareCreationWork.executor": "Run",
     "Gradle.Shares.inc_2 [:Main.main()].executor": "Run",
     "Gradle.Shares_gradle [:Main.main()].executor": "Run",
     "Gradle.shares_gradle [:Main.main()].executor": "Run",
@@ -157,6 +163,7 @@
     "Gradle.shares_gradle [dependencies].executor": "Run",
     "Gradle.shares_gradle [test].executor": "Run",
     "Java Scratch.ChatGPTAPIExample.executor": "Run",
+    "Java Scratch.Scratch.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.go.formatter.settings.were.checked": "true",
@@ -164,7 +171,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "feature-share-creator",
+    "git-widget-placeholder": "master",
     "go.import.settings.migrated": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/fhaas/OneDrive - Ergon Informatik AG/Desktop/files/Erste Aufgaben/Java/Shares.inc",
@@ -214,21 +221,7 @@
       <recent name="dao" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.SharesInc">
-    <configuration name="SharesInc" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="javafx.SharesInc" />
-      <module name="Shares.inc_2.main" />
-      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Users\fhaas\Documents\Ergon\JavaFx\javafx-sdk-22\lib&quot; --add-modules javafx.controls,javafx.fxml" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="javafx.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Java Scratch.Scratch">
     <configuration name="shares_gradle [buildNeeded]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -317,17 +310,24 @@
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
+    <configuration name="Scratch" type="Java Scratch" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Scratch" />
+      <option name="SCRATCH_FILE_URL" value="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.java" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
-      <item itemvalue="Application.SharesInc" />
       <item itemvalue="Gradle.shares_gradle [buildNeeded]" />
       <item itemvalue="Gradle.shares_gradle [dependencies]" />
       <item itemvalue="Gradle.shares_gradle [build]" />
       <item itemvalue="Gradle.shares_gradle [clean]" />
+      <item itemvalue="Java Scratch.Scratch" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Java Scratch.Scratch" />
         <item itemvalue="Gradle.shares_gradle [clean]" />
-        <item itemvalue="Application.SharesInc" />
         <item itemvalue="Gradle.shares_gradle [build]" />
         <item itemvalue="Gradle.shares_gradle [dependencies]" />
         <item itemvalue="Gradle.shares_gradle [buildNeeded]" />
@@ -393,6 +393,7 @@
       <workItem from="1715947653181" duration="4060000" />
       <workItem from="1716271470844" duration="310000" />
       <workItem from="1716271804638" duration="11409000" />
+      <workItem from="1716369264355" duration="10527000" />
     </task>
     <task id="LOCAL-00001" summary="Created Files and Set Properties&#10;setUp Function made&#10;Annotations added">
       <option name="closed" value="true" />
@@ -506,7 +507,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715949274745</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="finish login&#10;todo:&#10;- fix password reset&#10;- Stage size change">
+      <option name="closed" value="true" />
+      <created>1716373350792</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1716373350792</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -551,8 +560,10 @@
     <MESSAGE value="Added JavaFX" />
     <MESSAGE value="solved import" />
     <MESSAGE value="add unversioned files" />
+    <MESSAGE value="add LoginPane Nodes&#10;repaired ShareCreator&#10;LoginPane starts" />
     <MESSAGE value="add ShareCreatorPane class" />
-    <option name="LAST_COMMIT_MESSAGE" value="add ShareCreatorPane class" />
+    <MESSAGE value="finish login&#10;todo:&#10;- fix password reset&#10;- Stage size change" />
+    <option name="LAST_COMMIT_MESSAGE" value="finish login&#10;todo:&#10;- fix password reset&#10;- Stage size change" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>

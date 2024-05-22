@@ -19,7 +19,7 @@ public class ShareCreatorPane extends GridPane {
     private final ShareCreatorController controller;
     private final Font font;
     public final double stageHeight = 500;
-    public final double stageWidth = 400;
+    public final double stageWidth = 815;
 
     public ShareCreatorPane(Stage stage, Font font) {
         this.stage = stage;
@@ -41,10 +41,16 @@ public class ShareCreatorPane extends GridPane {
         setVgap(10);
         addListeners();
         add(getMainBox(), 0, 0);
-        stage.setHeight(stageHeight);
-        stage.setWidth(stageWidth);
-        stage.hide();
-        stage.show();
+        if (stage.isShowing()) {
+            adjustWindow();
+        }
+    }
+
+    private void adjustWindow() {
+        stage.getScene().getWindow().setHeight(stageHeight);
+        stage.getScene().getWindow().setWidth(stageWidth);
+        stage.centerOnScreen();
+        stage.setResizable(false); //Change Goal: Adjustable without problems
     }
 
     private void addListeners() {

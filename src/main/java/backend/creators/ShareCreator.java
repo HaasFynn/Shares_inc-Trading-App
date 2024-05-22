@@ -51,9 +51,9 @@ public class ShareCreator {
 
     public static String[] getNameList(int amount) {
         Set<String> nameSet = new HashSet<>();
-        while (nameSet.size() < amount) {
-            nameSet.addAll(retrieveNameList(amount));
-        }
+        //while (nameSet.size() < amount) {
+          nameSet.addAll(retrieveNameList(amount));
+        //}
         String[] nameList = new String[nameSet.size()];
         nameSet.toArray(nameList);
         ArrayList<String> finalList = new ArrayList<>(List.of(nameList));
@@ -100,14 +100,17 @@ public class ShareCreator {
             }
             br.close();
             return response.toString();
-        } catch (IOException ignored) {
+        } catch (IOException e) {
+            System.err.println("======================");
+            System.err.println("REACHED REQUEST LIMIT!");
+            System.err.println("======================");
         }
         return "";
     }
 
     private static String getAPIKey() {
         try {
-            BufferedReader in = new BufferedReader(new FileReader("C:\\Users\\fhaas\\OneDrive - Ergon Informatik AG\\Desktop\\files\\Erste Aufgaben\\Java\\shares_gradle\\.env"));
+            BufferedReader in = new BufferedReader(new FileReader("C:\\Users\\fhaas\\Documents\\Ergon\\JavaFx\\shares_gradle\\.env"));
             String line;
             line = in.readLine();
             String[] parts = line.split("=", 2);
@@ -126,7 +129,7 @@ public class ShareCreator {
         try {
             return response.substring(start, end);
         } catch (StringIndexOutOfBoundsException ignored) {
-            return null;
+            return "";
         }
     }
 }

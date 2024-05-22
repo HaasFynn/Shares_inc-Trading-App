@@ -1,4 +1,4 @@
 package javafx.main_panel;
 
-public class MainPanelPane {
+public class StartPagePane {
 }

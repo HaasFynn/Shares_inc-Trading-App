@@ -1,5 +1,6 @@
 package javafx.login;
 
+import javafx.PaneParent;
 import javafx.assets.LanguagePack;
 import javafx.beans.binding.StringBinding;
 import javafx.collections.FXCollections;
@@ -20,17 +21,12 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
-public class LoginPane extends GridPane {
-    final Stage stage;
+public class LoginPane extends PaneParent {
     private final LoginController controller;
-    final Font font;
-    public final double stageHeight = 500;
-    public final double stageWidth = 400;
 
     public LoginPane(Stage stage, Font font) {
-        this.stage = stage;
+        super(stage, font);
         this.controller = new LoginController(this);
-        this.font = font;
         build();
     }
 
@@ -57,17 +53,23 @@ public class LoginPane extends GridPane {
     Button resetButton;
 
 
-    private void build() {
+    protected void build() {
         setMinSize(200, 150);
         setVgap(10);
         addListeners();
-        add(getLanguageBox(), 2, 0);
-        add(getLoginBox(), 1, 1);
+        add(getLanguageBox(), 1, 1);
+        add(getLoginBox(), 1, 2);
         setAlignment(Pos.CENTER);
+        this.stageHeight = 500;
+        this.stageWidth = 420;
+        adjustWindow();
+    }
+
+    private void adjustWindow() {
         stage.setHeight(stageHeight);
         stage.setWidth(stageWidth);
-        stage.hide();
-        stage.show();
+        stage.centerOnScreen();
+        stage.setResizable(false);
     }
 
     public ChoiceBox<String> getLanguageBox() {
@@ -121,7 +123,7 @@ public class LoginPane extends GridPane {
         usernameField.setFont(font);
         //That the Fields keep their size when changing lang
         usernameField.setMinHeight(23);
-        usernameField.setMinWidth(246);
+        usernameField.setMinWidth(320);
         return usernameField;
     }
 
@@ -238,11 +240,7 @@ public class LoginPane extends GridPane {
     }
 
     private void addListeners() {
-        setOnKeyPressed(keyEvent -> {
-            if (keyEvent.getCode() == KeyCode.ENTER) {
-                controller.handleLoginAction();
-            }
-        });
+        controller.handleOnEnter();
     }
 
     StringBinding getValue(String key) {
