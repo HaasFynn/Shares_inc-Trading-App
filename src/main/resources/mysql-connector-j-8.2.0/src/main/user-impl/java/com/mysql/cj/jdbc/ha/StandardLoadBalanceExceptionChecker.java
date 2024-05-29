@@ -29,17 +29,17 @@
 
 package com.mysql.cj.jdbc.ha;
 
+import com.mysql.cj.conf.PropertyKey;
+import com.mysql.cj.exceptions.CJCommunicationsException;
+import com.mysql.cj.jdbc.exceptions.CommunicationsException;
+import com.mysql.cj.util.StringUtils;
+
 import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 import java.util.Properties;
 import java.util.stream.Collectors;
-
-import com.mysql.cj.conf.PropertyKey;
-import com.mysql.cj.exceptions.CJCommunicationsException;
-import com.mysql.cj.jdbc.exceptions.CommunicationsException;
-import com.mysql.cj.util.StringUtils;
 
 public class StandardLoadBalanceExceptionChecker implements LoadBalanceExceptionChecker {
 

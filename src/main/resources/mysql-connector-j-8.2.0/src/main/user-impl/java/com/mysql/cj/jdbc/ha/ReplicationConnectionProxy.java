@@ -29,16 +29,6 @@
 
 package com.mysql.cj.jdbc.ha;
 
-import static com.mysql.cj.util.StringUtils.isNullOrEmpty;
-
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
-import java.util.concurrent.Executor;
-
 import com.mysql.cj.Messages;
 import com.mysql.cj.PingTarget;
 import com.mysql.cj.conf.ConnectionUrl;
@@ -51,6 +41,16 @@ import com.mysql.cj.exceptions.MysqlErrorNumbers;
 import com.mysql.cj.jdbc.JdbcConnection;
 import com.mysql.cj.jdbc.JdbcStatement;
 import com.mysql.cj.jdbc.exceptions.SQLError;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
+import java.util.concurrent.Executor;
+
+import static com.mysql.cj.util.StringUtils.isNullOrEmpty;
 
 /**
  * Connection that opens two connections, one two a replication source, and another to one or more replicas, and decides to use source when the connection is

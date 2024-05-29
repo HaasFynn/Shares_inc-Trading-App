@@ -29,18 +29,14 @@
 
 package com.mysql.cj.jdbc;
 
+import com.mysql.cj.conf.*;
+import com.mysql.cj.util.StringUtils;
+
 import java.sql.DriverPropertyInfo;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
-
-import com.mysql.cj.conf.DefaultPropertySet;
-import com.mysql.cj.conf.PropertyDefinition;
-import com.mysql.cj.conf.PropertyDefinitions;
-import com.mysql.cj.conf.PropertyKey;
-import com.mysql.cj.conf.RuntimeProperty;
-import com.mysql.cj.util.StringUtils;
 
 public class JdbcPropertySetImpl extends DefaultPropertySet implements JdbcPropertySet {
 

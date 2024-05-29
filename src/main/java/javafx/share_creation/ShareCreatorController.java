@@ -5,6 +5,10 @@ import backend.dao.ShareDao;
 import backend.dao.ShareDaoImpl;
 import backend.functional.EntityManagement;
 import javafx.Controller;
+import javafx.assets.LanguagePack;
+import javafx.beans.binding.StringBinding;
+import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 
 
 public class ShareCreatorController extends Controller {
@@ -32,7 +36,7 @@ public class ShareCreatorController extends Controller {
     }
 
     private void setStatusText(String key, boolean visible, String color) {
-        pane.statusText.textProperty().bind(pane.getValueByKey(key));
+        pane.statusText.textProperty().bind(getValueByKey(key));
         pane.statusText.setVisible(visible);
         pane.statusText.getStyleClass().add(color);
     }
@@ -50,6 +54,7 @@ public class ShareCreatorController extends Controller {
             pane.inputField.setText(oldValue);
             setStatusText(key, true, "text-danger");
         } catch (NumberFormatException e) {
+            e.printStackTrace();
         }
         if (newValue.matches("\\d*")) return;
         pane.inputField.setText(newValue.replaceAll("[^\\d]", ""));
@@ -59,5 +64,7 @@ public class ShareCreatorController extends Controller {
         //remove Listeners etc. if needed
         //function is called by main panel
     }
-
+    StringBinding getValueByKey(String key) {
+        return LanguagePack.createStringBinding(key);
+    }
 }

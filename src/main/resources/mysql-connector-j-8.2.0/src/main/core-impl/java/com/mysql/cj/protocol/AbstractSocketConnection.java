@@ -29,10 +29,6 @@
 
 package com.mysql.cj.protocol;
 
-import java.io.BufferedOutputStream;
-import java.io.IOException;
-import java.net.Socket;
-
 import com.mysql.cj.Messages;
 import com.mysql.cj.conf.PropertySet;
 import com.mysql.cj.exceptions.ExceptionFactory;
@@ -41,6 +37,10 @@ import com.mysql.cj.exceptions.UnableToConnectException;
 import com.mysql.cj.exceptions.WrongArgumentException;
 import com.mysql.cj.util.Util;
 import com.mysql.jdbc.SocketFactoryWrapper;
+
+import java.io.BufferedOutputStream;
+import java.io.IOException;
+import java.net.Socket;
 
 public abstract class AbstractSocketConnection implements SocketConnection {
 

@@ -29,16 +29,6 @@
 
 package com.mysql.cj;
 
-import java.io.IOException;
-import java.util.Iterator;
-import java.util.Spliterators;
-import java.util.concurrent.CompletableFuture;
-import java.util.function.Function;
-import java.util.function.Predicate;
-import java.util.stream.Collector;
-import java.util.stream.Stream;
-import java.util.stream.StreamSupport;
-
 import com.mysql.cj.conf.HostInfo;
 import com.mysql.cj.conf.PropertySet;
 import com.mysql.cj.exceptions.CJCommunicationsException;
@@ -51,6 +41,16 @@ import com.mysql.cj.protocol.x.XProtocolError;
 import com.mysql.cj.protocol.x.XProtocolRowInputStream;
 import com.mysql.cj.result.Row;
 import com.mysql.cj.xdevapi.PreparableStatement;
+
+import java.io.IOException;
+import java.util.Iterator;
+import java.util.Spliterators;
+import java.util.concurrent.CompletableFuture;
+import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.stream.Collector;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 public class MysqlxSession extends CoreSession {
 

@@ -29,14 +29,6 @@
 
 package com.mysql.cj;
 
-import java.io.InputStream;
-import java.io.Reader;
-import java.sql.Blob;
-import java.sql.Clob;
-import java.util.Calendar;
-import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.function.Supplier;
-
 import com.mysql.cj.conf.PropertySet;
 import com.mysql.cj.exceptions.ExceptionFactory;
 import com.mysql.cj.exceptions.ExceptionInterceptor;
@@ -46,6 +38,14 @@ import com.mysql.cj.protocol.Protocol;
 import com.mysql.cj.protocol.ServerSession;
 import com.mysql.cj.protocol.ValueEncoder;
 import com.mysql.cj.result.Field;
+
+import java.io.InputStream;
+import java.io.Reader;
+import java.sql.Blob;
+import java.sql.Clob;
+import java.util.Calendar;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.function.Supplier;
 
 public class NativeQueryBindValue implements BindValue {
 

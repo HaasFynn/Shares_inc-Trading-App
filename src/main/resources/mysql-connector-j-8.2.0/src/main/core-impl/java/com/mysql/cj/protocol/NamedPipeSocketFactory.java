@@ -29,22 +29,17 @@
 
 package com.mysql.cj.protocol;
 
-import java.io.Closeable;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.RandomAccessFile;
-import java.net.Socket;
-import java.net.SocketException;
-import java.util.concurrent.TimeUnit;
-
 import com.mysql.cj.Messages;
 import com.mysql.cj.Session;
 import com.mysql.cj.conf.PropertyKey;
 import com.mysql.cj.conf.PropertySet;
 import com.mysql.cj.conf.RuntimeProperty;
 import com.mysql.cj.log.Log;
+
+import java.io.*;
+import java.net.Socket;
+import java.net.SocketException;
+import java.util.concurrent.TimeUnit;
 
 /**
  * A socket factory for named pipes (on Windows)

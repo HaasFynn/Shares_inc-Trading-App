@@ -29,8 +29,6 @@
 
 package com.mysql.cj;
 
-import java.net.SocketAddress;
-
 import com.mysql.cj.conf.HostInfo;
 import com.mysql.cj.conf.PropertyKey;
 import com.mysql.cj.conf.PropertySet;
@@ -46,6 +44,8 @@ import com.mysql.cj.protocol.Message;
 import com.mysql.cj.protocol.Protocol;
 import com.mysql.cj.protocol.ServerSession;
 import com.mysql.cj.util.Util;
+
+import java.net.SocketAddress;
 
 public abstract class CoreSession implements Session {
 

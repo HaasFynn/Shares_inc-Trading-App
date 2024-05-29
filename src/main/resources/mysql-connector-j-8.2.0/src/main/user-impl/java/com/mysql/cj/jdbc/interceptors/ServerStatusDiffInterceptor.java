@@ -29,14 +29,6 @@
 
 package com.mysql.cj.jdbc.interceptors;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Properties;
-import java.util.function.Supplier;
-
 import com.mysql.cj.MysqlConnection;
 import com.mysql.cj.Query;
 import com.mysql.cj.exceptions.ExceptionFactory;
@@ -46,6 +38,14 @@ import com.mysql.cj.log.Log;
 import com.mysql.cj.protocol.Resultset;
 import com.mysql.cj.protocol.ServerSession;
 import com.mysql.cj.util.Util;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Properties;
+import java.util.function.Supplier;
 
 public class ServerStatusDiffInterceptor implements QueryInterceptor {
 

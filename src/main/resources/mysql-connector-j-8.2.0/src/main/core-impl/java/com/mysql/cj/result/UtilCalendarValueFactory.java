@@ -29,10 +29,6 @@
 
 package com.mysql.cj.result;
 
-import java.util.Calendar;
-import java.util.Locale;
-import java.util.TimeZone;
-
 import com.mysql.cj.Messages;
 import com.mysql.cj.conf.PropertyKey;
 import com.mysql.cj.conf.PropertySet;
@@ -42,6 +38,10 @@ import com.mysql.cj.exceptions.WrongArgumentException;
 import com.mysql.cj.protocol.InternalDate;
 import com.mysql.cj.protocol.InternalTime;
 import com.mysql.cj.protocol.InternalTimestamp;
+
+import java.util.Calendar;
+import java.util.Locale;
+import java.util.TimeZone;
 
 /**
  * Value factory to create {@link Calendar} instances.

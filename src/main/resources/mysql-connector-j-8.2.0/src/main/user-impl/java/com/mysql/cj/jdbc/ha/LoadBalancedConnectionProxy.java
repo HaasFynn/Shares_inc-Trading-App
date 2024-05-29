@@ -29,24 +29,6 @@
 
 package com.mysql.cj.jdbc.ha;
 
-import static com.mysql.cj.util.StringUtils.isNullOrEmpty;
-
-import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
-import java.util.Set;
-import java.util.concurrent.Executor;
-import java.util.stream.Collectors;
-
 import com.mysql.cj.Messages;
 import com.mysql.cj.PingTarget;
 import com.mysql.cj.conf.ConnectionUrl;
@@ -65,6 +47,17 @@ import com.mysql.cj.jdbc.JdbcConnection;
 import com.mysql.cj.jdbc.exceptions.SQLError;
 import com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping;
 import com.mysql.cj.util.Util;
+
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.*;
+import java.util.concurrent.Executor;
+import java.util.stream.Collectors;
+
+import static com.mysql.cj.util.StringUtils.isNullOrEmpty;
 
 /**
  * A proxy for a dynamic com.mysql.cj.jdbc.JdbcConnection implementation that load balances requests across a series of MySQL JDBC connections, where the

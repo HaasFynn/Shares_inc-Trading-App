@@ -29,12 +29,6 @@
 
 package com.mysql.cj.result;
 
-import java.time.LocalTime;
-import java.time.OffsetTime;
-import java.time.ZoneOffset;
-import java.time.format.DateTimeParseException;
-import java.util.TimeZone;
-
 import com.mysql.cj.Messages;
 import com.mysql.cj.WarningListener;
 import com.mysql.cj.conf.PropertyKey;
@@ -46,6 +40,12 @@ import com.mysql.cj.protocol.InternalTime;
 import com.mysql.cj.protocol.InternalTimestamp;
 import com.mysql.cj.protocol.a.MysqlTextValueDecoder;
 import com.mysql.cj.util.StringUtils;
+
+import java.time.LocalTime;
+import java.time.OffsetTime;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeParseException;
+import java.util.TimeZone;
 
 /**
  * A value factory to create {@link OffsetTime} instances.

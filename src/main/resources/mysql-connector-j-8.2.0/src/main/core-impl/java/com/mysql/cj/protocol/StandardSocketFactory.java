@@ -29,17 +29,17 @@
 
 package com.mysql.cj.protocol;
 
+import com.mysql.cj.Messages;
+import com.mysql.cj.conf.PropertyKey;
+import com.mysql.cj.conf.PropertySet;
+import com.mysql.cj.log.Log;
+
 import java.io.Closeable;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketException;
-
-import com.mysql.cj.Messages;
-import com.mysql.cj.conf.PropertyKey;
-import com.mysql.cj.conf.PropertySet;
-import com.mysql.cj.log.Log;
 
 /**
  * Socket factory for vanilla TCP/IP sockets (the standard)

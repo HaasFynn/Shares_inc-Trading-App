@@ -29,12 +29,6 @@
 
 package com.mysql.cj;
 
-import java.io.Closeable;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.Reader;
-import java.sql.Clob;
-
 import com.mysql.cj.conf.PropertyKey;
 import com.mysql.cj.conf.RuntimeProperty;
 import com.mysql.cj.exceptions.CJException;
@@ -55,6 +49,12 @@ import com.mysql.cj.protocol.a.NativeMessageBuilder;
 import com.mysql.cj.protocol.a.NativePacketPayload;
 import com.mysql.cj.result.Field;
 import com.mysql.cj.util.StringUtils;
+
+import java.io.Closeable;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.Reader;
+import java.sql.Clob;
 
 // TODO should not be protocol-specific
 

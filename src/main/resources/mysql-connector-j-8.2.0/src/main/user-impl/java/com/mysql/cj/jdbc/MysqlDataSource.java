@@ -29,26 +29,21 @@
 
 package com.mysql.cj.jdbc;
 
-import java.io.PrintWriter;
-import java.io.Serializable;
-import java.sql.SQLException;
-import java.sql.SQLFeatureNotSupportedException;
-import java.util.Properties;
-import java.util.logging.Logger;
+import com.mysql.cj.Messages;
+import com.mysql.cj.conf.*;
+import com.mysql.cj.util.StringUtils;
 
 import javax.naming.NamingException;
 import javax.naming.Reference;
 import javax.naming.Referenceable;
 import javax.naming.StringRefAddr;
 import javax.sql.DataSource;
-
-import com.mysql.cj.Messages;
-import com.mysql.cj.conf.AbstractRuntimeProperty;
-import com.mysql.cj.conf.ConnectionUrl;
-import com.mysql.cj.conf.PropertyDefinitions;
-import com.mysql.cj.conf.PropertyKey;
-import com.mysql.cj.conf.RuntimeProperty;
-import com.mysql.cj.util.StringUtils;
+import java.io.PrintWriter;
+import java.io.Serializable;
+import java.sql.SQLException;
+import java.sql.SQLFeatureNotSupportedException;
+import java.util.Properties;
+import java.util.logging.Logger;
 
 /**
  * A JNDI DataSource for a Mysql JDBC connection

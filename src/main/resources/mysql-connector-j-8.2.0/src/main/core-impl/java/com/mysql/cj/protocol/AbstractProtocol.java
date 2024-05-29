@@ -29,10 +29,6 @@
 
 package com.mysql.cj.protocol;
 
-import java.lang.ref.WeakReference;
-import java.util.LinkedList;
-import java.util.concurrent.CopyOnWriteArrayList;
-
 import com.mysql.cj.MessageBuilder;
 import com.mysql.cj.Messages;
 import com.mysql.cj.Session;
@@ -44,6 +40,10 @@ import com.mysql.cj.log.Log;
 import com.mysql.cj.protocol.Protocol.ProtocolEventHandler;
 import com.mysql.cj.protocol.Protocol.ProtocolEventListener.EventType;
 import com.mysql.cj.util.TimeUtil;
+
+import java.lang.ref.WeakReference;
+import java.util.LinkedList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public abstract class AbstractProtocol<M extends Message> implements Protocol<M>, ProtocolEventHandler {
 
