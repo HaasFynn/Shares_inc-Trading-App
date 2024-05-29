@@ -29,12 +29,6 @@
 
 package com.mysql.cj;
 
-import java.net.SocketAddress;
-import java.util.concurrent.CompletableFuture;
-import java.util.function.Function;
-import java.util.function.Predicate;
-import java.util.stream.Collector;
-
 import com.mysql.cj.conf.HostInfo;
 import com.mysql.cj.conf.PropertySet;
 import com.mysql.cj.exceptions.CJOperationNotSupportedException;
@@ -47,6 +41,12 @@ import com.mysql.cj.protocol.Protocol;
 import com.mysql.cj.protocol.ResultBuilder;
 import com.mysql.cj.protocol.ServerSession;
 import com.mysql.cj.result.Row;
+
+import java.net.SocketAddress;
+import java.util.concurrent.CompletableFuture;
+import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.stream.Collector;
 
 /**
  * {@link Session} exposes logical level which user API uses internally to call {@link Protocol} methods.

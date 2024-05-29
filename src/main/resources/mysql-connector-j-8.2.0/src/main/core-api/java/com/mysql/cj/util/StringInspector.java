@@ -29,12 +29,12 @@
 
 package com.mysql.cj.util;
 
+import com.mysql.cj.Messages;
+
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Set;
-
-import com.mysql.cj.Messages;
 
 /**
  * Utility class to inspect a MySQL string, typically a query string.

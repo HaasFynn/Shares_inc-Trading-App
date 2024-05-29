@@ -3,17 +3,16 @@ package javafx.login;
 import backend.dao.UserDao;
 import backend.dao.UserDaoImpl;
 import backend.entities.User;
+import backend.functional.EntityManagement;
 import jakarta.persistence.EntityManager;
 import javafx.Controller;
 import javafx.assets.Hash;
 import javafx.assets.LanguagePack;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.share_creation.ShareCreatorPane;
 
 import java.util.Locale;
-
-import backend.functional.EntityManagement;
-import javafx.share_creation.ShareCreatorPane;
 
 public class LoginController extends Controller {
     public final LoginPane pane;
@@ -47,23 +46,31 @@ public class LoginController extends Controller {
         String repeatPassword = pane.repeatPasswordField.getText();
         User user = userHandler.getByPassword(username, hashedPassword);
         String errorKey;
-        if (areInputFieldsEmpty()) {
-            errorKey = "login.status.empty.fields";
-        } else if (!newPassword.equals(repeatPassword)) {
-            errorKey = "login.status.password.mismatch";
-        } else if (!doesPasswordComplieToPasswordRules(newPassword)) {
-            errorKey = "login.status.password.notRuleConform";
-        } else {
-            errorKey = getLoginResponse(user, hashedPassword);
-        }
+        errorKey = getErrorKey(newPassword, repeatPassword, user, hashedPassword);
         if (errorKey.isEmpty()) {
-            user.setPassword(Hash.getPasswordHashed(newPassword));
-            userHandler.update(user);
-            setStatusText("login.reset.succeed", true, "text-success");
+            loginSucceeded(user, newPassword);
             return;
         }
         setStatusText(errorKey, true, "text-danger");
         System.out.println(pane.usernameField.getWidth());
+    }
+
+    private String getErrorKey(String newPassword, String repeatPassword, User user, String hashedPassword) {
+        if (areInputFieldsEmpty()) {
+            return "login.status.empty.fields";
+        } else if (!newPassword.equals(repeatPassword)) {
+            return "login.status.password.mismatch";
+        } else if (!doesPasswordComplieToPasswordRules(newPassword)) {
+            return "login.status.password.notRuleConform";
+        } else {
+            return getLoginResponse(user, hashedPassword);
+        }
+    }
+
+    private void loginSucceeded(User user, String newPassword) {
+        user.setPassword(Hash.getPasswordHashed(newPassword));
+        userHandler.update(user);
+        setStatusText("login.reset.succeed", true, "text-success");
     }
 
     private boolean doesPasswordComplieToPasswordRules(String newPassword) {

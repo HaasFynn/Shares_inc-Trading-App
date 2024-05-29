@@ -29,6 +29,13 @@
 
 package com.mysql.cj.util;
 
+import com.mysql.cj.Messages;
+import com.mysql.cj.MysqlType;
+import com.mysql.cj.exceptions.ExceptionFactory;
+import com.mysql.cj.exceptions.ExceptionInterceptor;
+import com.mysql.cj.exceptions.InvalidConnectionAttributeException;
+import com.mysql.cj.exceptions.WrongArgumentException;
+
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -47,13 +54,6 @@ import java.util.Locale;
 import java.util.Properties;
 import java.util.TimeZone;
 import java.util.regex.Pattern;
-
-import com.mysql.cj.Messages;
-import com.mysql.cj.MysqlType;
-import com.mysql.cj.exceptions.ExceptionFactory;
-import com.mysql.cj.exceptions.ExceptionInterceptor;
-import com.mysql.cj.exceptions.InvalidConnectionAttributeException;
-import com.mysql.cj.exceptions.WrongArgumentException;
 
 /**
  * Time zone conversion routines and other time related methods

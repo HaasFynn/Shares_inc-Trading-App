@@ -29,15 +29,15 @@
 
 package com.mysql.cj.protocol;
 
-import java.io.BufferedOutputStream;
-import java.io.IOException;
-import java.net.Socket;
-
 import com.mysql.cj.conf.PropertySet;
 import com.mysql.cj.exceptions.ExceptionInterceptor;
 import com.mysql.cj.exceptions.FeatureNotAvailableException;
 import com.mysql.cj.exceptions.SSLParamsException;
 import com.mysql.cj.log.Log;
+
+import java.io.BufferedOutputStream;
+import java.io.IOException;
+import java.net.Socket;
 
 /**
  * Represents physical connection with endpoint

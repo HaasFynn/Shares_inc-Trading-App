@@ -29,11 +29,11 @@
 
 package com.mysql.cj;
 
-import java.util.Calendar;
-import java.util.concurrent.atomic.AtomicBoolean;
-
 import com.mysql.cj.protocol.Message;
 import com.mysql.cj.result.Field;
+
+import java.util.Calendar;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public interface BindValue {
 

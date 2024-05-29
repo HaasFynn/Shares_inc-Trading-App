@@ -5,24 +5,18 @@ import javafx.assets.LanguagePack;
 import javafx.beans.binding.StringBinding;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 public class LoginPane extends PaneParent {
     private final LoginController controller;
+    public final double STAGE_WIDTH = 420;
+    public final double STAGE_HEIGHT = 500;
 
     public LoginPane(Stage stage, Font font) {
         super(stage, font);
@@ -60,14 +54,12 @@ public class LoginPane extends PaneParent {
         add(getLanguageBox(), 1, 1);
         add(getLoginBox(), 1, 2);
         setAlignment(Pos.CENTER);
-        this.stageHeight = 500;
-        this.stageWidth = 420;
         adjustWindow();
     }
 
     private void adjustWindow() {
-        stage.setHeight(stageHeight);
-        stage.setWidth(stageWidth);
+        stage.setWidth(STAGE_WIDTH);
+        stage.setHeight(STAGE_HEIGHT);
         stage.centerOnScreen();
         stage.setResizable(false);
     }

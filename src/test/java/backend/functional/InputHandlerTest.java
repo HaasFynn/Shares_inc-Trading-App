@@ -7,10 +7,10 @@ import backend.entities.User;
 import jakarta.persistence.EntityManager;
 import org.junit.jupiter.api.Test;
 
-import backend.functional.EntityManagement;
 import java.util.concurrent.TimeUnit;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class InputHandlerTest {
     EntityManager entityManager = EntityManagement.createEntityManagerFactory().createEntityManager();

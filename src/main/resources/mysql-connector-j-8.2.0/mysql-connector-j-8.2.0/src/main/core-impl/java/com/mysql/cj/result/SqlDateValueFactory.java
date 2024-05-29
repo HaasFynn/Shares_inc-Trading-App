@@ -29,11 +29,6 @@
 
 package com.mysql.cj.result;
 
-import java.sql.Date;
-import java.util.Calendar;
-import java.util.Locale;
-import java.util.TimeZone;
-
 import com.mysql.cj.Messages;
 import com.mysql.cj.WarningListener;
 import com.mysql.cj.conf.PropertySet;
@@ -44,6 +39,11 @@ import com.mysql.cj.protocol.InternalDate;
 import com.mysql.cj.protocol.InternalTime;
 import com.mysql.cj.protocol.InternalTimestamp;
 import com.mysql.cj.util.TimeUtil;
+
+import java.sql.Date;
+import java.util.Calendar;
+import java.util.Locale;
+import java.util.TimeZone;
 
 /**
  * A value factory for creating {@link java.sql.Date} values.

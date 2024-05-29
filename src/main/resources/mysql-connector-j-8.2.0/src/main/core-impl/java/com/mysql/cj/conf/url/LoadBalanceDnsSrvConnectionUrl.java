@@ -29,20 +29,15 @@
 
 package com.mysql.cj.conf.url;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
-
 import com.mysql.cj.Messages;
-import com.mysql.cj.conf.BooleanPropertyDefinition;
-import com.mysql.cj.conf.ConnectionUrl;
-import com.mysql.cj.conf.ConnectionUrlParser;
-import com.mysql.cj.conf.HostInfo;
-import com.mysql.cj.conf.HostsListView;
-import com.mysql.cj.conf.PropertyKey;
+import com.mysql.cj.conf.*;
 import com.mysql.cj.exceptions.ExceptionFactory;
 import com.mysql.cj.exceptions.InvalidConnectionAttributeException;
 import com.mysql.cj.util.StringUtils;
+
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
 
 public class LoadBalanceDnsSrvConnectionUrl extends ConnectionUrl {
 

@@ -29,12 +29,7 @@
 
 package com.mysql.cj.sasl;
 
-import java.security.AccessController;
-import java.security.InvalidParameterException;
-import java.security.NoSuchAlgorithmException;
-import java.security.PrivilegedAction;
-import java.security.Provider;
-import java.security.ProviderException;
+import java.security.*;
 
 /**
  * A SASL provider for the authentication mechanisms SCRAM-SHA-1 and SCRAM-SHA-256, here renamed to MYSQLCJ-SCRAM-SHA-1 and MYSQL-SRAM-SHA-256 respectively to

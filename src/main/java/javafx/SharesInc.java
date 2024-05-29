@@ -1,16 +1,11 @@
 package javafx;
 
-import javafx.assets.Hash;
+import javafx.application.Application;
 import javafx.assets.LanguagePack;
 import javafx.assets.ScreenBuilder;
-import javafx.application.Application;
-import javafx.login.LoginPane;
 import javafx.main_panel.MainPanel;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.scene.text.Font;
 import javafx.share_creation.ShareCreatorPane;

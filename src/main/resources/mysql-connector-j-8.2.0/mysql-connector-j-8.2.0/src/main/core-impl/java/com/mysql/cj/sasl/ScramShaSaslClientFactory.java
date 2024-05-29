@@ -29,19 +29,14 @@
 
 package com.mysql.cj.sasl;
 
-import java.io.IOException;
-import java.util.Map;
+import com.mysql.cj.util.StringUtils;
 
-import javax.security.auth.callback.Callback;
-import javax.security.auth.callback.CallbackHandler;
-import javax.security.auth.callback.NameCallback;
-import javax.security.auth.callback.PasswordCallback;
-import javax.security.auth.callback.UnsupportedCallbackException;
+import javax.security.auth.callback.*;
 import javax.security.sasl.SaslClient;
 import javax.security.sasl.SaslClientFactory;
 import javax.security.sasl.SaslException;
-
-import com.mysql.cj.util.StringUtils;
+import java.io.IOException;
+import java.util.Map;
 
 /**
  * A {@link SaslClientFactory} for {@link ScramSha1SaslClient} and {@link ScramSha256SaslClient} instances.

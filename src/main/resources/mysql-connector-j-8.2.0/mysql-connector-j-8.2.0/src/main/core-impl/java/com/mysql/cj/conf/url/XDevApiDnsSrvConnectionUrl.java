@@ -29,23 +29,18 @@
 
 package com.mysql.cj.conf.url;
 
-import static com.mysql.cj.util.StringUtils.isNullOrEmpty;
-import static com.mysql.cj.util.StringUtils.safeTrim;
+import com.mysql.cj.Messages;
+import com.mysql.cj.conf.*;
+import com.mysql.cj.conf.ConnectionUrlParser.Pair;
+import com.mysql.cj.exceptions.ExceptionFactory;
+import com.mysql.cj.exceptions.InvalidConnectionAttributeException;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-import com.mysql.cj.Messages;
-import com.mysql.cj.conf.BooleanPropertyDefinition;
-import com.mysql.cj.conf.ConnectionUrl;
-import com.mysql.cj.conf.ConnectionUrlParser;
-import com.mysql.cj.conf.ConnectionUrlParser.Pair;
-import com.mysql.cj.conf.HostInfo;
-import com.mysql.cj.conf.HostsListView;
-import com.mysql.cj.conf.PropertyKey;
-import com.mysql.cj.exceptions.ExceptionFactory;
-import com.mysql.cj.exceptions.InvalidConnectionAttributeException;
+import static com.mysql.cj.util.StringUtils.isNullOrEmpty;
+import static com.mysql.cj.util.StringUtils.safeTrim;
 
 public class XDevApiDnsSrvConnectionUrl extends ConnectionUrl {
 

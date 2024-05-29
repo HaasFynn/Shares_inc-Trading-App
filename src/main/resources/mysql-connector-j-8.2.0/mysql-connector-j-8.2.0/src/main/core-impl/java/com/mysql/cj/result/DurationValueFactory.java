@@ -29,12 +29,12 @@
 
 package com.mysql.cj.result;
 
-import java.time.Duration;
-
 import com.mysql.cj.conf.PropertySet;
 import com.mysql.cj.protocol.InternalDate;
 import com.mysql.cj.protocol.InternalTime;
 import com.mysql.cj.protocol.InternalTimestamp;
+
+import java.time.Duration;
 
 /**
  * A value factory to create {@link Duration} instances.

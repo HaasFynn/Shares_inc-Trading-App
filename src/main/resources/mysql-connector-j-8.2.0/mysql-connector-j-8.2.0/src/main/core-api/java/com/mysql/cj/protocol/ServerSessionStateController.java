@@ -29,11 +29,11 @@
 
 package com.mysql.cj.protocol;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.mysql.cj.exceptions.CJOperationNotSupportedException;
 import com.mysql.cj.exceptions.ExceptionFactory;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public interface ServerSessionStateController {
 

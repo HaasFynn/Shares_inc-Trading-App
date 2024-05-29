@@ -29,17 +29,13 @@
 
 package com.mysql.cj;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.sql.Date;
-import java.sql.SQLType;
-import java.sql.Time;
-import java.sql.Timestamp;
-import java.sql.Types;
-import java.time.LocalDateTime;
-
 import com.mysql.cj.exceptions.FeatureNotAvailableException;
 import com.mysql.cj.util.StringUtils;
+
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.sql.*;
+import java.time.LocalDateTime;
 
 public enum MysqlType implements SQLType {
 

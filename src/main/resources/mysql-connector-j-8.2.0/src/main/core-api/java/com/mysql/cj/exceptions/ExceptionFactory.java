@@ -29,16 +29,16 @@
 
 package com.mysql.cj.exceptions;
 
-import java.net.BindException;
-import java.net.NetworkInterface;
-import java.net.SocketException;
-
 import com.mysql.cj.Messages;
 import com.mysql.cj.conf.PropertyKey;
 import com.mysql.cj.conf.PropertySet;
 import com.mysql.cj.protocol.PacketReceivedTimeHolder;
 import com.mysql.cj.protocol.PacketSentTimeHolder;
 import com.mysql.cj.protocol.ServerSession;
+
+import java.net.BindException;
+import java.net.NetworkInterface;
+import java.net.SocketException;
 
 public class ExceptionFactory {
 

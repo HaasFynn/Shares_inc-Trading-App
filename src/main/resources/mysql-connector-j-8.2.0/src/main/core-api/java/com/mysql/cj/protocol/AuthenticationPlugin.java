@@ -29,9 +29,9 @@
 
 package com.mysql.cj.protocol;
 
-import java.util.List;
-
 import com.mysql.cj.callback.MysqlCallbackHandler;
+
+import java.util.List;
 
 /**
  * Implementors of this interface can be installed via the "authenticationPlugins" configuration property.

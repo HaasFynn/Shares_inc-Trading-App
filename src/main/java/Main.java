@@ -4,7 +4,6 @@ import backend.dao.UserDaoImpl;
 import backend.functional.EntityManagement;
 import backend.functional.InputHandler;
 import jakarta.persistence.EntityManager;
-import javafx.SharesInc;
 
 public class Main {
     public static void main(String[] args) {

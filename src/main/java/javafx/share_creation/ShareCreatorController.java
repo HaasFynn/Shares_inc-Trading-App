@@ -50,7 +50,6 @@ public class ShareCreatorController extends Controller {
             pane.inputField.setText(oldValue);
             setStatusText(key, true, "text-danger");
         } catch (NumberFormatException e) {
-            e.printStackTrace();
         }
         if (newValue.matches("\\d*")) return;
         pane.inputField.setText(newValue.replaceAll("[^\\d]", ""));

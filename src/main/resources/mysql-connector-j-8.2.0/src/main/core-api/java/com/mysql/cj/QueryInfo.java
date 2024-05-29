@@ -29,15 +29,15 @@
 
 package com.mysql.cj;
 
-import java.nio.ByteBuffer;
-import java.util.ArrayList;
-
 import com.mysql.cj.conf.PropertyKey;
 import com.mysql.cj.exceptions.ExceptionFactory;
 import com.mysql.cj.exceptions.WrongArgumentException;
 import com.mysql.cj.util.SearchMode;
 import com.mysql.cj.util.StringInspector;
 import com.mysql.cj.util.StringUtils;
+
+import java.nio.ByteBuffer;
+import java.util.ArrayList;
 
 /**
  * Represents the "parsed" state of a prepared query, with the statement broken up into its static and dynamic (where parameters are bound) parts.

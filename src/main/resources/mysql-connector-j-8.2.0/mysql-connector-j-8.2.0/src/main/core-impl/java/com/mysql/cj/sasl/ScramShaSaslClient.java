@@ -29,6 +29,12 @@
 
 package com.mysql.cj.sasl;
 
+import com.mysql.cj.util.SaslPrep;
+import com.mysql.cj.util.SaslPrep.StringType;
+import com.mysql.cj.util.StringUtils;
+
+import javax.security.sasl.SaslClient;
+import javax.security.sasl.SaslException;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.SecureRandom;
@@ -36,13 +42,6 @@ import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
-
-import javax.security.sasl.SaslClient;
-import javax.security.sasl.SaslException;
-
-import com.mysql.cj.util.SaslPrep;
-import com.mysql.cj.util.SaslPrep.StringType;
-import com.mysql.cj.util.StringUtils;
 
 /**
  * A {@link SaslClient} implementation for SCRAM-SHA mechanisms as specified in <a href="https://tools.ietf.org/html/rfc5802">RFC 5802</a>.

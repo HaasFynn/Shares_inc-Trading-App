@@ -4,12 +4,7 @@ import backend.entities.Share;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
-import jakarta.persistence.TransactionRequiredException;
-import org.hibernate.exception.ConstraintViolationException;
 
-import java.security.spec.RSAOtherPrimeInfo;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class ShareDaoImpl implements ShareDao {

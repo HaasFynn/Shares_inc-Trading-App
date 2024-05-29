@@ -29,13 +29,13 @@
 
 package com.mysql.cj.protocol;
 
+import com.mysql.cj.util.TimeUtil;
+
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.OffsetTime;
 import java.util.Calendar;
-
-import com.mysql.cj.util.TimeUtil;
 
 public class InternalTime {
 

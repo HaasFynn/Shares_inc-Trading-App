@@ -29,11 +29,11 @@
 
 package com.mysql.cj.util;
 
-import java.text.Normalizer;
-import java.text.Normalizer.Form;
-
 import com.mysql.cj.exceptions.ExceptionFactory;
 import com.mysql.cj.exceptions.WrongArgumentException;
+
+import java.text.Normalizer;
+import java.text.Normalizer.Form;
 
 /**
  * Implementation for SASLprep: Stringprep Profile for User Names and Passwords, as specified in <a href="https://tools.ietf.org/html/rfc4013">RFC 4013</a>.

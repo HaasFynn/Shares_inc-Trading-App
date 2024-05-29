@@ -29,9 +29,9 @@
 
 package com.mysql.cj.xdevapi;
 
-import java.util.Iterator;
-
 import com.mysql.cj.QueryResult;
+
+import java.util.Iterator;
 
 /**
  * Base result.

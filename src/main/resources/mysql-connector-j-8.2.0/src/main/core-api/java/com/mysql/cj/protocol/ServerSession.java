@@ -29,13 +29,13 @@
 
 package com.mysql.cj.protocol;
 
-import java.util.Map;
-import java.util.TimeZone;
-
 import com.mysql.cj.CharsetSettings;
 import com.mysql.cj.ServerVersion;
 import com.mysql.cj.exceptions.CJOperationNotSupportedException;
 import com.mysql.cj.exceptions.ExceptionFactory;
+
+import java.util.Map;
+import java.util.TimeZone;
 
 /**
  * Keeps the effective states of server/session variables,

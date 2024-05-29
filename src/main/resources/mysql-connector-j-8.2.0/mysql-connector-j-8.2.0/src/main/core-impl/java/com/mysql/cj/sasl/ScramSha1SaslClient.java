@@ -29,11 +29,7 @@
 
 package com.mysql.cj.sasl;
 
-import java.security.InvalidKeyException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
-import java.security.spec.KeySpec;
+import com.mysql.cj.exceptions.ExceptionFactory;
 
 import javax.crypto.Mac;
 import javax.crypto.SecretKeyFactory;
@@ -41,8 +37,11 @@ import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.SecretKeySpec;
 import javax.security.sasl.SaslClient;
 import javax.security.sasl.SaslException;
-
-import com.mysql.cj.exceptions.ExceptionFactory;
+import java.security.InvalidKeyException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.KeySpec;
 
 /**
  * A {@link SaslClient} implementation for SCRAM-SHA-1, as specified in <a href="https://tools.ietf.org/html/rfc5802">RFC 5802</a>.
