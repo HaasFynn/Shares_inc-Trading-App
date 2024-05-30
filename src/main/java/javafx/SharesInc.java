@@ -3,12 +3,11 @@ package javafx;
 import javafx.application.Application;
 import javafx.assets.LanguagePack;
 import javafx.assets.ScreenBuilder;
-import javafx.main_panel.MainPanel;
+import javafx.login.LoginPane;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Region;
 import javafx.scene.text.Font;
-import javafx.share_creation.ShareCreatorPane;
 import javafx.stage.Stage;
 import org.kordamp.bootstrapfx.BootstrapFX;
 
@@ -28,10 +27,10 @@ public class SharesInc extends Application {
     private void config(Scene scene) {
         stage.titleProperty().bind(LanguagePack.createStringBinding("window.title"));
         stage.getIcons().add(new Image("image/shares_inc._logo.png"));
-        //LoginPane pane = new LoginPane(stage, Font.font("Verdana")); //Standard
-        ShareCreatorPane pane = new ShareCreatorPane(stage, font);
-        MainPanel mainPanel = new MainPanel(stage, pane, font);
-        scene.setRoot(mainPanel);
+        LoginPane pane = new LoginPane(stage, font); //Standard
+        //ShareCreatorPane pane = new ShareCreatorPane(stage, font);
+        //MainPanel mainPanel = new MainPanel(stage, pane, font);
+        scene.setRoot(pane);
         scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
         stage.setScene(scene);
     }

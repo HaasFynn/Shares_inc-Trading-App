@@ -15,8 +15,12 @@ import javafx.stage.Stage;
 
 public class LoginPane extends PaneParent {
     private final LoginController controller;
-    public final double STAGE_WIDTH = 420;
-    public final double STAGE_HEIGHT = 500;
+    private static final double TEXTFIELD_MIN_WIDTH = 320;
+    private static final double TEXTFIELD_MIN_HEIGHT = 23;
+    private static final double BUTTON_WIDTH = 80;
+    private static final double BUTTON_HEIGHT = 23;
+    public static final double STAGE_WIDTH = 420;
+    public static final double STAGE_HEIGHT = 500;
 
     public LoginPane(Stage stage, Font font) {
         super(stage, font);
@@ -24,7 +28,7 @@ public class LoginPane extends PaneParent {
         build();
     }
 
-    ChoiceBox<String> languageBox;
+    ChoiceBox<String> languageChanger;
     //Login
     VBox loginBox;
     Text title;
@@ -50,11 +54,36 @@ public class LoginPane extends PaneParent {
     protected void build() {
         setMinSize(200, 150);
         setVgap(10);
+        createNodes();
         addListeners();
-        add(getLanguageBox(), 1, 1);
-        add(getLoginBox(), 1, 2);
+        add(languageChanger, 1, 1);
+        add(loginBox, 1, 2);
         setAlignment(Pos.CENTER);
         adjustWindow();
+    }
+
+    private void createNodes() {
+        setLanguageChanger();
+        setTitle();
+        setUsernameLabel();
+        setUsernameField();
+        setPasswordLabel();
+        setPasswordField();
+        setSubmitButton();
+        setStatusText();
+
+        setResetText();
+        setNewPasswordLabel();
+        setNewPasswordField();
+        setRepeatPasswordLabel();
+        setRepeatPasswordField();
+        setResetButton();
+
+        setUsernameBox();
+        setPasswordBox();
+        setButtonBox();
+        setChangePasswordBox();
+        setLoginBox();
     }
 
     private void adjustWindow() {
@@ -64,171 +93,150 @@ public class LoginPane extends PaneParent {
         stage.setResizable(false);
     }
 
-    public ChoiceBox<String> getLanguageBox() {
+    private void setLanguageChanger() {
         ObservableList<String> options = FXCollections.observableArrayList(LanguagePack.getSupportedLocaleStrings());
         if (options.isEmpty()) {
             options = FXCollections.observableArrayList();
         }
-        languageBox = new ChoiceBox<>(options);
-        languageBox.getSelectionModel().selectFirst();
-        languageBox.getStyleClass().add("btn-xs");
-        languageBox.getSelectionModel().selectedItemProperty().addListener((observable, oldLanguage, newLanguage) -> {
-            controller.handleLanguageChange(newLanguage);
-        });
-        return languageBox;
+        languageChanger = new ChoiceBox<>(options);
+        languageChanger.getSelectionModel().selectFirst();
+        languageChanger.getStyleClass().add("btn-xs");
+        languageChanger.getSelectionModel().selectedItemProperty().addListener((observable, oldLanguage, newLanguage) -> controller.handleLanguageChange(newLanguage));
     }
 
-    private VBox getLoginBox() {
+    private void setLoginBox() {
         loginBox = new VBox();
         loginBox.setSpacing(15);
-        loginBox.getChildren().addAll(getTitle(), getUsernameBox(), getPasswordBox(), getButtonBox(), getChangePasswordBox(), getStatusText());
+        loginBox.getChildren().addAll(title, usernameBox, passwordBox, buttonBox, changePasswordBox, statusText);
         loginBox.setAlignment(Pos.CENTER);
-        return loginBox;
     }
 
-    private Text getTitle() {
+    private void setTitle() {
         title = new Text();
         title.textProperty().bind(getValue("login.text.title"));
         title.getStyleClass().addAll("h1", "strong");
         title.setFont(font);
-        return title;
     }
 
-    private VBox getUsernameBox() {
+    private void setUsernameBox() {
         usernameBox = new VBox();
         usernameBox.setSpacing(5);
-        usernameBox.getChildren().addAll(getUsernameLabel(), getUsernameField());
-        return usernameBox;
+        usernameBox.getChildren().addAll(usernameLabel, usernameField);
     }
 
-    private Label getUsernameLabel() {
+    private void setUsernameLabel() {
         usernameLabel = new Label();
         usernameLabel.textProperty().bind(getValue("login.username.label"));
         title.getStyleClass().addAll("lbl-default");
-        return usernameLabel;
     }
 
-    private TextField getUsernameField() {
+    private void setUsernameField() {
         usernameField = new TextField();
         usernameField.promptTextProperty().bind(getValue("login.username.field"));
         usernameField.getStyleClass().add("p");
         usernameField.setFont(font);
         //That the Fields keep their size when changing lang
-        usernameField.setMinHeight(23);
-        usernameField.setMinWidth(320);
-        return usernameField;
+        usernameField.setMinHeight(TEXTFIELD_MIN_HEIGHT);
+        usernameField.setMinWidth(TEXTFIELD_MIN_WIDTH);
     }
 
-    private VBox getPasswordBox() {
+    private void setPasswordBox() {
         passwordBox = new VBox();
         passwordBox.setSpacing(2);
-        passwordBox.getChildren().addAll(getPasswordLabel(), getPasswordField());
-        return passwordBox;
+        passwordBox.getChildren().addAll(passwordLabel, passwordField);
     }
 
-    private Label getPasswordLabel() {
+    private void setPasswordLabel() {
         passwordLabel = new Label();
         passwordLabel.textProperty().bind(getValue("login.password.label"));
         title.getStyleClass().addAll("lbl-default");
-        return passwordLabel;
     }
 
 
-    private PasswordField getPasswordField() {
+    private void setPasswordField() {
         passwordField = new PasswordField();
         passwordField.promptTextProperty().bind(getValue("login.password.field"));
         passwordField.getStyleClass().add("p");
         passwordField.setFont(font);
-        return passwordField;
     }
 
-    private HBox getButtonBox() {
+    private void setButtonBox() {
         buttonBox = new HBox();
         buttonBox.setSpacing(15);
-        buttonBox.getChildren().addAll(getSubmitButton(), getResetLink());
-        return buttonBox;
+        buttonBox.getChildren().addAll(submitButton, resetText);
     }
 
-    private Button getSubmitButton() {
+    private void setSubmitButton() {
         submitButton = new Button();
         submitButton.setOnMouseClicked(event -> controller.handleLoginAction());
         submitButton.textProperty().bind(getValue("login.button.submit"));
         submitButton.getStyleClass().addAll("btn-sm", "btn-success", "strong");
         submitButton.setFont(font);
-        submitButton.setMinWidth(80);
-        submitButton.setMinHeight(23);
-        return submitButton;
+        submitButton.setMinWidth(BUTTON_WIDTH);
+        submitButton.setMinHeight(BUTTON_HEIGHT);
     }
 
-    private Text getResetLink() {
+    private void setResetText() {
         resetText = new Text();
         resetText.textProperty().bind(getValue("login.text.reset"));
         resetText.getStyleClass().addAll("p");
         resetText.setUnderline(true);
         resetText.setOnMouseClicked(event -> controller.handleOpenResetBox());
         resetText.setFont(font);
-        return resetText;
     }
 
-    private Text getStatusText() {
+    private void setStatusText() {
         statusText = new Text();
         statusText.setFont(font);
         statusText.setVisible(false);
-        return statusText;
     }
 
 
-    private VBox getChangePasswordBox() {
+    private void setChangePasswordBox() {
         changePasswordBox = new VBox();
         changePasswordBox.setSpacing(10);
         changePasswordBox.setVisible(false);
-        changePasswordBox.getChildren().addAll(getNewPasswordLabel(), getNewPasswordField(), getRepeatPasswordLabel(), getRepeatPasswordField(), getResetButton());
-        return changePasswordBox;
+        changePasswordBox.getChildren().addAll(passwordLabel, passwordField, repeatPasswordLabel, repeatPasswordField, resetButton);
     }
 
-    private Label getNewPasswordLabel() {
+    private void setNewPasswordLabel() {
         newPasswordLabel = new Label();
         newPasswordLabel.getStyleClass().add("p");
         newPasswordLabel.textProperty().bind(getValue("login.reset.new.label"));
         newPasswordLabel.setFont(font);
-        return newPasswordLabel;
     }
 
-    private PasswordField getNewPasswordField() {
+    private void setNewPasswordField() {
         newPasswordField = new PasswordField();
         newPasswordField.promptTextProperty().bind(getValue("login.reset.new.field"));
         newPasswordField.getStyleClass().add("p");
         newPasswordField.setFont(font);
-        return newPasswordField;
     }
 
-    private Label getRepeatPasswordLabel() {
+    private void setRepeatPasswordLabel() {
         repeatPasswordLabel = new Label();
         repeatPasswordLabel.getStyleClass().add("p");
         repeatPasswordLabel.textProperty().bind(getValue("login.reset.repeat.label"));
         repeatPasswordLabel.setFont(font);
-        return repeatPasswordLabel;
     }
 
-    private TextField getRepeatPasswordField() {
+    private void setRepeatPasswordField() {
         repeatPasswordField = new PasswordField();
         repeatPasswordField.promptTextProperty().bind(getValue("login.reset.repeat.field"));
         repeatPasswordField.getStyleClass().add("p");
         repeatPasswordField.setFont(font);
-        return repeatPasswordField;
     }
 
-    private Button getResetButton() {
+    private void setResetButton() {
         resetButton = new Button();
         resetButton.setOnMouseClicked(event -> controller.handlePasswordResetButtonAction());
         resetButton.textProperty().bind(getValue("login.reset.submitButton"));
         resetButton.getStyleClass().addAll("btn-sm");
         resetButton.setFont(font);
-        resetButton.setMinWidth(80);
-        resetButton.setMinHeight(23);
-        resetButton.setMaxWidth(80);
-        resetButton.setMaxHeight(23);
-        return resetButton;
+        resetButton.setMinWidth(BUTTON_WIDTH);
+        resetButton.setMinHeight(BUTTON_HEIGHT);
+        resetButton.setMaxWidth(BUTTON_WIDTH);
+        resetButton.setMaxHeight(BUTTON_HEIGHT);
     }
 
     private void addListeners() {
