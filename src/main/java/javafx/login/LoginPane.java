@@ -17,12 +17,12 @@ import lombok.Getter;
 @Getter
 public class LoginPane extends PaneParent {
     private final LoginController controller;
+    public static final double STAGE_WIDTH = 420;
+    public static final double STAGE_HEIGHT = 500;
     private static final double TEXTFIELD_MIN_WIDTH = 320;
     private static final double TEXTFIELD_MIN_HEIGHT = 23;
     private static final double BUTTON_WIDTH = 80;
     private static final double BUTTON_HEIGHT = 23;
-    public static final double STAGE_WIDTH = 420;
-    public static final double STAGE_HEIGHT = 500;
 
     public LoginPane(Stage stage, Font font) {
         super(stage, font);
@@ -64,11 +64,9 @@ public class LoginPane extends PaneParent {
     }
 
     private void buildNodes() {
-        languageChanger = buildLanguageChanger();
         buildLoginComponents();
-
-        statusText = buildStatusText();
         buildResetComponents();
+        buildUtilities();
 
         buildSubBoxes();
         loginBox = buildLoginBox();
@@ -90,6 +88,11 @@ public class LoginPane extends PaneParent {
         repeatPasswordLabel = buildLabel("login.reset.repeat.label", "p");
         repeatPasswordField = buildPasswordField("login.reset.repeat.field", "p");
         resetButton = buildResetButton();
+    }
+
+    private void buildUtilities() {
+        languageChanger = buildLanguageChanger();
+        statusText = buildStatusText();
     }
 
     private void buildSubBoxes() {

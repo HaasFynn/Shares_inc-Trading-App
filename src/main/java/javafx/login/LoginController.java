@@ -10,6 +10,7 @@ import javafx.assets.Hash;
 import javafx.assets.LanguagePack;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.text.Text;
 import javafx.share_creation.ShareCreatorPane;
 
 import java.util.Locale;
@@ -25,8 +26,8 @@ public class LoginController extends Controller {
     }
 
     public void handleLoginAction() {
-        String username = pane.usernameField.getText();
-        String hashedPassword = Hash.getPasswordHashed(pane.passwordField.getText());
+        String username = pane.getUsernameField().getText();
+        String hashedPassword = Hash.getPasswordHashed(pane.getPasswordField().getText());
         User user = userHandler.getByPassword(username, hashedPassword);
         if (user == null) {
             setStatusText("login.status.user.not.found", true, "text-danger");
@@ -36,14 +37,14 @@ public class LoginController extends Controller {
     }
 
     private boolean areInputFieldsEmpty() {
-        return pane.usernameField.getText().isEmpty() || pane.passwordField.getText().isEmpty();
+        return pane.getUsernameField().getText().isEmpty() || pane.getPasswordField().getText().isEmpty();
     }
 
     public void handlePasswordResetButtonAction() {
-        String username = pane.usernameField.getText();
-        String hashedPassword = Hash.getPasswordHashed(pane.passwordField.getText());
-        String newPassword = pane.newPasswordField.getText();
-        String repeatPassword = pane.repeatPasswordField.getText();
+        String username = pane.getUsernameField().getText();
+        String hashedPassword = Hash.getPasswordHashed(pane.getPasswordField().getText());
+        String newPassword = pane.getNewPasswordField().getText();
+        String repeatPassword = pane.getRepeatPasswordField().getText();
         User user = userHandler.getByPassword(username, hashedPassword);
         String errorKey;
         errorKey = getErrorKey(newPassword, repeatPassword, user, hashedPassword);
@@ -52,7 +53,7 @@ public class LoginController extends Controller {
             return;
         }
         setStatusText(errorKey, true, "text-danger");
-        System.out.println(pane.usernameField.getWidth());
+        System.out.println(pane.getUsernameField().getWidth());
     }
 
     private String getErrorKey(String newPassword, String repeatPassword, User user, String hashedPassword) {
@@ -108,9 +109,10 @@ public class LoginController extends Controller {
     }
 
     private void setStatusText(String key, boolean visible, String color) {
-        pane.statusText.textProperty().bind(pane.getValue(key));
-        pane.statusText.setVisible(visible);
-        pane.statusText.getStyleClass().add(color);
+        Text statusText = pane.getStatusText();
+        statusText.textProperty().bind(pane.getValue(key));
+        statusText.setVisible(visible);
+        statusText.getStyleClass().add(color);
     }
 
     private boolean doesLoginMatch(User user, String hashedPassword) {
@@ -118,13 +120,13 @@ public class LoginController extends Controller {
     }
 
     public void handleOpenResetBox() {
-        pane.changePasswordBox.setVisible(!pane.changePasswordBox.isVisible());
+        pane.getChangePasswordBox().setVisible(!pane.getChangePasswordBox().isVisible());
     }
 
     public void handleOnEnter() {
         pane.setOnKeyPressed((KeyEvent event) -> {
             if (event.getCode() == KeyCode.ENTER) {
-                if (pane.changePasswordBox.isVisible()) {
+                if (pane.getChangePasswordBox().isVisible()) {
                     handlePasswordResetButtonAction();
                     return;
                 }

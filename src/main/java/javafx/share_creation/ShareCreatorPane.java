@@ -13,13 +13,19 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import lombok.Getter;
 
+@Getter
 public class ShareCreatorPane extends GridPane {
     final Stage stage;
     private final ShareCreatorController controller;
     private final Font font;
     public static final double STAGE_WIDTH = 815;
     public static final double STAGE_HEIGHT = 500;
+    private static final double TEXTFIELD_MIN_WIDTH = 320;
+    private static final double TEXTFIELD_MIN_HEIGHT = 23;
+    private static final double BUTTON_WIDTH = 80;
+    private static final double BUTTON_HEIGHT = 23;
 
     public ShareCreatorPane(Stage stage, Font font) {
         this.stage = stage;
@@ -28,13 +34,13 @@ public class ShareCreatorPane extends GridPane {
         build();
     }
 
-    VBox body;
-    Text title;
-    VBox inputBox;
-    Label inputLabel;
-    TextField inputField;
-    Button submitButton;
-    Text statusText;
+    private VBox body;
+    private Text title;
+    private VBox inputBox;
+    private Label inputLabel;
+    private TextField inputField;
+    private Button submitButton;
+    private Text statusText;
 
     void build() {
         setMinSize(STAGE_WIDTH, STAGE_HEIGHT);
@@ -48,75 +54,88 @@ public class ShareCreatorPane extends GridPane {
     }
 
     private void createNodes() {
-        setTitle();
-        setInputLabel();
-        setInputField();
-        setSubmitButton();
-        setStatusText();
+        title = buildTitle();
+        inputLabel = buildLabel("share.creator.input.label", "p");
+        inputField = buildInputField();
+        submitButton = buildSubmitButton();
+        statusText = buildStatusText();
 
-        setInputBox();
-        setBody();
+        inputBox = buildInputBox(inputLabel, inputField, submitButton, statusText);
+        body = buildBody(title, inputBox);
     }
 
     private void adjustWindow() {
         stage.getScene().getWindow().setHeight(STAGE_HEIGHT);
         stage.getScene().getWindow().setWidth(STAGE_WIDTH);
         stage.centerOnScreen();
-        stage.setResizable(false); //Change Goal: Adjustable without problems
+        stage.setResizable(true); //Change Goal: Adjustable without problems
     }
 
-    private void setBody() {
-        body = new VBox();
-        body.setSpacing(10);
-        body.setPadding(new Insets(20, 20, 20, 20));
-        body.getChildren().addAll(title, inputBox);
+    private VBox buildBody(Text text, VBox box1) {
+        VBox box = new VBox();
+        box.setSpacing(10);
+        box.setPadding(new Insets(20, 20, 20, 20));
+        box.getChildren().addAll(text, box1);
+        return box;
     }
 
-    private void setTitle() {
-        title = new Text();
-        title.textProperty().bind(getValueByKey("share.creator.title"));
-        title.getStyleClass().addAll("h1", "strong");
-        title.setFont(font);
+    private Text buildTitle() {
+        Text text = new Text();
+        text.textProperty().bind(getValueByKey("share.creator.title"));
+        text.getStyleClass().addAll("h1", "strong");
+        text.setFont(font);
+        return text;
     }
 
-    private void setInputBox() {
-        inputBox = new VBox();
-        inputBox.setSpacing(5);
-        inputBox.getChildren().addAll(inputLabel, inputField, submitButton, statusText);
+    private VBox buildInputBox(Label label, TextField field, Button button, Text text) {
+        VBox box = new VBox();
+        box.setSpacing(5);
+        box.getChildren().addAll(label, field, button, text);
+        return box;
     }
 
-    private void setInputLabel() {
-        inputLabel = new Label();
-        inputLabel.textProperty().bind(getValueByKey("share.creator.input.label"));
-        inputLabel.getStyleClass().add("p");
-        inputLabel.setFont(font);
+    private Label buildLabel(String key, String... styleClasses) {
+        Label label = new Label();
+        label.textProperty().bind(getValueByKey(key));
+        label.getStyleClass().addAll(styleClasses);
+        label.setFont(font);
+        return label;
     }
 
-    private void setInputField() {
-        inputField = new TextField();
-        addInputFieldListener();
-        inputField.promptTextProperty().bind(getValueByKey("share.creator.input.label"));
-        inputField.getStyleClass().add("p");
-        inputField.setFont(font);
+    private TextField buildField(String key, String... styleClasses) {
+        TextField field = new TextField();
+        field.promptTextProperty().bind(getValueByKey(key));
+        field.getStyleClass().addAll(styleClasses);
+        field.setFont(font);
+        return field;
     }
 
-    private void addInputFieldListener() {
-        inputField.textProperty().addListener((observable, oldValue, newValue) -> controller.handleInputValidation(oldValue, newValue));
+    private Button buildSubmitButton() {
+        Button button = buildButton("share.creator.submit.button", "btn-sm", "btn-success");
+        button.setOnMouseClicked(event -> controller.handleOnEnter());
+        return button;
     }
 
-    private void setSubmitButton() {
-        submitButton = new Button();
-        submitButton.textProperty().bind(getValueByKey("share.creator.submit.button"));
-        submitButton.getStyleClass().addAll("btn-sm", "btn-success");
-        submitButton.setFont(font);
-        submitButton.setOnMouseClicked(event -> controller.handleOnEnter());
+    private TextField buildInputField() {
+        TextField field = buildField("share.creator.input.label", "p");
+        field.textProperty().addListener((observable, oldValue, newValue) -> controller.handleInputValidation(oldValue, newValue));
+        return field;
     }
 
-    private void setStatusText() {
-        statusText = new Text();
-        statusText.getStyleClass().addAll("p");
-        statusText.setFont(font);
-        statusText.setVisible(false);
+    private Button buildButton(String key, String... styleClasses) {
+        Button button = new Button();
+        button.textProperty().bind(getValueByKey(key));
+        button.getStyleClass().addAll(styleClasses);
+        button.setFont(font);
+        return button;
+    }
+
+    private Text buildStatusText() {
+        Text text = new Text();
+        text.getStyleClass().addAll("p");
+        text.setFont(font);
+        text.setVisible(false);
+        return text;
     }
 
     private void addListeners() {

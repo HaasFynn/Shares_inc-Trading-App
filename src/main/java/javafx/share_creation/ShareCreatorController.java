@@ -7,7 +7,6 @@ import backend.functional.EntityManagement;
 import javafx.Controller;
 import javafx.assets.LanguagePack;
 import javafx.beans.binding.StringBinding;
-import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
 
@@ -21,12 +20,12 @@ public class ShareCreatorController extends Controller {
     }
 
     public void handleOnEnter() {
-        if (pane.inputField.getText().isEmpty()) {
+        if (pane.getInputField().getText().isEmpty()) {
             setStatusText("share.creator.statusText.number.min", true, "text-danger");
             return;
         }
         try {
-            int amount = Integer.parseInt(pane.inputField.getText());
+            int amount = Integer.parseInt(pane.getInputField().getText());
             if (shareHandler.addAll(ShareCreator.createNewShares(amount))) {
                 setStatusText("share.creator.statusText.successfully", true, "text-success");
             }
@@ -36,28 +35,29 @@ public class ShareCreatorController extends Controller {
     }
 
     private void setStatusText(String key, boolean visible, String color) {
-        pane.statusText.textProperty().bind(getValueByKey(key));
-        pane.statusText.setVisible(visible);
-        pane.statusText.getStyleClass().add(color);
+        Text statusText = pane.getStatusText();
+        statusText.textProperty().bind(getValueByKey(key));
+        statusText.setVisible(visible);
+        statusText.getStyleClass().add(color);
     }
 
 
     public void handleInputValidation(String oldValue, String newValue) {
         if (newValue.isEmpty()) return;
         try {
-            int amount = Integer.parseInt(pane.inputField.getText());
+            int amount = Integer.parseInt(pane.getInputField().getText());
             String key;
             if (amount >= 1 && amount <= 100) {
                 return;
             }
             key = (amount < 1) ? "share.creator.statusText.number.min" : "share.creator.statusText.number.max";
-            pane.inputField.setText(oldValue);
+            pane.getInputField().setText(oldValue);
             setStatusText(key, true, "text-danger");
         } catch (NumberFormatException e) {
             e.printStackTrace();
         }
         if (newValue.matches("\\d*")) return;
-        pane.inputField.setText(newValue.replaceAll("[^\\d]", ""));
+        pane.getInputField().setText(newValue.replaceAll("[^\\d]", ""));
     }
 
     public void handlePaneChange() {
