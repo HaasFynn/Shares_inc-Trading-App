@@ -12,7 +12,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import lombok.Getter;
 
+@Getter
 public class LoginPane extends PaneParent {
     private final LoginController controller;
     private static final double TEXTFIELD_MIN_WIDTH = 320;
@@ -28,33 +30,32 @@ public class LoginPane extends PaneParent {
         build();
     }
 
-    ChoiceBox<String> languageChanger;
+    private ChoiceBox<String> languageChanger;
     //Login
-    VBox loginBox;
-    Text title;
-    VBox usernameBox;
-    Label usernameLabel;
-    TextField usernameField;
-    VBox passwordBox;
-    Label passwordLabel;
-    PasswordField passwordField;
-    HBox buttonBox;
-    Button submitButton;
-    Text statusText;
+    private VBox loginBox;
+    private Text title;
+    private VBox usernameBox;
+    private Label usernameLabel;
+    private TextField usernameField;
+    private VBox passwordBox;
+    private Label passwordLabel;
+    private PasswordField passwordField;
+    private HBox buttonBox;
+    private Button submitButton;
+    private Text statusText;
     //Reset
-    Text resetText;
-    VBox changePasswordBox;
-    Label newPasswordLabel;
-    PasswordField newPasswordField;
-    Label repeatPasswordLabel;
-    PasswordField repeatPasswordField;
-    Button resetButton;
-
+    private Text resetText;
+    private VBox changePasswordBox;
+    private Label newPasswordLabel;
+    private PasswordField newPasswordField;
+    private Label repeatPasswordLabel;
+    private PasswordField repeatPasswordField;
+    private Button resetButton;
 
     protected void build() {
         setMinSize(200, 150);
         setVgap(10);
-        createNodes();
+        buildNodes();
         addListeners();
         add(languageChanger, 1, 1);
         add(loginBox, 1, 2);
@@ -62,28 +63,40 @@ public class LoginPane extends PaneParent {
         adjustWindow();
     }
 
-    private void createNodes() {
-        setLanguageChanger();
-        setTitle();
-        setUsernameLabel();
-        setUsernameField();
-        setPasswordLabel();
-        setPasswordField();
-        setSubmitButton();
-        setStatusText();
+    private void buildNodes() {
+        languageChanger = buildLanguageChanger();
+        buildLoginComponents();
 
-        setResetText();
-        setNewPasswordLabel();
-        setNewPasswordField();
-        setRepeatPasswordLabel();
-        setRepeatPasswordField();
-        setResetButton();
+        statusText = buildStatusText();
+        buildResetComponents();
 
-        setUsernameBox();
-        setPasswordBox();
-        setButtonBox();
-        setChangePasswordBox();
-        setLoginBox();
+        buildSubBoxes();
+        loginBox = buildLoginBox();
+    }
+
+    private void buildLoginComponents() {
+        title = buildTitle();
+        usernameLabel = buildUsernameLabel();
+        usernameField = buildUsernameField();
+        passwordLabel = buildPasswordLabel();
+        passwordField = buildPasswordLoginField();
+        submitButton = buildSubmitButton();
+    }
+
+    private void buildResetComponents() {
+        resetText = buildResetText();
+        newPasswordLabel = buildLabel("login.reset.new.label", "p");
+        newPasswordField = buildPasswordField("login.reset.new.field", "p");
+        repeatPasswordLabel = buildLabel("login.reset.repeat.label", "p");
+        repeatPasswordField = buildPasswordField("login.reset.repeat.field", "p");
+        resetButton = buildResetButton();
+    }
+
+    private void buildSubBoxes() {
+        usernameBox = buildUsernameBox(usernameLabel, usernameField);
+        passwordBox = buildPasswordBox(passwordLabel, passwordField);
+        buttonBox = buildButtonBox(submitButton, resetText);
+        changePasswordBox = buildChangePasswordBox(newPasswordLabel, newPasswordField, repeatPasswordLabel, repeatPasswordField, resetButton);
     }
 
     private void adjustWindow() {
@@ -93,150 +106,144 @@ public class LoginPane extends PaneParent {
         stage.setResizable(false);
     }
 
-    private void setLanguageChanger() {
+    private ChoiceBox<String> buildLanguageChanger() {
         ObservableList<String> options = FXCollections.observableArrayList(LanguagePack.getSupportedLocaleStrings());
         if (options.isEmpty()) {
             options = FXCollections.observableArrayList();
         }
-        languageChanger = new ChoiceBox<>(options);
-        languageChanger.getSelectionModel().selectFirst();
-        languageChanger.getStyleClass().add("btn-xs");
-        languageChanger.getSelectionModel().selectedItemProperty().addListener((observable, oldLanguage, newLanguage) -> controller.handleLanguageChange(newLanguage));
+        ChoiceBox<String> box = new ChoiceBox<>(options);
+        box.getSelectionModel().selectFirst();
+        box.getStyleClass().add("btn-xs");
+        box.getSelectionModel().selectedItemProperty().addListener((observable, oldLanguage, newLanguage) -> controller.handleLanguageChange(newLanguage));
+        return box;
     }
 
-    private void setLoginBox() {
-        loginBox = new VBox();
-        loginBox.setSpacing(15);
-        loginBox.getChildren().addAll(title, usernameBox, passwordBox, buttonBox, changePasswordBox, statusText);
-        loginBox.setAlignment(Pos.CENTER);
+    private VBox buildLoginBox() {
+        VBox box = new VBox();
+        box.setSpacing(15);
+        box.getChildren().addAll(title, usernameBox, passwordBox, buttonBox, changePasswordBox, statusText);
+        box.setAlignment(Pos.CENTER);
+        return box;
     }
 
-    private void setTitle() {
-        title = new Text();
-        title.textProperty().bind(getValue("login.text.title"));
-        title.getStyleClass().addAll("h1", "strong");
-        title.setFont(font);
+    private Text buildTitle() {
+        Text text = new Text();
+        text.textProperty().bind(getValue("login.text.title"));
+        text.getStyleClass().addAll("h1", "strong");
+        text.setFont(font);
+        return text;
     }
 
-    private void setUsernameBox() {
-        usernameBox = new VBox();
-        usernameBox.setSpacing(5);
-        usernameBox.getChildren().addAll(usernameLabel, usernameField);
+    private VBox buildUsernameBox(Label label, TextField field) {
+        VBox box = new VBox();
+        box.setSpacing(5);
+        box.getChildren().addAll(label, field);
+        return box;
     }
 
-    private void setUsernameLabel() {
-        usernameLabel = new Label();
-        usernameLabel.textProperty().bind(getValue("login.username.label"));
-        title.getStyleClass().addAll("lbl-default");
+    private Label buildUsernameLabel() {
+        return buildLabel("login.username.label", "p");
     }
 
-    private void setUsernameField() {
-        usernameField = new TextField();
-        usernameField.promptTextProperty().bind(getValue("login.username.field"));
-        usernameField.getStyleClass().add("p");
-        usernameField.setFont(font);
+    private TextField buildUsernameField() {
+        TextField field = new TextField();
+        field.promptTextProperty().bind(getValue("login.username.field"));
+        field.getStyleClass().add("p");
+        field.setFont(font);
         //That the Fields keep their size when changing lang
-        usernameField.setMinHeight(TEXTFIELD_MIN_HEIGHT);
-        usernameField.setMinWidth(TEXTFIELD_MIN_WIDTH);
+        field.setMinHeight(TEXTFIELD_MIN_HEIGHT);
+        field.setMinWidth(TEXTFIELD_MIN_WIDTH);
+        return field;
     }
 
-    private void setPasswordBox() {
-        passwordBox = new VBox();
-        passwordBox.setSpacing(2);
-        passwordBox.getChildren().addAll(passwordLabel, passwordField);
+    private VBox buildPasswordBox(Label label, PasswordField field) {
+        VBox box = new VBox();
+        box.setSpacing(2);
+        box.getChildren().addAll(label, field);
+        return box;
     }
 
-    private void setPasswordLabel() {
-        passwordLabel = new Label();
-        passwordLabel.textProperty().bind(getValue("login.password.label"));
-        title.getStyleClass().addAll("lbl-default");
-    }
-
-
-    private void setPasswordField() {
-        passwordField = new PasswordField();
-        passwordField.promptTextProperty().bind(getValue("login.password.field"));
-        passwordField.getStyleClass().add("p");
-        passwordField.setFont(font);
-    }
-
-    private void setButtonBox() {
-        buttonBox = new HBox();
-        buttonBox.setSpacing(15);
-        buttonBox.getChildren().addAll(submitButton, resetText);
-    }
-
-    private void setSubmitButton() {
-        submitButton = new Button();
-        submitButton.setOnMouseClicked(event -> controller.handleLoginAction());
-        submitButton.textProperty().bind(getValue("login.button.submit"));
-        submitButton.getStyleClass().addAll("btn-sm", "btn-success", "strong");
-        submitButton.setFont(font);
-        submitButton.setMinWidth(BUTTON_WIDTH);
-        submitButton.setMinHeight(BUTTON_HEIGHT);
-    }
-
-    private void setResetText() {
-        resetText = new Text();
-        resetText.textProperty().bind(getValue("login.text.reset"));
-        resetText.getStyleClass().addAll("p");
-        resetText.setUnderline(true);
-        resetText.setOnMouseClicked(event -> controller.handleOpenResetBox());
-        resetText.setFont(font);
-    }
-
-    private void setStatusText() {
-        statusText = new Text();
-        statusText.setFont(font);
-        statusText.setVisible(false);
+    private Label buildPasswordLabel() {
+        return buildLabel("login.password.label", "p");
     }
 
 
-    private void setChangePasswordBox() {
-        changePasswordBox = new VBox();
-        changePasswordBox.setSpacing(10);
-        changePasswordBox.setVisible(false);
-        changePasswordBox.getChildren().addAll(passwordLabel, passwordField, repeatPasswordLabel, repeatPasswordField, resetButton);
+    private PasswordField buildPasswordLoginField() {
+        return buildPasswordField("login.password.field", "p");
     }
 
-    private void setNewPasswordLabel() {
-        newPasswordLabel = new Label();
-        newPasswordLabel.getStyleClass().add("p");
-        newPasswordLabel.textProperty().bind(getValue("login.reset.new.label"));
-        newPasswordLabel.setFont(font);
+    private HBox buildButtonBox(Button button, Text text) {
+        HBox box = new HBox();
+        box.setSpacing(15);
+        box.getChildren().addAll(button, text);
+        return box;
     }
 
-    private void setNewPasswordField() {
-        newPasswordField = new PasswordField();
-        newPasswordField.promptTextProperty().bind(getValue("login.reset.new.field"));
-        newPasswordField.getStyleClass().add("p");
-        newPasswordField.setFont(font);
+    private Button buildSubmitButton() {
+        Button button = buildButton("login.button.submit", "btn-sm", "btn-success", "strong");
+        button.setOnMouseClicked(event -> controller.handleLoginAction());
+        return button;
     }
 
-    private void setRepeatPasswordLabel() {
-        repeatPasswordLabel = new Label();
-        repeatPasswordLabel.getStyleClass().add("p");
-        repeatPasswordLabel.textProperty().bind(getValue("login.reset.repeat.label"));
-        repeatPasswordLabel.setFont(font);
+    private Text buildResetText() {
+        Text text = new Text();
+        text.textProperty().bind(getValue("login.text.reset"));
+        text.getStyleClass().addAll("p");
+        text.setUnderline(true);
+        text.setOnMouseClicked(event -> controller.handleOpenResetBox());
+        text.setFont(font);
+        return text;
     }
 
-    private void setRepeatPasswordField() {
-        repeatPasswordField = new PasswordField();
-        repeatPasswordField.promptTextProperty().bind(getValue("login.reset.repeat.field"));
-        repeatPasswordField.getStyleClass().add("p");
-        repeatPasswordField.setFont(font);
+    private Text buildStatusText() {
+        Text text = new Text();
+        text.setFont(font);
+        text.setVisible(false);
+        return text;
     }
 
-    private void setResetButton() {
-        resetButton = new Button();
-        resetButton.setOnMouseClicked(event -> controller.handlePasswordResetButtonAction());
-        resetButton.textProperty().bind(getValue("login.reset.submitButton"));
-        resetButton.getStyleClass().addAll("btn-sm");
-        resetButton.setFont(font);
-        resetButton.setMinWidth(BUTTON_WIDTH);
-        resetButton.setMinHeight(BUTTON_HEIGHT);
-        resetButton.setMaxWidth(BUTTON_WIDTH);
-        resetButton.setMaxHeight(BUTTON_HEIGHT);
+    private VBox buildChangePasswordBox(Label label1, PasswordField passwordField1, Label label2, PasswordField passwordField2, Button button) {
+        VBox box = new VBox();
+        box.setSpacing(10);
+        box.setVisible(false);
+        box.getChildren().addAll(label1, passwordField1, label2, passwordField2, button);
+        return box;
+    }
+
+    private Label buildLabel(String key, String... styleClasses) {
+        Label label = new Label();
+        label.getStyleClass().addAll(styleClasses);
+        label.textProperty().bind(getValue(key));
+        label.setFont(font);
+        return label;
+    }
+
+    private Button buildResetButton() {
+        Button button = buildButton("login.reset.submitButton", "btn-sm");
+        button.setOnMouseClicked(event -> controller.handlePasswordResetButtonAction());
+        return button;
+    }
+
+    private Button buildButton(String key, String... styleClasses) {
+        Button button = new Button();
+        button.textProperty().bind(getValue(key));
+        button.getStyleClass().addAll(styleClasses);
+        button.setFont(font);
+        button.setMinWidth(BUTTON_WIDTH);
+        button.setMinHeight(BUTTON_HEIGHT);
+        button.setMaxWidth(BUTTON_WIDTH);
+        button.setMaxHeight(BUTTON_HEIGHT);
+        return button;
+    }
+
+    private PasswordField buildPasswordField(String key, String... styleClasses) {
+        PasswordField field = new PasswordField();
+        field.promptTextProperty().bind(getValue(key));
+        field.getStyleClass().addAll(styleClasses);
+        field.setFont(font);
+        field.setMinHeight(TEXTFIELD_MIN_HEIGHT);
+        field.setMinWidth(TEXTFIELD_MIN_WIDTH);
+        return field;
     }
 
     private void addListeners() {

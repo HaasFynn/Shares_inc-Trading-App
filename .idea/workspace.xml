@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea488597-f4e2-49aa-b467-1e44621e87b4" name="Changes" comment="add black icons">
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/SharesInc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/SharesInc.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/share_creation/ShareCreatorPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/share_creation/ShareCreatorPane.java" afterDir="false" />
+    <list default="true" id="ea488597-f4e2-49aa-b467-1e44621e87b4" name="Changes" comment="Pane-Field-Approach-1: refactor ShareCreatorPane.java -&gt; add declaring nodes function">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/login/LoginPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/login/LoginPane.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
