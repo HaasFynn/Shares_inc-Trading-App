@@ -18,8 +18,9 @@ public class ShareCreatorPane extends GridPane {
     final Stage stage;
     private final ShareCreatorController controller;
     private final Font font;
-    public final double STAGE_WIDTH = 815;
-    public final double STAGE_HEIGHT = 500;
+    public static final double STAGE_WIDTH = 815;
+    public static final double STAGE_HEIGHT = 500;
+    private static final double STANDARD_PADDING = 20;
 
     public ShareCreatorPane(Stage stage, Font font) {
         this.stage = stage;
@@ -37,7 +38,7 @@ public class ShareCreatorPane extends GridPane {
     Text statusText;
 
     void build() {
-        setMinSize(200, 150);
+        setMinSize(STAGE_WIDTH, STAGE_HEIGHT);
         setVgap(10);
         addListeners();
         add(getMainBox(), 0, 0);
@@ -65,7 +66,7 @@ public class ShareCreatorPane extends GridPane {
     private VBox getMainBox() {
         mainBox = new VBox();
         mainBox.setSpacing(10);
-        mainBox.setPadding(new Insets(20, 20, 20, 20));
+        mainBox.setPadding(new Insets(STANDARD_PADDING, STANDARD_PADDING, STANDARD_PADDING, STANDARD_PADDING));
         mainBox.getChildren().addAll(getTitle(), getInputBox());
         return mainBox;
     }
@@ -103,9 +104,7 @@ public class ShareCreatorPane extends GridPane {
     }
 
     private void addInputFieldListeners() {
-        inputField.textProperty().addListener((observable, oldValue, newValue) -> {
-            controller.handleInputValidation(oldValue, newValue);
-        });
+        inputField.textProperty().addListener((observable, oldValue, newValue) -> controller.handleInputValidation(oldValue, newValue));
     }
 
     private Button getSubmitButton() {
