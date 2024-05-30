@@ -18,8 +18,8 @@ public class ShareCreatorPane extends GridPane {
     final Stage stage;
     private final ShareCreatorController controller;
     private final Font font;
-    public final double STAGE_WIDTH = 815;
-    public final double STAGE_HEIGHT = 500;
+    public static final double STAGE_WIDTH = 815;
+    public static final double STAGE_HEIGHT = 500;
 
     public ShareCreatorPane(Stage stage, Font font) {
         this.stage = stage;
@@ -28,7 +28,7 @@ public class ShareCreatorPane extends GridPane {
         build();
     }
 
-    VBox mainBox;
+    VBox body;
     Text title;
     VBox inputBox;
     Label inputLabel;
@@ -37,13 +37,25 @@ public class ShareCreatorPane extends GridPane {
     Text statusText;
 
     void build() {
-        setMinSize(200, 150);
+        setMinSize(STAGE_WIDTH, STAGE_HEIGHT);
         setVgap(10);
+        createNodes();
         addListeners();
-        add(getMainBox(), 0, 0);
+        add(body, 0, 0);
         if (stage.isShowing()) {
             adjustWindow();
         }
+    }
+
+    private void createNodes() {
+        setTitle();
+        setInputLabel();
+        setInputField();
+        setSubmitButton();
+        setStatusText();
+
+        setInputBox();
+        setBody();
     }
 
     private void adjustWindow() {
@@ -53,6 +65,60 @@ public class ShareCreatorPane extends GridPane {
         stage.setResizable(false); //Change Goal: Adjustable without problems
     }
 
+    private void setBody() {
+        body = new VBox();
+        body.setSpacing(10);
+        body.setPadding(new Insets(20, 20, 20, 20));
+        body.getChildren().addAll(title, inputBox);
+    }
+
+    private void setTitle() {
+        title = new Text();
+        title.textProperty().bind(getValueByKey("share.creator.title"));
+        title.getStyleClass().addAll("h1", "strong");
+        title.setFont(font);
+    }
+
+    private void setInputBox() {
+        inputBox = new VBox();
+        inputBox.setSpacing(5);
+        inputBox.getChildren().addAll(inputLabel, inputField, submitButton, statusText);
+    }
+
+    private void setInputLabel() {
+        inputLabel = new Label();
+        inputLabel.textProperty().bind(getValueByKey("share.creator.input.label"));
+        inputLabel.getStyleClass().add("p");
+        inputLabel.setFont(font);
+    }
+
+    private void setInputField() {
+        inputField = new TextField();
+        addInputFieldListener();
+        inputField.promptTextProperty().bind(getValueByKey("share.creator.input.label"));
+        inputField.getStyleClass().add("p");
+        inputField.setFont(font);
+    }
+
+    private void addInputFieldListener() {
+        inputField.textProperty().addListener((observable, oldValue, newValue) -> controller.handleInputValidation(oldValue, newValue));
+    }
+
+    private void setSubmitButton() {
+        submitButton = new Button();
+        submitButton.textProperty().bind(getValueByKey("share.creator.submit.button"));
+        submitButton.getStyleClass().addAll("btn-sm", "btn-success");
+        submitButton.setFont(font);
+        submitButton.setOnMouseClicked(event -> controller.handleOnEnter());
+    }
+
+    private void setStatusText() {
+        statusText = new Text();
+        statusText.getStyleClass().addAll("p");
+        statusText.setFont(font);
+        statusText.setVisible(false);
+    }
+
     private void addListeners() {
         setOnKeyPressed((KeyEvent event) -> {
             if (event.getCode() == KeyCode.ENTER) {
@@ -60,69 +126,6 @@ public class ShareCreatorPane extends GridPane {
             }
             event.consume();
         });
-    }
-
-    private VBox getMainBox() {
-        mainBox = new VBox();
-        mainBox.setSpacing(10);
-        mainBox.setPadding(new Insets(20, 20, 20, 20));
-        mainBox.getChildren().addAll(getTitle(), getInputBox());
-        return mainBox;
-    }
-
-    private Text getTitle() {
-        title = new Text();
-        title.textProperty().bind(getValueByKey("share.creator.title"));
-        title.getStyleClass().addAll("h1", "strong");
-        title.setFont(font);
-        return title;
-    }
-
-    private VBox getInputBox() {
-        inputBox = new VBox();
-        inputBox.setSpacing(5);
-        inputBox.getChildren().addAll(getInputLabel(), getInputField(), getSubmitButton(), getStatusText());
-        return inputBox;
-    }
-
-    private Label getInputLabel() {
-        inputLabel = new Label();
-        inputLabel.textProperty().bind(getValueByKey("share.creator.input.label"));
-        inputLabel.getStyleClass().add("p");
-        inputLabel.setFont(font);
-        return inputLabel;
-    }
-
-    private TextField getInputField() {
-        inputField = new TextField();
-        addInputFieldListeners();
-        inputField.promptTextProperty().bind(getValueByKey("share.creator.input.label"));
-        inputField.getStyleClass().add("p");
-        inputField.setFont(font);
-        return inputField;
-    }
-
-    private void addInputFieldListeners() {
-        inputField.textProperty().addListener((observable, oldValue, newValue) -> {
-            controller.handleInputValidation(oldValue, newValue);
-        });
-    }
-
-    private Button getSubmitButton() {
-        submitButton = new Button();
-        submitButton.textProperty().bind(getValueByKey("share.creator.submit.button"));
-        submitButton.getStyleClass().addAll("btn-sm", "btn-success");
-        submitButton.setFont(font);
-        submitButton.setOnMouseClicked(event -> controller.handleOnEnter());
-        return submitButton;
-    }
-
-    private Text getStatusText() {
-        statusText = new Text();
-        statusText.getStyleClass().addAll("p");
-        statusText.setFont(font);
-        statusText.setVisible(false);
-        return statusText;
     }
 
     StringBinding getValueByKey(String key) {
