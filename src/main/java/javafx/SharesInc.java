@@ -1,9 +1,12 @@
 package javafx;
 
+import backend.entities.User;
 import javafx.application.Application;
 import javafx.assets.LanguagePack;
 import javafx.assets.ScreenBuilder;
+import javafx.dashboard.DashboardPane;
 import javafx.login.LoginPane;
+import javafx.main_panel.MainPanel;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Region;
@@ -29,6 +32,9 @@ public class SharesInc extends Application {
         stage.getIcons().add(new Image("image/shares_inc._logo.png"));
         LoginPane pane = new LoginPane(stage, font); //Standard
         //ShareCreatorPane pane = new ShareCreatorPane(stage, font);
+        //User user = new User();
+        //user.setUsername("fhaas");
+        //DashboardPane pane = new DashboardPane(stage, font, user);
         //MainPanel mainPanel = new MainPanel(stage, pane, font);
         scene.setRoot(pane);
         scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());

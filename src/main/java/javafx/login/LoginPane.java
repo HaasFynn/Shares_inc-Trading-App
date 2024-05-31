@@ -21,8 +21,8 @@ public class LoginPane extends PaneParent {
     public static final double STAGE_HEIGHT = 500;
     private static final double TEXTFIELD_MIN_WIDTH = 320;
     private static final double TEXTFIELD_MIN_HEIGHT = 23;
-    private static final double BUTTON_WIDTH = 80;
-    private static final double BUTTON_HEIGHT = 23;
+    private static final double BUTTON_WIDTH = 90;
+    private static final double BUTTON_HEIGHT = 27;
 
     public LoginPane(Stage stage, Font font) {
         super(stage, font);
@@ -215,8 +215,8 @@ public class LoginPane extends PaneParent {
 
     private Label buildLabel(String key, String... styleClasses) {
         Label label = new Label();
-        label.getStyleClass().addAll(styleClasses);
         label.textProperty().bind(getValue(key));
+        label.getStyleClass().addAll(styleClasses);
         label.setFont(font);
         return label;
     }

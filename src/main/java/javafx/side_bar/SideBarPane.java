@@ -28,7 +28,7 @@ public class SideBarPane extends PaneParent {
     private static final String ICONS_DIR = "image/icon";
     private static final double STAGE_WIDTH = 60;
     private static final double STAGE_HEIGHT = 500;
-    private static final double BODY_SPACING = 190;
+    private static final double BODY_SPACING = 200;
     private static final double ICON_SPACING = 20;
     private static final double ICON_WIDTH = 24;
     private static final double PADDING_TOP = ICON_WIDTH / 2;

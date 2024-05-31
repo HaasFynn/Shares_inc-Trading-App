@@ -5,8 +5,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea488597-f4e2-49aa-b467-1e44621e87b4" name="Changes" comment="Pane-Field-Approach-1: refactor ShareCreatorPane.java -&gt; add declaring nodes function">
+      <change afterPath="$PROJECT_DIR$/src/main/java/javafx/dashboard/DashboardController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/javafx/dashboard/DashboardPane.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/javafx/dashboard/ShareInfoBox.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/cf4361f7-4957-4a41-abe2-804304d8b976.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/cf4361f7-4957-4a41-abe2-804304d8b976.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_17_05_2024_10_28__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_17_05_2024_10_28__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_17_05_2024_10_31__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_17_05_2024_10_31__Changes_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_17_05_2024_11_03__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_17_05_2024_11_03__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_30_05_2024_08_21__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_30_05_2024_08_21__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_30_05_2024_08_40__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_30_05_2024_08_40__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_30_05_2024_09_02__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_30_05_2024_09_02__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_21_05_2024_13_36__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_21_05_2024_13_36__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/SharesInc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/SharesInc.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/login/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/login/LoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/javafx/login/LoginPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/login/LoginPane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/main_panel/StartPageController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/main_panel/StartPagePane.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/password_reset.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/side_bar/SideBarPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/side_bar/SideBarPane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/locale/language_de.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/locale/language_de.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/locale/language_en.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/locale/language_en.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,35 +59,7 @@
             <expand>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="Shares.inc_2" type="f1a62948:ProjectNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="Shares.inc_2" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="Shares.inc_2" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="build" type="c8890929:TasksNode$1" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="Shares.inc_2" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="help" type="c8890929:TasksNode$1" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="Shares.inc_2" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="verification" type="c8890929:TasksNode$1" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="Shares.inc_2" type="f1a62948:ProjectNode" />
-                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
+                <item name="Shares.inc-Remake" type="f1a62948:ProjectNode" />
               </path>
             </expand>
             <select />
@@ -128,69 +121,74 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Build shares_gradle.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.InputHandlerTest.doSharesGetAddedEveryTime.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.InputHandlerTest.doesLoginWork.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.InputHandlerTest.shouldFail.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.ShareCreatorTest.doesShareCreationWork.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Shares.inc_2 [:Main.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Shares_gradle [:Main.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.shares_gradle [:Main.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.shares_gradle [:SharesInc.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.shares_gradle [:temp_ShareCreatorMain.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.shares_gradle [buildDependents].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.shares_gradle [buildNeeded].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.shares_gradle [build].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.shares_gradle [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.shares_gradle [dependencies].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.shares_gradle [test].executor&quot;: &quot;Run&quot;,
-    &quot;Java Scratch.ChatGPTAPIExample.executor&quot;: &quot;Run&quot;,
-    &quot;Java Scratch.Scratch.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Pane-Field-Approach-1&quot;,
-    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/fhaas/Documents/Ergon/JavaFx/shares_gradle/src/main/resources/image/icon/grey&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
+    "Application.Main.executor": "Run",
+    "Application.SharesInc.executor": "Run",
+    "Gradle.Build Shares.inc-Remake.executor": "Run",
+    "Gradle.Build shares_gradle.executor": "Run",
+    "Gradle.Download Sources.executor": "Run",
+    "Gradle.InputHandlerTest.doSharesGetAddedEveryTime.executor": "Run",
+    "Gradle.InputHandlerTest.doesLoginWork.executor": "Run",
+    "Gradle.InputHandlerTest.shouldFail.executor": "Run",
+    "Gradle.ShareCreatorTest.doesShareCreationWork.executor": "Run",
+    "Gradle.Shares.inc-Remake [:Main.main()].executor": "Run",
+    "Gradle.Shares.inc-Remake [:SharesInc.main()].executor": "Run",
+    "Gradle.Shares.inc_2 [:Main.main()].executor": "Run",
+    "Gradle.Shares_gradle [:Main.main()].executor": "Run",
+    "Gradle.shares_gradle [:Main.main()].executor": "Run",
+    "Gradle.shares_gradle [:SharesInc.main()].executor": "Run",
+    "Gradle.shares_gradle [:temp_ShareCreatorMain.main()].executor": "Run",
+    "Gradle.shares_gradle [buildDependents].executor": "Run",
+    "Gradle.shares_gradle [buildNeeded].executor": "Run",
+    "Gradle.shares_gradle [build].executor": "Run",
+    "Gradle.shares_gradle [clean].executor": "Run",
+    "Gradle.shares_gradle [dependencies].executor": "Run",
+    "Gradle.shares_gradle [test].executor": "Run",
+    "Java Scratch.ChatGPTAPIExample.executor": "Run",
+    "Java Scratch.Scratch.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "git-widget-placeholder": "Pane-Field-Approach-1",
+    "go.import.settings.migrated": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/fhaas/Documents/Ergon/JavaFx/Shares.inc-Remake",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;ChangesTree.GroupingKeys&quot;: [
-      &quot;directory&quot;,
-      &quot;module&quot;
+  "keyToStringList": {
+    "ChangesTree.GroupingKeys": [
+      "directory",
+      "module"
     ],
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
+    "DatabaseDriversLRU": [
+      "mysql"
     ],
-    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
-      &quot;JAVA&quot;
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "JAVA"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="javafx.main_panel" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\fhaas\Documents\Ergon\JavaFx\Shares.inc-Remake\src\main\java\javafx" />
       <recent name="C:\Users\fhaas\Documents\Ergon\JavaFx\shares_gradle\src\main\resources\image\icon\grey" />
       <recent name="C:\Users\fhaas\Documents\Ergon\JavaFx\shares_gradle\src\main\resources\image" />
       <recent name="C:\Users\fhaas\OneDrive - Ergon Informatik AG\Desktop\Erste Aufgaben\Java\Shares.inc_2\src\main\resources" />
@@ -216,13 +214,20 @@
     </key>
   </component>
   <component name="RunManager" selected="Application.SharesInc">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="Shares.inc-Remake.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="SharesInc" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="javafx.SharesInc" />
-      <module name="Shares.inc_2.main" />
+      <module name="Shares.inc-Remake.main" />
       <option name="VM_PARAMETERS" value="--module-path &quot;C:\Users\fhaas\Documents\Ergon\JavaFx\javafx-sdk-22\lib&quot; --add-modules javafx.controls,javafx.fxml" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="javafx.*" />
+          <option name="PATTERN" value="javafx.login.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -274,28 +279,6 @@
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="shares_gradle [dependencies]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="dependencies" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>false</RunAsTest>
-      <method v="2" />
-    </configuration>
     <configuration name="Scratch" type="Java Scratch" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Scratch" />
       <option name="SCRATCH_FILE_URL" value="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.java" />
@@ -304,19 +287,19 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Application.Main" />
       <item itemvalue="Application.SharesInc" />
-      <item itemvalue="Gradle.shares_gradle [dependencies]" />
       <item itemvalue="Gradle.shares_gradle [build]" />
       <item itemvalue="Gradle.shares_gradle [clean]" />
       <item itemvalue="Java Scratch.Scratch" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.SharesInc" />
         <item itemvalue="Java Scratch.Scratch" />
         <item itemvalue="Gradle.shares_gradle [clean]" />
         <item itemvalue="Gradle.shares_gradle [build]" />
-        <item itemvalue="Gradle.shares_gradle [dependencies]" />
-        <item itemvalue="Application.SharesInc" />
       </list>
     </recent_temporary>
   </component>
@@ -384,6 +367,9 @@
       <workItem from="1716448043770" duration="730000" />
       <workItem from="1716960171421" duration="21242000" />
       <workItem from="1717045848455" duration="3596000" />
+      <workItem from="1717141347472" duration="695000" />
+      <workItem from="1717142057051" duration="7209000" />
+      <workItem from="1717159894161" duration="1774000" />
     </task>
     <task id="LOCAL-00001" summary="Created Files and Set Properties&#10;setUp Function made&#10;Annotations added">
       <option name="closed" value="true" />

@@ -8,10 +8,13 @@ import jakarta.persistence.EntityManager;
 import javafx.Controller;
 import javafx.assets.Hash;
 import javafx.assets.LanguagePack;
+import javafx.dashboard.DashboardPane;
+import javafx.main_panel.MainPanel;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.share_creation.ShareCreatorPane;
+import javafx.stage.Stage;
 
 import java.util.Locale;
 
@@ -33,7 +36,13 @@ public class LoginController extends Controller {
             setStatusText("login.status.user.not.found", true, "text-danger");
             return;
         }
-        pane.getScene().setRoot(new ShareCreatorPane(pane.stage, pane.font)); //Changes Pane TODO Change to MainPanel
+        switchScene(user); //Changes Pane TODO Change to MainPanel
+    }
+
+    private void switchScene(User user) {
+        Stage stage = (Stage) pane.getScene().getWindow();
+        DashboardPane dashboardPane = new DashboardPane(stage, pane.font, user);
+        pane.getScene().setRoot(new MainPanel(stage, dashboardPane, pane.font));
     }
 
     private boolean areInputFieldsEmpty() {
