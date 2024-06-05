@@ -100,7 +100,7 @@ public class DashboardPane extends PaneParent {
 
     private void buildBody() {
         buildAccountBalanceBox();
-        buildShareInfoBox();
+        //buildShareInfoBox(); TODO:
         body = buildBodyBox(surroundBox/*, shareChangesBox*/);
     }
 
@@ -126,7 +126,7 @@ public class DashboardPane extends PaneParent {
 
     private VBox buildShareChangeBox(Label label, ShareInfoBox[] infoBoxes) {
         VBox box = new VBox();
-        box.getChildren().addAll(label);
+        box.getChildren().add(label);
         addInfoBoxes(box, infoBoxes);
         return box;
     }

@@ -18,10 +18,6 @@ public class LoginPane extends PaneParent {
     private final LoginController controller;
     public static final double STAGE_WIDTH = 420;
     public static final double STAGE_HEIGHT = 500;
-    private static final double TEXTFIELD_MIN_WIDTH = 320;
-    private static final double TEXTFIELD_MIN_HEIGHT = 23;
-    private static final double BUTTON_WIDTH = 90;
-    private static final double BUTTON_HEIGHT = 27;
 
     public LoginPane(Stage stage) {
         super(stage);
@@ -54,12 +50,17 @@ public class LoginPane extends PaneParent {
     protected void build() {
         setMinSize(200, 150);
         setVgap(10);
+        addStyleSheets();
         buildNodes();
         addListeners();
         add(languageChanger, 1, 1);
         add(loginBox, 1, 2);
         setAlignment(Pos.CENTER);
         adjustWindow();
+    }
+
+    private void addStyleSheets() {
+        getStylesheets().add("style/login.css");
     }
 
     private void buildNodes() {
@@ -122,9 +123,8 @@ public class LoginPane extends PaneParent {
 
     private VBox buildLoginBox() {
         VBox box = new VBox();
-        box.setSpacing(15);
+        box.getStyleClass().add("login-box");
         box.getChildren().addAll(title, usernameBox, passwordBox, buttonBox, changePasswordBox, statusText);
-        box.setAlignment(Pos.CENTER);
         return box;
     }
 
@@ -137,7 +137,7 @@ public class LoginPane extends PaneParent {
 
     private VBox buildUsernameBox(Label label, TextField field) {
         VBox box = new VBox();
-        box.setSpacing(5);
+        box.getStyleClass().add("username-box");
         box.getChildren().addAll(label, field);
         return box;
     }
@@ -149,16 +149,13 @@ public class LoginPane extends PaneParent {
     private TextField buildUsernameField() {
         TextField field = new TextField();
         field.promptTextProperty().bind(getValue("login.username.field"));
-        field.getStyleClass().add("p");
-        //That the Fields keep their size when changing lang
-        field.setMinHeight(TEXTFIELD_MIN_HEIGHT);
-        field.setMinWidth(TEXTFIELD_MIN_WIDTH);
+        field.getStyleClass().addAll("p", "text-field");
         return field;
     }
 
     private VBox buildPasswordBox(Label label, PasswordField field) {
         VBox box = new VBox();
-        box.setSpacing(2);
+        field.getStyleClass().addAll("p", "password-box");
         box.getChildren().addAll(label, field);
         return box;
     }
@@ -174,7 +171,7 @@ public class LoginPane extends PaneParent {
 
     private HBox buildButtonBox(Button button, Text text) {
         HBox box = new HBox();
-        box.setSpacing(15);
+        box.getStyleClass().add("button-box");
         box.getChildren().addAll(button, text);
         return box;
     }
@@ -188,8 +185,7 @@ public class LoginPane extends PaneParent {
     private Text buildResetText() {
         Text text = new Text();
         text.textProperty().bind(getValue("login.text.reset"));
-        text.getStyleClass().addAll("p");
-        text.setUnderline(true);
+        text.getStyleClass().addAll("p", "reset-text");
         text.setOnMouseClicked(event -> controller.handleOpenResetBox());
         return text;
     }
@@ -197,13 +193,14 @@ public class LoginPane extends PaneParent {
     private Text buildStatusText() {
         Text text = new Text();
         text.setVisible(false);
+        text.getStyleClass().addAll("status-text");
         return text;
     }
 
     private VBox buildChangePasswordBox(Label label1, PasswordField passwordField1, Label label2, PasswordField passwordField2, Button button) {
         VBox box = new VBox();
-        box.setSpacing(10);
         box.setVisible(false);
+        box.getStyleClass().add("reset-box");
         box.getChildren().addAll(label1, passwordField1, label2, passwordField2, button);
         return box;
     }
@@ -225,10 +222,7 @@ public class LoginPane extends PaneParent {
         Button button = new Button();
         button.textProperty().bind(getValue(key));
         button.getStyleClass().addAll(styleClasses);
-        button.setMinWidth(BUTTON_WIDTH);
-        button.setMinHeight(BUTTON_HEIGHT);
-        button.setMaxWidth(BUTTON_WIDTH);
-        button.setMaxHeight(BUTTON_HEIGHT);
+        button.getStyleClass().add("button");
         return button;
     }
 
@@ -236,8 +230,6 @@ public class LoginPane extends PaneParent {
         PasswordField field = new PasswordField();
         field.promptTextProperty().bind(getValue(key));
         field.getStyleClass().addAll(styleClasses);
-        field.setMinHeight(TEXTFIELD_MIN_HEIGHT);
-        field.setMinWidth(TEXTFIELD_MIN_WIDTH);
         return field;
     }
 
