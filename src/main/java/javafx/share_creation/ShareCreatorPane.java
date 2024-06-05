@@ -26,6 +26,7 @@ public class ShareCreatorPane extends GridPane {
     private static final double TEXTFIELD_MIN_HEIGHT = 23;
     private static final double BUTTON_WIDTH = 80;
     private static final double BUTTON_HEIGHT = 23;
+    private static final double STANDARD_PADDING = 20;
 
     public ShareCreatorPane(Stage stage, Font font) {
         this.stage = stage;
