@@ -3,7 +3,6 @@ package javafx.main_panel;
 import javafx.PaneParent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.text.Font;
 import javafx.side_bar.SideBarPane;
 import javafx.stage.Stage;
 
@@ -14,9 +13,9 @@ public class MainPanel extends PaneParent {
     private static final double STAGE_WIDTH = 815;
     private static final double STAGE_HEIGHT = 500;
 
-    public MainPanel(Stage stage, GridPane pane, Font font) {
-        super(stage, font);
-        this.sideBar = new SideBarPane(stage, font);
+    public MainPanel(Stage stage, GridPane pane) {
+        super(stage);
+        this.sideBar = new SideBarPane(stage);
         this.currentPage = pane;
         build();
     }

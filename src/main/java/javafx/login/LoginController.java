@@ -12,7 +12,6 @@ import javafx.dashboard.DashboardPane;
 import javafx.main_panel.MainPanel;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -41,8 +40,8 @@ public class LoginController extends Controller {
 
     private void switchScene(User user) {
         Stage stage = (Stage) pane.getScene().getWindow();
-        DashboardPane dashboardPane = new DashboardPane(stage, pane.font, user);
-        pane.getScene().setRoot(new MainPanel(stage, dashboardPane, pane.font));
+        DashboardPane dashboardPane = new DashboardPane(stage,  user);
+        pane.getScene().setRoot(new MainPanel(stage, dashboardPane));
     }
 
     private boolean areInputFieldsEmpty() {
