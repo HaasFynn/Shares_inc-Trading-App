@@ -1,0 +1,40 @@
+.login-box {
+    -fx-spacing: 15pt;
+}
+
+.username-box {
+    -fx-spacing: 5pt;
+}
+
+.password-box {
+    -fx-spacing: 2pt;
+}
+
+.button-box {
+    -fx-spacing: 15pt;
+}
+
+.text-field {
+    -fx-min-width: 320;
+    -fx-min-height: 23;
+}
+
+.reset-text {
+    -fx-underline: true;
+}
+
+.reset-box {
+    -fx-spacing: 5pt;
+}
+
+.change-password-box {
+    -fx-spacing: 10pt;
+}
+
+.button {
+    -fx-button-min-width: 90;
+    -fx-button-min-height: 27;
+    -fx-button-max-width: 90;
+    -fx-button-max-height: 27;
+}
+

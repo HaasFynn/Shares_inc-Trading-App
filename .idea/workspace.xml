@@ -4,18 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea488597-f4e2-49aa-b467-1e44621e87b4" name="Changes" comment="css-integration: initial commit">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/style/dashboard.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+    <list default="true" id="ea488597-f4e2-49aa-b467-1e44621e87b4" name="Changes" comment="css-integration: implement css for dashboardpane, removed font usage -&gt; css">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/style/login.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/PaneParent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/PaneParent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/javafx/SharesInc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/SharesInc.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/dashboard/DashboardPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/dashboard/DashboardPane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/login/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/login/LoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/javafx/login/LoginPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/login/LoginPane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/main_panel/MainPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/main_panel/MainPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/share_creation/ShareCreatorPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/share_creation/ShareCreatorPane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/side_bar/SideBarPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/side_bar/SideBarPane.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -358,7 +351,7 @@
       <workItem from="1717415210679" duration="1268000" />
       <workItem from="1717567358304" duration="632000" />
       <workItem from="1717578714934" duration="2738000" />
-      <workItem from="1717584735486" duration="6224000" />
+      <workItem from="1717584735486" duration="7830000" />
     </task>
     <task id="LOCAL-00001" summary="Created Files and Set Properties&#10;setUp Function made&#10;Annotations added">
       <option name="closed" value="true" />
@@ -512,7 +505,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717570390973</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="css-integration: implement css for dashboardpane, removed font usage -&gt; css">
+      <option name="closed" value="true" />
+      <created>1717592676029</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1717592676029</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -564,7 +565,8 @@
     <MESSAGE value="add black icons" />
     <MESSAGE value="Pane-Field-Approach-1: create DashboardPane.java and SideBarPane.java" />
     <MESSAGE value="css-integration: initial commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="css-integration: initial commit" />
+    <MESSAGE value="css-integration: implement css for dashboardpane, removed font usage -&gt; css" />
+    <option name="LAST_COMMIT_MESSAGE" value="css-integration: implement css for dashboardpane, removed font usage -&gt; css" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
