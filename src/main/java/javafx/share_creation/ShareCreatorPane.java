@@ -10,7 +10,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import lombok.Getter;
@@ -19,7 +18,6 @@ import lombok.Getter;
 public class ShareCreatorPane extends GridPane {
     final Stage stage;
     private final ShareCreatorController controller;
-    private final Font font;
     public static final double STAGE_WIDTH = 815;
     public static final double STAGE_HEIGHT = 500;
     private static final double TEXTFIELD_MIN_WIDTH = 320;
@@ -28,10 +26,9 @@ public class ShareCreatorPane extends GridPane {
     private static final double BUTTON_HEIGHT = 23;
     private static final double STANDARD_PADDING = 20;
 
-    public ShareCreatorPane(Stage stage, Font font) {
+    public ShareCreatorPane(Stage stage) {
         this.stage = stage;
         this.controller = new ShareCreatorController(this);
-        this.font = font;
         build();
     }
 
@@ -84,7 +81,6 @@ public class ShareCreatorPane extends GridPane {
         Text text = new Text();
         text.textProperty().bind(getValueByKey("share.creator.title"));
         text.getStyleClass().addAll("h1", "strong");
-        text.setFont(font);
         return text;
     }
 
@@ -99,7 +95,6 @@ public class ShareCreatorPane extends GridPane {
         Label label = new Label();
         label.textProperty().bind(getValueByKey(key));
         label.getStyleClass().addAll(styleClasses);
-        label.setFont(font);
         return label;
     }
 
@@ -107,7 +102,6 @@ public class ShareCreatorPane extends GridPane {
         TextField field = new TextField();
         field.promptTextProperty().bind(getValueByKey(key));
         field.getStyleClass().addAll(styleClasses);
-        field.setFont(font);
         return field;
     }
 
@@ -127,14 +121,12 @@ public class ShareCreatorPane extends GridPane {
         Button button = new Button();
         button.textProperty().bind(getValueByKey(key));
         button.getStyleClass().addAll(styleClasses);
-        button.setFont(font);
         return button;
     }
 
     private Text buildStatusText() {
         Text text = new Text();
         text.getStyleClass().addAll("p");
-        text.setFont(font);
         text.setVisible(false);
         return text;
     }

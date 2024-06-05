@@ -5,7 +5,6 @@ import javafx.geometry.Insets;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import lombok.Getter;
 
@@ -33,8 +32,8 @@ public class SideBarPane extends PaneParent {
     private static final double ICON_WIDTH = 24;
     private static final double PADDING_TOP = ICON_WIDTH / 2;
 
-    public SideBarPane(Stage stage, Font font) {
-        super(stage, font);
+    public SideBarPane(Stage stage) {
+        super(stage);
         build();
     }
 

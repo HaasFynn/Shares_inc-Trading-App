@@ -9,7 +9,6 @@ import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import lombok.Getter;
@@ -24,8 +23,8 @@ public class LoginPane extends PaneParent {
     private static final double BUTTON_WIDTH = 90;
     private static final double BUTTON_HEIGHT = 27;
 
-    public LoginPane(Stage stage, Font font) {
-        super(stage, font);
+    public LoginPane(Stage stage) {
+        super(stage);
         this.controller = new LoginController(this);
         build();
     }
@@ -133,7 +132,6 @@ public class LoginPane extends PaneParent {
         Text text = new Text();
         text.textProperty().bind(getValue("login.text.title"));
         text.getStyleClass().addAll("h1", "strong");
-        text.setFont(font);
         return text;
     }
 
@@ -152,7 +150,6 @@ public class LoginPane extends PaneParent {
         TextField field = new TextField();
         field.promptTextProperty().bind(getValue("login.username.field"));
         field.getStyleClass().add("p");
-        field.setFont(font);
         //That the Fields keep their size when changing lang
         field.setMinHeight(TEXTFIELD_MIN_HEIGHT);
         field.setMinWidth(TEXTFIELD_MIN_WIDTH);
@@ -194,13 +191,11 @@ public class LoginPane extends PaneParent {
         text.getStyleClass().addAll("p");
         text.setUnderline(true);
         text.setOnMouseClicked(event -> controller.handleOpenResetBox());
-        text.setFont(font);
         return text;
     }
 
     private Text buildStatusText() {
         Text text = new Text();
-        text.setFont(font);
         text.setVisible(false);
         return text;
     }
@@ -217,7 +212,6 @@ public class LoginPane extends PaneParent {
         Label label = new Label();
         label.textProperty().bind(getValue(key));
         label.getStyleClass().addAll(styleClasses);
-        label.setFont(font);
         return label;
     }
 
@@ -231,7 +225,6 @@ public class LoginPane extends PaneParent {
         Button button = new Button();
         button.textProperty().bind(getValue(key));
         button.getStyleClass().addAll(styleClasses);
-        button.setFont(font);
         button.setMinWidth(BUTTON_WIDTH);
         button.setMinHeight(BUTTON_HEIGHT);
         button.setMaxWidth(BUTTON_WIDTH);
@@ -243,7 +236,6 @@ public class LoginPane extends PaneParent {
         PasswordField field = new PasswordField();
         field.promptTextProperty().bind(getValue(key));
         field.getStyleClass().addAll(styleClasses);
-        field.setFont(font);
         field.setMinHeight(TEXTFIELD_MIN_HEIGHT);
         field.setMinWidth(TEXTFIELD_MIN_WIDTH);
         return field;
