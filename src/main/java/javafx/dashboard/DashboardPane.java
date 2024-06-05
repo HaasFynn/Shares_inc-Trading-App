@@ -2,7 +2,6 @@ package javafx.dashboard;
 
 import backend.dao.*;
 import backend.entities.Portfolio;
-import backend.entities.Share;
 import backend.entities.User;
 import backend.functional.EntityManagement;
 import jakarta.persistence.EntityManager;
@@ -12,18 +11,13 @@ import javafx.beans.binding.StringBinding;
 import javafx.beans.property.StringProperty;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import lombok.Getter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -96,7 +90,7 @@ public class DashboardPane extends PaneParent {
         buildBody();
         page = new VBox();
         page.setPadding(new Insets(10, 10, 10, 10));
-        page.getChildren().addAll(header, accountBalanceBox);
+        page.getChildren().addAll(header, surroundBox);
     }
 
     private void buildBody() {
@@ -106,6 +100,7 @@ public class DashboardPane extends PaneParent {
         this.valueOfShares = buildValueOfSharesText();
 
         this.accountBalanceBox = buildAccountBalanceBox(accountBalanceLabel, accountBalance, valueOfSharesLabel, valueOfShares);
+        this.surroundBox = buildSurroundBox(accountBalanceBox);
     }
 
     private VBox buildHeader(Text text, Text text1) {
@@ -139,7 +134,14 @@ public class DashboardPane extends PaneParent {
     private VBox buildAccountBalanceBox(Label label, Text text, Label label1, Text text1) {
         VBox box = new VBox();
         box.getChildren().addAll(label, text, label1, text1);
-        box.setBackground(new Background(new BackgroundFill(Color.valueOf("343434"), null, null)));
+        box.setPadding(new Insets(5, 5, 5, 5));
+        return box;
+    }
+
+    private VBox buildSurroundBox(VBox accountBalanceBox) {
+        VBox box = new VBox();
+        box.setBackground(new Background(new BackgroundFill(Color.valueOf("343434"), new CornerRadii(5), null)));
+        box.getChildren().add(accountBalanceBox);
         return box;
     }
 

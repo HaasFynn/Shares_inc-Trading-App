@@ -24,7 +24,8 @@ public class MainPanel extends PaneParent {
     HBox box;
 
     protected void build() {
-        getChildren().add(getBox());
+        box = buildHBox();
+        getChildren().add(box);
         adjustWindow();
     }
 
@@ -35,8 +36,8 @@ public class MainPanel extends PaneParent {
         stage.setResizable(false);
     }
 
-    private HBox getBox() {
-        box = new HBox();
+    private HBox buildHBox() {
+        HBox box = new HBox();
         box.getChildren().addAll(sideBar, currentPage);
         return box;
     }

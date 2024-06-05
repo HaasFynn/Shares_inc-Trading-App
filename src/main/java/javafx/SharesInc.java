@@ -30,13 +30,13 @@ public class SharesInc extends Application {
     private void config(Scene scene) {
         stage.titleProperty().bind(LanguagePack.createStringBinding("window.title"));
         stage.getIcons().add(new Image("image/shares_inc._logo.png"));
-        LoginPane pane = new LoginPane(stage, font); //Standard
+        //LoginPane pane = new LoginPane(stage, font); //Standard
         //ShareCreatorPane pane = new ShareCreatorPane(stage, font);
-        //User user = new User();
-        //user.setUsername("fhaas");
-        //DashboardPane pane = new DashboardPane(stage, font, user);
-        //MainPanel mainPanel = new MainPanel(stage, pane, font);
-        scene.setRoot(pane);
+        User user = new User();
+        user.setUsername("fhaas");
+        DashboardPane pane = new DashboardPane(stage, font, user);
+        MainPanel mainPanel = new MainPanel(stage, pane, font);
+        scene.setRoot(mainPanel);
         scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
         stage.setScene(scene);
     }
