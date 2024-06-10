@@ -1,0 +1,19 @@
+.page {
+    -fx-background-color: #343434
+}
+
+.body {
+    -fx-padding: 12;
+    -fx-spacing: 200;
+}
+
+.image-box {
+    -fx-pref-width: 24;
+    -fx-pref-height: 24;
+}
+
+.image-box-container {
+    -fx-spacing: 20;
+}
+
+/*TODO: ImageView Styling*/
