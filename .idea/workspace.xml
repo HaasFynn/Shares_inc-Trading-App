@@ -4,11 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea488597-f4e2-49aa-b467-1e44621e87b4" name="Changes" comment="css-integration: implement css for dashboardpane, removed font usage -&gt; css">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/style/login.css" afterDir="false" />
+    <list default="true" id="ea488597-f4e2-49aa-b467-1e44621e87b4" name="Changes" comment="css-integration: add login.css -&gt; implement styling for LoginPane.java">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/style/sidebar.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_30_05_2024_08_21_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_30_05_2024_08_21__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_30_05_2024_09_02_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_30_05_2024_09_02__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/javafx/SharesInc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/SharesInc.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/login/LoginPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/login/LoginPane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/dashboard/DashboardPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/dashboard/DashboardPane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/side_bar/SideBarPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/side_bar/SideBarPane.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,6 +108,7 @@
     &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
     &quot;Application.Main.executor&quot;: &quot;Run&quot;,
     &quot;Application.SharesInc.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Build Shares-inc.-Trading-App.executor&quot;: &quot;Run&quot;,
     &quot;Gradle.Build Shares.inc-Remake.executor&quot;: &quot;Run&quot;,
     &quot;Gradle.Build shares_gradle.executor&quot;: &quot;Run&quot;,
     &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
@@ -351,7 +358,9 @@
       <workItem from="1717415210679" duration="1268000" />
       <workItem from="1717567358304" duration="632000" />
       <workItem from="1717578714934" duration="2738000" />
-      <workItem from="1717584735486" duration="7830000" />
+      <workItem from="1717584735486" duration="11743000" />
+      <workItem from="1717656432314" duration="698000" />
+      <workItem from="1717998325576" duration="1237000" />
     </task>
     <task id="LOCAL-00001" summary="Created Files and Set Properties&#10;setUp Function made&#10;Annotations added">
       <option name="closed" value="true" />
@@ -513,7 +522,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717592676029</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="css-integration: add login.css -&gt; implement styling for LoginPane.java">
+      <option name="closed" value="true" />
+      <created>1717593961104</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1717593961104</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -566,7 +583,8 @@
     <MESSAGE value="Pane-Field-Approach-1: create DashboardPane.java and SideBarPane.java" />
     <MESSAGE value="css-integration: initial commit" />
     <MESSAGE value="css-integration: implement css for dashboardpane, removed font usage -&gt; css" />
-    <option name="LAST_COMMIT_MESSAGE" value="css-integration: implement css for dashboardpane, removed font usage -&gt; css" />
+    <MESSAGE value="css-integration: add login.css -&gt; implement styling for LoginPane.java" />
+    <option name="LAST_COMMIT_MESSAGE" value="css-integration: add login.css -&gt; implement styling for LoginPane.java" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
@@ -582,6 +600,15 @@
           <properties class="org.hibernate.exception.SQLGrammarException" package="org.hibernate.exception" />
           <option name="timeStamp" value="18" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/javafx/side_bar/SideBarPane.java</url>
+          <line>92</line>
+          <properties class="javafx.side_bar.SideBarPane" method="buildImageContainer">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
