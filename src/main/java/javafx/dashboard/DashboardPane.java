@@ -16,6 +16,9 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import lombok.Getter;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -49,17 +52,23 @@ public class DashboardPane extends PaneParent {
     private Text welcomeText;
     private HBox body;
 
-    private VBox surroundBox;
-    private VBox accountBalanceBox;
-    private Label accountBalanceLabel;
-    private Text accountBalance;
+    private VBox accBalanceSurroundingBox;
+    private VBox accBalanceBox;
+    private Label accBalanceLabel;
+    private Text accBalance;
     private Label valueOfSharesLabel;
     private Text valueOfShares;
-
-    private VBox shareChangeBox;
-    private Label shareChangeLabel;
+    
+    private VBox stockMarketSurroundingBox;
+    private VBox stockMarketBox;
+    private Label marketOverviewLabel;
     private ShareInfoBox[] shareInfoBoxes; // 5 fit currently
 
+    private VBox newsSurroundingBox;
+    private VBox newsBox;
+    private Label newsBoxLabel;
+    private Text newsText;
+    
     @Override
     protected void build() {
         setMinSize(STAGE_WIDTH, STAGE_HEIGHT);
@@ -74,7 +83,7 @@ public class DashboardPane extends PaneParent {
     }
 
     private void addStyleSheet() {
-        getStylesheets().add("style/dashboard.css");
+        getStylesheets().addAll("style/dashboard.css", "style/share_info_box.css");
     }
 
     private void adjustWindow() {
@@ -103,31 +112,68 @@ public class DashboardPane extends PaneParent {
     }
 
     private void buildBody() {
-        buildAccountBalanceBox();
+        buildAccBalanceBox();
         buildShareChangeOverview();
-        body = buildBodyBox(surroundBox, shareChangeBox);
+        buildNewsBoxPart();
+        body = buildBodyBox(accBalanceSurroundingBox, stockMarketSurroundingBox, newsSurroundingBox);
     }
 
-    private HBox buildBodyBox(VBox box1, VBox box2) {
+    private HBox buildBodyBox(VBox box1, VBox box2, VBox box3) {
         HBox box = new HBox();
-        box.getChildren().addAll(box1, box2);
+        box.getChildren().addAll(box1, box2, box3);
+        box.getStyleClass().add("body");
         return box;
     }
 
-    private void buildAccountBalanceBox() {
-        this.accountBalanceLabel = buildLabel("dashboard.label.accountbalance", "money-label");
-        this.accountBalance = buildAccountBalanceText();
-        this.valueOfSharesLabel = buildLabel("dashboard.label.valueshares", "money-label");
+    private void buildAccBalanceBox() {
+        this.accBalanceLabel = buildLabel("dashboard.label.accountbalance", "label");
+        this.accBalance = buildAccountBalanceText();
+        this.valueOfSharesLabel = buildLabel("dashboard.label.valueshares", "label");
         this.valueOfShares = buildValueOfSharesText();
 
-        this.accountBalanceBox = buildAccountBalanceBox(accountBalanceLabel, accountBalance, valueOfSharesLabel, valueOfShares);
-        this.surroundBox = buildSurroundBox(accountBalanceBox);
+        this.accBalanceBox = buildAccBalanceBox(accBalanceLabel, accBalance, valueOfSharesLabel, valueOfShares);
+        this.accBalanceSurroundingBox = buildSurroundBox(accBalanceBox);
     }
 
     private void buildShareChangeOverview() {
-        this.shareChangeLabel = buildLabel("dashboard.shareinfo.label", "share-info-label");
+        this.marketOverviewLabel = buildLabel("dashboard.shareinfo.label", "label");
         this.shareInfoBoxes = buildShareInfoBoxes("share-info-box");
-        this.shareChangeBox = buildShareChangeBox(shareChangeLabel, shareInfoBoxes);
+        this.stockMarketBox = buildShareChangeBox(marketOverviewLabel, shareInfoBoxes);
+
+        this.stockMarketSurroundingBox = buildSurroundBox(stockMarketBox);
+    }
+
+    private void buildNewsBoxPart() {
+        this.newsBoxLabel = buildLabel("dashboard.newsbox.label", "label");
+        this.newsText = buildNewsText();
+        this.newsBox = buildNewsBox(newsBoxLabel, newsText);
+
+        this.newsSurroundingBox = buildSurroundBox(newsBox);
+    }
+
+    private Text buildNewsText() {
+        Text text = new Text(getRandomNewsText());
+        return text;
+    }
+
+    private String getRandomNewsText() {
+        String nextString;
+        ArrayList<String> newsList = new ArrayList<>();
+        try(BufferedReader br = new BufferedReader(new FileReader("assets/articles.txt"))) {
+            while((nextString = br.readLine()) != null) {
+                newsList.add(nextString);
+            }
+        } catch (Exception ignored) {
+            return "";
+        }
+        return newsList.get(rand.nextInt(0) + newsList.size());
+    }
+
+    private VBox buildNewsBox(Label label, Text text) {
+        VBox box = new VBox();
+        box.getChildren().addAll(label, text);
+        box.getStyleClass().add("news-box");
+        return box;
     }
 
     private ShareInfoBox[] buildShareInfoBoxes(String... styleClasses) {
@@ -162,6 +208,7 @@ public class DashboardPane extends PaneParent {
         VBox box = new VBox();
         box.getChildren().add(label);
         addInfoBoxes(box, infoBoxes);
+        box.getStyleClass().add("stock-market-box");
         return box;
     }
 
@@ -183,22 +230,22 @@ public class DashboardPane extends PaneParent {
     }
 
     private Text buildWelcomeText() {
-        Text text = buildText("dashboard.welcomeText", "welcome-text");
-        /*String username = userDao.getByUsername(
+        Text text = buildText("", "welcome-text");
+        String username = userDao.getByUsername(
                 user().getUsername())
                 .getFirstname();
-        text.textProperty().set(text.getText()); // TODO: add username to the welcome text*/
+        text.textProperty().set(getValueByKey("dashboard.welcomeText").get() + " " + username);
         return text;
     }
 
     private Text buildAccountBalanceText() {
         Text text = new Text();
-        text.textProperty().set(getAccountBalance() + MONEY_ENDING_SYMBOL);
+        text.textProperty().set(getAccBalance() + MONEY_ENDING_SYMBOL);
         text.getStyleClass().add("money-text");
         return text;
     }
 
-    private String getAccountBalance() {
+    private String getAccBalance() {
         String accountBalance = "0";
         if (user() != null) {
             accountBalance = String.valueOf(user().getAccountBalance());
@@ -217,16 +264,16 @@ public class DashboardPane extends PaneParent {
         return text;
     }
 
-    private VBox buildAccountBalanceBox(Label label, Text text, Label label1, Text text1) {
+    private VBox buildAccBalanceBox(Label label, Text text, Label label1, Text text1) {
         VBox box = new VBox();
         box.getChildren().addAll(label, text, label1, text1);
         box.getStyleClass().addAll("money-box");
         return box;
     }
 
-    private VBox buildSurroundBox(VBox accountBalanceBox) {
+    private VBox buildSurroundBox(VBox box1) {
         VBox box = new VBox();
-        box.getChildren().add(accountBalanceBox);
+        box.getChildren().add(box1);
         box.getStyleClass().addAll("surround-box");
         return box;
     }

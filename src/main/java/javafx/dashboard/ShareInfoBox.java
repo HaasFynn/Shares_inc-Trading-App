@@ -14,26 +14,28 @@ public class ShareInfoBox extends HBox {
 
     private void build(String shareName, double diffInPercent, boolean hasGained) {
         Color color = getColor(hasGained);
-        Text title = buildTitle(shareName, color);
+        Text name = buildName(shareName, color);
         Text changeInPercentage = buildPercentageText(diffInPercent, color);
-        getChildren().addAll(title, SPACE , changeInPercentage);
+        getChildren().addAll(name, SPACE , changeInPercentage);
+        getStyleClass().add("info-box");
     }
 
     private Text buildPercentageText(double diffInPercent, Color color) {
-        Text text = buildText(color);
+        Text text = buildText(color, "text");
         text.setText(diffInPercent + "%");
         return text;
     }
 
-    private Text buildTitle(String shareName, Color color) {
-        Text text = buildText(color);
+    private Text buildName(String shareName, Color color) {
+        Text text = buildText(color, "text");
         text.setText(shareName);
         return text;
     }
 
-    private Text buildText(Color color) {
+    private Text buildText(Color color, String... styleClasses) {
         Text text = new Text();
         text.setFill(color);
+        text.getStyleClass().addAll(styleClasses);
         return text;
     }
 
