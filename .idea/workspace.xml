@@ -5,16 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea488597-f4e2-49aa-b467-1e44621e87b4" name="Changes" comment="css-integration: add login.css -&gt; implement styling for LoginPane.java">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/style/sidebar.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_30_05_2024_08_21_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_30_05_2024_08_21__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_30_05_2024_09_02_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_30_05_2024_09_02__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/SharesInc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/SharesInc.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/javafx/dashboard/DashboardPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/dashboard/DashboardPane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/dashboard/ShareInfoBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/dashboard/ShareInfoBox.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/javafx/side_bar/SideBarPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/side_bar/SideBarPane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/locale/language_de.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/locale/language_de.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/locale/language_en.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/locale/language_en.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/style/dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/style/dashboard.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/style/sidebar.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/style/sidebar.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,8 +52,8 @@
       <list>
         <option value="Interface" />
         <option value="JUnit5 Test Class" />
-        <option value="Class" />
         <option value="CSS File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -280,11 +278,11 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
-        <item itemvalue="Application.SharesInc" />
         <item itemvalue="Java Scratch.Scratch" />
         <item itemvalue="Gradle.shares_gradle [clean]" />
         <item itemvalue="Gradle.shares_gradle [build]" />
+        <item itemvalue="Application.SharesInc" />
+        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -600,15 +598,6 @@
           <properties class="org.hibernate.exception.SQLGrammarException" package="org.hibernate.exception" />
           <option name="timeStamp" value="18" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/javafx/side_bar/SideBarPane.java</url>
-          <line>92</line>
-          <properties class="javafx.side_bar.SideBarPane" method="buildImageContainer">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="21" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>

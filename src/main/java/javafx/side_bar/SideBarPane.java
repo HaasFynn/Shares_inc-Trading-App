@@ -25,6 +25,7 @@ public class SideBarPane extends PaneParent {
 
     private ColorTheme colorTheme = ColorTheme.DARK;
     private static final String ICONS_DIR = "image/icon";
+    private static final double ICON_WIDTH = 32;
     private static final double SCENE_WIDTH = 60;
     private static final double SCENE_HEIGHT = 500;
 
@@ -44,9 +45,14 @@ public class SideBarPane extends PaneParent {
     @Override
     protected void build() {
         setMinSize(SCENE_WIDTH, SCENE_HEIGHT);
+        addStyleSheet();
         this.body = buildBody();
         getChildren().add(body);
         getStyleClass().add("page");
+    }
+
+    private void addStyleSheet() {
+        getStylesheets().add("style/sidebar.css");
     }
 
     private VBox buildBody() {
@@ -80,7 +86,7 @@ public class SideBarPane extends PaneParent {
     }
 
     private ImageView buildImageView(String iconName) {
-        ImageView imageView = new ImageView(new Image(getIconPath(iconName)));
+        ImageView imageView = new ImageView(new Image(getIconPath(iconName), ICON_WIDTH, ICON_WIDTH, false, false, true));
         imageView.getStyleClass().add("image-view");
         return imageView;
     }

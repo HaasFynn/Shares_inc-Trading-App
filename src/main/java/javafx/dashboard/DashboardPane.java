@@ -2,6 +2,7 @@ package javafx.dashboard;
 
 import backend.dao.*;
 import backend.entities.Portfolio;
+import backend.entities.Share;
 import backend.entities.User;
 import backend.functional.EntityManagement;
 import jakarta.persistence.EntityManager;
@@ -10,23 +11,25 @@ import javafx.assets.LanguagePack;
 import javafx.beans.binding.StringBinding;
 import javafx.beans.property.StringProperty;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import lombok.Getter;
 
 import java.util.List;
+import java.util.Random;
 
 @Getter
 public class DashboardPane extends PaneParent {
     private static final double STAGE_WIDTH = 815;
     private static final double STAGE_HEIGHT = 500;
     private static final String MONEY_ENDING_SYMBOL = ".-";
+    private static final int SHARE_BOX_AMOUNT = 5;
     private final UserDao userDao;
     private final PortfolioDao portfolioDao;
     private final ShareDao shareDao;
     private final String username;
+    private final Random rand = new Random();
 
     public DashboardPane(Stage stage, User user) {
         super(stage);
@@ -101,28 +104,58 @@ public class DashboardPane extends PaneParent {
 
     private void buildBody() {
         buildAccountBalanceBox();
-        //buildShareInfoBox(); TODO:
-        body = buildBodyBox(surroundBox/*, shareChangesBox*/);
+        buildShareChangeOverview();
+        body = buildBodyBox(surroundBox, shareChangeBox);
     }
 
-    private HBox buildBodyBox(VBox box1/*, VBox box2*/) {
+    private HBox buildBodyBox(VBox box1, VBox box2) {
         HBox box = new HBox();
-        box.getChildren().addAll(box1/*, box2*/);
+        box.getChildren().addAll(box1, box2);
         return box;
     }
 
     private void buildAccountBalanceBox() {
-        this.accountBalanceLabel = buildLabel("dashboard.label.accountbalance", "p", "money-label");
+        this.accountBalanceLabel = buildLabel("dashboard.label.accountbalance", "money-label");
         this.accountBalance = buildAccountBalanceText();
-        this.valueOfSharesLabel = buildLabel("dashboard.label.valueshares", "p", "money-label");
+        this.valueOfSharesLabel = buildLabel("dashboard.label.valueshares", "money-label");
         this.valueOfShares = buildValueOfSharesText();
 
         this.accountBalanceBox = buildAccountBalanceBox(accountBalanceLabel, accountBalance, valueOfSharesLabel, valueOfShares);
         this.surroundBox = buildSurroundBox(accountBalanceBox);
     }
 
-    private void buildShareInfoBox() {
+    private void buildShareChangeOverview() {
+        this.shareChangeLabel = buildLabel("dashboard.shareinfo.label", "share-info-label");
+        this.shareInfoBoxes = buildShareInfoBoxes("share-info-box");
         this.shareChangeBox = buildShareChangeBox(shareChangeLabel, shareInfoBoxes);
+    }
+
+    private ShareInfoBox[] buildShareInfoBoxes(String... styleClasses) {
+        ShareInfoBox[] shareInfoBoxes = new ShareInfoBox[SHARE_BOX_AMOUNT];
+        Share[] topShares = getTopShares();
+        if (topShares == null) {
+            return null;
+        }
+        for (int i = 0; i < SHARE_BOX_AMOUNT; i++) {
+            shareInfoBoxes[i] = new ShareInfoBox(
+                    topShares[i].getName(),
+                    getRandomRevenue(),
+                    rand.nextBoolean()
+            );
+            shareInfoBoxes[i].getStyleClass().addAll(styleClasses);
+        }
+        return shareInfoBoxes;
+    }
+
+    private double getRandomRevenue() {
+        return Math.round(rand.nextDouble(1, 8) * 100) / 100.0;
+    }
+
+    private Share[] getTopShares() {
+        Share[] shares = shareDao.getAll().toArray(new Share[0]);
+        Share[] topShares = new Share[SHARE_BOX_AMOUNT];
+        System.arraycopy(shares, 0, topShares, 0, SHARE_BOX_AMOUNT);
+        return topShares;
     }
 
     private VBox buildShareChangeBox(Label label, ShareInfoBox[] infoBoxes) {
@@ -133,8 +166,8 @@ public class DashboardPane extends PaneParent {
     }
 
     private void addInfoBoxes(VBox box, ShareInfoBox[] infoBoxes) {
-        for (ShareInfoBox currentShareInfoBox : infoBoxes) {
-            box.getChildren().add(currentShareInfoBox);
+        for (ShareInfoBox infoBox : infoBoxes) {
+            box.getChildren().add(infoBox);
         }
     }
 
@@ -152,7 +185,7 @@ public class DashboardPane extends PaneParent {
     private Text buildWelcomeText() {
         Text text = buildText("dashboard.welcomeText", "welcome-text");
         /*String username = userDao.getByUsername(
-                user.getUsername())
+                user().getUsername())
                 .getFirstname();
         text.textProperty().set(text.getText()); // TODO: add username to the welcome text*/
         return text;
