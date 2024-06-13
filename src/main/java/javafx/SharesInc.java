@@ -5,7 +5,6 @@ import javafx.application.Application;
 import javafx.assets.LanguagePack;
 import javafx.assets.ScreenBuilder;
 import javafx.dashboard.DashboardPane;
-import javafx.login.LoginPane;
 import javafx.main_panel.MainPanel;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -27,7 +26,7 @@ public class SharesInc extends Application {
 
     private void config(Scene scene) {
         stage.titleProperty().bind(LanguagePack.createStringBinding("window.title"));
-        stage.getIcons().add(new Image("image/shares_inc._logo.png"));
+        stage.getIcons().add(new Image("assets/image/shares_inc._logo.png"));
         //LoginPane pane = new LoginPane(stage); //Standard
         //ShareCreatorPane pane = new ShareCreatorPane(stage);
         User user = new User();
@@ -38,5 +37,4 @@ public class SharesInc extends Application {
         scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
         stage.setScene(scene);
     }
-
 }

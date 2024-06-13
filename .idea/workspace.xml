@@ -4,15 +4,39 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea488597-f4e2-49aa-b467-1e44621e87b4" name="Changes" comment="css-integration: add login.css -&gt; implement styling for LoginPane.java">
+    <list default="true" id="ea488597-f4e2-49aa-b467-1e44621e87b4" name="Changes" comment="css-integration: implement account balance view -&gt; configured stock market overview">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/image/icon/grey/dollar.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/style/share_info_box.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/SharesInc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/SharesInc.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/javafx/dashboard/DashboardPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/dashboard/DashboardPane.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/javafx/dashboard/ShareInfoBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/dashboard/ShareInfoBox.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/main_panel/MainPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/main_panel/MainPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/javafx/side_bar/SideBarPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/side_bar/SideBarPane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/image/icon/black/account.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/image/icon/black/account.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/image/icon/black/check.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/image/icon/black/check.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/image/icon/black/coins.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/image/icon/black/coins.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/image/icon/black/cross.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/image/icon/black/cross.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/image/icon/black/diagram.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/image/icon/black/diagram.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/image/icon/black/dollar.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/image/icon/black/dollar.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/image/icon/black/handshake.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/image/icon/black/handshake.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/image/icon/black/home.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/image/icon/black/home.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/image/icon/black/portfolio.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/image/icon/black/portfolio.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/image/icon/black/settings.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/image/icon/black/settings.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/image/icon/grey/account.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/image/icon/grey/account.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/image/icon/grey/check.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/image/icon/grey/check.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/image/icon/grey/coins.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/image/icon/grey/coins.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/image/icon/grey/cross.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/image/icon/grey/cross.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/image/icon/grey/diagram.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/image/icon/grey/diagram.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/image/icon/grey/dollar.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/articles.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/image/icon/grey/handshake.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/image/icon/grey/handshake.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/image/icon/grey/home.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/image/icon/grey/home.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/image/icon/grey/portfolio.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/image/icon/grey/portfolio.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/image/icon/grey/settings.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/image/icon/grey/settings.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/image/shares_inc._logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/image/shares_inc._logo.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/locale/language_de.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/locale/language_de.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/locale/language_en.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/locale/language_en.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/style/dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/style/dashboard.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/style/sidebar.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/style/sidebar.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,8 +76,8 @@
       <list>
         <option value="Interface" />
         <option value="JUnit5 Test Class" />
-        <option value="CSS File" />
         <option value="Class" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -177,11 +201,11 @@
       <recent name="C:\Users\fhaas\OneDrive - Ergon Informatik AG\Desktop\Erste Aufgaben\Java\Shares.inc_2\src\main\resources" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\fhaas\Documents\Ergon\JavaFx\Shares-inc.-Trading-App\src\main\resources\assets" />
+      <recent name="C:\Users\fhaas\Documents\Ergon\JavaFx\Shares-inc.-Trading-App\src\main\resources\assets\image" />
       <recent name="C:\Users\fhaas\Documents\Ergon\JavaFx\shares_gradle\src\main\resources\image\icon\black" />
       <recent name="C:\Users\fhaas\Documents\Ergon\JavaFx\shares_gradle\src\main\resources\image\icon\grey" />
       <recent name="C:\Users\fhaas\Documents\Ergon\JavaFx\shares_gradle\src\main\resources\image\icon" />
-      <recent name="C:\Users\fhaas\OneDrive - Ergon Informatik AG\Desktop\files\Erste Aufgaben\Java\shares_gradle" />
-      <recent name="C:\Users\fhaas\AppData\Roaming\JetBrains\IntelliJIdea2024.1\scratches" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -528,7 +552,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717593961104</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="css-integration: implement account balance view -&gt; configured stock market overview">
+      <option name="closed" value="true" />
+      <created>1718280478877</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1718280478877</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -582,7 +614,8 @@
     <MESSAGE value="css-integration: initial commit" />
     <MESSAGE value="css-integration: implement css for dashboardpane, removed font usage -&gt; css" />
     <MESSAGE value="css-integration: add login.css -&gt; implement styling for LoginPane.java" />
-    <option name="LAST_COMMIT_MESSAGE" value="css-integration: add login.css -&gt; implement styling for LoginPane.java" />
+    <MESSAGE value="css-integration: implement account balance view -&gt; configured stock market overview" />
+    <option name="LAST_COMMIT_MESSAGE" value="css-integration: implement account balance view -&gt; configured stock market overview" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
