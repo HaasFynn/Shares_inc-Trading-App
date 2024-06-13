@@ -33,11 +33,15 @@
 .money-label {
     -fx-font-size: 17.5pt;
     -fx-font-weight: 700;
-    -fx-text-fill: #eaeaea;
+    -fx-text-fill: #ffffff;
 }
 
 .money-text {
     -fx-font-size: 13pt;
     -fx-font-weight: bold;
-    /* -fx-text-fill: green; // TODO: change text color -> green */
+    -fx-fill: rgba(4, 180, 4, 0.94);
+}
+
+.share-info-label {
+
 }
