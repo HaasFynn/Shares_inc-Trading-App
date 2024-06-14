@@ -10,6 +10,7 @@ import javafx.PaneParent;
 import javafx.assets.LanguagePack;
 import javafx.beans.binding.StringBinding;
 import javafx.beans.property.StringProperty;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
@@ -17,6 +18,7 @@ import javafx.stage.Stage;
 import lombok.Getter;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +47,7 @@ public class DashboardPane extends PaneParent {
     }
 
     private VBox page;
+    private VBox upperPage;
 
     private VBox header;
 
@@ -58,7 +61,7 @@ public class DashboardPane extends PaneParent {
     private Text accBalance;
     private Label valueOfSharesLabel;
     private Text valueOfShares;
-    
+
     private VBox stockMarketSurroundingBox;
     private VBox stockMarketBox;
     private Label marketOverviewLabel;
@@ -68,7 +71,7 @@ public class DashboardPane extends PaneParent {
     private VBox newsBox;
     private Label newsBoxLabel;
     private Text newsText;
-    
+
     @Override
     protected void build() {
         setMinSize(STAGE_WIDTH, STAGE_HEIGHT);
@@ -83,7 +86,7 @@ public class DashboardPane extends PaneParent {
     }
 
     private void addStyleSheet() {
-        getStylesheets().addAll("style/dashboard.css", "style/share_info_box.css");
+        getStylesheets().addAll("style/dashboard.css", "style/stock_market.css");
     }
 
     private void adjustWindow() {
@@ -100,27 +103,37 @@ public class DashboardPane extends PaneParent {
     }
 
     private void createNodes() {
-        buildHeader();
-        buildBody();
-        buildPage(header, body);
+        buildUpperPage();
+        buildFooter();
+        buildPage(upperPage, newsSurroundingBox);
     }
 
-    private void buildPage(VBox header, HBox box) {
+    private void buildUpperPage() {
+        buildHeader();
+        buildBody();
+
+        this.upperPage = new VBox(header, body);
+        upperPage.getStyleClass().add("upper-page");
+    }
+
+    private void buildFooter() {
+        buildNewsBoxPart();
+    }
+
+    private void buildPage(VBox header, VBox box2) {
         page = new VBox();
         page.getStyleClass().add("page");
-        page.getChildren().addAll(header, box);
+        page.getChildren().addAll(header, box2);
     }
 
     private void buildBody() {
         buildAccBalanceBox();
         buildShareChangeOverview();
-        buildNewsBoxPart();
-        body = buildBodyBox(accBalanceSurroundingBox, stockMarketSurroundingBox, newsSurroundingBox);
+        body = buildBodyBox(accBalanceSurroundingBox, stockMarketSurroundingBox);
     }
 
-    private HBox buildBodyBox(VBox box1, VBox box2, VBox box3) {
-        HBox box = new HBox();
-        box.getChildren().addAll(box1, box2, box3);
+    private HBox buildBodyBox(VBox box1, VBox box2) {
+        HBox box = new HBox(box1, box2);
         box.getStyleClass().add("body");
         return box;
     }
@@ -153,20 +166,23 @@ public class DashboardPane extends PaneParent {
 
     private Text buildNewsText() {
         Text text = new Text(getRandomNewsText());
+        text.setWrappingWidth(690);
+        text.getStyleClass().add("news-text");
         return text;
     }
 
     private String getRandomNewsText() {
         String nextString;
         ArrayList<String> newsList = new ArrayList<>();
-        try(BufferedReader br = new BufferedReader(new FileReader("assets/articles.txt"))) {
-            while((nextString = br.readLine()) != null) {
+        File file = new File("C:/Users/fhaas/Documents/Ergon/JavaFx/Shares-inc.-Trading-App/src/main/resources/assets/articles.txt");
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+            while ((nextString = br.readLine()) != null) {
                 newsList.add(nextString);
             }
         } catch (Exception ignored) {
-            return "";
+            return "Aktuell gibt es keine Neuigkeiten. Schaue später wieder vorbei!";
         }
-        return newsList.get(rand.nextInt(0) + newsList.size());
+        return newsList.get(rand.nextInt(1) + newsList.size() - 1);
     }
 
     private VBox buildNewsBox(Label label, Text text) {
@@ -179,9 +195,6 @@ public class DashboardPane extends PaneParent {
     private ShareInfoBox[] buildShareInfoBoxes(String... styleClasses) {
         ShareInfoBox[] shareInfoBoxes = new ShareInfoBox[SHARE_BOX_AMOUNT];
         Share[] topShares = getTopShares();
-        if (topShares == null) {
-            return null;
-        }
         for (int i = 0; i < SHARE_BOX_AMOUNT; i++) {
             shareInfoBoxes[i] = new ShareInfoBox(
                     topShares[i].getName(),
@@ -232,7 +245,7 @@ public class DashboardPane extends PaneParent {
     private Text buildWelcomeText() {
         Text text = buildText("", "welcome-text");
         String username = userDao.getByUsername(
-                user().getUsername())
+                        user().getUsername())
                 .getFirstname();
         text.textProperty().set(getValueByKey("dashboard.welcomeText").get() + " " + username);
         return text;
@@ -273,6 +286,7 @@ public class DashboardPane extends PaneParent {
 
     private VBox buildSurroundBox(VBox box1) {
         VBox box = new VBox();
+        box1.setAlignment(Pos.CENTER_LEFT);
         box.getChildren().add(box1);
         box.getStyleClass().addAll("surround-box");
         return box;

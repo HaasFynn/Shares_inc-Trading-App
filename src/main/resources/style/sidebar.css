@@ -3,13 +3,11 @@
 }
 
 .body {
-    -fx-padding: 15;
-    -fx-spacing: 160;
+    -fx-padding: 16;
+    -fx-spacing: 175;
 }
 
 .image-box {
-    -fx-pref-width: 24;
-    -fx-pref-height: 24;
 }
 
 .image-box-container {

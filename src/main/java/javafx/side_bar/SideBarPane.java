@@ -25,7 +25,7 @@ public class SideBarPane extends PaneParent {
 
     private ColorTheme colorTheme = ColorTheme.DARK;
     private static final String ICONS_DIR = "assets/image/icon";
-    private static final double ICON_WIDTH = 32;
+    private static final double ICON_WIDTH = 28;
     private static final double SCENE_WIDTH = 60;
     private static final double SCENE_HEIGHT = 500;
 
