@@ -5,7 +5,7 @@ Problem was that the code wasn't seperated enough and the refactoring would have
 Building System Gradle and Hibernate for my Database connection.
 
 
-The branching/commiting may be a bit wrong. Reason for that is that i had problems with certain changes and manual rebaseing. This Issues occures mostly while visualizing my project with javaFX**.
+The branching/commiting may be a bit wrong. Reason for that is that i had problems with certain changes and manual rebasing. This Issues occures mostly while visualizing my project with javaFX**.
 
 ## **Current:**
 Visualization with JavaFX
