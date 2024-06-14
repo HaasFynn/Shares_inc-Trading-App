@@ -34,7 +34,9 @@ public class MainPanel extends CustomPane {
     protected void build() {
         box = buildHBox();
         getChildren().add(box);
-        adjustWindow();
+        if (stage.isShowing()) {
+            adjustWindow();
+        }
     }
 
     private void adjustWindow() {
