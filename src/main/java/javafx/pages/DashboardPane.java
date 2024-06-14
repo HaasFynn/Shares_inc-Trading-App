@@ -1,4 +1,4 @@
-package javafx.dashboard;
+package javafx.pages;
 
 import backend.dao.*;
 import backend.entities.Portfolio;
@@ -6,8 +6,9 @@ import backend.entities.Share;
 import backend.entities.User;
 import backend.functional.EntityManagement;
 import jakarta.persistence.EntityManager;
-import javafx.PaneParent;
+import javafx.CustomPane;
 import javafx.assets.LanguagePack;
+import javafx.assets.ShareInfoBox;
 import javafx.beans.binding.StringBinding;
 import javafx.beans.property.StringProperty;
 import javafx.geometry.Pos;
@@ -25,7 +26,7 @@ import java.util.List;
 import java.util.Random;
 
 @Getter
-public class DashboardPane extends PaneParent {
+public class DashboardPane extends CustomPane {
     private static final double STAGE_WIDTH = 815;
     private static final double STAGE_HEIGHT = 500;
     private static final String MONEY_ENDING_SYMBOL = ".-";
@@ -174,7 +175,7 @@ public class DashboardPane extends PaneParent {
     private String getRandomNewsText() {
         String nextString;
         ArrayList<String> newsList = new ArrayList<>();
-        File file = new File("C:/Users/fhaas/Documents/Ergon/JavaFx/Shares-inc.-Trading-App/src/main/resources/assets/articles.txt");
+        File file = new File("src/main/resources/assets/articles.txt");
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             while ((nextString = br.readLine()) != null) {
                 newsList.add(nextString);

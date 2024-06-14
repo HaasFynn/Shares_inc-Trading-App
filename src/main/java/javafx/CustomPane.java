@@ -3,10 +3,10 @@ package javafx;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-public abstract class PaneParent extends GridPane {
+public abstract class CustomPane extends GridPane {
     public final Stage stage;
 
-    protected PaneParent(Stage stage) {
+    protected CustomPane(Stage stage) {
         this.stage = stage;
     }
 

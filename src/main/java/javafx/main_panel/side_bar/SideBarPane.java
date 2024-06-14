@@ -1,6 +1,11 @@
-package javafx.side_bar;
+package javafx.main_panel.side_bar;
 
-import javafx.PaneParent;
+import backend.entities.User;
+import javafx.CustomPane;
+import javafx.main_panel.SideBarEventListeners;
+import javafx.main_panel.SideBarEventListenersImpl;
+import javafx.pages.*;
+import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -8,7 +13,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import lombok.Getter;
 
-public class SideBarPane extends PaneParent {
+public class SideBarPane extends CustomPane {
 
     @Getter
     private enum ColorTheme {
@@ -22,15 +27,18 @@ public class SideBarPane extends PaneParent {
         }
 
     }
-
+    private final SideBarEventListeners eventListeners;
+    private User user;
     private ColorTheme colorTheme = ColorTheme.DARK;
     private static final String ICONS_DIR = "assets/image/icon";
     private static final double ICON_WIDTH = 28;
     private static final double SCENE_WIDTH = 60;
     private static final double SCENE_HEIGHT = 500;
 
-    public SideBarPane(Stage stage) {
+    public SideBarPane(Stage stage, User user, SideBarEventListenersImpl eventListeners) {
         super(stage);
+        this.user = user;
+        this.eventListeners = eventListeners;
         build();
     }
 
@@ -60,8 +68,6 @@ public class SideBarPane extends PaneParent {
         box.getStyleClass().add("body");
         createNodes();
 
-        addListeners();
-
         VBox header = buildImageContainer(home, portfolio, trade, statistic);
         VBox footer = buildImageContainer(account, settings);
 
@@ -70,18 +76,19 @@ public class SideBarPane extends PaneParent {
     }
 
     private void createNodes() {
-        this.home = buildImageBox("home.png");
-        this.portfolio = buildImageBox("portfolio.png");
-        this.trade = buildImageBox("handshake.png");
-        this.statistic = buildImageBox("diagram.png");
-        this.account = buildImageBox("account.png");
-        this.settings = buildImageBox("settings.png");
+        this.home = buildImageBox("home.png", new DashboardPane(stage, user));
+        this.portfolio = buildImageBox("portfolio.png", new PortfolioPane(stage, user));
+        this.trade = buildImageBox("handshake.png", new TradePane(stage, user));
+        this.statistic = buildImageBox("diagram.png", new StockMarketPane(stage, user));
+        this.account = buildImageBox("account.png", new ProfilePane(stage, user));
+        this.settings = buildImageBox("settings.png", new SettingsPane(stage, user));
     }
 
-    private HBox buildImageBox(String image) {
+    private HBox buildImageBox(String image, CustomPane pane) {
         HBox box = new HBox();
         box.getStyleClass().add("image-box");
         box.getChildren().add(buildImageView(image));
+        addListener(box, pane);
         return box;
     }
 
@@ -103,8 +110,8 @@ public class SideBarPane extends PaneParent {
         return box;
     }
 
-    private void addListeners() {
-
+    private void addListener(Node node, CustomPane pane) {
+        node.setOnMouseClicked(event -> eventListeners.handleIconClick(pane));
     }
 
 }
