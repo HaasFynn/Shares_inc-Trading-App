@@ -4,7 +4,7 @@ import backend.entities.User;
 import javafx.application.Application;
 import javafx.assets.LanguagePack;
 import javafx.assets.ScreenBuilder;
-import javafx.dashboard.DashboardPane;
+import javafx.pages.DashboardPane;
 import javafx.main_panel.MainPanel;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -31,8 +31,7 @@ public class SharesInc extends Application {
         //ShareCreatorPane pane = new ShareCreatorPane(stage);
         User user = new User();
         user.setUsername("fhaas");
-        DashboardPane pane = new DashboardPane(stage, user);
-        MainPanel mainPanel = new MainPanel(stage, pane);
+        MainPanel mainPanel = new MainPanel(stage, user);
         scene.setRoot(mainPanel);
         scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
         stage.setScene(scene);

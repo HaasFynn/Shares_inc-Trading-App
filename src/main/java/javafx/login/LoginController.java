@@ -8,7 +8,7 @@ import jakarta.persistence.EntityManager;
 import javafx.Controller;
 import javafx.assets.Hash;
 import javafx.assets.LanguagePack;
-import javafx.dashboard.DashboardPane;
+import javafx.pages.DashboardPane;
 import javafx.main_panel.MainPanel;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -40,8 +40,8 @@ public class LoginController extends Controller {
 
     private void switchScene(User user) {
         Stage stage = (Stage) pane.getScene().getWindow();
-        DashboardPane dashboardPane = new DashboardPane(stage,  user);
-        pane.getScene().setRoot(new MainPanel(stage, dashboardPane));
+        MainPanel mainPanel = new MainPanel(stage, user);
+        pane.getScene().setRoot(mainPanel);
     }
 
     private boolean areInputFieldsEmpty() {

@@ -1,4 +1,4 @@
-package javafx.dashboard;
+package javafx.assets;
 
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;

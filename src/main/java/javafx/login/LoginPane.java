@@ -1,6 +1,6 @@
 package javafx.login;
 
-import javafx.PaneParent;
+import javafx.CustomPane;
 import javafx.assets.LanguagePack;
 import javafx.beans.binding.StringBinding;
 import javafx.collections.FXCollections;
@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 import lombok.Getter;
 
 @Getter
-public class LoginPane extends PaneParent {
+public class LoginPane extends CustomPane {
     private final LoginController controller;
     public static final double STAGE_WIDTH = 420;
     public static final double STAGE_HEIGHT = 500;
