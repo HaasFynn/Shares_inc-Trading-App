@@ -8,6 +8,7 @@ import backend.functional.EntityManagement;
 import jakarta.persistence.EntityManager;
 import javafx.CustomPane;
 import javafx.assets.LanguagePack;
+import javafx.assets.NewsBox;
 import javafx.assets.ShareInfoBox;
 import javafx.beans.binding.StringBinding;
 import javafx.beans.property.StringProperty;
@@ -66,12 +67,9 @@ public class DashboardPane extends CustomPane {
     private VBox stockMarketSurroundingBox;
     private VBox stockMarketBox;
     private Label marketOverviewLabel;
-    private ShareInfoBox[] shareInfoBoxes; // 5 fit currently
+    private ShareInfoBox[] shareInfoBoxes; /* 5 fit currently*/
 
-    private VBox newsSurroundingBox;
-    private VBox newsBox;
-    private Label newsBoxLabel;
-    private Text newsText;
+    private NewsBox newsBox;
 
     @Override
     protected void build() {
@@ -81,20 +79,10 @@ public class DashboardPane extends CustomPane {
         createNodes();
         addListeners();
         add(page, 0, 0);
-        if (stage.isShowing()) {
-            adjustWindow();
-        }
     }
 
     private void addStyleSheet() {
         getStylesheets().addAll("style/dashboard.css", "style/stock_market.css");
-    }
-
-    private void adjustWindow() {
-        stage.getScene().getWindow().setHeight(STAGE_HEIGHT);
-        stage.getScene().getWindow().setWidth(STAGE_WIDTH);
-        stage.centerOnScreen();
-        stage.setResizable(true); //Change Goal: Adjustable without problems
     }
 
     private void buildHeader() {
@@ -105,8 +93,12 @@ public class DashboardPane extends CustomPane {
 
     private void createNodes() {
         buildUpperPage();
-        buildFooter();
-        buildPage(upperPage, newsSurroundingBox);
+        buildNewsBox();
+        buildPage(upperPage, newsBox);
+    }
+
+    private void buildNewsBox() {
+        this.newsBox = new NewsBox();
     }
 
     private void buildUpperPage() {
@@ -115,10 +107,6 @@ public class DashboardPane extends CustomPane {
 
         this.upperPage = new VBox(header, body);
         upperPage.getStyleClass().add("upper-page");
-    }
-
-    private void buildFooter() {
-        buildNewsBoxPart();
     }
 
     private void buildPage(VBox header, VBox box2) {
@@ -157,41 +145,6 @@ public class DashboardPane extends CustomPane {
         this.stockMarketSurroundingBox = buildSurroundBox(stockMarketBox);
     }
 
-    private void buildNewsBoxPart() {
-        this.newsBoxLabel = buildLabel("dashboard.newsbox.label", "label");
-        this.newsText = buildNewsText();
-        this.newsBox = buildNewsBox(newsBoxLabel, newsText);
-
-        this.newsSurroundingBox = buildSurroundBox(newsBox);
-    }
-
-    private Text buildNewsText() {
-        Text text = new Text(getRandomNewsText());
-        text.setWrappingWidth(690);
-        text.getStyleClass().add("news-text");
-        return text;
-    }
-
-    private String getRandomNewsText() {
-        String nextString;
-        ArrayList<String> newsList = new ArrayList<>();
-        File file = new File("src/main/resources/assets/articles.txt");
-        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-            while ((nextString = br.readLine()) != null) {
-                newsList.add(nextString);
-            }
-        } catch (Exception ignored) {
-            return "Aktuell gibt es keine Neuigkeiten. Schaue später wieder vorbei!";
-        }
-        return newsList.get(rand.nextInt(1) + newsList.size() - 1);
-    }
-
-    private VBox buildNewsBox(Label label, Text text) {
-        VBox box = new VBox();
-        box.getChildren().addAll(label, text);
-        box.getStyleClass().add("news-box");
-        return box;
-    }
 
     private ShareInfoBox[] buildShareInfoBoxes(String... styleClasses) {
         ShareInfoBox[] shareInfoBoxes = new ShareInfoBox[SHARE_BOX_AMOUNT];
