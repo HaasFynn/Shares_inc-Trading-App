@@ -34,7 +34,7 @@ public class MainPanel extends PaneParent {
         stage.setHeight(STAGE_HEIGHT);
         stage.setWidth(STAGE_WIDTH);
         stage.centerOnScreen();
-        stage.setResizable(false);
+        stage.setResizable(true);
     }
 
     private HBox buildHBox() {

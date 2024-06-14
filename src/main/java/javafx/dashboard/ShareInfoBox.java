@@ -21,13 +21,13 @@ public class ShareInfoBox extends HBox {
     }
 
     private Text buildPercentageText(double diffInPercent, Color color) {
-        Text text = buildText(color, "text");
+        Text text = buildText(color, "stock-market-text");
         text.setText(diffInPercent + "%");
         return text;
     }
 
     private Text buildName(String shareName, Color color) {
-        Text text = buildText(color, "text");
+        Text text = buildText(color, "stock-market-text");
         text.setText(shareName);
         return text;
     }
@@ -40,6 +40,6 @@ public class ShareInfoBox extends HBox {
     }
 
     private Color getColor(boolean hasGained) {
-        return hasGained ? Color.GREEN : Color.RED;
+        return hasGained ? Color.rgb(4, 180, 4, 0.94) : Color.RED;
     }
 }
