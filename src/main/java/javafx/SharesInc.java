@@ -4,7 +4,6 @@ import backend.entities.User;
 import javafx.application.Application;
 import javafx.assets.LanguagePack;
 import javafx.assets.ScreenBuilder;
-import javafx.pages.DashboardPane;
 import javafx.main_panel.MainPanel;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
