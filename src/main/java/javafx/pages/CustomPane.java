@@ -1,4 +1,4 @@
-package javafx;
+package javafx.pages;
 
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;

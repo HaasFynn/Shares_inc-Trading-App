@@ -4,13 +4,38 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea488597-f4e2-49aa-b467-1e44621e87b4" name="Changes" comment="merged">
-      <change afterPath="$PROJECT_DIR$/src/main/java/javafx/assets/NewsBox.java" afterDir="false" />
+    <list default="true" id="ea488597-f4e2-49aa-b467-1e44621e87b4" name="Changes" comment="trading-page: implement trading pane, refactore news block -&gt; own class">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/image/icon/black/filter.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/image/icon/black/lens.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/image/icon/grey/filter.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/image/icon/grey/lens.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/style/news_box.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/style/trade.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/controllers/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/CustomPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/pages/CustomPane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/assets/NewsBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/assets/NewsBox.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/login/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/controllers/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/login/LoginPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/pages/LoginPane.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/javafx/main_panel/MainPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/main_panel/MainPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/main_panel/SideBarEventListeners.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/main_panel/SideBarEventListeners.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/main_panel/SideBarEventListenersImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/main_panel/SideBarEventListenersImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/main_panel/side_bar/SideBarPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/main_panel/side_bar/SideBarPane.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/javafx/pages/DashboardPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/pages/DashboardPane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/pages/PortfolioPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/pages/PortfolioPane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/pages/ProfilePane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/pages/ProfilePane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/pages/SettingsPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/pages/SettingsPane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/pages/StockMarketPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/pages/StockMarketPane.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/javafx/pages/TradePane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/pages/TradePane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/side_bar/SideBarPane.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/share_creation/ShareCreatorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/controllers/ShareCreatorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/share_creation/ShareCreatorPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/pages/ShareCreatorPane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/locale/language_de.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/locale/language_de.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/locale/language_en.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/locale/language_en.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/style/dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/style/dashboard.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/style/sidebar.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/style/sidebar.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/style/stock_market.css" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,8 +75,8 @@
       <list>
         <option value="Interface" />
         <option value="JUnit5 Test Class" />
-        <option value="CSS File" />
         <option value="Class" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -138,7 +163,7 @@
     "git-widget-placeholder": "feature/trading-page",
     "go.import.settings.migrated": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/fhaas/Documents/Ergon/JavaFx/Shares.inc-Remake",
+    "last_opened_file_path": "C:/Users/fhaas/Documents/Ergon/JavaFx/Shares-inc.-Trading-App/src/main/resources/assets/image/icon/black",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -169,17 +194,18 @@
       <recent name="javafx.main_panel" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\fhaas\Documents\Ergon\JavaFx\Shares-inc.-Trading-App\src\main\resources\assets\image\icon\black" />
       <recent name="C:\Users\fhaas\Documents\Ergon\JavaFx\Shares.inc-Remake\src\main\java\javafx" />
       <recent name="C:\Users\fhaas\Documents\Ergon\JavaFx\shares_gradle\src\main\resources\image\icon\grey" />
       <recent name="C:\Users\fhaas\Documents\Ergon\JavaFx\shares_gradle\src\main\resources\image" />
       <recent name="C:\Users\fhaas\OneDrive - Ergon Informatik AG\Desktop\Erste Aufgaben\Java\Shares.inc_2\src\main\resources" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\fhaas\Documents\Ergon\JavaFx\Shares-inc.-Trading-App\src\main\resources\assets\image\icon\grey" />
       <recent name="C:\Users\fhaas\Documents\Ergon\JavaFx\Shares-inc.-Trading-App\src\main\resources\assets" />
       <recent name="C:\Users\fhaas\Documents\Ergon\JavaFx\Shares-inc.-Trading-App\src\main\resources\assets\image" />
       <recent name="C:\Users\fhaas\Documents\Ergon\JavaFx\shares_gradle\src\main\resources\image\icon\black" />
       <recent name="C:\Users\fhaas\Documents\Ergon\JavaFx\shares_gradle\src\main\resources\image\icon\grey" />
-      <recent name="C:\Users\fhaas\Documents\Ergon\JavaFx\shares_gradle\src\main\resources\image\icon" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -204,11 +230,11 @@
     </configuration>
     <configuration name="SharesInc" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="javafx.SharesInc" />
-      <module name="Shares.inc-Remake.main" />
+      <module name="Shares-inc.-Trading-App.main" />
       <option name="VM_PARAMETERS" value="--module-path &quot;C:\Users\fhaas\Documents\Ergon\JavaFx\javafx-sdk-22\lib&quot; --add-modules javafx.controls,javafx.fxml" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="javafx.login.*" />
+          <option name="PATTERN" value="javafx.pages.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -267,6 +293,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="Shares.inc-Remake.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="Shares.inc-Remake.main" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.Main" />
       <item itemvalue="Application.SharesInc" />
@@ -276,10 +315,10 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.SharesInc" />
         <item itemvalue="Java Scratch.Scratch" />
         <item itemvalue="Gradle.shares_gradle [clean]" />
         <item itemvalue="Gradle.shares_gradle [build]" />
-        <item itemvalue="Application.SharesInc" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -358,6 +397,10 @@
       <workItem from="1717656432314" duration="698000" />
       <workItem from="1717998325576" duration="1237000" />
       <workItem from="1718345167659" duration="3084000" />
+      <workItem from="1718370351852" duration="4146000" />
+      <workItem from="1718562132805" duration="69000" />
+      <workItem from="1718629646810" duration="157000" />
+      <workItem from="1718775222152" duration="10366000" />
     </task>
     <task id="LOCAL-00001" summary="Created Files and Set Properties&#10;setUp Function made&#10;Annotations added">
       <option name="closed" value="true" />
@@ -551,7 +594,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718363601588</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="trading-page: implement trading pane, refactore news block -&gt; own class">
+      <option name="closed" value="true" />
+      <created>1718369476895</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1718369476895</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -584,7 +635,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Created Files and Set Properties&#10;setUp Function made&#10;Annotations added" />
     <MESSAGE value="log4j.properties added. log4j=OFF&#10;Logs disabled*&#10;User and Shares can be added&#10;Already existing Objects won't be replaced" />
     <MESSAGE value="disabled warnings in build.gradle" />
     <MESSAGE value="Original Commit didnt go through March 7th&#10;Changed:&#10;System works (asking user stuff)&#10;To be done:&#10;- Db gets cleared after every start&#10;- On changing User Inf, user doesn't update it duplicates entry with new Inf" />
@@ -609,7 +659,8 @@
     <MESSAGE value="delete SideBarController.java" />
     <MESSAGE value="merge" />
     <MESSAGE value="merged" />
-    <option name="LAST_COMMIT_MESSAGE" value="merged" />
+    <MESSAGE value="trading-page: implement trading pane, refactore news block -&gt; own class" />
+    <option name="LAST_COMMIT_MESSAGE" value="trading-page: implement trading pane, refactore news block -&gt; own class" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>

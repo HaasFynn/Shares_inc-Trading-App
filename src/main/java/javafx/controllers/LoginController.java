@@ -1,15 +1,14 @@
-package javafx.login;
+package javafx.controllers;
 
 import backend.dao.UserDao;
 import backend.dao.UserDaoImpl;
 import backend.entities.User;
 import backend.functional.EntityManagement;
 import jakarta.persistence.EntityManager;
-import javafx.Controller;
 import javafx.assets.Hash;
 import javafx.assets.LanguagePack;
-import javafx.pages.DashboardPane;
 import javafx.main_panel.MainPanel;
+import javafx.pages.LoginPane;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;

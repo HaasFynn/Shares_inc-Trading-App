@@ -1,0 +1,39 @@
+.page {
+    -fx-spacing: 45px;
+    -fx-padding: 15px;
+}
+
+.header {
+    -fx-spacing: 8px;
+}
+
+.title {
+    -fx-font-size: 25pt;
+    -fx-font-weight: bold;
+}
+
+.body {
+    -fx-spacing: 50px;
+}
+
+.surround-box {
+    -fx-background-color: #343434;
+    -fx-background-radius: 5px;
+    -fx-padding: 5px;
+    -fx-fit-to-height: true;
+    -fx-fit-to-width: true;
+}
+
+.stock-market-text {
+    -fx-font-weight: bold;
+    -fx-font-size: 13;
+}
+
+.share-search-box {
+    -fx-min-width: 500px;
+    -fx-min-height: 200px;
+}
+
+.input-field {
+
+}

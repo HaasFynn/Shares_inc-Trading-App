@@ -1,12 +1,12 @@
-package javafx.share_creation;
+package javafx.controllers;
 
 import backend.creators.ShareCreator;
 import backend.dao.ShareDao;
 import backend.dao.ShareDaoImpl;
 import backend.functional.EntityManagement;
-import javafx.Controller;
 import javafx.assets.LanguagePack;
 import javafx.beans.binding.StringBinding;
+import javafx.pages.ShareCreatorPane;
 import javafx.scene.text.Text;
 
 

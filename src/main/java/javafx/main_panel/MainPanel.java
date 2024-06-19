@@ -1,7 +1,7 @@
 package javafx.main_panel;
 
 import backend.entities.User;
-import javafx.CustomPane;
+import javafx.pages.CustomPane;
 import javafx.pages.*;
 import javafx.scene.layout.HBox;
 import javafx.main_panel.side_bar.SideBarPane;

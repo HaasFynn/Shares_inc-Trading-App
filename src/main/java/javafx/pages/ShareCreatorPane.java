@@ -1,4 +1,4 @@
-package javafx.share_creation;
+package javafx.pages;
 
 import javafx.assets.LanguagePack;
 import javafx.beans.binding.StringBinding;
@@ -11,6 +11,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.controllers.ShareCreatorController;
 import javafx.stage.Stage;
 import lombok.Getter;
 

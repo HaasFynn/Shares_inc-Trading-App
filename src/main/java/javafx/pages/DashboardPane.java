@@ -6,7 +6,6 @@ import backend.entities.Share;
 import backend.entities.User;
 import backend.functional.EntityManagement;
 import jakarta.persistence.EntityManager;
-import javafx.CustomPane;
 import javafx.assets.LanguagePack;
 import javafx.assets.NewsBox;
 import javafx.assets.ShareInfoBox;
@@ -19,10 +18,6 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import lombok.Getter;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -82,7 +77,7 @@ public class DashboardPane extends CustomPane {
     }
 
     private void addStyleSheet() {
-        getStylesheets().addAll("style/dashboard.css", "style/stock_market.css");
+        getStylesheets().addAll("style/dashboard.css", "style/news_box.css");
     }
 
     private void buildHeader() {
