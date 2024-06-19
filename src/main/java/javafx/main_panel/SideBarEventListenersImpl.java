@@ -1,7 +1,7 @@
 package javafx.main_panel;
 
 import backend.entities.User;
-import javafx.CustomPane;
+import javafx.pages.CustomPane;
 import javafx.stage.Stage;
 
 public class SideBarEventListenersImpl implements SideBarEventListeners {
@@ -19,6 +19,7 @@ public class SideBarEventListenersImpl implements SideBarEventListeners {
     @Override
     public void handleIconClick(CustomPane pane) {
         mainPanel.switchPage(pane);
+        System.out.println("This is the new Pane: " + pane);
     }
 
 }

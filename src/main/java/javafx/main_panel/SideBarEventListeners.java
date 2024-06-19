@@ -1,6 +1,6 @@
 package javafx.main_panel;
 
-import javafx.CustomPane;
+import javafx.pages.CustomPane;
 
 public interface SideBarEventListeners {
 

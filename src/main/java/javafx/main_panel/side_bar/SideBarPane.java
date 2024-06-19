@@ -1,7 +1,7 @@
 package javafx.main_panel.side_bar;
 
 import backend.entities.User;
-import javafx.CustomPane;
+import javafx.pages.CustomPane;
 import javafx.main_panel.SideBarEventListeners;
 import javafx.main_panel.SideBarEventListenersImpl;
 import javafx.pages.*;

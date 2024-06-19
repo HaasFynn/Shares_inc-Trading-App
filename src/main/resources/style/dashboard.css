@@ -57,17 +57,3 @@
     -fx-font-weight: bold;
     -fx-fill: rgba(4, 180, 4, 0.94);
 }
-
-.news-box {
-    -fx-min-width: 700px;
-    -fx-max-width: 700px;
-    -fx-min-height: 75px;
-    -fx-spacing: 8px;
-    -fx-padding: 5px;
-}
-
-.news-text {
-    -fx-fill: #ffffff;
-    -fx-font-weight: bold;
-    -fx-font-size: 13;
-}

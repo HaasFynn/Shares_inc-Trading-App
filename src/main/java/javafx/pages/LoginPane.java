@@ -1,11 +1,11 @@
-package javafx.login;
+package javafx.pages;
 
-import javafx.CustomPane;
 import javafx.assets.LanguagePack;
 import javafx.beans.binding.StringBinding;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
+import javafx.controllers.LoginController;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -237,7 +237,7 @@ public class LoginPane extends CustomPane {
         controller.handleOnEnter();
     }
 
-    StringBinding getValue(String key) {
+    public StringBinding getValue(String key) {
         return LanguagePack.createStringBinding(key);
     }
 }

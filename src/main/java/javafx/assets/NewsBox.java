@@ -31,7 +31,7 @@ public class NewsBox extends VBox {
     }
 
     private void createNodes() {
-        this.newsBoxLabel = buildLabel("dashboard.newsbox.label", "label");
+        this.newsBoxLabel = buildLabel("dashboard.newsbox.label", "news-box-label");
         this.newsText = buildNewsText();
         this.newsBox = buildNewsBox(newsBoxLabel, newsText);
 
@@ -71,7 +71,7 @@ public class NewsBox extends VBox {
         VBox box = new VBox();
         box1.setAlignment(Pos.CENTER_LEFT);
         box.getChildren().add(box1);
-        box.getStyleClass().addAll("surround-box");
+        box.getStyleClass().addAll("news-surround-box");
         return box;
     }
 
