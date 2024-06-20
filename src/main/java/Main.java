@@ -1,8 +1,8 @@
-import backend.dao.PortfolioDaoImpl;
-import backend.dao.ShareDaoImpl;
-import backend.dao.UserDaoImpl;
-import backend.functional.EntityManagement;
-import backend.functional.InputHandler;
+import console.dao.PortfolioDaoImpl;
+import console.dao.ShareDaoImpl;
+import console.dao.UserDaoImpl;
+import console.functional.EntityManagement;
+import console.functional.InputHandler;
 import jakarta.persistence.EntityManager;
 
 public class Main {

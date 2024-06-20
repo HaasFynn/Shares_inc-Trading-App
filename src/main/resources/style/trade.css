@@ -37,3 +37,15 @@
 .input-field {
 
 }
+
+.icon-box {
+    -fx-pref-width: 20px;
+    -fx-pref-height: 20px;
+}
+
+.filter-list {
+    /*
+    min height
+    min width
+    */
+}

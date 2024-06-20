@@ -3,20 +3,28 @@ package javafx.assets;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import lombok.Getter;
 
+@Getter
 public class ShareInfoBox extends HBox {
 
     private final Text SPACE = new Text(" - ");
+    private String shareName;
+    private double diffInPercent;
+    private boolean hasGained;
 
     public ShareInfoBox(String shareName, double changeInPercentage, boolean hasGained) {
-        build(shareName, changeInPercentage, hasGained);
+        this.shareName = shareName;
+        diffInPercent = changeInPercentage;
+        this.hasGained = hasGained;
+        build();
     }
 
-    private void build(String shareName, double diffInPercent, boolean hasGained) {
+    private void build() {
         Color color = getColor(hasGained);
         Text name = buildName(shareName, color);
         Text changeInPercentage = buildPercentageText(diffInPercent, color);
-        getChildren().addAll(name, SPACE , changeInPercentage);
+        getChildren().addAll(name, SPACE, changeInPercentage);
         getStyleClass().add("info-box");
     }
 

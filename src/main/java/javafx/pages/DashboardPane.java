@@ -1,19 +1,18 @@
 package javafx.pages;
 
-import backend.dao.*;
-import backend.entities.Portfolio;
-import backend.entities.Share;
-import backend.entities.User;
-import backend.functional.EntityManagement;
-import jakarta.persistence.EntityManager;
+import console.entities.Portfolio;
+import console.entities.Share;
+import console.entities.User;
 import javafx.assets.LanguagePack;
 import javafx.assets.NewsBox;
 import javafx.assets.ShareInfoBox;
 import javafx.beans.binding.StringBinding;
 import javafx.beans.property.StringProperty;
+import javafx.controllers.DashboardController;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
-import javafx.scene.layout.*;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import lombok.Getter;
@@ -27,19 +26,12 @@ public class DashboardPane extends CustomPane {
     private static final double STAGE_HEIGHT = 500;
     private static final String MONEY_ENDING_SYMBOL = ".-";
     private static final int SHARE_BOX_AMOUNT = 5;
-    private final UserDao userDao;
-    private final PortfolioDao portfolioDao;
-    private final ShareDao shareDao;
-    private final String username;
+    private final DashboardController controller;
     private final Random rand = new Random();
 
     public DashboardPane(Stage stage, User user) {
         super(stage);
-        EntityManager entityManager = EntityManagement.createEntityManagerFactory().createEntityManager();
-        this.userDao = new UserDaoImpl(entityManager);
-        this.portfolioDao = new PortfolioDaoImpl(entityManager);
-        this.shareDao = new ShareDaoImpl(entityManager);
-        this.username = user.getUsername();
+        this.controller = new DashboardController(stage, this, user);
         build();
     }
 
@@ -160,7 +152,7 @@ public class DashboardPane extends CustomPane {
     }
 
     private Share[] getTopShares() {
-        Share[] shares = shareDao.getAll().toArray(new Share[0]);
+        Share[] shares = controller.shareDao.getAll().toArray(new Share[0]);
         Share[] topShares = new Share[SHARE_BOX_AMOUNT];
         System.arraycopy(shares, 0, topShares, 0, SHARE_BOX_AMOUNT);
         return topShares;
@@ -193,7 +185,7 @@ public class DashboardPane extends CustomPane {
 
     private Text buildWelcomeText() {
         Text text = buildText("", "welcome-text");
-        String username = userDao.getByUsername(
+        String username = controller.userDao.getByUsername(
                         user().getUsername())
                 .getFirstname();
         text.textProperty().set(getValueByKey("dashboard.welcomeText").get() + " " + username);
@@ -216,7 +208,7 @@ public class DashboardPane extends CustomPane {
     }
 
     private User user() {
-        return userDao.getByUsername(username);
+        return controller.getUser();
     }
 
     private Text buildValueOfSharesText() {
@@ -271,7 +263,7 @@ public class DashboardPane extends CustomPane {
     }
 
     private double getShareValue() {
-        List<Portfolio> portfolioEntries = portfolioDao.getAllFromUser(user().getId());
-        return portfolioEntries.stream().mapToDouble(portfolio -> shareDao.get(portfolio.getShareId()).getPricePerShare() * portfolio.getAmount()).sum();
+        List<Portfolio> portfolioEntries = controller.portfolioDao.getAllFromUser(user().getId());
+        return portfolioEntries.stream().mapToDouble(portfolio -> controller.shareDao.get(portfolio.getShareId()).getPricePerShare() * portfolio.getAmount()).sum();
     }
 }

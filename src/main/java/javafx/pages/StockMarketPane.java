@@ -1,6 +1,6 @@
 package javafx.pages;
 
-import backend.entities.User;
+import console.entities.User;
 import javafx.stage.Stage;
 
 public class StockMarketPane extends CustomPane {

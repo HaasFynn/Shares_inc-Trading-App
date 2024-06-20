@@ -5,37 +5,60 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea488597-f4e2-49aa-b467-1e44621e87b4" name="Changes" comment="trading-page: implement trading pane, refactore news block -&gt; own class">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/image/icon/black/filter.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/image/icon/black/lens.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/image/icon/grey/filter.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/image/icon/grey/lens.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/style/news_box.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/style/trade.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/javafx/controllers/DashboardController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/javafx/controllers/ShareOverviewController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/javafx/pages/ShareOverviewPane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_17_05_2024_10_28__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_17_05_2024_10_28__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_17_05_2024_10_31__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_17_05_2024_10_31__Changes_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_17_05_2024_11_03__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_17_05_2024_11_03__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_30_05_2024_08_40__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_30_05_2024_08_40__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_21_05_2024_13_36__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_21_05_2024_13_36__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/controllers/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/CustomPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/pages/CustomPane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/assets/NewsBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/assets/NewsBox.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/login/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/controllers/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/login/LoginPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/pages/LoginPane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/archive/ShareManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/console/archive/ShareManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/archive/UserManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/console/archive/UserManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/archive/share_user_sql.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/console/archive/share_user_sql.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/creators/ShareCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/console/creators/ShareCreator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/dao/PortfolioDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/console/dao/PortfolioDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/dao/PortfolioDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/console/dao/PortfolioDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/dao/ShareDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/console/dao/ShareDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/dao/ShareDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/console/dao/ShareDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/console/dao/UserDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/dao/UserDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/console/dao/UserDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/entities/Portfolio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/console/entities/Portfolio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/entities/Share.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/console/entities/Share.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/console/entities/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/functional/EntityManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/console/functional/EntityManagement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/functional/InputHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/console/functional/InputHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/functional/Reader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/console/functional/Reader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/SharesInc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/SharesInc.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/assets/ShareInfoBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/assets/ShareInfoBox.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/controllers/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/controllers/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/controllers/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/controllers/ShareCreatorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/controllers/ShareCreatorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/controllers/TradeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/controllers/TradeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/javafx/main_panel/MainPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/main_panel/MainPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/main_panel/SideBarEventListeners.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/main_panel/SideBarEventListeners.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/main_panel/SideBarEventListenersImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/main_panel/SideBarEventListenersImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/main_panel/side_bar/SideBarPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/main_panel/side_bar/SideBarPane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/main_panel/SideBarEventListeners.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/eventlisteners/EventListeners.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/main_panel/SideBarEventListenersImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/eventlisteners/EventListenersImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/main_panel/side_bar/SideBarPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/pages/SideBarPane.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/javafx/pages/DashboardPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/pages/DashboardPane.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/javafx/pages/PortfolioPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/pages/PortfolioPane.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/javafx/pages/ProfilePane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/pages/ProfilePane.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/javafx/pages/SettingsPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/pages/SettingsPane.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/javafx/pages/StockMarketPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/pages/StockMarketPane.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/javafx/pages/TradePane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/pages/TradePane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/share_creation/ShareCreatorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/controllers/ShareCreatorController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/share_creation/ShareCreatorPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/pages/ShareCreatorPane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/locale/language_de.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/locale/language_de.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/locale/language_en.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/locale/language_en.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/style/dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/style/dashboard.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/style/sidebar.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/style/sidebar.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/style/stock_market.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/hibernate.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/hibernate.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mysql-connector-j-8.2.0/CHANGES" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mysql-connector-j-8.2.0/CHANGES" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mysql-connector-j-8.2.0/mysql-connector-j-8.2.0/CHANGES" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mysql-connector-j-8.2.0/mysql-connector-j-8.2.0/CHANGES" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mysql-connector-j-8.2.0/mysql-connector-j-8.2.0/src/main/resources/com/mysql/cj/LocalizedErrorMessages.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mysql-connector-j-8.2.0/mysql-connector-j-8.2.0/src/main/resources/com/mysql/cj/LocalizedErrorMessages.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mysql-connector-j-8.2.0/src/main/resources/com/mysql/cj/LocalizedErrorMessages.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mysql-connector-j-8.2.0/src/main/resources/com/mysql/cj/LocalizedErrorMessages.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/style/trade.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/style/trade.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/backend/functional/InputHandlerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/console/functional/InputHandlerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/backend/functional/ShareCreatorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/console/functional/ShareCreatorTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +84,7 @@
             <expand>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="Shares.inc-Remake" type="f1a62948:ProjectNode" />
+                <item name="Shares-inc.-Trading-App" type="f1a62948:ProjectNode" />
               </path>
             </expand>
             <select />
@@ -75,8 +98,8 @@
       <list>
         <option value="Interface" />
         <option value="JUnit5 Test Class" />
-        <option value="Class" />
         <option value="CSS File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -94,12 +117,12 @@
     &quot;assignee&quot;: &quot;HaasFynn&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/HaasFynn/Shares-inc.-Trading-App.git&quot;,
-    &quot;accountId&quot;: &quot;e869b32c-ba71-48d8-99d8-bdcfb12d47bf&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/HaasFynn/Shares-inc.-Trading-App.git",
+    "accountId": "b30f8259-0c7e-4a21-9905-9102e7826a1c"
   }
-}</component>
+}]]></component>
   <component name="HighlightingSettingsPerFile">
     <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/jakarta.persistence/jakarta.persistence-api/3.1.0/8d479b8d71750d5c2b8e58034b80231994cba6ec/jakarta.persistence-api-3.1.0-sources.jar!/jakarta/persistence/EntityManager.java" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -173,7 +196,7 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "settings.editor.selected.configurable": "preferences.keymap",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -231,10 +254,10 @@
     <configuration name="SharesInc" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="javafx.SharesInc" />
       <module name="Shares-inc.-Trading-App.main" />
-      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Users\fhaas\Documents\Ergon\JavaFx\javafx-sdk-22\lib&quot; --add-modules javafx.controls,javafx.fxml" />
+      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Users\Fynn Haas\Documents\coding\ergon\java\javafx\javafx-sdk-22\lib&quot; --add-modules javafx.controls,javafx.fxml" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="javafx.pages.*" />
+          <option name="PATTERN" value="javafx.pages.StockMarketPane" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -323,6 +346,14 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.17890.1" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.17890.1" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -401,6 +432,7 @@
       <workItem from="1718562132805" duration="69000" />
       <workItem from="1718629646810" duration="157000" />
       <workItem from="1718775222152" duration="10366000" />
+      <workItem from="1718865231038" duration="20040000" />
     </task>
     <task id="LOCAL-00001" summary="Created Files and Set Properties&#10;setUp Function made&#10;Annotations added">
       <option name="closed" value="true" />
@@ -617,6 +649,11 @@
         <entry key="MAIN">
           <value>
             <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="true" />
+                </map>
+              </option>
               <option name="FILTERS">
                 <map>
                   <entry key="branch">

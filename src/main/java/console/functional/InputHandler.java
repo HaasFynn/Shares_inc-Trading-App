@@ -1,12 +1,12 @@
-package backend.functional;
+package console.functional;
 
-import backend.creators.ShareCreator;
-import backend.dao.PortfolioDao;
-import backend.dao.ShareDao;
-import backend.dao.UserDao;
-import backend.entities.Portfolio;
-import backend.entities.Share;
-import backend.entities.User;
+import console.creators.ShareCreator;
+import console.dao.PortfolioDao;
+import console.dao.ShareDao;
+import console.dao.UserDao;
+import console.entities.Portfolio;
+import console.entities.Share;
+import console.entities.User;
 import jakarta.persistence.PersistenceContext;
 import javafx.assets.Hash;
 

@@ -1,6 +1,6 @@
-package backend.functional;
+package console.functional;
 
-import backend.creators.ShareCreator;
+import console.creators.ShareCreator;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
