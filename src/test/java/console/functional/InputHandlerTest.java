@@ -1,9 +1,9 @@
-package backend.functional;
+package console.functional;
 
-import backend.creators.ShareCreator;
-import backend.dao.ShareDaoImpl;
-import backend.dao.UserDaoImpl;
-import backend.entities.User;
+import console.creators.ShareCreator;
+import console.dao.ShareDaoImpl;
+import console.dao.UserDaoImpl;
+import console.entities.User;
 import jakarta.persistence.EntityManager;
 import org.junit.jupiter.api.Test;
 

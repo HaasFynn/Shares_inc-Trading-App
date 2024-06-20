@@ -1,8 +1,8 @@
-package backend.functional;
+package console.functional;
 
-import backend.entities.Portfolio;
-import backend.entities.Share;
-import backend.entities.User;
+import console.entities.Portfolio;
+import console.entities.Share;
+import console.entities.User;
 import jakarta.persistence.EntityManagerFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;

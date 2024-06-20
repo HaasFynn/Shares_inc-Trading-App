@@ -1915,7 +1915,7 @@ Version 6.0.6
     - Fix for Bug#56429 - When using Connector/J configured for failover 
       (jdbc:mysql://host1,host2,... URLs), the non-primary servers re-balance 
       and spawned new idle connections when the transactions on the master were
-      committed or rolled-backend, eventually exceeding max_connections. It was
+      committed or rolled-console, eventually exceeding max_connections. It was
       also discovered that session state (autocommit, isolation level, catalog)
       wasn't  being copied from the primary connection to secondary 
       connections correctly because of the same changes that caused this bug, 
@@ -1938,7 +1938,7 @@ Version 6.0.6
       true when connected to a 4.1 version or later server.
       
     - Fixed Bug#58706 - Failover connections didn't honor "failOverReadOnly=false", and in some
-      situations would not fall backend.
+      situations would not fall console.
       
     - Removed logging integrations with log4j and apache-commons-logging due to license 
       incompatibility. Replacing with SLF4J integration in next release.
@@ -2567,7 +2567,7 @@ Version 6.0.6
       now uses a "random" choice to more evenly distribute load across slave
       servers, especially in connection pools. Connections that are configured
       with "roundRobinLoadBalance=true" no longer set the failover state,
-      as it's assumed that we're not attempting to fall-backend to a master
+      as it's assumed that we're not attempting to fall-console to a master
       server. This fixes BUG#34963.
     
 10-09-07 - Version 5.1.5
@@ -2685,7 +2685,7 @@ Version 6.0.6
       into an interface named "com.mysql.Statement", and moved the Statement
       class into com.mysql.StatementImpl. The two methods (javadoc'd in
       "com.mysql.Statement" are enableStreamingResults(), which already existed,
-      and disableStreamingResults() which sets the statement instance backend to
+      and disableStreamingResults() which sets the statement instance console to
       the fetch size and result set type it had before enableStreamingResults()
       was called.
 
@@ -2764,7 +2764,7 @@ Version 6.0.6
 	  the old class will not be instantiated for communications link-related
 	  errors under Java 6.
 
-	- Added support for JDBC-4.0's client information. The backend storage
+	- Added support for JDBC-4.0's client information. The console storage
 	  of information provided via Connection.setClientInfo() and retrieved
 	  by Connection.getClientInfo() is pluggable by any class that implements
 	  the com.mysql.jdbc.JDBC4ClientInfoProvider interface and has a no-args
@@ -2857,7 +2857,7 @@ nn-nn-07 - Version 5.0.9
     - Fixed Bug#27412 - cached metadata with PreparedStatement.execute()
       throws NullPointerException.
       
-    - Driver will now fall backend to sane defaults for max_allowed_packet and
+    - Driver will now fall console to sane defaults for max_allowed_packet and
       net_buffer_length if the server reports them incorrectly (and will log
       this situation at WARN level, since it's actually an error condition).
     
@@ -3204,7 +3204,7 @@ nn-nn-07 - Version 5.0.9
 	  TABLE_CATALOG column.
 
     - Fixed BUG#25399 - EscapeProcessor gets confused by multiple
-      backslashes. We now push the responsibility of syntax errors backend
+      backslashes. We now push the responsibility of syntax errors console
       on to the server for most escape sequences.
 
 	- Fixed BUG#25379 - INOUT parameters in CallableStatements get
@@ -3216,7 +3216,7 @@ nn-nn-07 - Version 5.0.9
 	  longer requires "BEGIN" in stored procedure definition, but does have
 	  requirement that if a stored shares.function begins with a label directly after the
 	  "returns" clause, that the label is not a quoted identifier.
-    - Reverted backend to internal character conversion routines for single-byte
+    - Reverted console to internal character conversion routines for single-byte
       character sets, as the ones internal to the JVM are using much more CPU
       time than our internal implementation.
 
@@ -3463,7 +3463,7 @@ nn-nn-07 - Version 5.0.9
       messages).
 
     - Fixed BUG#14279 - Idle timeouts cause XAConnections to whine about rolling
-      themselves backend
+      themselves console
 
     - Added support for Connector/MXJ integration via url subprotocol
       "jdbc:mysql:mxj://....".
@@ -3545,7 +3545,7 @@ nn-nn-07 - Version 5.0.9
 nn-nn-07 - Version 3.1.15
 
 	- Fixed BUG#23281 - Downed slave caused round-robin load balance to
-	  not cycle backend to first host in list.
+	  not cycle console to first host in list.
 
 	- Disabled use of server-side prepared statements by default.
 
@@ -3663,7 +3663,7 @@ nn-nn-07 - Version 3.1.15
       Removed reliance on .properties files to hold this information, as it
       turns out to be too problematic to code around class loader hierarchies
       that change depending on how an application is deployed. Moved information
-      backend into the CharsetMapping class.
+      console into the CharsetMapping class.
 
     - Fixed BUG#16841 - updatable result set doesn't return AUTO_INCREMENT
       values for insertRow() when multiple column primary keys are used. (the
@@ -3755,7 +3755,7 @@ nn-nn-07 - Version 3.1.15
     - Don't allow executeBatch() for CallableStatements with registered
       OUT/INOUT parameters (JDBC compliance).
 
-    - Fall backend to platform-encoding for URLDecoder.decode() when
+    - Fall console to platform-encoding for URLDecoder.decode() when
       parsing driver URL properties if the platform doesn't have a
       two-argument version of this method.
 
@@ -4283,7 +4283,7 @@ nn-nn-07 - Version 3.1.15
       false), that keeps result sets open over statement.close() or new
       execution on same statement (suggested by Kevin Burton).
 
-    - Fixed BUG#7952 -- Infinite recursion when 'falling backend' to master
+    - Fixed BUG#7952 -- Infinite recursion when 'falling console' to master
       in failover configuration.
 
     - Disable multi-statements (if enabled) for MySQL-4.1 versions prior
@@ -4630,7 +4630,7 @@ nn-nn-07 - Version 3.1.15
 
 	- Don't enable server-side prepared statements for server version 5.0.0 or 5.0.1,
 	as they aren't compatible with the '4.1.2+' style that the driver uses (the driver
-	expects information to come backend that isn't there, so it hangs).
+	expects information to come console that isn't there, so it hangs).
 
 
 02-14-04 - Version 3.1.1-alpha
@@ -4924,7 +4924,7 @@ nn-nn-07 - Version 3.1.15
 	  to support this signature.
 
 	- Logical connections created by MysqlConnectionPoolDataSource will
-	  now issue a rollback() when they are closed and sent backend to the pool.
+	  now issue a rollback() when they are closed and sent console to the pool.
 	  If your application server/connection pool already does this for you, you
 	  can set the 'rollbackOnPooledClose' property to false to avoid the
 	  overhead of an extra rollback().
@@ -5400,7 +5400,7 @@ nn-nn-07 - Version 3.1.15
       no).
 
     - Implemented Blob.setBytes(). You still need to pass the
-      resultant Blob backend into an updatable ResultSet or
+      resultant Blob console into an updatable ResultSet or
       PreparedStatement to persist the changes, as MySQL does
       not support 'locators'.
 

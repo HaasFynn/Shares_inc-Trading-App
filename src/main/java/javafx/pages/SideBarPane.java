@@ -1,10 +1,8 @@
-package javafx.main_panel.side_bar;
+package javafx.pages;
 
-import backend.entities.User;
-import javafx.pages.CustomPane;
-import javafx.main_panel.SideBarEventListeners;
-import javafx.main_panel.SideBarEventListenersImpl;
-import javafx.pages.*;
+import console.entities.User;
+import javafx.eventlisteners.EventListeners;
+import javafx.eventlisteners.EventListenersImpl;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -27,7 +25,8 @@ public class SideBarPane extends CustomPane {
         }
 
     }
-    private final SideBarEventListeners eventListeners;
+
+    private final EventListeners eventListeners;
     private User user;
     private ColorTheme colorTheme = ColorTheme.DARK;
     private static final String ICONS_DIR = "assets/image/icon";
@@ -35,7 +34,7 @@ public class SideBarPane extends CustomPane {
     private static final double SCENE_WIDTH = 60;
     private static final double SCENE_HEIGHT = 500;
 
-    public SideBarPane(Stage stage, User user, SideBarEventListenersImpl eventListeners) {
+    public SideBarPane(Stage stage, User user, EventListenersImpl eventListeners) {
         super(stage);
         this.user = user;
         this.eventListeners = eventListeners;
@@ -78,7 +77,7 @@ public class SideBarPane extends CustomPane {
     private void createNodes() {
         this.home = buildImageBox("home.png", new DashboardPane(stage, user));
         this.portfolio = buildImageBox("portfolio.png", new PortfolioPane(stage, user));
-        this.trade = buildImageBox("handshake.png", new TradePane(stage, user));
+        this.trade = buildImageBox("handshake.png", new TradePane(stage, eventListeners, user));
         this.statistic = buildImageBox("diagram.png", new StockMarketPane(stage, user));
         this.account = buildImageBox("account.png", new ProfilePane(stage, user));
         this.settings = buildImageBox("settings.png", new SettingsPane(stage, user));
@@ -111,7 +110,7 @@ public class SideBarPane extends CustomPane {
     }
 
     private void addListener(Node node, CustomPane pane) {
-        node.setOnMouseClicked(event -> eventListeners.handleIconClick(pane));
+        node.setOnMouseClicked(event -> eventListeners.switchPane(pane));
     }
 
 }

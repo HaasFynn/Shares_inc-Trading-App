@@ -1,10 +1,10 @@
 package javafx.controllers;
 
-import backend.dao.ShareDao;
-import backend.dao.ShareDaoImpl;
-import backend.dao.UserDaoImpl;
-import backend.entities.User;
-import backend.functional.EntityManagement;
+import console.dao.ShareDaoImpl;
+import console.dao.UserDaoImpl;
+import console.entities.Share;
+import console.entities.User;
+import console.functional.EntityManagement;
 import jakarta.persistence.EntityManager;
 import javafx.assets.ShareInfoBox;
 import javafx.collections.FXCollections;
@@ -13,34 +13,60 @@ import javafx.pages.TradePane;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class TradeController {
 
     private final UserDaoImpl userDao;
     private final ShareDaoImpl shareDao;
     private final TradePane pane;
-    private User user;
+    private String username;
 
     public TradeController(TradePane pane, User user) {
         this.pane = pane;
-        this.user = user;
+        this.username = user.getUsername();
         EntityManager entityManager = EntityManagement.createEntityManagerFactory().createEntityManager();
         this.userDao = new UserDaoImpl(entityManager);
         this.shareDao = new ShareDaoImpl(entityManager);
     }
 
-    public ObservableList<ShareInfoBox> getListViewItems(String prompt) {
+    public ObservableList<ShareInfoBox> getSharesByPrompt(String prompt) {
         return FXCollections.observableArrayList(getShareList(prompt));
     }
 
     private ArrayList<ShareInfoBox> getShareList(String prompt) {
         ArrayList<ShareInfoBox> dbList = new ArrayList<>();
-        //TODO: Search with prompt
-        if (dbList.isEmpty()) {
-            ShareInfoBox box = new ShareInfoBox(pane.getValueByKey("no.database.found").get(), 0, false);
-            dbList = (ArrayList<ShareInfoBox>) List.of(box);
-        }
+        shareDao.getByPromptAndTag(prompt, pane.getFilterList().getSelectionModel().getSelectedItem());
+
         return dbList;
+    }
+
+    private ArrayList<ShareInfoBox> getEmptyResponse() {
+        ArrayList<ShareInfoBox> dbList;
+        ShareInfoBox box = new ShareInfoBox(pane.getValueByKey("no.database.found").get(), 0, false);
+        dbList = (ArrayList<ShareInfoBox>) List.of(box);
+        return dbList;
+    }
+
+    public User getUser() {
+        return userDao.getByUsername(username);
+    }
+
+    public Share getShare(String name) {
+        return shareDao.getByName(name);
+    }
+
+    public Share[] getShares() {
+        Share[] shares = shareDao.getAll().toArray(new Share[0]);
+        for (int i = 0; i < shares.length; i++) {
+            if (shares.length <= 25) {
+                break;
+            }
+            shares[shares.length - 1] = null;
+        }
+        return shares;
+    }
+
+    public String getFilterTags() {
+        return null;
     }
 }

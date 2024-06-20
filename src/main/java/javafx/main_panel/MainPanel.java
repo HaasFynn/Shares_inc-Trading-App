@@ -1,17 +1,17 @@
 package javafx.main_panel;
 
-import backend.entities.User;
+import console.entities.User;
+import javafx.eventlisteners.EventListenersImpl;
 import javafx.pages.CustomPane;
 import javafx.pages.*;
 import javafx.scene.layout.HBox;
-import javafx.main_panel.side_bar.SideBarPane;
 import javafx.stage.Stage;
 import lombok.Getter;
 
 @Getter
 public class MainPanel extends CustomPane {
 
-    SideBarEventListenersImpl eventListeners;
+    EventListenersImpl eventListeners;
     private final SideBarPane sideBar;
     private CustomPane currentPane;
     private static final double STAGE_WIDTH = 815;
@@ -25,7 +25,7 @@ public class MainPanel extends CustomPane {
     }
 
     private SideBarPane getSideBarPane(Stage stage, User user) {
-        this.eventListeners = new SideBarEventListenersImpl(stage, this, user);
+        this.eventListeners = new EventListenersImpl(stage, this, user);
         return new SideBarPane(stage, user, eventListeners);
     }
 

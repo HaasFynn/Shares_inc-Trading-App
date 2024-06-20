@@ -1,6 +1,6 @@
-package backend.dao;
+package console.dao;
 
-import backend.entities.Share;
+import console.entities.Share;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
@@ -26,7 +26,10 @@ public class ShareDaoImpl implements ShareDao {
     @Override
     public Share getByName(String name) {
         try {
-            return entityManager.createQuery("FROM Share s WHERE s.name = :name", Share.class).setParameter("name", name).getResultStream().findFirst().orElse(null);
+            return entityManager.createQuery("FROM Share s WHERE s.name = :name", Share.class)
+                    .setParameter("name", name)
+                    .getResultStream()
+                    .findFirst().orElse(null);
         } catch (NoResultException e) {
             return null;
         }
@@ -35,6 +38,19 @@ public class ShareDaoImpl implements ShareDao {
     @Override
     public List<Share> getAll() {
         return entityManager.createQuery("FROM Share", Share.class).getResultList();
+    }
+
+    @Override
+    public List<Share> getByPromptAndTag(String prompt, String tagName) {
+        try {
+            return entityManager.createQuery("FROM Share s WHERE s.name LIKE %:name% AND s.id = (SELECT share_idfk FROM share_tag st WHERE st.tag_idfk = (SELECT id FROM tag WHERE name = :tag))", Share.class)
+                    .setParameter("name", prompt)
+                    .setParameter("tag",tagName)
+                    .getResultStream()
+                    .toList();
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 
 

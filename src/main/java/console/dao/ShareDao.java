@@ -1,6 +1,6 @@
-package backend.dao;
+package console.dao;
 
-import backend.entities.Share;
+import console.entities.Share;
 
 import java.util.List;
 
@@ -10,6 +10,8 @@ public interface ShareDao {
     Share getByName(String name);
 
     List<Share> getAll();
+
+    List<Share> getByPromptAndTag(String prompt, String tagName);
 
     boolean add(Share share);
 

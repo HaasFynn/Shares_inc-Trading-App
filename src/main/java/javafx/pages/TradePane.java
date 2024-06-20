@@ -1,23 +1,21 @@
 package javafx.pages;
 
-import backend.entities.User;
+import console.entities.Share;
+import console.entities.User;
 import javafx.assets.LanguagePack;
 import javafx.assets.NewsBox;
 import javafx.assets.ShareInfoBox;
 import javafx.beans.binding.StringBinding;
 import javafx.beans.property.StringProperty;
 import javafx.controllers.TradeController;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
+import javafx.eventlisteners.EventListeners;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import lombok.Getter;
 
 @Getter
@@ -34,16 +32,19 @@ public class TradePane extends CustomPane {
         }
 
     }
-
+    private final EventListeners eventListeners;
     private final TradeController controller;
     private static final double STAGE_WIDTH = 815;
     private static final double STAGE_HEIGHT = 500;
     private static final String ICONS_DIR = "assets/image/icon";
     private static final double ICON_WIDTH = 10;
+    private String username;
     private ColorTheme colorTheme = ColorTheme.DARK;
 
-    public TradePane(Stage stage, User user) {
+    public TradePane(Stage stage, EventListeners eventListeners, User user) {
         super(stage);
+        this.eventListeners = eventListeners;
+        this.username = user.getUsername();
         this.controller = new TradeController(this, user);
         build();
     }
@@ -55,22 +56,24 @@ public class TradePane extends CustomPane {
     private HBox searchBox;
 
     private VBox shareSearchBox;
-    private HBox shareSearchBoxHeading;
-    private ImageView searchIcon;
+    private HBox shareSearchBoxHeader;
+
+    private HBox searchIconBox;
+
     private TextField inputField;
-    private Button searchButton;
-    private ImageView filterIcon;
+
+    private HBox filterIconBox;
+
     private ListView<ShareInfoBox> searchResponseBox;
 
     private VBox filterBox;
-    private VBox filterBoxHeading;
+    private VBox filterBoxHeader;
     private Text filterBoxTitle;
     private VBox filterBoxBody;
-    private ScrollPane filterList;
+    private ListView<String> filterList;
 
     private NewsBox newsBox;
 
-    //TODO: Add Buying Page of Share
 
     @Override
     protected void build() {
@@ -85,12 +88,12 @@ public class TradePane extends CustomPane {
     private void createNodes() {
         buildHeader();
         createBody();
-        this.page = buildPage(header, body);
+        page = buildPage(header, body);
     }
 
     private void buildHeader() {
-        this.title = buildText("trade.text.title", "title");
-        this.header = new VBox(title);
+        title = buildText("trade.text.title", "title");
+        header = new VBox(title);
         header.getStyleClass().add("header");
     }
 
@@ -104,23 +107,23 @@ public class TradePane extends CustomPane {
     private void createBody() {
         createSearchBox();
         buildNewsBox();
-        this.body = buildBody(searchBox, newsBox);
+        body = buildBody(searchBox, newsBox);
     }
 
     private void buildNewsBox() {
-        this.newsBox = new NewsBox();
+        newsBox = new NewsBox();
     }
 
     private void createSearchBox() {
         createShareSearchBox();
         createFilterBox();
-        this.searchBox = buildSearchBox(shareSearchBox, null /*filterBox*/);
+        searchBox = buildSearchBox(shareSearchBox, filterBox);
     }
 
     private void createShareSearchBox() {
-        createShareSearchBoxHeading();
-        this.searchResponseBox = buildSearchResponseBox();
-        this.shareSearchBox = buildShareSearchBox(shareSearchBoxHeading, searchResponseBox);
+        createShareSearchBoxHeader();
+        searchResponseBox = buildSearchResponseBox();
+        shareSearchBox = buildShareSearchBox(shareSearchBoxHeader, searchResponseBox);
     }
 
     private ListView<ShareInfoBox> buildSearchResponseBox() {
@@ -129,15 +132,26 @@ public class TradePane extends CustomPane {
         return listView;
     }
 
-    private void createShareSearchBoxHeading() {
-        this.searchIcon = buildIcon("lens.png"); //TODO: Add Icon
-        this.inputField = buildInputField("trade.sharesearch.inputfield.placeholder", "input-field");
-        this.filterIcon = buildIcon("filter.png"); //TODO: Add Icon
-        this.shareSearchBoxHeading = buildShareSearchBoxHeading(searchIcon, inputField, filterIcon);
+    private void addSearchResponseBoxListener() {
+        searchResponseBox.setOnMouseClicked(event -> {
+            ShareInfoBox selectedItem = searchResponseBox.getSelectionModel().getSelectedItem();
+            if (selectedItem == null) {
+                return;
+            }
+            Share share = controller.getShare(selectedItem.getShareName());
+            eventListeners.switchPane(new ShareOverviewPane(stage, controller.getUser(), share));
+        });
     }
 
-    private HBox buildShareSearchBoxHeading(ImageView icon1, TextField inputField, ImageView icon2) {
-        HBox box = new HBox(icon1, inputField, icon2);
+    private void createShareSearchBoxHeader() {
+        searchIconBox = buildIconBox("lens.png", "icon-box");
+        inputField = buildInputField("trade.search.input.placeholder", "input-field");
+        filterIconBox = buildIconBox("filter.png", "icon-box");
+        shareSearchBoxHeader = buildShareSearchBoxHeader(searchIconBox, inputField, filterIconBox);
+    }
+
+    private HBox buildShareSearchBoxHeader(HBox iconBox1, TextField inputField, HBox iconBox2) {
+        HBox box = new HBox(iconBox1, inputField, iconBox2);
         box.getStyleClass().add("share-search-box-heading");
         return box;
     }
@@ -146,15 +160,19 @@ public class TradePane extends CustomPane {
         TextField textField = new TextField();
         bind(textField.promptTextProperty(), binding);
         textField.getStyleClass().addAll(styleClasses);
-        textField.setOnKeyPressed(event ->
-                this.searchResponseBox.setItems(controller.getListViewItems(inputField.getText()))
-        );
+        textField.setOnKeyPressed(event -> searchResponseBox.setItems(controller.getSharesByPrompt(inputField.getText())));
         return textField;
+    }
+
+    private HBox buildIconBox(String imageName, String... styleClasses) {
+        HBox box = new HBox(buildIcon(imageName));
+        box.getStyleClass().addAll(styleClasses);
+        return box;
     }
 
     private ImageView buildIcon(String iconName) {
         ImageView imageView = new ImageView(new Image(getIconPath(iconName), ICON_WIDTH, ICON_WIDTH, false, false, true));
-        imageView.getStyleClass().add("image-view");
+        imageView.getStyleClass().add("icon");
         return imageView;
     }
 
@@ -170,10 +188,42 @@ public class TradePane extends CustomPane {
     }
 
     private void createFilterBox() {
+        createFilterBoxHeader();
+        createFilterBoxBody();
+        filterBox = buildFilterBox(filterBoxHeader, filterBoxBody);
     }
 
-    private HBox buildSearchBox(VBox box1, VBox box2) {
-        HBox box = new HBox(box1/*, box2*/);
+    private void createFilterBoxHeader() {
+        filterBoxTitle = buildText("trade.filter.text.title", "title");
+        filterBoxHeader = buildFilterBoxHeader(filterBoxTitle);
+    }
+
+    private VBox buildFilterBoxHeader(Text title) {
+        VBox box = new VBox(title);
+        box.getStyleClass().add("filter-box-heading");
+        return box;
+    }
+
+    private void createFilterBoxBody() {
+        filterList = buildFilterList();
+        filterBoxBody = buildFilterBoxBody(filterList);
+    }
+
+    private ListView<String> buildFilterList() {
+        ListView<String> listView = new ListView<>();
+        listView.getStyleClass().add("filter-list");
+        listView.getItems().addAll(controller.getFilterTags());
+        return listView;
+    }
+
+    private VBox buildFilterBoxBody(ListView<String> list) {
+        VBox box = new VBox(list);
+        box.getStyleClass().add("filter-box-body");
+        return box;
+    }
+
+    private HBox buildSearchBox(VBox searchBox, VBox filterBox) {
+        HBox box = new HBox(searchBox, filterBox);
         box.getStyleClass().add("search-box");
         return box;
     }
@@ -181,6 +231,12 @@ public class TradePane extends CustomPane {
     private VBox buildBody(HBox box1, VBox box2) {
         VBox box = new VBox(box1, box2);
         box.getStyleClass().add("body");
+        return box;
+    }
+
+    private VBox buildFilterBox(VBox header, VBox body) {
+        VBox box = new VBox(header, body);
+        box.getStyleClass().addAll("filter-box", "surround-box");
         return box;
     }
 
@@ -206,6 +262,7 @@ public class TradePane extends CustomPane {
     }
 
     private void addListeners() {
-
+        addSearchResponseBoxListener();
     }
+
 }

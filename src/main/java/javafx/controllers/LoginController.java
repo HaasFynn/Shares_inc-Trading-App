@@ -1,9 +1,9 @@
 package javafx.controllers;
 
-import backend.dao.UserDao;
-import backend.dao.UserDaoImpl;
-import backend.entities.User;
-import backend.functional.EntityManagement;
+import console.dao.UserDao;
+import console.dao.UserDaoImpl;
+import console.entities.User;
+import console.functional.EntityManagement;
 import jakarta.persistence.EntityManager;
 import javafx.assets.Hash;
 import javafx.assets.LanguagePack;

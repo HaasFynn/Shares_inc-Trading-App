@@ -1,6 +1,6 @@
-package backend.dao;
+package console.dao;
 
-import backend.entities.Portfolio;
+import console.entities.Portfolio;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;

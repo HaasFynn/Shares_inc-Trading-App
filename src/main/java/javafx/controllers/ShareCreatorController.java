@@ -1,9 +1,9 @@
 package javafx.controllers;
 
-import backend.creators.ShareCreator;
-import backend.dao.ShareDao;
-import backend.dao.ShareDaoImpl;
-import backend.functional.EntityManagement;
+import console.creators.ShareCreator;
+import console.dao.ShareDao;
+import console.dao.ShareDaoImpl;
+import console.functional.EntityManagement;
 import javafx.assets.LanguagePack;
 import javafx.beans.binding.StringBinding;
 import javafx.pages.ShareCreatorPane;
