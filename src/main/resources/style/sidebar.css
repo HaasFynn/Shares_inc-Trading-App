@@ -4,14 +4,13 @@
 
 .body {
     -fx-padding: 16;
-    -fx-spacing: 190;
+    -fx-spacing: 220;
 }
 
 .image-box {
-}
-
-.image-box-container {
     -fx-spacing: 20;
-}
 
-/*TODO: ImageView Styling*/
+}
+.image-box:hover {
+    -fx-cursor: hand;
+}

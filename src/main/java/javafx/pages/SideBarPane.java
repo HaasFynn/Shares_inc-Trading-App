@@ -75,12 +75,12 @@ public class SideBarPane extends CustomPane {
     }
 
     private void createNodes() {
-        this.home = buildImageBox("home.png", new DashboardPane(stage, user));
-        this.portfolio = buildImageBox("portfolio.png", new PortfolioPane(stage, user));
-        this.trade = buildImageBox("handshake.png", new TradePane(stage, eventListeners, user));
-        this.statistic = buildImageBox("diagram.png", new StockMarketPane(stage, user));
-        this.account = buildImageBox("account.png", new ProfilePane(stage, user));
-        this.settings = buildImageBox("settings.png", new SettingsPane(stage, user));
+        this.home = buildImageBox("home.png", new DashboardPane(getStage(), user));
+        this.portfolio = buildImageBox("portfolio.png", new PortfolioPane(getStage(), user));
+        this.trade = buildImageBox("handshake.png", new TradePane(getStage(), eventListeners, user));
+        this.statistic = buildImageBox("diagram.png", new StockMarketPane(getStage(), user));
+        this.account = buildImageBox("account.png", new ProfilePane(getStage(), user));
+        this.settings = buildImageBox("settings.png", new SettingsPane(getStage(), user));
     }
 
     private HBox buildImageBox(String image, CustomPane pane) {
@@ -104,13 +104,13 @@ public class SideBarPane extends CustomPane {
 
     private VBox buildImageContainer(HBox... viewBoxes) {
         VBox box = new VBox();
-        box.getStyleClass().add("image-box-container");
+        box.getStyleClass().add("image-box");
         box.getChildren().addAll(viewBoxes);
         return box;
     }
 
-    private void addListener(Node node, CustomPane pane) {
-        node.setOnMouseClicked(event -> eventListeners.switchPane(pane));
+    private void addListener(Node node, CustomPane newPane) {
+        node.setOnMouseClicked(event -> eventListeners.switchPane(newPane));
     }
 
 }

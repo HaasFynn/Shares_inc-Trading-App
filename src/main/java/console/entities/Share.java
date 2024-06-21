@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
 /**
  * The type Share.
@@ -63,6 +64,9 @@ public class Share {
     @Setter
     private LocalDateTime date;
 
+    @ManyToMany()
+    @JoinTable(name = "share_tags")
+    private Set<Tag> tags;
 }
 
 

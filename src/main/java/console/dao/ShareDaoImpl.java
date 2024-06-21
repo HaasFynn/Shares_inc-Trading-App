@@ -41,11 +41,10 @@ public class ShareDaoImpl implements ShareDao {
     }
 
     @Override
-    public List<Share> getByPromptAndTag(String prompt, String tagName) {
+    public List<Share> getByNamePrompt(String prompt) {
         try {
-            return entityManager.createQuery("FROM Share s WHERE s.name LIKE %:name% AND s.id = (SELECT share_idfk FROM share_tag st WHERE st.tag_idfk = (SELECT id FROM tag WHERE name = :tag))", Share.class)
-                    .setParameter("name", prompt)
-                    .setParameter("tag",tagName)
+            return entityManager.createQuery("FROM Share s WHERE s.name LIKE :name", Share.class)
+                    .setParameter("name", "%" + prompt + "%")
                     .getResultStream()
                     .toList();
         } catch (NoResultException e) {

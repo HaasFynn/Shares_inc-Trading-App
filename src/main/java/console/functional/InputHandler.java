@@ -124,7 +124,7 @@ public class InputHandler {
     }
 
     private void showPortfolio() {
-        List<Portfolio> userPortfolio = portfolioDao.getAllFromUser(loggedInUser.Id);
+        List<Portfolio> userPortfolio = portfolioDao.getUserPortfolio(loggedInUser.Id);
         List<Share> shareList = new ArrayList<>();
         for (Portfolio p : userPortfolio) {
             shareList.add(shareDao.get(p.getShareId()));

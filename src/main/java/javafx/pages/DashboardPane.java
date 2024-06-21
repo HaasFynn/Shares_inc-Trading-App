@@ -25,7 +25,7 @@ public class DashboardPane extends CustomPane {
     private static final double STAGE_WIDTH = 815;
     private static final double STAGE_HEIGHT = 500;
     private static final String MONEY_ENDING_SYMBOL = ".-";
-    private static final int SHARE_BOX_AMOUNT = 5;
+    public static final int SHARE_BOX_AMOUNT = 5;
     private final DashboardController controller;
     private final Random rand = new Random();
 
@@ -117,7 +117,7 @@ public class DashboardPane extends CustomPane {
     private void buildAccBalanceBox() {
         this.accBalanceLabel = buildLabel("dashboard.label.accountbalance", "label");
         this.accBalance = buildAccountBalanceText();
-        this.valueOfSharesLabel = buildLabel("dashboard.label.valueshares", "label");
+        this.valueOfSharesLabel = buildLabel("dashboard.label.value_shares", "label");
         this.valueOfShares = buildValueOfSharesText();
 
         this.accBalanceBox = buildAccBalanceBox(accBalanceLabel, accBalance, valueOfSharesLabel, valueOfShares);
@@ -135,28 +135,15 @@ public class DashboardPane extends CustomPane {
 
     private ShareInfoBox[] buildShareInfoBoxes(String... styleClasses) {
         ShareInfoBox[] shareInfoBoxes = new ShareInfoBox[SHARE_BOX_AMOUNT];
-        Share[] topShares = getTopShares();
+        Share[] topShares = controller.getTopShares(SHARE_BOX_AMOUNT);
         for (int i = 0; i < SHARE_BOX_AMOUNT; i++) {
-            shareInfoBoxes[i] = new ShareInfoBox(
-                    topShares[i].getName(),
-                    getRandomRevenue(),
-                    rand.nextBoolean()
-            );
+            shareInfoBoxes[i] = new ShareInfoBox(topShares[i].getName());
             shareInfoBoxes[i].getStyleClass().addAll(styleClasses);
         }
         return shareInfoBoxes;
     }
 
-    private double getRandomRevenue() {
-        return Math.round(rand.nextDouble(1, 8) * 100) / 100.0;
-    }
 
-    private Share[] getTopShares() {
-        Share[] shares = controller.shareDao.getAll().toArray(new Share[0]);
-        Share[] topShares = new Share[SHARE_BOX_AMOUNT];
-        System.arraycopy(shares, 0, topShares, 0, SHARE_BOX_AMOUNT);
-        return topShares;
-    }
 
     private VBox buildShareChangeBox(Label label, ShareInfoBox[] infoBoxes) {
         VBox box = new VBox();
@@ -185,10 +172,8 @@ public class DashboardPane extends CustomPane {
 
     private Text buildWelcomeText() {
         Text text = buildText("", "welcome-text");
-        String username = controller.userDao.getByUsername(
-                        user().getUsername())
-                .getFirstname();
-        text.textProperty().set(getValueByKey("dashboard.welcomeText").get() + " " + username);
+        String username = user().getUsername();
+        text.textProperty().set(getValueByKey("dashboard.text.welcome").get() + " " + username);
         return text;
     }
 
@@ -263,7 +248,7 @@ public class DashboardPane extends CustomPane {
     }
 
     private double getShareValue() {
-        List<Portfolio> portfolioEntries = controller.portfolioDao.getAllFromUser(user().getId());
-        return portfolioEntries.stream().mapToDouble(portfolio -> controller.shareDao.get(portfolio.getShareId()).getPricePerShare() * portfolio.getAmount()).sum();
+        List<Portfolio> portfolioEntries = controller.getUserPortfolio(user().getId());
+        return portfolioEntries.stream().mapToDouble(portfolio -> controller.get(portfolio.getShareId()).getPricePerShare() * portfolio.getAmount()).sum();
     }
 }

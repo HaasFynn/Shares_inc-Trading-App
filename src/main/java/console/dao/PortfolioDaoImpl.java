@@ -37,7 +37,7 @@ public class PortfolioDaoImpl implements PortfolioDao {
                 .getResultList();
     }
     @Override
-    public List<Portfolio> getAllFromUser(long userId) {
+    public List<Portfolio> getUserPortfolio(long userId) {
         try {
             return entityManager.createQuery("FROM Portfolio p WHERE p.userId = :userId", Portfolio.class)
                     .setParameter("userId", userId)

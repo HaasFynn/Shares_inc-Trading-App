@@ -12,13 +12,21 @@
     -fx-font-weight: bold;
 }
 
+.body-title {
+    -fx-font-size: 13pt;
+    -fx-font-weight: bold;
+    -fx-text-fill: #faf9f9;
+    -fx-padding: 5px;
+}
+
 .body {
-    -fx-spacing: 50px;
+    -fx-spacing: 20px;
 }
 
 .surround-box {
     -fx-background-color: #343434;
     -fx-background-radius: 5px;
+    -fx-max-height: 250px;
     -fx-padding: 5px;
     -fx-fit-to-height: true;
     -fx-fit-to-width: true;
@@ -35,7 +43,12 @@
 }
 
 .input-field {
+    -fx-pref-width: 275px;
+    -fx-spacing: 5px;
+}
 
+.share-search-box-heading {
+    -fx-pref-height: 30px;
 }
 
 .icon-box {

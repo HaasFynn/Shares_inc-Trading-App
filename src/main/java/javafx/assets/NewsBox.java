@@ -16,6 +16,8 @@ import java.util.Random;
 public class NewsBox extends VBox {
 
     private final Random rand = new Random();
+    private final String standardText = "Aktuell gibt es keine Neuigkeiten. Schaue später wieder vorbei!";
+    private int clickCounter = 0;
 
     public NewsBox() {
         build();
@@ -62,22 +64,33 @@ public class NewsBox extends VBox {
                 newsList.add(nextString);
             }
         } catch (Exception ignored) {
-            return "Aktuell gibt es keine Neuigkeiten. Schaue später wieder vorbei!";
+            return standardText;
         }
-        return newsList.get(rand.nextInt(1) + newsList.size() - 1);
+        return newsList.get(rand.nextInt((newsList.size() - 1) - 1) + 1);
     }
 
     private VBox buildSurroundBox(VBox box1) {
-        VBox box = new VBox();
+        VBox box = new VBox(box1);
         box1.setAlignment(Pos.CENTER_LEFT);
-        box.getChildren().add(box1);
         box.getStyleClass().addAll("news-surround-box");
+        addBoxListener(box);
         return box;
     }
 
+    private void addBoxListener(VBox box) {
+        box.setOnMouseClicked(event ->{
+            if (clickCounter > 10) {
+                clickCounter = 0;
+                newsText.textProperty().set(standardText);
+                return;
+            }
+            newsText.textProperty().set(getRandomNewsText());
+            clickCounter++;
+        });
+    }
+
     private VBox buildNewsBox(Label label, Text text) {
-        VBox box = new VBox();
-        box.getChildren().addAll(label, text);
+        VBox box = new VBox(label, text);
         box.getStyleClass().add("news-box");
         return box;
     }
