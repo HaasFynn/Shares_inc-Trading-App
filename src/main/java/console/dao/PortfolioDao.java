@@ -11,7 +11,7 @@ public interface PortfolioDao {
 
     List<Portfolio> getAll();
 
-    List<Portfolio> getAllFromUser(long userId);
+    List<Portfolio> getUserPortfolio(long userId);
 
     boolean add(Portfolio portfolio);
 

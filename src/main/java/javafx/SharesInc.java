@@ -14,16 +14,13 @@ import org.kordamp.bootstrapfx.BootstrapFX;
 public class SharesInc extends Application {
 
     public Stage stage;
+
     @Override
     public void start(Stage stage) throws Exception {
-        try {
-            Region sceneRoot = new ScreenBuilder().build();
-            Scene scene = new Scene(sceneRoot);
-            this.stage = stage;
-            config(scene);
-        } catch (Exception e) {
-            System.out.println("error");
-        }
+        Region sceneRoot = new ScreenBuilder().build();
+        Scene scene = new Scene(sceneRoot);
+        this.stage = stage;
+        config(scene);
         stage.show();
     }
 

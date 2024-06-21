@@ -6,6 +6,10 @@
     -fx-max-height: 150px;
 }
 
+.news-surround-box:hover {
+    -fx-cursor: hand;
+}
+
 .news-box {
     -fx-min-width: 700px;
     -fx-max-width: 700px;

@@ -4,6 +4,7 @@ import console.dao.UserDaoImpl;
 import console.functional.EntityManagement;
 import console.functional.InputHandler;
 import jakarta.persistence.EntityManager;
+import javafx.SharesInc;
 
 public class Main {
     public static void main(String[] args) {
@@ -11,7 +12,7 @@ public class Main {
         UserDaoImpl userDao = new UserDaoImpl(entityManager);
         ShareDaoImpl shareDao = new ShareDaoImpl(entityManager);
         PortfolioDaoImpl portfolioDao = new PortfolioDaoImpl(entityManager);
-        new InputHandler(userDao, shareDao, portfolioDao).start(); //For Console Interface
-        //SharesInc.launch(args); //For JavaFX Interface
+        //new InputHandler(userDao, shareDao, portfolioDao).start(); //For Console Interface
+        SharesInc.launch(args); //For JavaFX Interface
     }
 }

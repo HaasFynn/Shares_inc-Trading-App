@@ -103,10 +103,10 @@ public class LoginPane extends CustomPane {
     }
 
     private void adjustWindow() {
-        stage.setWidth(STAGE_WIDTH);
-        stage.setHeight(STAGE_HEIGHT);
-        stage.centerOnScreen();
-        stage.setResizable(false);
+        getStage().setWidth(STAGE_WIDTH);
+        getStage().setHeight(STAGE_HEIGHT);
+        getStage().centerOnScreen();
+        getStage().setResizable(false);
     }
 
     private ChoiceBox<String> buildLanguageChanger() {
@@ -213,7 +213,7 @@ public class LoginPane extends CustomPane {
     }
 
     private Button buildResetButton() {
-        Button button = buildButton("login.reset.submitButton", "btn-sm");
+        Button button = buildButton("login.reset.button.submit", "btn-sm");
         button.setOnMouseClicked(event -> controller.handlePasswordResetButtonAction());
         return button;
     }

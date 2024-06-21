@@ -20,7 +20,6 @@ public class EventListenersImpl implements EventListeners {
     @Override
     public void switchPane(CustomPane pane) {
         mainPanel.switchPage(pane);
-        System.out.println("This is the new Pane: " + pane);
     }
 
 }

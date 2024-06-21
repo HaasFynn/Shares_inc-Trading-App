@@ -11,7 +11,7 @@ public interface ShareDao {
 
     List<Share> getAll();
 
-    List<Share> getByPromptAndTag(String prompt, String tagName);
+    List<Share> getByNamePrompt(String prompt);
 
     boolean add(Share share);
 

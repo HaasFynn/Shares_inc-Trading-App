@@ -34,16 +34,16 @@ public class MainPanel extends CustomPane {
     protected void build() {
         box = buildHBox();
         getChildren().add(box);
-        if (stage.isShowing()) {
+        if (getStage().isShowing()) {
             adjustWindow();
         }
     }
 
     private void adjustWindow() {
-        stage.setHeight(STAGE_HEIGHT);
-        stage.setWidth(STAGE_WIDTH);
-        stage.centerOnScreen();
-        stage.setResizable(true);
+        getStage().setHeight(STAGE_HEIGHT);
+        getStage().setWidth(STAGE_WIDTH);
+        getStage().centerOnScreen();
+        getStage().setResizable(true);
     }
 
     private HBox buildHBox() {
@@ -53,8 +53,16 @@ public class MainPanel extends CustomPane {
     }
 
     public void switchPage(CustomPane pane) {
+        if (classesEqual(pane)) {
+            return;
+        }
         box.getChildren().remove(currentPane);
         this.currentPane = pane;
         box.getChildren().add(currentPane);
+        System.out.println("This is the new Pane: " + pane);
+    }
+
+    private boolean classesEqual(CustomPane pane) {
+        return pane.getClass().equals(currentPane.getClass());
     }
 }

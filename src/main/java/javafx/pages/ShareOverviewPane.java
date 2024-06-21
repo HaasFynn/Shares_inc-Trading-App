@@ -12,7 +12,7 @@ public class ShareOverviewPane extends CustomPane {
     private final ShareOverviewController controller;
     private Share share;
 
-    protected ShareOverviewPane(Stage stage, User user, Share share) {
+    public ShareOverviewPane(Stage stage, User user, Share share) {
         super(stage);
         this.share = share;
         this.controller = new ShareOverviewController(this, user);
