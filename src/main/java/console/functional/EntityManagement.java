@@ -2,15 +2,13 @@ package console.functional;
 
 import console.entities.Portfolio;
 import console.entities.Share;
+import console.entities.Tag;
 import console.entities.User;
 import jakarta.persistence.EntityManagerFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
-/**
- * The type Session.
- */
 public class EntityManagement {
 
     private static EntityManagerFactory entityManagerFactory = null;
@@ -28,6 +26,7 @@ public class EntityManagement {
                             .addAnnotatedClass(Share.class)
                             .addAnnotatedClass(User.class)
                             .addAnnotatedClass(Portfolio.class)
+                            .addAnnotatedClass(Tag.class)
                             .buildMetadata()
                             .buildSessionFactory();
         } catch (Exception e) {

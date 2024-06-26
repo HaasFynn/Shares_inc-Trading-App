@@ -64,8 +64,8 @@ public class Share {
     @Setter
     private LocalDateTime date;
 
-    @ManyToMany()
-    @JoinTable(name = "share_tags")
+    @ManyToMany
+    @JoinTable(name = "share_tag")
     private Set<Tag> tags;
 }
 

@@ -1,11 +1,14 @@
 package javafx.pages;
 
+import console.entities.Share;
+import console.entities.Tag;
 import console.entities.User;
 import javafx.assets.LanguagePack;
 import javafx.assets.NewsBox;
 import javafx.assets.ShareInfoBox;
 import javafx.beans.binding.StringBinding;
 import javafx.beans.property.StringProperty;
+import javafx.collections.ObservableList;
 import javafx.controllers.TradeController;
 import javafx.eventlisteners.EventListeners;
 import javafx.scene.control.*;
@@ -18,6 +21,9 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import lombok.Getter;
 
+import javax.swing.text.TabableView;
+import java.util.ArrayList;
+
 @Getter
 public class TradePane extends CustomPane {
 
@@ -25,11 +31,13 @@ public class TradePane extends CustomPane {
     private enum ColorTheme {
         LIGHT("black"), DARK("grey");
 
+
         private final String colorPathFragment;
 
         ColorTheme(String pathFragment) {
             this.colorPathFragment = pathFragment;
         }
+
 
     }
 
@@ -39,6 +47,7 @@ public class TradePane extends CustomPane {
     private static final double STAGE_HEIGHT = 500;
     private static final String ICONS_DIR = "assets/image/icon";
     private static final double ICON_WIDTH = 10;
+    private static final int START_AMOUNT_OF_SHARES = 25;
     private String username;
     private ColorTheme colorTheme = ColorTheme.DARK;
 
@@ -59,11 +68,7 @@ public class TradePane extends CustomPane {
     private VBox shareSearchBox;
     private HBox shareSearchBoxHeader;
 
-    private HBox searchIconBox;
-
     private TextField searchField;
-
-    private HBox filterIconBox;
 
     private TableView<ShareInfoBox> searchTableView;
     private TableColumn<ShareInfoBox, String> nameColumn;
@@ -73,7 +78,7 @@ public class TradePane extends CustomPane {
     private VBox filterHeader;
     private Label filterTitle;
     private VBox filterBody;
-    private ListView<String> filterList; //TODO: Replace with proper way (checkboxes)
+    private ListView<CheckBox> filterList;
 
     private NewsBox newsBox;
 
@@ -142,18 +147,17 @@ public class TradePane extends CustomPane {
         tableView.getColumns().addAll(nameColumn, revenueColumn);
         tableView.setEditable(true);
         tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_ALL_COLUMNS);
-        setStandardTableItems(tableView);
+        fillTableList(tableView);
 
         tableView.getStyleClass().add("search-response-box");
         return tableView;
     }
 
-    private void setStandardTableItems(TableView<ShareInfoBox> tableView) {
-        tableView.getItems().addAll(
-                controller.getShareInfoBoxes(
-                        controller.getShares(25)
-                )
-        );
+    private void fillTableList(TableView<ShareInfoBox> tableView) {
+        ObservableList<ShareInfoBox> shareInfoBoxes = controller.getShareInfoBoxes(controller.getShares(START_AMOUNT_OF_SHARES));
+        for (ShareInfoBox box : shareInfoBoxes) {
+            tableView.getItems().add(box);
+        }
     }
 
     private void buildTableColumns() {
@@ -170,14 +174,14 @@ public class TradePane extends CustomPane {
     }
 
     private void createShareSearchBoxHeader() {
-        searchIconBox = buildIconBox("lens.png", "icon-box");
+        //searchIconBox = buildIconBox("lens.png", "icon-box");
         searchField = buildInputField("trade.search.input.placeholder", "input-field");
-        filterIconBox = buildIconBox("filter.png", "icon-box");
-        shareSearchBoxHeader = buildShareSearchBoxHeader(searchIconBox, searchField, filterIconBox);
+        //filterIconBox = buildIconBox("filter.png", "icon-box");
+        shareSearchBoxHeader = buildShareSearchBoxHeader(searchField);
     }
 
-    private HBox buildShareSearchBoxHeader(HBox iconBox1, TextField inputField, HBox iconBox2) {
-        HBox box = new HBox(iconBox1, inputField, iconBox2);
+    private HBox buildShareSearchBoxHeader(TextField inputField) {
+        HBox box = new HBox(inputField);
         box.getStyleClass().add("share-search-box-heading");
         return box;
     }
@@ -234,14 +238,25 @@ public class TradePane extends CustomPane {
         filterBody = buildFilterBoxBody(filterList);
     }
 
-    private ListView<String> buildFilterList() {
-        ListView<String> listView = new ListView<>();
-        listView.getStyleClass().add("filter-list");
-        listView.getItems().addAll(controller.getFilterTags());
-        return listView;
+    private ListView<CheckBox> buildFilterList() {
+        ListView<CheckBox> box = new ListView<>();
+        box.getStyleClass().add("filter-list");
+        box.getItems().addAll(getFilterBoxes());
+        return box;
     }
 
-    private VBox buildFilterBoxBody(ListView<String> list) {
+    private ArrayList<CheckBox> getFilterBoxes() {
+        ArrayList<CheckBox> boxes = new ArrayList<>();
+        controller.getFilterTags().forEach(tag -> {
+            CheckBox box = new CheckBox();
+            box.setText(tag.getName());
+            controller.handleCheckBoxSelectionChange(box);
+            boxes.add(box);
+        });
+        return boxes;
+    }
+
+    private VBox buildFilterBoxBody(ListView<CheckBox> list) {
         VBox box = new VBox(list);
         box.getStyleClass().add("filter-box-body");
         return box;
@@ -288,7 +303,7 @@ public class TradePane extends CustomPane {
 
     private void addListeners() {
         controller.handleSearchViewElementSelection(searchTableView);
-        controller.handleTextFieldOnEnter(searchField);
+        controller.handleTextFieldOnPromptChange(searchField);
     }
 
 }
