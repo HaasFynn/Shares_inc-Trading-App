@@ -43,7 +43,7 @@ public class MainPanel extends CustomPane {
         getStage().setHeight(STAGE_HEIGHT);
         getStage().setWidth(STAGE_WIDTH);
         getStage().centerOnScreen();
-        getStage().setResizable(true);
+        getStage().setResizable(false);
     }
 
     private HBox buildHBox() {

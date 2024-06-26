@@ -1,32 +1,34 @@
 package console.dao;
 
+
 import console.entities.Share;
+import console.entities.Tag;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 
 import java.util.List;
 
-public class ShareDaoImpl implements ShareDao {
+public class TagDaoImpl implements TagDao {
     private final EntityManager entityManager;
 
-    public ShareDaoImpl(EntityManager entityManager) {
+    public TagDaoImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 
     @Override
-    public Share get(long id) {
+    public Tag get(long id) {
         try {
-            return entityManager.find(Share.class, id);
+            return entityManager.find(Tag.class, id);
         } catch (NoResultException e) {
             return null;
         }
     }
 
     @Override
-    public Share getByName(String name) {
+    public Tag getByName(String name) {
         try {
-            return entityManager.createQuery("FROM Share s WHERE s.name = :name", Share.class)
+            return entityManager.createQuery("FROM Tag t WHERE t.name = :name", Tag.class)
                     .setParameter("name", name)
                     .getResultStream()
                     .findFirst().orElse(null);
@@ -36,27 +38,15 @@ public class ShareDaoImpl implements ShareDao {
     }
 
     @Override
-    public List<Share> getAll() {
-        return entityManager.createQuery("FROM Share", Share.class).getResultList();
+    public List<Tag> getAll() {
+        return entityManager.createQuery("FROM Tag", Tag.class).getResultList();
     }
 
     @Override
-    public List<Share> getByNamePrompt(String prompt) {
-        try {
-            return entityManager.createQuery("FROM Share s WHERE s.name LIKE :name", Share.class)
-                    .setParameter("name", "%" + prompt + "%")
-                    .getResultStream()
-                    .toList();
-        } catch (NoResultException e) {
-            return null;
-        }
-    }
-
-    @Override
-    public boolean add(Share share) {
+    public boolean add(Tag tag) {
         try {
             entityManager.getTransaction().begin();
-            entityManager.persist(share);
+            entityManager.persist(tag);
             entityManager.getTransaction().commit();
         } catch (EntityExistsException e) {
             return false;
@@ -65,43 +55,39 @@ public class ShareDaoImpl implements ShareDao {
     }
 
     @Override
-    public boolean addAll(Share... shares) {
-        for (Share share : shares) {
-            if (share != null) {
-                try {
-                    entityManager.getTransaction().begin();
-                    entityManager.persist(share);
-                    entityManager.getTransaction().commit();
-                } catch (Exception ignored) {
-                }
+    public boolean addAll(Tag... tags) {
+        for (Tag tag : tags) {
+            try {
+                entityManager.getTransaction().begin();
+                entityManager.persist(tag);
+                entityManager.getTransaction().commit();
+            } catch (EntityExistsException ignored) {
             }
         }
         return true;
     }
 
     @Override
-    public boolean update(Share share) {
+    public boolean update(Tag tag) {
         try {
             entityManager.getTransaction().begin();
-            entityManager.merge(share);
+            entityManager.merge(tag);
             entityManager.getTransaction().commit();
         } catch (IllegalArgumentException e) {
             return false;
         }
         return true;
     }
-
 
     @Override
-    public boolean delete(Share share) {
+    public boolean delete(Tag tag) {
         try {
             entityManager.getTransaction().begin();
-            entityManager.remove(share);
+            entityManager.remove(tag);
             entityManager.getTransaction().commit();
         } catch (IllegalArgumentException e) {
             return false;
         }
         return true;
     }
-
 }

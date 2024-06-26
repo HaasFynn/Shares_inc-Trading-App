@@ -67,7 +67,7 @@ public class ShareCreatorPane extends GridPane {
         stage.getScene().getWindow().setHeight(STAGE_HEIGHT);
         stage.getScene().getWindow().setWidth(STAGE_WIDTH);
         stage.centerOnScreen();
-        stage.setResizable(true); //Change Goal: Adjustable without problems
+        stage.setResizable(false);
     }
 
     private VBox buildBody(Text text, VBox box1) {
