@@ -43,8 +43,7 @@
 }
 
 .input-field {
-    -fx-pref-width: 275px;
-    -fx-spacing: 5px;
+    -fx-pref-width: 500px;
 }
 
 .share-search-box-heading {
@@ -62,3 +61,16 @@
     min width
     */
 }
+
+.search-box {
+    -fx-spacing: 20px;
+}
+
+.news-box {
+    -fx-min-width: 770px;
+    -fx-max-width: 770px;
+    -fx-min-height: 75px;
+    -fx-spacing: 8px;
+    -fx-padding: 5px;
+}
+

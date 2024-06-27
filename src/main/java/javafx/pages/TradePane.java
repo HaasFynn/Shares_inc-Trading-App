@@ -1,7 +1,5 @@
 package javafx.pages;
 
-import console.entities.Share;
-import console.entities.Tag;
 import console.entities.User;
 import javafx.assets.LanguagePack;
 import javafx.assets.NewsBox;
@@ -21,7 +19,6 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import lombok.Getter;
 
-import javax.swing.text.TabableView;
 import java.util.ArrayList;
 
 @Getter
@@ -174,9 +171,7 @@ public class TradePane extends CustomPane {
     }
 
     private void createShareSearchBoxHeader() {
-        //searchIconBox = buildIconBox("lens.png", "icon-box");
         searchField = buildInputField("trade.search.input.placeholder", "input-field");
-        //filterIconBox = buildIconBox("filter.png", "icon-box");
         shareSearchBoxHeader = buildShareSearchBoxHeader(searchField);
     }
 

@@ -22,7 +22,7 @@
 }
 
 .body {
-    -fx-spacing: 110px;
+    -fx-spacing: 140px;
 }
 
 .surround-box {
@@ -34,7 +34,7 @@
 }
 
 .money-box {
-    -fx-pref-width: 300px;
+    -fx-min-width: 340px;
     -fx-pref-height: 150px;
     -fx-padding: 10px;
     -fx-spacing: 8px;
@@ -49,11 +49,19 @@
 .stock-market-box {
     -fx-padding: 10px;
     -fx-spacing: 8px;
-    -fx-pref-width: 300px;
+    -fx-min-width: 340px;
 }
 
 .money-text {
     -fx-font-size: 17;
     -fx-font-weight: bold;
     -fx-fill: rgba(4, 180, 4, 0.94);
+}
+
+.news-box {
+    -fx-min-width: 830px;
+    -fx-max-width: 830px;
+    -fx-min-height: 75px;
+    -fx-spacing: 8px;
+    -fx-padding: 5px;
 }

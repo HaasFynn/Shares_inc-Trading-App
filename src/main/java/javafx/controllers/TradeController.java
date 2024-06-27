@@ -21,7 +21,6 @@ import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class TradeController {
 
@@ -52,7 +51,7 @@ public class TradeController {
 
     private ObservableList<ShareInfoBox> getEmptyResponse() {
         ShareInfoBox box = new ShareInfoBox(pane.getValueByKey("trade.error.no_entry_found").get(), 0, false);
-        return FXCollections.observableArrayList(List.of(box));
+        return FXCollections.observableArrayList(box);
     }
 
     public User getUser() {
@@ -105,7 +104,7 @@ public class TradeController {
     public void handleTextFieldOnPromptChange(TextField inputField) {
         inputField.setOnKeyPressed(event -> {
             pane.getSearchTableView().setDisable(false);
-            setTableViewItems(getSharesByPrompt(inputField.getText()));
+            handleSearchProcess();
         });
     }
 
@@ -120,17 +119,25 @@ public class TradeController {
             } else {
                 getSelectedFilterTags().remove(getFilterTagByName(box.getText()));
             }
-            ArrayList<Share> shares = getSharesFromNameList();
-            setTableViewItems(getFilteredShares(shares));
+            handleSearchProcess();
         });
+    }
+
+    private void handleSearchProcess() {
+        ObservableList<ShareInfoBox> infoBoxes;
+        ArrayList<Share> shares = getSharesFromNameList();
+        if (selectedFilterTags.isEmpty()) {
+            infoBoxes = getShareInfoBoxes(shares.toArray(new Share[0]));
+        } else {
+            infoBoxes = getFilteredShares(shares);
+        }
+        setTableViewItems(infoBoxes);
     }
 
     private ArrayList<Share> getSharesFromNameList() {
         ObservableList<ShareInfoBox> infoBoxes = getSharesByPrompt(pane.getSearchField().getText());
         ArrayList<Share> shares = new ArrayList<>();
-        infoBoxes.forEach(shareInfoBox -> {
-           shares.add(shareDao.getByName(shareInfoBox.getShareName()));
-        });
+        infoBoxes.forEach(shareInfoBox -> shares.add(shareDao.getByName(shareInfoBox.getShareName())));
         return shares;
     }
 
@@ -140,14 +147,12 @@ public class TradeController {
 
     private ObservableList<ShareInfoBox> getFilteredShares(ArrayList<Share> shares) {
         ArrayList<ShareInfoBox> filteredShares = new ArrayList<>();
-        shares.forEach(share -> {
-            selectedFilterTags.forEach(tag -> {
-                if (share.getTags().contains(tag)) {
-                    filteredShares.add(new ShareInfoBox(share.getName()));
-                }
-            });
-        });
-        return getShareInfoBoxes(filteredShares.toArray(new Share[0]));
+        shares.forEach(share -> selectedFilterTags.forEach(tag -> {
+            if (share.getTags().contains(tag)) {
+                filteredShares.add(new ShareInfoBox(share.getName()));
+            }
+        }));
+        return FXCollections.observableArrayList(filteredShares);
     }
 
     private void addToSelectionList(Tag tag) {

@@ -10,14 +10,6 @@
     -fx-cursor: hand;
 }
 
-.news-box {
-    -fx-min-width: 700px;
-    -fx-max-width: 700px;
-    -fx-min-height: 75px;
-    -fx-spacing: 8px;
-    -fx-padding: 5px;
-}
-
 .news-box-label {
     -fx-font-size: 18;
     -fx-font-weight: 700;
