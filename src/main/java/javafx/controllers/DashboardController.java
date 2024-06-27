@@ -7,7 +7,9 @@ import console.entities.User;
 import console.functional.EntityManagement;
 import jakarta.persistence.EntityManager;
 import javafx.assets.ShareInfoBox;
+import javafx.eventlisteners.EventListeners;
 import javafx.pages.DashboardPane;
+import javafx.pages.ShareOverviewPane;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
@@ -23,14 +25,16 @@ public class DashboardController extends Controller {
 
     private final Stage stage;
     private final DashboardPane pane;
+    private final EventListeners eventListeners;
     private final UserDao userDao;
     private final PortfolioDao portfolioDao;
     private final ShareDao shareDao;
     private final String username;
 
-    public DashboardController(Stage stage, DashboardPane pane, User user) {
+    public DashboardController(Stage stage, DashboardPane pane, EventListeners eventListeners, User user) {
         this.stage = stage;
         this.pane = pane;
+        this.eventListeners = eventListeners;
         EntityManager entityManager = EntityManagement.createEntityManagerFactory().createEntityManager();
         this.userDao = new UserDaoImpl(entityManager);
         this.portfolioDao = new PortfolioDaoImpl(entityManager);
@@ -57,27 +61,54 @@ public class DashboardController extends Controller {
     }
 
     public Callback<ListView<ShareInfoBox>, ListCell<ShareInfoBox>> getStockListCellFactory() {
-        return new Callback<>() {
+        Callback<ListView<ShareInfoBox>, ListCell<ShareInfoBox>> cellFactory = new Callback<>() {
             @Override
             public ListCell<ShareInfoBox> call(ListView listView) {
-                return new ListCell<>() {
-                    @Override
-                    protected void updateItem(ShareInfoBox shareInfoBox, boolean empty) {
-                        super.updateItem(shareInfoBox, empty);
-                        if (empty || shareInfoBox == null) {
-                            setText(null);
-                            setGraphic(null);
-                        } else {
-                            HBox item = new HBox();
-                            item.setSpacing(40);
-                            Text name = new Text(shareInfoBox.getName());
-                            name.setTextAlignment(TextAlignment.CENTER);
-                            item.getChildren().addAll(name, shareInfoBox.getRevenue());
-                            setGraphic(item);
-                        }
-                    }
-                };
+                return getStockListCell();
+            }
+        };
+
+        return cellFactory;
+    }
+
+    private static ListCell<ShareInfoBox> getStockListCell() {
+        return new ListCell<>() {
+            @Override
+            protected void updateItem(ShareInfoBox shareInfoBox, boolean empty) {
+                super.updateItem(shareInfoBox, empty);
+                if (empty || shareInfoBox == null) {
+                    setText(null);
+                    setGraphic(null);
+                    return;
+                }
+                HBox item = buildItem(shareInfoBox);
+                setGraphic(item);
             }
         };
     }
+
+    private static HBox buildItem(ShareInfoBox shareInfoBox) {
+        HBox item = new HBox();
+        item.setSpacing(40);
+        Text name = new Text(shareInfoBox.getName());
+        name.setTextAlignment(TextAlignment.CENTER);
+        item.getChildren().addAll(name, shareInfoBox.getRevenue());
+        return item;
+    }
+
+    public void handleSearchViewElementSelection(ListView<ShareInfoBox> searchTableView) {
+        searchTableView.setOnMouseClicked(event -> {
+            if (event.getClickCount() != 2) {
+                return;
+            }
+            ShareInfoBox selectedItem = searchTableView.getSelectionModel().getSelectedItem();
+            if (selectedItem == null) {
+                return;
+            }
+            Share share = shareDao.getByName(selectedItem.getName());
+            eventListeners.switchPane(new ShareOverviewPane(pane.getStage(), eventListeners, getUser(), share));
+            searchTableView.getSelectionModel().clearSelection();
+        });
+    }
+
 }

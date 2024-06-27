@@ -22,8 +22,8 @@ public class CreateShareTagCon {
         ArrayList<Tag> tags = new ArrayList<>(tagDao.getAll());
         ArrayList<Share> shares = new ArrayList<>(shareDao.getAll());
         shares.forEach(share -> {
-            int amountOfTags = rand.nextInt(3);
-            for (int i = 0; i < amountOfTags; i++) {
+            int amountOfTags = rand.nextInt(Math.min(tags.size() - 1, 3));
+            while (share.getTags().size() <= amountOfTags) {
                 Tag tag = tags.get(rand.nextInt(tags.size() - 1));
                 share.getTags().add(tag);
             }

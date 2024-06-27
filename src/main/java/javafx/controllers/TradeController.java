@@ -91,8 +91,8 @@ public class TradeController {
             if (selectedItem == null) {
                 return;
             }
-            Share share = getShare(selectedItem.getName());
-            eventListeners.switchPane(new ShareOverviewPane(pane.getStage(), getUser(), share));
+            Share share = shareDao.getByName(selectedItem.getName());
+            eventListeners.switchPane(new ShareOverviewPane(pane.getStage(), eventListeners, getUser(), share));
             searchTableView.getSelectionModel().clearSelection();
         });
     }

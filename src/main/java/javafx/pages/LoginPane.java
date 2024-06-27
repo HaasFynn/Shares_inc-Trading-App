@@ -4,6 +4,7 @@ import javafx.assets.LanguagePack;
 import javafx.beans.binding.StringBinding;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.eventlisteners.EventListeners;
 import javafx.geometry.Pos;
 import javafx.controllers.LoginController;
 import javafx.scene.control.*;
@@ -19,8 +20,8 @@ public class LoginPane extends CustomPane {
     public static final double STAGE_WIDTH = 420;
     public static final double STAGE_HEIGHT = 500;
 
-    public LoginPane(Stage stage) {
-        super(stage);
+    public LoginPane(Stage stage, EventListeners eventListeners) {
+        super(stage, eventListeners, null);
         this.controller = new LoginController(this);
         build();
     }
