@@ -2,7 +2,6 @@ package javafx.pages;
 
 import console.entities.User;
 import javafx.eventlisteners.EventListeners;
-import javafx.eventlisteners.EventListenersImpl;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -34,8 +33,8 @@ public class SideBarPane extends CustomPane {
     private static final double SCENE_WIDTH = 60;
     private static final double SCENE_HEIGHT = 500;
 
-    public SideBarPane(Stage stage, User user, EventListenersImpl eventListeners) {
-        super(stage);
+    public SideBarPane(Stage stage, EventListeners eventListeners, User user) {
+        super(stage, eventListeners, user);
         this.user = user;
         this.eventListeners = eventListeners;
         build();
@@ -75,12 +74,12 @@ public class SideBarPane extends CustomPane {
     }
 
     private void createNodes() {
-        this.home = buildImageBox("home.png", new DashboardPane(getStage(), user));
-        this.portfolio = buildImageBox("portfolio.png", new PortfolioPane(getStage(), user));
+        this.home = buildImageBox("home.png", new DashboardPane(getStage(), eventListeners, user));
+        this.portfolio = buildImageBox("portfolio.png", new PortfolioPane(getStage(), eventListeners, user));
         this.trade = buildImageBox("handshake.png", new TradePane(getStage(), eventListeners, user));
-        this.statistic = buildImageBox("diagram.png", new StockMarketPane(getStage(), user));
-        this.account = buildImageBox("account.png", new ProfilePane(getStage(), user));
-        this.settings = buildImageBox("settings.png", new SettingsPane(getStage(), user));
+        this.statistic = buildImageBox("diagram.png", new StockMarketPane(getStage(), eventListeners, user));
+        this.account = buildImageBox("account.png", new ProfilePane(getStage(), eventListeners, user));
+        this.settings = buildImageBox("settings.png", new SettingsPane(getStage(), eventListeners, user));
     }
 
     private HBox buildImageBox(String image, CustomPane pane) {

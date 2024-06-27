@@ -34,6 +34,7 @@ public class SharesInc extends Application {
         MainPanel mainPanel = new MainPanel(stage, user);
         scene.setRoot(mainPanel);
         scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
+        stage.setResizable(false);
         stage.setScene(scene);
     }
 }

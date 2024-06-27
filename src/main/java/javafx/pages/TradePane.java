@@ -24,14 +24,11 @@ public class TradePane extends CustomPane {
     @Getter
     private enum ColorTheme {
         LIGHT("black"), DARK("grey");
-
         private final String colorPathFragment;
 
         ColorTheme(String pathFragment) {
             this.colorPathFragment = pathFragment;
         }
-
-
     }
 
     private final EventListeners eventListeners;
@@ -45,7 +42,7 @@ public class TradePane extends CustomPane {
     private ColorTheme colorTheme = ColorTheme.DARK;
 
     public TradePane(Stage stage, EventListeners eventListeners, User user) {
-        super(stage);
+        super(stage, eventListeners, user);
         this.eventListeners = eventListeners;
         this.username = user.getUsername();
         this.controller = new TradeController(this, eventListeners, user);
@@ -153,8 +150,7 @@ public class TradePane extends CustomPane {
 
     private TableColumn<ShareInfoBox, String> buildColumn(String binding, String propertyName) {
         TableColumn<ShareInfoBox, String> column = new TableColumn<>();
-        column.setCellValueFactory(
-                new PropertyValueFactory<>(propertyName));
+        column.setCellValueFactory(new PropertyValueFactory<>(propertyName));
         bind(column.textProperty(), binding);
         return column;
     }

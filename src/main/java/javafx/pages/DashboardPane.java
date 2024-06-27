@@ -9,6 +9,7 @@ import javafx.assets.ShareInfoBox;
 import javafx.beans.binding.StringBinding;
 import javafx.beans.property.StringProperty;
 import javafx.controllers.DashboardController;
+import javafx.eventlisteners.EventListeners;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -24,15 +25,17 @@ import java.util.stream.IntStream;
 
 @Getter
 public class DashboardPane extends CustomPane {
+
     private static final double STAGE_WIDTH = 815;
     private static final double STAGE_HEIGHT = 500;
     private static final String MONEY_ENDING_SYMBOL = ".-";
     public static final int SHARE_BOX_AMOUNT = 4;
     private final DashboardController controller;
     private final Random rand = new Random();
-    public DashboardPane(Stage stage, User user) {
-        super(stage);
-        this.controller = new DashboardController(stage, this, user);
+
+    public DashboardPane(Stage stage, EventListeners eventListeners, User user) {
+        super(stage, eventListeners, user);
+        this.controller = new DashboardController(stage, this, eventListeners, user);
         build();
     }
 
@@ -129,7 +132,7 @@ public class DashboardPane extends CustomPane {
     private void buildShareChangeOverview() {
         this.marketOverviewLabel = buildLabel("dashboard.shareinfo.label", "label");
         this.stockList = buildStockList();
-        this.stockMarketBox = buildStockMarketBox(marketOverviewLabel,stockList);
+        this.stockMarketBox = buildStockMarketBox(marketOverviewLabel, stockList);
 
         this.stockMarketSurroundingBox = buildSurroundBox(stockMarketBox);
     }
@@ -231,7 +234,7 @@ public class DashboardPane extends CustomPane {
     }
 
     private void addListeners() {
-
+        controller.handleSearchViewElementSelection(stockList);
     }
 
     private Label buildLabel(String key, String... styleClasses) {

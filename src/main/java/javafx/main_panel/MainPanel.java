@@ -18,15 +18,15 @@ public class MainPanel extends CustomPane {
     private static final double STAGE_HEIGHT = 500;
 
     public MainPanel(Stage stage, User user) {
-        super(stage);
-        this.currentPane = new DashboardPane(stage, user);
+        super(stage, null, user);
+        this.eventListeners = new EventListenersImpl(stage, this, user);
+        this.currentPane = new DashboardPane(stage, eventListeners, user);
         sideBar = getSideBarPane(stage, user);
         build();
     }
 
     private SideBarPane getSideBarPane(Stage stage, User user) {
-        this.eventListeners = new EventListenersImpl(stage, this, user);
-        return new SideBarPane(stage, user, eventListeners);
+        return new SideBarPane(stage, eventListeners, user);
     }
 
     HBox box;
@@ -43,7 +43,6 @@ public class MainPanel extends CustomPane {
         getStage().setHeight(STAGE_HEIGHT);
         getStage().setWidth(STAGE_WIDTH);
         getStage().centerOnScreen();
-        getStage().setResizable(false);
     }
 
     private HBox buildHBox() {
