@@ -6,13 +6,18 @@ import console.entities.Share;
 import console.entities.User;
 import console.functional.EntityManagement;
 import jakarta.persistence.EntityManager;
+import javafx.assets.ShareInfoBox;
 import javafx.pages.DashboardPane;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
+import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import java.util.Arrays;
 import java.util.List;
-
-import static javafx.pages.DashboardPane.SHARE_BOX_AMOUNT;
 
 public class DashboardController extends Controller {
 
@@ -49,5 +54,30 @@ public class DashboardController extends Controller {
 
     public Share get(long id) {
         return shareDao.get(id);
+    }
+
+    public Callback<ListView<ShareInfoBox>, ListCell<ShareInfoBox>> getStockListCellFactory() {
+        return new Callback<>() {
+            @Override
+            public ListCell<ShareInfoBox> call(ListView listView) {
+                return new ListCell<>() {
+                    @Override
+                    protected void updateItem(ShareInfoBox shareInfoBox, boolean empty) {
+                        super.updateItem(shareInfoBox, empty);
+                        if (empty || shareInfoBox == null) {
+                            setText(null);
+                            setGraphic(null);
+                        } else {
+                            HBox item = new HBox();
+                            item.setSpacing(40);
+                            Text name = new Text(shareInfoBox.getName());
+                            name.setTextAlignment(TextAlignment.CENTER);
+                            item.getChildren().addAll(name, shareInfoBox.getRevenue());
+                            setGraphic(item);
+                        }
+                    }
+                };
+            }
+        };
     }
 }

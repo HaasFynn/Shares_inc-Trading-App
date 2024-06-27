@@ -1,7 +1,5 @@
 package javafx.assets;
 
-import javafx.scene.Node;
-import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import lombok.Getter;
@@ -9,24 +7,24 @@ import lombok.Getter;
 import java.util.Random;
 
 @Getter
-public class ShareInfoBox extends HBox /*Remove HBox! -> Error in DashboardPane */ {
+public class ShareInfoBox {
 
     private Random rand;
     private final Text SPACE = new Text(" - ");
-    private String shareName;
+    private String name;
     private Text revenue;
     private boolean hasGained;
 
-    public ShareInfoBox(String shareName) {
+    public ShareInfoBox(String name) {
         this.rand = new Random();
-        this.shareName = shareName;
-        this.revenue = new Text(getRandomRevenue()+ "%");
+        this.name = name;
+        this.revenue = new Text(getRandomRevenue() + "%");
         this.hasGained = rand.nextBoolean();
         setColor();
     }
 
-    public ShareInfoBox(String shareName, double revenue, boolean hasGained) {
-        this.shareName = shareName;
+    public ShareInfoBox(String name, double revenue, boolean hasGained) {
+        this.name = name;
         this.revenue = new Text(revenue + "%");
         this.hasGained = hasGained;
     }

@@ -11,6 +11,7 @@ import javafx.beans.property.StringProperty;
 import javafx.controllers.DashboardController;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -19,21 +20,22 @@ import lombok.Getter;
 
 import java.util.List;
 import java.util.Random;
+import java.util.stream.IntStream;
 
 @Getter
 public class DashboardPane extends CustomPane {
     private static final double STAGE_WIDTH = 815;
     private static final double STAGE_HEIGHT = 500;
     private static final String MONEY_ENDING_SYMBOL = ".-";
-    public static final int SHARE_BOX_AMOUNT = 5;
+    public static final int SHARE_BOX_AMOUNT = 4;
     private final DashboardController controller;
     private final Random rand = new Random();
-
     public DashboardPane(Stage stage, User user) {
         super(stage);
         this.controller = new DashboardController(stage, this, user);
         build();
     }
+
 
     private VBox page;
     private VBox upperPage;
@@ -53,8 +55,8 @@ public class DashboardPane extends CustomPane {
 
     private VBox stockMarketSurroundingBox;
     private VBox stockMarketBox;
+    private ListView<ShareInfoBox> stockList;
     private Label marketOverviewLabel;
-    private ShareInfoBox[] shareInfoBoxes; /* 5 fit currently*/
 
     private NewsBox newsBox;
 
@@ -126,37 +128,33 @@ public class DashboardPane extends CustomPane {
 
     private void buildShareChangeOverview() {
         this.marketOverviewLabel = buildLabel("dashboard.shareinfo.label", "label");
-        this.shareInfoBoxes = buildShareInfoBoxes("share-info-box");
-        this.stockMarketBox = buildShareChangeBox(marketOverviewLabel, shareInfoBoxes);
+        this.stockList = buildStockList();
+        this.stockMarketBox = buildStockMarketBox(marketOverviewLabel,stockList);
 
         this.stockMarketSurroundingBox = buildSurroundBox(stockMarketBox);
     }
 
-
-    private ShareInfoBox[] buildShareInfoBoxes(String... styleClasses) {
-        ShareInfoBox[] shareInfoBoxes = new ShareInfoBox[SHARE_BOX_AMOUNT];
-        Share[] topShares = controller.getTopShares(SHARE_BOX_AMOUNT);
-        for (int i = 0; i < SHARE_BOX_AMOUNT; i++) {
-            shareInfoBoxes[i] = new ShareInfoBox(topShares[i].getName());
-            shareInfoBoxes[i].getStyleClass().addAll(styleClasses);
-        }
-        return shareInfoBoxes;
-    }
-
-
-
-    private VBox buildShareChangeBox(Label label, ShareInfoBox[] infoBoxes) {
-        VBox box = new VBox();
-        box.getChildren().add(label);
-        addInfoBoxes(box, infoBoxes);
+    private VBox buildStockMarketBox(Label label, ListView<ShareInfoBox> stockList) {
+        VBox box = new VBox(label, stockList);
         box.getStyleClass().add("stock-market-box");
         return box;
     }
 
-    private void addInfoBoxes(VBox box, ShareInfoBox[] infoBoxes) {
-        for (ShareInfoBox infoBox : infoBoxes) {
-            box.getChildren().add(infoBox);
-        }
+
+    private ShareInfoBox[] getShareInfoBoxes() {
+        ShareInfoBox[] shareInfoBoxes;
+        Share[] topShares = controller.getTopShares(SHARE_BOX_AMOUNT);
+        shareInfoBoxes = IntStream.range(0, SHARE_BOX_AMOUNT).mapToObj(i -> new ShareInfoBox(topShares[i].getName())).toArray(ShareInfoBox[]::new);
+        return shareInfoBoxes;
+    }
+
+
+    private ListView<ShareInfoBox> buildStockList() {
+        ListView<ShareInfoBox> stockList = new ListView<>();
+        stockList.setCellFactory(controller.getStockListCellFactory());
+        stockList.getItems().addAll(getShareInfoBoxes());
+        stockList.getStyleClass().add("stock-list");
+        return stockList;
     }
 
     private VBox buildHeader(Text text, Text text1) {
