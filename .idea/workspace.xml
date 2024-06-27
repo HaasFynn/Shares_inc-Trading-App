@@ -4,22 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea488597-f4e2-49aa-b467-1e44621e87b4" name="Changes" comment="trading-page: implement trading pane, refactore news block -&gt; own class">
-      <change afterPath="$PROJECT_DIR$/src/main/java/console/dao/TagDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/console/dao/TagDaoImpl.java" afterDir="false" />
+    <list default="true" id="ea488597-f4e2-49aa-b467-1e44621e87b4" name="Changes" comment="trading-page: Add Filters -&gt; work but need to add share_tag entries in database, need to disable field when no entry found">
+      <change afterPath="$PROJECT_DIR$/src/test/java/console/functional/CreateShareTagCon.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/console/dao/ShareDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/console/dao/ShareDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/console/entities/Share.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/console/entities/Share.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/console/functional/EntityManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/console/functional/EntityManagement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/assets/ShareInfoBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/assets/ShareInfoBox.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/javafx/controllers/TradeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/controllers/TradeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/main_panel/MainPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/main_panel/MainPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/pages/ShareCreatorPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/pages/ShareCreatorPane.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/javafx/pages/TradePane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/pages/TradePane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/hibernate.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/hibernate.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/style/dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/style/dashboard.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/style/news_box.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/style/news_box.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/style/trade.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/style/trade.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,6 +119,7 @@
     "Gradle.InputHandlerTest.doesLoginWork.executor": "Run",
     "Gradle.InputHandlerTest.shouldFail.executor": "Run",
     "Gradle.ShareCreatorTest.doesShareCreationWork.executor": "Run",
+    "Gradle.Shares-inc.-Trading-App [:CreateShareTagCon.main()].executor": "Run",
     "Gradle.Shares-inc.-Trading-App [:Main.main()].executor": "Run",
     "Gradle.Shares-inc.-Trading-App [:SharesInc.main()].executor": "Run",
     "Gradle.Shares.inc-Remake [:Main.main()].executor": "Run",
@@ -211,6 +205,19 @@
     </key>
   </component>
   <component name="RunManager" selected="Application.SharesInc">
+    <configuration name="CreateShareTagCon" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="console.functional.CreateShareTagCon" />
+      <module name="Shares-inc.-Trading-App.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="console.functional.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="openjdk-22" />
       <option name="MAIN_CLASS_NAME" value="Main" />
@@ -232,28 +239,6 @@
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
-    </configuration>
-    <configuration name="shares_gradle [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="build" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>false</RunAsTest>
-      <method v="2" />
     </configuration>
     <configuration name="shares_gradle [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
@@ -298,19 +283,19 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Application.CreateShareTagCon" />
       <item itemvalue="Application.Main" />
       <item itemvalue="Application.SharesInc" />
-      <item itemvalue="Gradle.shares_gradle [build]" />
       <item itemvalue="Gradle.shares_gradle [clean]" />
       <item itemvalue="Java Scratch.Scratch" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.CreateShareTagCon" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.SharesInc" />
         <item itemvalue="Java Scratch.Scratch" />
         <item itemvalue="Gradle.shares_gradle [clean]" />
-        <item itemvalue="Gradle.shares_gradle [build]" />
       </list>
     </recent_temporary>
   </component>
@@ -398,7 +383,8 @@
       <workItem from="1718955835037" duration="12368000" />
       <workItem from="1719385338299" duration="1040000" />
       <workItem from="1719386389192" duration="869000" />
-      <workItem from="1719387269340" duration="13952000" />
+      <workItem from="1719387269340" duration="14648000" />
+      <workItem from="1719475214383" duration="5080000" />
     </task>
     <task id="LOCAL-00001" summary="Created Files and Set Properties&#10;setUp Function made&#10;Annotations added">
       <option name="closed" value="true" />
@@ -608,7 +594,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718890043286</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="trading-page: Add Filters -&gt; work but need to add share_tag entries in database, need to disable field when no entry found">
+      <option name="closed" value="true" />
+      <created>1719406947948</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1719406947948</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -646,7 +640,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="disabled warnings in build.gradle" />
     <MESSAGE value="Original Commit didnt go through March 7th&#10;Changed:&#10;System works (asking user stuff)&#10;To be done:&#10;- Db gets cleared after every start&#10;- On changing User Inf, user doesn't update it duplicates entry with new Inf" />
     <MESSAGE value="Password now for Userchanges required&#10;Updated deprecated hibernate methods&#10;  save() -&gt; merge()" />
     <MESSAGE value="Transaction verwendet&#10;EntityManager verwendet&#10;Dao's erstellt" />
@@ -671,7 +664,8 @@
     <MESSAGE value="merged" />
     <MESSAGE value="trading-page: implement trading pane, refactore news block -&gt; own class" />
     <MESSAGE value="trading-page: change TradePane.java + its controller -&gt; functionality could not be tested + ShareOverviewPane.java added" />
-    <option name="LAST_COMMIT_MESSAGE" value="trading-page: change TradePane.java + its controller -&gt; functionality could not be tested + ShareOverviewPane.java added" />
+    <MESSAGE value="trading-page: Add Filters -&gt; work but need to add share_tag entries in database, need to disable field when no entry found" />
+    <option name="LAST_COMMIT_MESSAGE" value="trading-page: Add Filters -&gt; work but need to add share_tag entries in database, need to disable field when no entry found" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
