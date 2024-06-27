@@ -91,7 +91,7 @@ public class TradeController {
             if (selectedItem == null) {
                 return;
             }
-            Share share = getShare(selectedItem.getShareName());
+            Share share = getShare(selectedItem.getName());
             eventListeners.switchPane(new ShareOverviewPane(pane.getStage(), getUser(), share));
             searchTableView.getSelectionModel().clearSelection();
         });
@@ -137,7 +137,7 @@ public class TradeController {
     private ArrayList<Share> getSharesFromNameList() {
         ObservableList<ShareInfoBox> infoBoxes = getSharesByPrompt(pane.getSearchField().getText());
         ArrayList<Share> shares = new ArrayList<>();
-        infoBoxes.forEach(shareInfoBox -> shares.add(shareDao.getByName(shareInfoBox.getShareName())));
+        infoBoxes.forEach(shareInfoBox -> shares.add(shareDao.getByName(shareInfoBox.getName())));
         return shares;
     }
 

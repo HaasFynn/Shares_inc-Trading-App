@@ -11,11 +11,8 @@ import javafx.controllers.TradeController;
 import javafx.eventlisteners.EventListeners;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import lombok.Getter;
 
@@ -27,7 +24,6 @@ public class TradePane extends CustomPane {
     @Getter
     private enum ColorTheme {
         LIGHT("black"), DARK("grey");
-
 
         private final String colorPathFragment;
 
@@ -109,13 +105,6 @@ public class TradePane extends CustomPane {
         return label;
     }
 
-    private Text buildText(String binding, String... styleClasses) {
-        Text text = new Text();
-        bind(text.textProperty(), binding);
-        text.getStyleClass().addAll(styleClasses);
-        return text;
-    }
-
     private void createBody() {
         createSearchBox();
         buildNewsBox();
@@ -158,7 +147,7 @@ public class TradePane extends CustomPane {
     }
 
     private void buildTableColumns() {
-        nameColumn = buildColumn("trade.column.share_name", "shareName");
+        nameColumn = buildColumn("trade.column.share_name", "name");
         revenueColumn = buildColumn("trade.column.revenue", "revenue");
     }
 
@@ -186,23 +175,6 @@ public class TradePane extends CustomPane {
         bind(textField.promptTextProperty(), binding);
         textField.getStyleClass().addAll(styleClasses);
         return textField;
-    }
-
-    private HBox buildIconBox(String imageName, String... styleClasses) {
-        HBox box = new HBox(buildIcon(imageName));
-        box.getStyleClass().addAll(styleClasses);
-        return box;
-    }
-
-    private ImageView buildIcon(String iconName) {
-        ImageView imageView = new ImageView(new Image(getIconPath(iconName), ICON_WIDTH, ICON_WIDTH, false, false, true));
-        imageView.getStyleClass().add("icon");
-        return imageView;
-    }
-
-    private String getIconPath(String iconName) {
-        String color = colorTheme.getColorPathFragment();
-        return String.format("%s/%s/%s", ICONS_DIR, color, iconName);
     }
 
     private VBox buildShareSearchBox(HBox box1, TableView<ShareInfoBox> box2) {

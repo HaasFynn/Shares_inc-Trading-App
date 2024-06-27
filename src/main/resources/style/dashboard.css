@@ -65,3 +65,7 @@
     -fx-spacing: 8px;
     -fx-padding: 5px;
 }
+
+.stock-list {
+    -fx-border-radius: 5px;
+}

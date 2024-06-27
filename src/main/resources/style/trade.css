@@ -67,8 +67,8 @@
 }
 
 .news-box {
-    -fx-min-width: 770px;
-    -fx-max-width: 770px;
+    -fx-min-width: 780px;
+    -fx-max-width: 780px;
     -fx-min-height: 75px;
     -fx-spacing: 8px;
     -fx-padding: 5px;
