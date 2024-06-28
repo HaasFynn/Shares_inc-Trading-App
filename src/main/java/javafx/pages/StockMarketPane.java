@@ -13,4 +13,9 @@ public class StockMarketPane extends CustomPane {
     protected void build() {
 
     }
+
+    @Override
+    public String toString() {
+        return getClass().getName();
+    }
 }

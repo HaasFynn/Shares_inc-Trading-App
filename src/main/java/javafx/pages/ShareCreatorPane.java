@@ -144,4 +144,9 @@ public class ShareCreatorPane extends GridPane {
     StringBinding getValueByKey(String key) {
         return LanguagePack.createStringBinding(key);
     }
+
+    @Override
+    public String toString() {
+        return getClass().getName();
+    }
 }

@@ -1,39 +1,37 @@
 package javafx.assets;
 
+import console.entities.Share;
+import console.entities.Tag;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import lombok.Getter;
 
 import java.util.Random;
+import java.util.Set;
 
-@Getter
 public class ShareInfoBox {
 
-    private Random rand;
-    private final Text SPACE = new Text(" - ");
-    private String name;
-    private Text revenue;
-    private boolean hasGained;
+    private final Random rand;
+    private final Share share;
+    private final boolean hasGained;
 
-    public ShareInfoBox(String name) {
+    public ShareInfoBox(Share share) {
         this.rand = new Random();
-        this.name = name;
-        this.revenue = new Text(getRandomRevenue() + "%");
+        this.share = share;
         this.hasGained = rand.nextBoolean();
-        setColor();
     }
 
-    public ShareInfoBox(String name, double revenue, boolean hasGained) {
-        this.name = name;
-        this.revenue = new Text(revenue + "%");
-        this.hasGained = hasGained;
+    public String getName() {
+        return share.getName();
     }
 
-    private double getRandomRevenue() {
-        return Math.round(rand.nextDouble(1, 8) * 100) / 100.0;
+    public Text getRevenue() {
+        Text revenue = new Text(share.getRevenue() + "%");
+        revenue.setFill(hasGained ? Color.GREEN : Color.RED);
+        return revenue;
     }
 
-    private void setColor() {
-        revenue.setFill(this.hasGained ? Color.rgb(4, 180, 4, 0.94) : Color.RED);
+    public Set<Tag> getTags() {
+        return share.getTags();
     }
+
 }

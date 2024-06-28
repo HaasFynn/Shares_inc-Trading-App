@@ -17,8 +17,6 @@ import lombok.Getter;
 @Getter
 public class LoginPane extends CustomPane {
     private final LoginController controller;
-    public static final double STAGE_WIDTH = 420;
-    public static final double STAGE_HEIGHT = 500;
 
     public LoginPane(Stage stage, EventListeners eventListeners) {
         super(stage, eventListeners, null);
@@ -49,7 +47,9 @@ public class LoginPane extends CustomPane {
     private Button resetButton;
 
     protected void build() {
-        setMinSize(200, 150);
+        STAGE_WIDTH = 420;
+        STAGE_HEIGHT = 500;
+        setMinSize(STAGE_WIDTH, STAGE_HEIGHT);
         setVgap(10);
         addStyleSheets();
         buildNodes();
@@ -61,7 +61,7 @@ public class LoginPane extends CustomPane {
     }
 
     private void addStyleSheets() {
-        getStylesheets().add("style/login.css");
+        getStylesheets().add(STYLE_PATH + "login.css");
     }
 
     private void buildNodes() {
@@ -240,5 +240,10 @@ public class LoginPane extends CustomPane {
 
     public StringBinding getValue(String key) {
         return LanguagePack.createStringBinding(key);
+    }
+
+    @Override
+    public String toString() {
+        return getClass().getName();
     }
 }

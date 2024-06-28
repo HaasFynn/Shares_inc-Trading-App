@@ -13,6 +13,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import lombok.Getter;
 
@@ -33,8 +35,6 @@ public class TradePane extends CustomPane {
 
     private final EventListeners eventListeners;
     private final TradeController controller;
-    private static final double STAGE_WIDTH = 815;
-    private static final double STAGE_HEIGHT = 500;
     private static final String ICONS_DIR = "assets/image/icon";
     private static final double ICON_WIDTH = 10;
     private static final int START_AMOUNT_OF_SHARES = 25;
@@ -250,7 +250,7 @@ public class TradePane extends CustomPane {
     }
 
     private void addStyleSheet() {
-        getStylesheets().addAll("style/trade.css", "style/news_box.css");
+        getStylesheets().addAll(STYLE_PATH + "trade.css", STYLE_PATH + "news_box.css");
     }
 
     private void bind(StringProperty text, String key) {
@@ -269,4 +269,8 @@ public class TradePane extends CustomPane {
         controller.handleTextFieldOnPromptChange(searchField);
     }
 
+    @Override
+    public String toString() {
+        return getClass().getName();
+    }
 }

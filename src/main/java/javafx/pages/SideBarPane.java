@@ -58,7 +58,7 @@ public class SideBarPane extends CustomPane {
     }
 
     private void addStyleSheet() {
-        getStylesheets().add("style/sidebar.css");
+        getStylesheets().add(STYLE_PATH + "sidebar.css");
     }
 
     private VBox buildBody() {
@@ -112,4 +112,8 @@ public class SideBarPane extends CustomPane {
         node.setOnMouseClicked(event -> eventListeners.switchPane(newPane));
     }
 
+    @Override
+    public String toString() {
+        return getClass().getName();
+    }
 }

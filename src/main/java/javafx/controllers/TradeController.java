@@ -12,7 +12,7 @@ import javafx.assets.ShareInfoBox;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.eventlisteners.EventListeners;
-import javafx.pages.ShareOverviewPane;
+import javafx.pages.ShareViewPane;
 import javafx.pages.TradePane;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableView;
@@ -50,7 +50,7 @@ public class TradeController {
     }
 
     private ObservableList<ShareInfoBox> getEmptyResponse() {
-        ShareInfoBox box = new ShareInfoBox(pane.getValueByKey("trade.error.no_entry_found").get(), 0, false);
+        ShareInfoBox box = new ShareInfoBox(new Share()); //TODO: fix empty Response
         return FXCollections.observableArrayList(box);
     }
 
@@ -75,7 +75,7 @@ public class TradeController {
         }
 
         for (Share share : shares) {
-            ShareInfoBox box = new ShareInfoBox(share.getName());
+            ShareInfoBox box = new ShareInfoBox(share);
             infoBoxes.add(box);
         }
 
@@ -92,7 +92,7 @@ public class TradeController {
                 return;
             }
             Share share = shareDao.getByName(selectedItem.getName());
-            eventListeners.switchPane(new ShareOverviewPane(pane.getStage(), eventListeners, getUser(), share));
+            eventListeners.switchPane(new ShareViewPane(pane.getStage(), eventListeners, getUser(), share));
             searchTableView.getSelectionModel().clearSelection();
         });
     }
@@ -124,35 +124,19 @@ public class TradeController {
     }
 
     private void handleSearchProcess() {
-        ObservableList<ShareInfoBox> infoBoxes;
-        ArrayList<Share> shares = getSharesFromNameList();
-        if (selectedFilterTags.isEmpty()) {
-            infoBoxes = getShareInfoBoxes(shares.toArray(new Share[0]));
-        } else {
-            infoBoxes = getFilteredShares(shares);
+        ObservableList<ShareInfoBox> infoBoxes = getSharesByPrompt(pane.getSearchField().getText());
+        if (!selectedFilterTags.isEmpty()) {
+            infoBoxes = getFilteredShares(infoBoxes);
         }
         setTableViewItems(infoBoxes);
-    }
-
-    private ArrayList<Share> getSharesFromNameList() {
-        ObservableList<ShareInfoBox> infoBoxes = getSharesByPrompt(pane.getSearchField().getText());
-        ArrayList<Share> shares = new ArrayList<>();
-        infoBoxes.forEach(shareInfoBox -> shares.add(shareDao.getByName(shareInfoBox.getName())));
-        return shares;
     }
 
     private void setTableViewItems(ObservableList<ShareInfoBox> filteredShares) {
         pane.getSearchTableView().setItems(filteredShares);
     }
 
-    private ObservableList<ShareInfoBox> getFilteredShares(ArrayList<Share> shares) {
-        ArrayList<ShareInfoBox> filteredShares = new ArrayList<>();
-        shares.forEach(share -> selectedFilterTags.forEach(tag -> {
-            if (share.getTags().contains(tag)) {
-                filteredShares.add(new ShareInfoBox(share.getName()));
-            }
-        }));
-        return FXCollections.observableArrayList(filteredShares);
+    private ObservableList<ShareInfoBox> getFilteredShares(ObservableList<ShareInfoBox> infoBoxes) {
+        return infoBoxes.filtered(infoBox -> selectedFilterTags.stream().anyMatch(tag -> infoBox.getTags().contains(tag)));
     }
 
     private void addToSelectionList(Tag tag) {

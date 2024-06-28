@@ -1,0 +1,29 @@
+.header {
+
+}
+
+.title {
+
+}
+
+.description-box {
+
+}
+
+.description-title {
+
+}
+
+.description-text-box {
+    -fx-background-color: #343434;
+}
+
+.description-text {
+}
+
+.description-scroll-pane {
+    -fx-max-width: 400;
+    -fx-max-height: 400;
+    -fx-padding: 10px;
+}
+
