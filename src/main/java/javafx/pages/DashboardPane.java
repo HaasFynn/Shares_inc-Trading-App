@@ -74,7 +74,7 @@ public class DashboardPane extends CustomPane {
     }
 
     private void addStyleSheet() {
-        getStylesheets().addAll("style/dashboard.css", "style/news_box.css");
+        getStylesheets().addAll(STYLE_PATH + "dashboard.css", STYLE_PATH + "news_box.css");
     }
 
     private void buildHeader() {
@@ -147,7 +147,7 @@ public class DashboardPane extends CustomPane {
     private ShareInfoBox[] getShareInfoBoxes() {
         ShareInfoBox[] shareInfoBoxes;
         Share[] topShares = controller.getTopShares(SHARE_BOX_AMOUNT);
-        shareInfoBoxes = IntStream.range(0, SHARE_BOX_AMOUNT).mapToObj(i -> new ShareInfoBox(topShares[i].getName())).toArray(ShareInfoBox[]::new);
+        shareInfoBoxes = IntStream.range(0, SHARE_BOX_AMOUNT).mapToObj(i -> new ShareInfoBox(topShares[i])).toArray(ShareInfoBox[]::new);
         return shareInfoBoxes;
     }
 
@@ -173,8 +173,8 @@ public class DashboardPane extends CustomPane {
 
     private Text buildWelcomeText() {
         Text text = buildText("", "welcome-text");
-        String username = user().getUsername();
-        text.textProperty().set(getValueByKey("dashboard.text.welcome").get() + " " + username);
+        String firstName = user().getFirstname();
+        text.textProperty().set(getValueByKey("dashboard.text.welcome").get() + " " + firstName);
         return text;
     }
 
@@ -251,5 +251,10 @@ public class DashboardPane extends CustomPane {
     private double getShareValue() {
         List<Portfolio> portfolioEntries = controller.getUserPortfolio(user().getId());
         return portfolioEntries.stream().mapToDouble(portfolio -> controller.get(portfolio.getShareId()).getPricePerShare() * portfolio.getAmount()).sum();
+    }
+
+    @Override
+    public String toString() {
+        return getClass().getName();
     }
 }

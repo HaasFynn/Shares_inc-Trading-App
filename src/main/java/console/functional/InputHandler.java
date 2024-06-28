@@ -373,7 +373,7 @@ public class InputHandler {
         share.setName(in.getStringAnswer("Name:"));
         share.setShortl(in.getStringAnswer("Shortl:"));
         share.setPricePerShare(in.getDoubleAnswer("PricePerShare:"));
-        share.setStockReturn(in.getDoubleAnswer("Stockreturn:"));
+        share.setRevenue(in.getDoubleAnswer("Stockreturn:"));
         share.setExistingSharesAmount(in.getIntAnswer("existingSharesAmount:"));
         share.setDate(LocalDateTime.now());
         return share;

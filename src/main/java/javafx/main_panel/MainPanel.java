@@ -58,7 +58,7 @@ public class MainPanel extends CustomPane {
         box.getChildren().remove(currentPane);
         this.currentPane = pane;
         box.getChildren().add(currentPane);
-        System.out.println("This is the new Pane: " + pane);
+        System.out.println("Switched Pane to -> " + pane);
     }
 
     private boolean classesEqual(CustomPane pane) {

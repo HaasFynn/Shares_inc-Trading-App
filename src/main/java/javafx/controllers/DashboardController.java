@@ -9,10 +9,12 @@ import jakarta.persistence.EntityManager;
 import javafx.assets.ShareInfoBox;
 import javafx.eventlisteners.EventListeners;
 import javafx.pages.DashboardPane;
-import javafx.pages.ShareOverviewPane;
+import javafx.pages.ShareViewPane;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
@@ -106,7 +108,7 @@ public class DashboardController extends Controller {
                 return;
             }
             Share share = shareDao.getByName(selectedItem.getName());
-            eventListeners.switchPane(new ShareOverviewPane(pane.getStage(), eventListeners, getUser(), share));
+            eventListeners.switchPane(new ShareViewPane(pane.getStage(), eventListeners, getUser(), share));
             searchTableView.getSelectionModel().clearSelection();
         });
     }

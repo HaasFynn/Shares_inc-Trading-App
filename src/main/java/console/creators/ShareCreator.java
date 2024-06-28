@@ -34,7 +34,7 @@ public class ShareCreator {
         share.setName(name);
         share.setShortl(shortlList[random.nextInt(shortlList.length - 1)]);
         share.setPricePerShare(randomEntry(ppsList));
-        share.setStockReturn(randomEntry(dividendList));
+        share.setRevenue(randomEntry(dividendList));
         share.setExistingSharesAmount(randomEntry(existingShares));
         share.setDate(LocalDateTime.now());
         return share;

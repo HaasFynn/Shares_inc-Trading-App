@@ -5,18 +5,18 @@ import console.entities.Share;
 import console.entities.User;
 import console.functional.EntityManagement;
 import jakarta.persistence.EntityManager;
-import javafx.pages.ShareOverviewPane;
+import javafx.pages.ShareViewPane;
 
-public class ShareOverviewController extends Controller {
+public class ShareViewController extends Controller {
 
-    private final ShareOverviewPane pane;
+    private final ShareViewPane pane;
     private final UserDao userDao;
     private final PortfolioDao portfolioDao;
     private final ShareDao shareDao;
-    private User user;
-    private Share share;
+    private final User user;
+    private final Share share;
 
-    public ShareOverviewController(ShareOverviewPane pane, User user) {
+    public ShareViewController(ShareViewPane pane, Share share, User user) {
         this.pane = pane;
 
         EntityManager entityManager = EntityManagement.createEntityManagerFactory().createEntityManager();
@@ -24,7 +24,11 @@ public class ShareOverviewController extends Controller {
         this.portfolioDao = new PortfolioDaoImpl(entityManager);
         this.shareDao = new ShareDaoImpl(entityManager);
 
+        this.share = share;
         this.user = user;
-        this.share = pane.getShare();
+    }
+
+    public Share share() {
+        return shareDao.get(share.getId());
     }
 }

@@ -43,12 +43,12 @@ public class Share {
     @Setter
     private double pricePerShare;
 
-    /**
+    /**w
      * The Stock return.
      */
     @Column(name = "stockreturn")
     @Setter
-    private double stockReturn;
+    private double revenue;
 
     /**
      * The Existing shares amount.
