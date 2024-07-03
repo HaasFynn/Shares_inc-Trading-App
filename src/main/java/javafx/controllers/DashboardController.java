@@ -10,11 +10,9 @@ import javafx.assets.ShareInfoBox;
 import javafx.eventlisteners.EventListeners;
 import javafx.pages.DashboardPane;
 import javafx.pages.ShareViewPane;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
@@ -23,7 +21,7 @@ import javafx.util.Callback;
 import java.util.Arrays;
 import java.util.List;
 
-public class DashboardController extends Controller {
+public class DashboardController extends CustomController {
 
     private final Stage stage;
     private final DashboardPane pane;

@@ -5,8 +5,7 @@ import javafx.eventlisteners.EventListeners;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import lombok.Getter;
 
@@ -14,8 +13,7 @@ public class SideBarPane extends CustomPane {
 
     @Getter
     private enum ColorTheme {
-        LIGHT("black"),
-        DARK("grey");
+        LIGHT("black"), DARK("grey");
 
         private final String colorPathFragment;
 
@@ -28,6 +26,7 @@ public class SideBarPane extends CustomPane {
     private final EventListeners eventListeners;
     private User user;
     private ColorTheme colorTheme = ColorTheme.DARK;
+    private VBox currentImageBox;
     private static final String ICONS_DIR = "assets/image/icon";
     private static final double ICON_WIDTH = 28;
     private static final double SCENE_WIDTH = 60;
@@ -41,12 +40,14 @@ public class SideBarPane extends CustomPane {
     }
 
     VBox body;
-    HBox home;
-    HBox portfolio;
-    HBox trade;
-    HBox statistic;
-    HBox account;
-    HBox settings;
+    VBox header;
+    VBox footer;
+    VBox home;
+    VBox portfolio;
+    VBox trade;
+    VBox statistic;
+    VBox account;
+    VBox settings;
 
     @Override
     protected void build() {
@@ -66,8 +67,8 @@ public class SideBarPane extends CustomPane {
         box.getStyleClass().add("body");
         createNodes();
 
-        VBox header = buildImageContainer(home, portfolio, trade, statistic);
-        VBox footer = buildImageContainer(account, settings);
+        this.header = buildImageContainer(home, portfolio, trade, statistic);
+        this.footer = buildImageContainer(account, settings);
 
         box.getChildren().addAll(header, footer);
         return box;
@@ -75,15 +76,16 @@ public class SideBarPane extends CustomPane {
 
     private void createNodes() {
         this.home = buildImageBox("home.png", new DashboardPane(getStage(), eventListeners, user));
-        this.portfolio = buildImageBox("portfolio.png", new PortfolioPane(getStage(), eventListeners, user));
+        this.portfolio = buildImageBox("document.png", new ShareCreatorPane(getStage(), eventListeners, user));
         this.trade = buildImageBox("handshake.png", new TradePane(getStage(), eventListeners, user));
-        this.statistic = buildImageBox("diagram.png", new StockMarketPane(getStage(), eventListeners, user));
-        this.account = buildImageBox("account.png", new ProfilePane(getStage(), eventListeners, user));
+        this.statistic = buildImageBox("stock.png", new StockMarketPane(getStage(), eventListeners, user));
+        this.account = buildImageBox("profile.png", new ProfilePane(getStage(), eventListeners, user));
         this.settings = buildImageBox("settings.png", new SettingsPane(getStage(), eventListeners, user));
+        home.getStyleClass().add("selected-pane");
     }
 
-    private HBox buildImageBox(String image, CustomPane pane) {
-        HBox box = new HBox();
+    private VBox buildImageBox(String image, CustomPane pane) {
+        VBox box = new VBox();
         box.getStyleClass().add("image-box");
         box.getChildren().add(buildImageView(image));
         addListener(box, pane);
@@ -101,15 +103,33 @@ public class SideBarPane extends CustomPane {
         return String.format("%s/%s/%s", ICONS_DIR, color, iconName);
     }
 
-    private VBox buildImageContainer(HBox... viewBoxes) {
+    private VBox buildImageContainer(VBox... viewBoxes) {
         VBox box = new VBox();
         box.getStyleClass().add("image-box");
         box.getChildren().addAll(viewBoxes);
         return box;
     }
 
-    private void addListener(Node node, CustomPane newPane) {
-        node.setOnMouseClicked(event -> eventListeners.switchPane(newPane));
+    private void addListener(VBox node, CustomPane newPane) {
+        node.setOnMouseClicked(event -> {
+            getCurrentImageBox().getStyleClass().remove("selected-pane");
+            eventListeners.switchPane(newPane);
+            node.getStyleClass().add("selected-pane");
+        });
+    }
+
+    private Node getCurrentImageBox() {
+        for (Node node : header.getChildren()) {
+            if (node.getStyleClass().contains("selected-pane")) {
+                return node;
+            }
+        }
+        for (Node node : footer.getChildren()) {
+            if (node.getStyleClass().contains("selected-pane")) {
+                return node;
+            }
+        }
+        return null;
     }
 
     @Override

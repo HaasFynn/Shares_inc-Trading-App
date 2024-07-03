@@ -1,14 +1,15 @@
 package javafx.pages;
 
+import console.entities.User;
 import javafx.assets.LanguagePack;
 import javafx.beans.binding.StringBinding;
+import javafx.eventlisteners.EventListeners;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.controllers.ShareCreatorController;
@@ -16,8 +17,7 @@ import javafx.stage.Stage;
 import lombok.Getter;
 
 @Getter
-public class ShareCreatorPane extends GridPane {
-    final Stage stage;
+public class ShareCreatorPane extends CustomPane {
     private final ShareCreatorController controller;
     public static final double STAGE_WIDTH = 815;
     public static final double STAGE_HEIGHT = 500;
@@ -27,8 +27,8 @@ public class ShareCreatorPane extends GridPane {
     private static final double BUTTON_HEIGHT = 23;
     private static final double STANDARD_PADDING = 20;
 
-    public ShareCreatorPane(Stage stage) {
-        this.stage = stage;
+    public ShareCreatorPane(Stage stage, EventListeners eventListeners, User user) {
+        super(stage, eventListeners, user);
         this.controller = new ShareCreatorController(this);
         build();
     }
@@ -41,13 +41,14 @@ public class ShareCreatorPane extends GridPane {
     private Button submitButton;
     private Text statusText;
 
-    void build() {
+    @Override
+    protected void build() {
         setMinSize(STAGE_WIDTH, STAGE_HEIGHT);
         setVgap(10);
         createNodes();
         addListeners();
         add(body, 0, 0);
-        if (stage.isShowing()) {
+        if (getStage().isShowing()) {
             adjustWindow();
         }
     }
@@ -64,10 +65,10 @@ public class ShareCreatorPane extends GridPane {
     }
 
     private void adjustWindow() {
-        stage.getScene().getWindow().setHeight(STAGE_HEIGHT);
-        stage.getScene().getWindow().setWidth(STAGE_WIDTH);
-        stage.centerOnScreen();
-        stage.setResizable(false);
+        getStage().getScene().getWindow().setHeight(STAGE_HEIGHT);
+        getStage().getScene().getWindow().setWidth(STAGE_WIDTH);
+        getStage().centerOnScreen();
+        getStage().setResizable(false);
     }
 
     private VBox buildBody(Text text, VBox box1) {
