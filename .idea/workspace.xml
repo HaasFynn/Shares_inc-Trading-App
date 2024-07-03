@@ -4,31 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea488597-f4e2-49aa-b467-1e44621e87b4" name="Changes" comment="stock-view-share-linking: finished + add Eventlisteners and User to CustomPane.java">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/style/share-view.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+    <list default="true" id="ea488597-f4e2-49aa-b467-1e44621e87b4" name="Changes" comment="implement ShareViewPane, summarized similar fields -&gt; CustomPane">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/console/creators/ShareCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/console/creators/ShareCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/console/entities/Share.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/console/entities/Share.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/console/functional/InputHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/console/functional/InputHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/assets/ShareInfoBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/assets/ShareInfoBox.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/controllers/DashboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/controllers/DashboardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/controllers/ShareOverviewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/controllers/ShareViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/controllers/TradeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/controllers/TradeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/main_panel/MainPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/main_panel/MainPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/pages/CustomPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/pages/CustomPane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/pages/DashboardPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/pages/DashboardPane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/pages/LoginPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/pages/LoginPane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/pages/PortfolioPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/pages/PortfolioPane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/pages/ProfilePane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/pages/ProfilePane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/pages/SettingsPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/pages/SettingsPane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/pages/ShareCreatorPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/pages/ShareCreatorPane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/pages/ShareOverviewPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/pages/ShareViewPane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/pages/SideBarPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/pages/SideBarPane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/pages/StockMarketPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/pages/StockMarketPane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/pages/TradePane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/pages/TradePane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/controllers/ShareViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/controllers/ShareViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/pages/ShareViewPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/pages/ShareViewPane.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/locale/language_de.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/locale/language_de.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/locale/language_en.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/locale/language_en.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/style/share-view.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/style/share-view.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +75,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="feature/stock-view-share-linking" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -173,7 +155,7 @@
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/share-view-pane&quot;,
     &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/fhaas/Documents/Ergon/JavaFx/Shares-inc.-Trading-App/src/main/resources/assets/image/icon/black&quot;,
@@ -425,7 +407,9 @@
       <workItem from="1719475214383" duration="5080000" />
       <workItem from="1719557208696" duration="7587000" />
       <workItem from="1719564891242" duration="8719000" />
-      <workItem from="1719576205996" duration="3531000" />
+      <workItem from="1719576205996" duration="4041000" />
+      <workItem from="1719839878137" duration="103000" />
+      <workItem from="1719996850916" duration="3665000" />
     </task>
     <task id="LOCAL-00001" summary="Created Files and Set Properties&#10;setUp Function made&#10;Annotations added">
       <option name="closed" value="true" />
@@ -659,7 +643,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719493482837</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="implement ShareViewPane, summarized similar fields -&gt; CustomPane">
+      <option name="closed" value="true" />
+      <created>1719582266455</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1719582266455</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -697,7 +689,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="User_Share Connection Table created" />
     <MESSAGE value="Dao System recreated&#10;Test Area added&#10;Clean Coded" />
     <MESSAGE value="Added JavaFX" />
     <MESSAGE value="solved import" />
@@ -722,7 +713,8 @@
     <MESSAGE value="trading-page: add dashboard stockMarketView" />
     <MESSAGE value="stock-view-share-linking: finished + add Eventlisteners to CustomPane.java" />
     <MESSAGE value="stock-view-share-linking: finished + add Eventlisteners and User to CustomPane.java" />
-    <option name="LAST_COMMIT_MESSAGE" value="stock-view-share-linking: finished + add Eventlisteners and User to CustomPane.java" />
+    <MESSAGE value="implement ShareViewPane, summarized similar fields -&gt; CustomPane" />
+    <option name="LAST_COMMIT_MESSAGE" value="implement ShareViewPane, summarized similar fields -&gt; CustomPane" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>

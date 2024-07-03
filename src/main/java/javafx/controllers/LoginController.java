@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 
 import java.util.Locale;
 
-public class LoginController extends Controller {
+public class LoginController extends CustomController {
     public final LoginPane pane;
     private final UserDao userHandler;
 

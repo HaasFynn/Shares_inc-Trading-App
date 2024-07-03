@@ -1,29 +1,93 @@
+.page {
+    -fx-padding: 10;
+    -fx-text-fill: #343434;
+}
+
 .header {
 
 }
 
 .title {
+    -fx-font-size: 25;
+    -fx-text-fill: inherit;
+}
+
+.label {
+    -fx-text-fill: inherit;
+    -fx-font-weight: bold;
+}
+
+.text {
+    -fx-text-fill: inherit;
+    -fx-font-size: 15;
+}
+
+.button {
+    -fx-background-color: #343434;
+    -fx-text-fill: #ffffff;
+}
+
+.buy-button {
+    -fx-background-color: green;
+    -fx-pref-width: 87;
+}
+
+.sell-button {
+    -fx-background-color: red;
+    -fx-pref-width: 103;
+}
+
+.chartlink-button {
 
 }
 
-.description-box {
+.chartlink-box {
+    -fx-padding: 25 0 0 280;
+}
 
+.trade-box {
+    -fx-padding: 350 0 0 250;
+    -fx-spacing: 5px;
+}
+
+.buysell-box {
+    -fx-spacing: 5px;
+}
+
+.trade-spinner {
+    -fx-pref-width: 195px;
+}
+
+.info-text {
+
+}
+
+.information-box {
+    -fx-padding: 25 0 0 0;
+
+}
+
+.description-label {
+    -fx-font-size: 18;
+}
+
+.description-box {
+    -fx-padding: 75 0 0 0;
 }
 
 .description-title {
 
 }
 
-.description-text-box {
-    -fx-background-color: #343434;
-}
-
 .description-text {
+    -fx-fill: #ffffff;
 }
 
 .description-scroll-pane {
     -fx-max-width: 400;
     -fx-max-height: 400;
-    -fx-padding: 10px;
+    -fx-background: #343434;
+    -fx-spacing: 10;
+    -fx-padding: 10;
 }
 

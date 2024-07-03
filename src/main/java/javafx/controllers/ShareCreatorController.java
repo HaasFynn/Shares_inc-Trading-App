@@ -7,10 +7,11 @@ import console.functional.EntityManagement;
 import javafx.assets.LanguagePack;
 import javafx.beans.binding.StringBinding;
 import javafx.pages.ShareCreatorPane;
+import javafx.scene.Node;
 import javafx.scene.text.Text;
 
 
-public class ShareCreatorController extends Controller {
+public class ShareCreatorController extends CustomController {
     private final ShareCreatorPane pane;
     private final ShareDao shareHandler;
 
@@ -39,6 +40,19 @@ public class ShareCreatorController extends Controller {
         statusText.textProperty().bind(getValueByKey(key));
         statusText.setVisible(visible);
         statusText.getStyleClass().add(color);
+        hide(statusText).start();
+    }
+
+    private Thread hide(Node node) {
+        return new Thread(() -> {
+            synchronized (node) {
+                try {
+                    node.wait(5000);
+                    node.setVisible(false);
+                } catch (InterruptedException ignored) {
+                }
+            }
+        });
     }
 
 
@@ -53,8 +67,7 @@ public class ShareCreatorController extends Controller {
             key = (amount < 1) ? "share.creator.statusText.number.min" : "share.creator.statusText.number.max";
             pane.getInputField().setText(oldValue);
             setStatusText(key, true, "text-danger");
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
+        } catch (NumberFormatException ignored) {
         }
         if (newValue.matches("\\d*")) return;
         pane.getInputField().setText(newValue.replaceAll("[^\\d]", ""));
@@ -64,6 +77,7 @@ public class ShareCreatorController extends Controller {
         //remove Listeners etc. if needed
         //function is called by main panel
     }
+
     StringBinding getValueByKey(String key) {
         return LanguagePack.createStringBinding(key);
     }

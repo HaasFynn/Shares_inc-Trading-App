@@ -3,15 +3,14 @@ package javafx.pages;
 import console.entities.Share;
 import console.entities.User;
 import javafx.assets.LanguagePack;
+import javafx.assets.ShareInfoBox;
 import javafx.beans.binding.StringBinding;
 import javafx.beans.property.StringProperty;
 import javafx.controllers.ShareViewController;
 import javafx.eventlisteners.EventListeners;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.Spinner;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Line;
@@ -19,12 +18,17 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import lombok.Getter;
 
+
 @Getter
 public class ShareViewPane extends CustomPane {
 
     private final ShareViewController controller;
     private User user;
     private Share share;
+    private static final int MIN_SPINNER_VALUE = 1;
+    private static final int MAX_SPINNER_VALUE = 100_000_000;
+    private static final int SPINNER_START_VALUE = 1;
+    private static final int SPINNER_STEP_SIZE = 1;
 
     public ShareViewPane(Stage stage, EventListeners eventListeners, User user, Share share) {
         super(stage, eventListeners, user);
@@ -48,14 +52,14 @@ public class ShareViewPane extends CustomPane {
     private VBox informationBox;
     private Text price;
     private Text revenue;
-
     private VBox descriptionBox;
     private Label descriptionLabel;
-    private VBox descriptionSurroundBox;
     private ScrollPane descriptionScrollPane;
     private Text descriptionText;
+    private VBox descriptionTextBox;
 
     private VBox tradeInformationBox;
+    private VBox chartLinkBox;
     private Button chartLinkButton;
     private VBox tradeBox;
     private Spinner<Integer> shareAmountSpinner;
@@ -113,8 +117,8 @@ public class ShareViewPane extends CustomPane {
 
     private void createBodyNodes() {
         createValueInformationBox();
-        //createTradeInformationBox();
-        this.body = buildHBox(new String[]{"body"}, valueBox/*, tradeInformationBox*/);
+        createTradeInformationBox();
+        this.body = buildHBox(new String[]{"body"}, valueBox, tradeInformationBox);
     }
 
     private void createValueInformationBox() {
@@ -131,33 +135,51 @@ public class ShareViewPane extends CustomPane {
 
     private void createPriceText() {
         String pricePerShare = String.valueOf(controller.share().getPricePerShare());
-        this.price = buildBoundText("share_view.text.price", pricePerShare, ".-", "text");
+        this.price = buildBoundText("share_view.text.price", pricePerShare, ".-", "info-text", "text");
     }
 
     private void createRevenueText() {
-        String shareRevenue = String.valueOf(controller.share().getRevenue());
-        this.revenue = buildBoundText("share_view.text.revenue", shareRevenue, "%", "text");
+        ShareInfoBox infoBox = new ShareInfoBox(controller.share());
+        this.revenue = buildBoundText("share_view.text.revenue", infoBox.getRevenue().getText(), "", "info-text", "text");
+        revenue.setFill(
+                infoBox.getRevenue().getFill()
+        );
+    }
+
+    private Text buildBoundText(String binding, String value, String stringEnding, String... styleClasses) {
+        Text text = new Text();
+        text.textProperty().set(getValueByKey(binding).get() + " " + value + stringEnding);
+        text.getStyleClass().addAll(styleClasses);
+        return text;
     }
 
     private void createDescriptionBox() {
         this.descriptionLabel = buildLabel("share_view.label.description", "description-label", "label");
-        createDescriptionTextBox();
-        this.descriptionBox = buildVBox(new String[]{"description-box"}, descriptionLabel, descriptionSurroundBox);
-    }
-
-    private void createDescriptionTextBox() {
         createDescriptionScrollPane();
-        this.descriptionSurroundBox = buildVBox(new String[]{"description-text-box"}, descriptionScrollPane);
+        this.descriptionBox = buildVBox(new String[]{"description-box"}, descriptionLabel, descriptionScrollPane);
     }
 
     private void createDescriptionScrollPane() {
-        this.descriptionText = buildDescriptionText();
-        this.descriptionScrollPane = buildDescriptionScrollPane(descriptionText);
+        createDescriptionTextBox();
+        this.descriptionScrollPane = buildDescriptionScrollPane(descriptionTextBox);
     }
 
-    private ScrollPane buildDescriptionScrollPane(Text text) {
-        ScrollPane scrollPane = new ScrollPane(text);
+    private void createDescriptionTextBox() {
+        this.descriptionText = buildDescriptionText();
+        this.descriptionTextBox = buildDescriptionTextBox(descriptionText);
+    }
+
+    private VBox buildDescriptionTextBox(Text descriptionText) {
+        VBox box = new VBox(descriptionText);
+        box.setPadding(new Insets(2, 2, 2, 2));
+        return box;
+    }
+
+    private ScrollPane buildDescriptionScrollPane(VBox textBox) {
+        ScrollPane scrollPane = new ScrollPane(textBox);
         scrollPane.getStyleClass().addAll("description-scroll-pane");
+        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
         return scrollPane;
     }
 
@@ -169,20 +191,58 @@ public class ShareViewPane extends CustomPane {
         return text;
     }
 
+    private void createTradeInformationBox() {
+        createChartLinkBox();
+        createTradeBox();
+        this.tradeInformationBox = buildVBox(new String[]{"trade-information-box"}, chartLinkBox, tradeBox);
+    }
+
+    private void createChartLinkBox() {
+        this.chartLinkButton = buildChartLinkButton();
+        this.chartLinkBox = buildVBox(new String[]{"chartlink-box"}, chartLinkButton);
+    }
+
+    private void createTradeBox() {
+        this.shareAmountSpinner = buildSpinner();
+        createBuySellBox();
+        this.tradeBox = buildVBox(new String[]{"trade-box"}, shareAmountSpinner, buySellBox);
+    }
+
+    private Spinner<Integer> buildSpinner() {
+        Spinner<Integer> spinner = new Spinner<>();
+        spinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(MIN_SPINNER_VALUE, MAX_SPINNER_VALUE, SPINNER_START_VALUE, SPINNER_STEP_SIZE));
+        spinner.setEditable(true);
+        spinner.getStyleClass().addAll("trade-spinner");
+        controller.addIntegerFilter(spinner);
+        return spinner;
+    }
+
+    private void createBuySellBox() {
+        this.buyButton = buildTradeButton("share_view.button.buy", "buy-button");
+        this.sellButton = buildTradeButton("share_view.button.sell", "sell-button");
+        this.buySellBox = buildHBox(new String[]{"buysell-box"}, buyButton, sellButton);
+    }
+
+    private Button buildTradeButton(String key, String... styleClasses) {
+        Button button = new Button();
+        bind(button.textProperty(), key);
+        button.getStyleClass().addAll(styleClasses);
+        return button;
+    }
+
+    private Button buildChartLinkButton() {
+        Button button = new Button();
+        bind(button.textProperty(), "share_view.button.chart_link_button");
+        button.getStyleClass().addAll("chartlink-button", "button");
+        return button;
+    }
+
     private Label buildLabel(String key, String... styleClasses) {
         Label label = new Label();
         bind(label.textProperty(), key);
         label.getStyleClass().addAll(styleClasses);
         return label;
     }
-
-    private Text buildBoundText(String binding, String value, String stringEnding, String... styleClasses) {
-        Text text = new Text();
-        text.textProperty().set(getValueByKey(binding).get() + " " + value + stringEnding);
-        text.getStyleClass().addAll(styleClasses);
-        return text;
-    }
-
 
     private VBox buildVBox(String[] styleClasses, Node... nodes) {
         VBox box = new VBox(nodes);
