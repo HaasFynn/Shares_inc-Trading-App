@@ -20,7 +20,7 @@ public class Share {
     @Column(name = "id")
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public long Id;
+    private long Id;
 
     /**
      * The Name.

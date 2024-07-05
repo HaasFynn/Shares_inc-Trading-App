@@ -95,7 +95,7 @@ public class InputHandler {
             System.out.println("Insufficient Funds");
             return;
         }
-        if (!portfolioDao.add(createPortfolio(share.Id, amountOfShares))) {
+        if (!portfolioDao.add(createPortfolio(share.getId(), amountOfShares))) {
             System.out.println("Sorry share could not be purchased");
         } else {
             withdrawMoney(share);
@@ -113,7 +113,7 @@ public class InputHandler {
         if (sellAmountOfShares <= 0) {
             System.out.println("Invalid number of shares");
         }
-        Portfolio portfolio = portfolioDao.get(share.Id, loggedInUser.Id);
+        Portfolio portfolio = portfolioDao.get(share.getId(), loggedInUser.Id);
         if (portfolio.getAmount() < sellAmountOfShares) {
             System.out.println("Sorry, you tried to sell too many shares...");
         } else {

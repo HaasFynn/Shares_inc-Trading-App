@@ -11,6 +11,7 @@ import javafx.eventlisteners.EventListeners;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Line;
@@ -34,11 +35,10 @@ public class ShareViewPane extends CustomPane {
         super(stage, eventListeners, user);
         this.user = user;
         this.share = share;
-        this.controller = new ShareViewController(this, share, user);
+        this.controller = new ShareViewController(stage, this, eventListeners, share, user);
 
         build();
     }
-
 
     private VBox page;
 
@@ -218,9 +218,27 @@ public class ShareViewPane extends CustomPane {
     }
 
     private void createBuySellBox() {
-        this.buyButton = buildTradeButton("share_view.button.buy", "buy-button");
-        this.sellButton = buildTradeButton("share_view.button.sell", "sell-button");
+        createBuyButton();
+        createSellButton();
         this.buySellBox = buildHBox(new String[]{"buysell-box"}, buyButton, sellButton);
+    }
+
+    private void createBuyButton() {
+        this.buyButton = buildTradeButton("share_view.button.buy", "buy-button");
+        this.buyButton.setOnMouseClicked(event -> {
+            if(event.getButton() == MouseButton.PRIMARY) {
+                controller.buy();
+            }
+        });
+    }
+
+    private void createSellButton() {
+        this.sellButton = buildTradeButton("share_view.button.sell", "sell-button");
+        this.sellButton.setOnMouseClicked(event -> {
+            if(event.getButton() == MouseButton.PRIMARY) {
+                controller.sell();
+            }
+        });
     }
 
     private Button buildTradeButton(String key, String... styleClasses) {
@@ -234,6 +252,7 @@ public class ShareViewPane extends CustomPane {
         Button button = new Button();
         bind(button.textProperty(), "share_view.button.chart_link_button");
         button.getStyleClass().addAll("chartlink-button", "button");
+        button.setOnMouseClicked(event -> eventListeners.switchPane(new StockMarketPane(getStage(), eventListeners, share, user)));
         return button;
     }
 

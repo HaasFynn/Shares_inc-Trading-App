@@ -4,7 +4,7 @@
 }
 
 .header {
-
+    -fx-spacing: 10px;
 }
 
 .title {
@@ -46,7 +46,7 @@
 }
 
 .trade-box {
-    -fx-padding: 350 0 0 250;
+    -fx-padding: 340 0 0 250;
     -fx-spacing: 5px;
 }
 

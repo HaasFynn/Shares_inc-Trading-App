@@ -20,7 +20,7 @@ public class LoginPane extends CustomPane {
 
     public LoginPane(Stage stage, EventListeners eventListeners) {
         super(stage, eventListeners, null);
-        this.controller = new LoginController(this);
+        this.controller = new LoginController(stage, this, eventListeners);
         build();
     }
 

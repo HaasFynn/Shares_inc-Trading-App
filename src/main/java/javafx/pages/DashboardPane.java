@@ -1,6 +1,5 @@
 package javafx.pages;
 
-import console.entities.Portfolio;
 import console.entities.Share;
 import console.entities.User;
 import javafx.assets.LanguagePack;
@@ -19,7 +18,6 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import lombok.Getter;
 
-import java.util.List;
 import java.util.Random;
 import java.util.stream.IntStream;
 
@@ -37,7 +35,10 @@ public class DashboardPane extends CustomPane {
         super(stage, eventListeners, user);
         this.controller = new DashboardController(stage, this, eventListeners, user);
         build();
+        controller.reloadValues();
     }
+
+
 
 
     private VBox page;
@@ -180,17 +181,9 @@ public class DashboardPane extends CustomPane {
 
     private Text buildAccountBalanceText() {
         Text text = new Text();
-        text.textProperty().set(getAccBalance() + MONEY_ENDING_SYMBOL);
+        text.textProperty().set(Math.round(controller.getRefreshedAccBalance()) + MONEY_ENDING_SYMBOL);
         text.getStyleClass().add("money-text");
         return text;
-    }
-
-    private String getAccBalance() {
-        String accountBalance = "0";
-        if (user() != null) {
-            accountBalance = String.valueOf(user().getAccountBalance());
-        }
-        return accountBalance;
     }
 
     private User user() {
@@ -199,7 +192,7 @@ public class DashboardPane extends CustomPane {
 
     private Text buildValueOfSharesText() {
         Text text = new Text();
-        text.setText(getShareValue() + MONEY_ENDING_SYMBOL);
+        text.setText(Math.round(controller.getRefreshedShareValue()) + MONEY_ENDING_SYMBOL);
         text.getStyleClass().add("money-text");
         return text;
     }
@@ -246,11 +239,6 @@ public class DashboardPane extends CustomPane {
 
     StringBinding getValueByKey(String key) {
         return LanguagePack.createStringBinding(key);
-    }
-
-    private double getShareValue() {
-        List<Portfolio> portfolioEntries = controller.getUserPortfolio(user().getId());
-        return portfolioEntries.stream().mapToDouble(portfolio -> controller.get(portfolio.getShareId()).getPricePerShare() * portfolio.getAmount()).sum();
     }
 
     @Override

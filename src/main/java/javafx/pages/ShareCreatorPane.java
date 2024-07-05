@@ -29,7 +29,7 @@ public class ShareCreatorPane extends CustomPane {
 
     public ShareCreatorPane(Stage stage, EventListeners eventListeners, User user) {
         super(stage, eventListeners, user);
-        this.controller = new ShareCreatorController(this);
+        this.controller = new ShareCreatorController(stage, this, eventListeners);
         build();
     }
 

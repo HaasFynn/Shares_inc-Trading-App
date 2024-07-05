@@ -7,6 +7,7 @@ import console.functional.EntityManagement;
 import jakarta.persistence.EntityManager;
 import javafx.assets.Hash;
 import javafx.assets.LanguagePack;
+import javafx.eventlisteners.EventListeners;
 import javafx.main_panel.MainPanel;
 import javafx.pages.LoginPane;
 import javafx.scene.input.KeyCode;
@@ -20,7 +21,8 @@ public class LoginController extends CustomController {
     public final LoginPane pane;
     private final UserDao userHandler;
 
-    public LoginController(LoginPane pane) {
+    public LoginController(Stage stage,LoginPane pane, EventListeners eventListeners) {
+        super(stage, eventListeners);
         this.pane = pane;
         EntityManager entityManager = EntityManagement.createEntityManagerFactory().createEntityManager();
         this.userHandler = new UserDaoImpl(entityManager);
