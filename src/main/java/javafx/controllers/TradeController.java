@@ -17,25 +17,25 @@ import javafx.pages.TradePane;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class TradeController {
+public class TradeController extends CustomController {
 
-    private final EventListeners eventListeners;
+    private final TradePane pane;
     private static final int MAX_SHARELIST_LENGTH = 25;
     @Getter
     private final ArrayList<Tag> selectedFilterTags;
     private final UserDaoImpl userDao;
     private final ShareDaoImpl shareDao;
     private final TagDaoImpl tagDao;
-    private final TradePane pane;
     private String username;
 
-    public TradeController(TradePane pane, EventListeners eventListener, User user) {
-        this.eventListeners = eventListener;
+    public TradeController(Stage stage, TradePane pane, EventListeners eventListener, User user) {
+        super(stage, eventListener);
         this.pane = pane;
         this.selectedFilterTags = new ArrayList<>();
         this.username = user.getUsername();

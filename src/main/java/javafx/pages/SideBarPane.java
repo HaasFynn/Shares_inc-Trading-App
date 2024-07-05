@@ -78,7 +78,7 @@ public class SideBarPane extends CustomPane {
         this.home = buildImageBox("home.png", new DashboardPane(getStage(), eventListeners, user));
         this.portfolio = buildImageBox("document.png", new ShareCreatorPane(getStage(), eventListeners, user));
         this.trade = buildImageBox("handshake.png", new TradePane(getStage(), eventListeners, user));
-        this.statistic = buildImageBox("stock.png", new StockMarketPane(getStage(), eventListeners, user));
+        this.statistic = buildImageBox("stock.png", new PortfolioPane(getStage(), eventListeners, user));
         this.account = buildImageBox("profile.png", new ProfilePane(getStage(), eventListeners, user));
         this.settings = buildImageBox("settings.png", new SettingsPane(getStage(), eventListeners, user));
         home.getStyleClass().add("selected-pane");

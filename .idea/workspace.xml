@@ -4,10 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea488597-f4e2-49aa-b467-1e44621e87b4" name="Changes" comment="implement ShareViewPane, summarized similar fields -&gt; CustomPane">
+    <list default="true" id="ea488597-f4e2-49aa-b467-1e44621e87b4" name="Changes" comment="did too much stuff for one commit. finished shareview pane, created StockMarketPane">
+      <change afterPath="$PROJECT_DIR$/src/main/java/javafx/controllers/StockMarketController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/mocks/price_over_time.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/console/entities/Share.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/console/entities/Share.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/console/functional/InputHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/console/functional/InputHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/controllers/CustomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/controllers/CustomController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/controllers/DashboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/controllers/DashboardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/controllers/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/controllers/ShareCreatorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/controllers/ShareCreatorController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/javafx/controllers/ShareViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/controllers/ShareViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/controllers/SideBarController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/controllers/TradeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/controllers/TradeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/pages/DashboardPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/pages/DashboardPane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/pages/LoginPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/pages/LoginPane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/pages/ShareCreatorPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/pages/ShareCreatorPane.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/javafx/pages/ShareViewPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/pages/ShareViewPane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/pages/SideBarPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/pages/SideBarPane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/pages/StockMarketPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/pages/StockMarketPane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/pages/TradePane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/pages/TradePane.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/locale/language_de.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/locale/language_de.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/locale/language_en.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/locale/language_en.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/style/share-view.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/style/share-view.css" afterDir="false" />
@@ -66,9 +84,9 @@
       <list>
         <option value="JUnit5 Test Class" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="CSS File" />
         <option value="Record" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -116,76 +134,79 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Application.SharesInc.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Build Shares-inc.-Trading-App.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Build Shares.inc-Remake.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Build shares_gradle.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.InputHandlerTest.doSharesGetAddedEveryTime.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.InputHandlerTest.doesLoginWork.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.InputHandlerTest.shouldFail.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.ShareCreatorTest.doesShareCreationWork.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Shares-inc.-Trading-App [:CreateShareTagCon.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Shares-inc.-Trading-App [:Main.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Shares-inc.-Trading-App [:SharesInc.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Shares-inc.-Trading-App [build].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Shares.inc-Remake [:Main.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Shares.inc-Remake [:SharesInc.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Shares.inc_2 [:Main.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Shares_gradle [:Main.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.shares_gradle [:Main.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.shares_gradle [:SharesInc.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.shares_gradle [:temp_ShareCreatorMain.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.shares_gradle [buildDependents].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.shares_gradle [buildNeeded].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.shares_gradle [build].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.shares_gradle [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.shares_gradle [dependencies].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.shares_gradle [test].executor&quot;: &quot;Run&quot;,
-    &quot;Java Scratch.ChatGPTAPIExample.executor&quot;: &quot;Run&quot;,
-    &quot;Java Scratch.Scratch.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feature/share-view-pane&quot;,
-    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/fhaas/Documents/Ergon/JavaFx/Shares-inc.-Trading-App/src/main/resources/assets/image/icon/black&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
+    "Application.Main.executor": "Run",
+    "Application.SharesInc.executor": "Run",
+    "Gradle.Build Shares-inc.-Trading-App.executor": "Run",
+    "Gradle.Build Shares.inc-Remake.executor": "Run",
+    "Gradle.Build shares_gradle.executor": "Run",
+    "Gradle.Download Sources.executor": "Run",
+    "Gradle.InputHandlerTest.doSharesGetAddedEveryTime.executor": "Run",
+    "Gradle.InputHandlerTest.doesLoginWork.executor": "Run",
+    "Gradle.InputHandlerTest.shouldFail.executor": "Run",
+    "Gradle.ShareCreatorTest.doesShareCreationWork.executor": "Run",
+    "Gradle.Shares-inc.-Trading-App [:CreateShareTagCon.main()].executor": "Run",
+    "Gradle.Shares-inc.-Trading-App [:Main.main()].executor": "Run",
+    "Gradle.Shares-inc.-Trading-App [:SampleDataGenerator.main()].executor": "Run",
+    "Gradle.Shares-inc.-Trading-App [:SharesInc.main()].executor": "Run",
+    "Gradle.Shares-inc.-Trading-App [build].executor": "Run",
+    "Gradle.Shares.inc-Remake [:Main.main()].executor": "Run",
+    "Gradle.Shares.inc-Remake [:SharesInc.main()].executor": "Run",
+    "Gradle.Shares.inc_2 [:Main.main()].executor": "Run",
+    "Gradle.Shares_gradle [:Main.main()].executor": "Run",
+    "Gradle.shares_gradle [:Main.main()].executor": "Run",
+    "Gradle.shares_gradle [:SharesInc.main()].executor": "Run",
+    "Gradle.shares_gradle [:temp_ShareCreatorMain.main()].executor": "Run",
+    "Gradle.shares_gradle [buildDependents].executor": "Run",
+    "Gradle.shares_gradle [buildNeeded].executor": "Run",
+    "Gradle.shares_gradle [build].executor": "Run",
+    "Gradle.shares_gradle [clean].executor": "Run",
+    "Gradle.shares_gradle [dependencies].executor": "Run",
+    "Gradle.shares_gradle [test].executor": "Run",
+    "Java Scratch.ChatGPTAPIExample.executor": "Run",
+    "Java Scratch.Scratch.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "git-widget-placeholder": "feature/share-view-pane",
+    "go.import.settings.migrated": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/fhaas/Documents/Ergon/JavaFx/Shares-inc.-Trading-App/src/main/resources/assets/image/icon/black",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;ChangesTree.GroupingKeys&quot;: [
-      &quot;directory&quot;,
-      &quot;module&quot;
+  "keyToStringList": {
+    "ChangesTree.GroupingKeys": [
+      "directory",
+      "module"
     ],
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
+    "DatabaseDriversLRU": [
+      "mysql"
     ],
-    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
-      &quot;JAVA&quot;
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "JAVA"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="javafx.controllers" />
       <recent name="javafx.main_panel" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
@@ -196,11 +217,11 @@
       <recent name="C:\Users\fhaas\OneDrive - Ergon Informatik AG\Desktop\Erste Aufgaben\Java\Shares.inc_2\src\main\resources" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\fhaas\Documents\Ergon\JavaFx\Shares-inc.-Trading-App\src\main\resources\assets\mocks" />
       <recent name="C:\Users\fhaas\Documents\Ergon\JavaFx\Shares-inc.-Trading-App\src\main\resources\assets\image\icon\grey" />
       <recent name="C:\Users\fhaas\Documents\Ergon\JavaFx\Shares-inc.-Trading-App\src\main\resources\assets" />
       <recent name="C:\Users\fhaas\Documents\Ergon\JavaFx\Shares-inc.-Trading-App\src\main\resources\assets\image" />
       <recent name="C:\Users\fhaas\Documents\Ergon\JavaFx\shares_gradle\src\main\resources\image\icon\black" />
-      <recent name="C:\Users\fhaas\Documents\Ergon\JavaFx\shares_gradle\src\main\resources\image\icon\grey" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -217,9 +238,21 @@
   </component>
   <component name="RunManager" selected="Application.SharesInc">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="openjdk-22" />
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="Shares-inc.-Trading-App.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SampleDataGenerator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="javafx.assets.SampleDataGenerator" />
+      <module name="Shares-inc.-Trading-App.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="javafx.assets.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -230,7 +263,7 @@
       <option name="VM_PARAMETERS" value="--module-path &quot;C:\Users\fhaas\Documents\Ergon\JavaFx\javafx-sdk-22\lib&quot; --add-modules javafx.controls,javafx.fxml" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="javafx.pages.StockMarketPane" />
+          <option name="PATTERN" value="javafx.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -250,28 +283,6 @@
         <option name="taskNames">
           <list>
             <option value="build" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>false</RunAsTest>
-      <method v="2" />
-    </configuration>
-    <configuration name="shares_gradle [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="clean" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -303,19 +314,19 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Application.SampleDataGenerator" />
       <item itemvalue="Application.Main" />
       <item itemvalue="Application.SharesInc" />
       <item itemvalue="Gradle.Shares-inc.-Trading-App [build]" />
-      <item itemvalue="Gradle.shares_gradle [clean]" />
       <item itemvalue="Java Scratch.Scratch" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.Shares-inc.-Trading-App [build]" />
-        <item itemvalue="Java Scratch.Scratch" />
-        <item itemvalue="Gradle.shares_gradle [clean]" />
         <item itemvalue="Application.SharesInc" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.SampleDataGenerator" />
+        <item itemvalue="Gradle.Shares-inc.-Trading-App [build]" />
+        <item itemvalue="Java Scratch.Scratch" />
       </list>
     </recent_temporary>
   </component>
@@ -410,6 +421,7 @@
       <workItem from="1719576205996" duration="4041000" />
       <workItem from="1719839878137" duration="103000" />
       <workItem from="1719996850916" duration="3665000" />
+      <workItem from="1720157401169" duration="16037000" />
     </task>
     <task id="LOCAL-00001" summary="Created Files and Set Properties&#10;setUp Function made&#10;Annotations added">
       <option name="closed" value="true" />
@@ -689,7 +701,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Dao System recreated&#10;Test Area added&#10;Clean Coded" />
     <MESSAGE value="Added JavaFX" />
     <MESSAGE value="solved import" />
     <MESSAGE value="add unversioned files" />
@@ -714,7 +725,8 @@
     <MESSAGE value="stock-view-share-linking: finished + add Eventlisteners to CustomPane.java" />
     <MESSAGE value="stock-view-share-linking: finished + add Eventlisteners and User to CustomPane.java" />
     <MESSAGE value="implement ShareViewPane, summarized similar fields -&gt; CustomPane" />
-    <option name="LAST_COMMIT_MESSAGE" value="implement ShareViewPane, summarized similar fields -&gt; CustomPane" />
+    <MESSAGE value="did too much stuff for one commit. finished shareview pane, created StockMarketPane" />
+    <option name="LAST_COMMIT_MESSAGE" value="did too much stuff for one commit. finished shareview pane, created StockMarketPane" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
@@ -730,19 +742,15 @@
           <properties class="org.hibernate.exception.SQLGrammarException" package="org.hibernate.exception" />
           <option name="timeStamp" value="18" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/Main.java</url>
-          <line>9</line>
-          <properties class="Main" method="main">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="27" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/console/functional/EntityManagement.java</url>
           <line>32</line>
           <option name="timeStamp" value="32" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/javafx/controllers/ShareViewController.java</url>
+          <line>134</line>
+          <option name="timeStamp" value="43" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -6,16 +6,19 @@ import console.dao.ShareDaoImpl;
 import console.functional.EntityManagement;
 import javafx.assets.LanguagePack;
 import javafx.beans.binding.StringBinding;
+import javafx.eventlisteners.EventListeners;
 import javafx.pages.ShareCreatorPane;
 import javafx.scene.Node;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 
 public class ShareCreatorController extends CustomController {
     private final ShareCreatorPane pane;
     private final ShareDao shareHandler;
 
-    public ShareCreatorController(ShareCreatorPane pane) {
+    public ShareCreatorController(Stage stage, ShareCreatorPane pane, EventListeners eventListeners) {
+        super(stage, eventListeners);
         this.pane = pane;
         this.shareHandler = new ShareDaoImpl(EntityManagement.createEntityManagerFactory().createEntityManager());
     }

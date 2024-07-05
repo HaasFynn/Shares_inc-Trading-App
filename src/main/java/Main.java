@@ -2,7 +2,6 @@ import console.dao.PortfolioDaoImpl;
 import console.dao.ShareDaoImpl;
 import console.dao.UserDaoImpl;
 import console.functional.EntityManagement;
-import console.functional.InputHandler;
 import jakarta.persistence.EntityManager;
 import javafx.SharesInc;
 

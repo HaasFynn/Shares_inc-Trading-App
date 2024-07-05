@@ -18,12 +18,12 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class DashboardController extends CustomController {
 
-    private final Stage stage;
     private final DashboardPane pane;
     private final EventListeners eventListeners;
     private final UserDao userDao;
@@ -32,7 +32,7 @@ public class DashboardController extends CustomController {
     private final String username;
 
     public DashboardController(Stage stage, DashboardPane pane, EventListeners eventListeners, User user) {
-        this.stage = stage;
+        super(stage, eventListeners);
         this.pane = pane;
         this.eventListeners = eventListeners;
         EntityManager entityManager = EntityManagement.createEntityManagerFactory().createEntityManager();
@@ -109,6 +109,63 @@ public class DashboardController extends CustomController {
             eventListeners.switchPane(new ShareViewPane(pane.getStage(), eventListeners, getUser(), share));
             searchTableView.getSelectionModel().clearSelection();
         });
+    }
+
+    public void reloadValues() {
+        new Thread(() -> {
+            synchronized (this) {
+                while (true) {
+                    try {
+                        this.wait(5000);
+                    } catch (InterruptedException ignored) {
+                    }
+                    double accBalance = Math.round(getRefreshedAccBalance());
+                    double portfolioValue = Math.round(getRefreshedShareValue());
+
+                    pane.getAccBalance().setText(accBalance + ".-");
+                    pane.getValueOfShares().setText(portfolioValue + ".-");
+                }
+            }
+        }).start();
+    }
+
+    public String formatNumber(double number) {
+        String stringValue = String.valueOf(number);
+        if (stringValue.length() < 4) {
+            return stringValue;
+        }
+        ArrayList<Character> chars = new ArrayList<>();
+        fillCharacterList(stringValue, chars);
+
+        for (int i = chars.size(); i > 3; i--) {
+            if (i % 3 == 0) {
+                chars.add(i, '\'');
+            }
+        }
+        return String.join(", ", chars.toString());
+    }
+
+    private static void fillCharacterList(String stringValue, ArrayList<Character> chars) {
+        for (char character : stringValue.toCharArray()) {
+            chars.add(character);
+        }
+    }
+
+    public double getRefreshedAccBalance() {
+        double accountBalance = 0;
+        if (user() != null) {
+            accountBalance = user().getAccountBalance();
+        }
+        return accountBalance;
+    }
+
+    public double getRefreshedShareValue() {
+        List<Portfolio> portfolioEntries = getUserPortfolio(user().getId());
+        return Math.round(portfolioEntries.stream().mapToDouble(portfolio -> get(portfolio.getShareId()).getPricePerShare() * portfolio.getAmount()).sum());
+    }
+
+    private User user() {
+        return userDao.getByUsername(username);
     }
 
 }

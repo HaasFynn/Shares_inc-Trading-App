@@ -13,8 +13,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import lombok.Getter;
 
@@ -45,7 +43,7 @@ public class TradePane extends CustomPane {
         super(stage, eventListeners, user);
         this.eventListeners = eventListeners;
         this.username = user.getUsername();
-        this.controller = new TradeController(this, eventListeners, user);
+        this.controller = new TradeController(stage, this, eventListeners, user);
         build();
     }
 
