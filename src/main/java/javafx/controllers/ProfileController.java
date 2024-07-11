@@ -4,6 +4,7 @@ import console.dao.*;
 import console.entities.User;
 import console.functional.EntityManagement;
 import jakarta.persistence.EntityManager;
+import javafx.event.ActionEvent;
 import javafx.eventlisteners.EventListeners;
 import javafx.stage.Stage;
 
@@ -24,6 +25,14 @@ public class ProfileController extends CustomController {
     }
 
     public User user() {
-        return userDao.getByUsername(username);
+        return userDao.get(userId);
+    }
+
+    public void handleEnterPressed() {
+
+    }
+
+    public void saveInput(ActionEvent event) {
+
     }
 }

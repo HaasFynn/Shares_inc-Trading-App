@@ -25,7 +25,7 @@ public class Header extends VBox {
         Line line = new Line();
         line.setStartX(0);
         line.setStartY(0);
-        line.endXProperty().bind(getStage().widthProperty());
+        //line.endXProperty().bind(getStage().widthProperty());
         return line;
     }
 

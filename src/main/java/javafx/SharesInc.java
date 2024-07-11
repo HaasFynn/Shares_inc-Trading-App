@@ -1,10 +1,14 @@
 package javafx;
 
+import console.dao.UserDaoImpl;
 import console.entities.User;
+import console.functional.EntityManagement;
 import javafx.application.Application;
 import javafx.assets.LanguagePack;
 import javafx.assets.ScreenBuilder;
+import javafx.eventlisteners.EventListenersImpl;
 import javafx.main_panel.MainPanel;
+import javafx.pages.LoginPane;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Region;
@@ -27,10 +31,8 @@ public class SharesInc extends Application {
     private void config(Scene scene) {
         stage.titleProperty().bind(LanguagePack.createStringBinding("window.title"));
         stage.getIcons().add(new Image("assets/image/shares_inc._logo.png"));
-        //LoginPane pane = new LoginPane(stage); //Standard
-        //ShareCreatorPane pane = new ShareCreatorPane(stage);
-        User user = new User();
-        user.setUsername("fhaas");
+        //LoginPane loginpane = new LoginPane(stage, null); //Standard
+        User user = new UserDaoImpl(EntityManagement.createEntityManagerFactory().createEntityManager()).get(652);
         MainPanel mainPanel = new MainPanel(stage, user);
         scene.setRoot(mainPanel);
         scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());

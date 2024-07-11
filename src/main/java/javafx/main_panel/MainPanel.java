@@ -4,14 +4,12 @@ import console.entities.User;
 import javafx.eventlisteners.EventListenersImpl;
 import javafx.pages.CustomPane;
 import javafx.pages.*;
-import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import lombok.Getter;
 
 @Getter
 public class MainPanel extends CustomPane {
 
-    EventListenersImpl eventListeners;
     private final SideBarPane sideBar;
     private CustomPane currentPane;
     private static final double STAGE_WIDTH = 815;
@@ -29,11 +27,9 @@ public class MainPanel extends CustomPane {
         return new SideBarPane(stage, eventListeners, user);
     }
 
-    HBox box;
 
     protected void build() {
-        box = buildHBox();
-        getChildren().add(box);
+        getChildren().addAll(currentPane);
         if (getStage().isShowing()) {
             adjustWindow();
         }
@@ -45,19 +41,13 @@ public class MainPanel extends CustomPane {
         getStage().centerOnScreen();
     }
 
-    private HBox buildHBox() {
-        HBox box = new HBox();
-        box.getChildren().addAll(sideBar, currentPane);
-        return box;
-    }
-
     public void switchPage(CustomPane pane) {
         if (classesEqual(pane)) {
             return;
         }
-        box.getChildren().remove(currentPane);
+        getChildren().remove(currentPane);
         this.currentPane = pane;
-        box.getChildren().add(currentPane);
+        getChildren().add(currentPane);
         System.out.println("Switched Pane to -> " + pane);
     }
 
