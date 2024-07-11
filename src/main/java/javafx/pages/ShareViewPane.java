@@ -111,7 +111,7 @@ public class ShareViewPane extends CustomPane {
 
     private VBox buildHeader(Label title, Line headerLine) {
         VBox box = new VBox(title, headerLine);
-        box.getStyleClass().addAll("header");
+        box.getStyleClass().addAll("h1");
         return box;
     }
 

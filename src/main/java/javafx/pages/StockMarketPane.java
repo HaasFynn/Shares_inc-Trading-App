@@ -5,6 +5,7 @@ import console.entities.User;
 import javafx.assets.LanguagePack;
 import javafx.beans.binding.StringBinding;
 import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
 import javafx.controllers.StockMarketController;
 import javafx.eventlisteners.EventListeners;
 import javafx.scene.Node;
@@ -74,7 +75,7 @@ public class StockMarketPane extends CustomPane {
 
     private Label buildTitle() {
         Label label = new Label(controller.share().getName());
-        label.getStyleClass().add("title");
+        label.getStyleClass().add("h1");
         return label;
     }
 
@@ -107,7 +108,7 @@ public class StockMarketPane extends CustomPane {
 
         controller.generateSampleData();
         fillChartData(series);
-        chart.getData().addAll(series);
+        chart.setData(FXCollections.observableArrayList(series));
         return chart;
     }
 

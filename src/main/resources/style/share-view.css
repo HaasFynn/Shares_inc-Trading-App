@@ -7,7 +7,7 @@
     -fx-spacing: 10px;
 }
 
-.title {
+.h1 {
     -fx-font-size: 25;
     -fx-text-fill: inherit;
 }

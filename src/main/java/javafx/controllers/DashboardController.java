@@ -7,6 +7,7 @@ import console.entities.User;
 import console.functional.EntityManagement;
 import jakarta.persistence.EntityManager;
 import javafx.assets.ShareInfoBox;
+import javafx.beans.binding.StringBinding;
 import javafx.eventlisteners.EventListeners;
 import javafx.pages.DashboardPane;
 import javafx.pages.ShareViewPane;
@@ -18,9 +19,12 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Supplier;
 
 public class DashboardController extends CustomController {
 
@@ -111,39 +115,33 @@ public class DashboardController extends CustomController {
         });
     }
 
-    public void reloadValues() {
+    /*public void reloadValues() {
         new Thread(() -> {
             synchronized (this) {
                 while (true) {
-                    try {
-                        this.wait(5000);
-                    } catch (InterruptedException ignored) {
-                    }
-                    double accBalance = Math.round(getRefreshedAccBalance());
-                    double portfolioValue = Math.round(getRefreshedShareValue());
+                    String accBalance = formatNumber(getRefreshedAccBalance());
+                    String portfolioValue = formatNumber(getRefreshedShareValue());
 
                     pane.getAccBalance().setText(accBalance + ".-");
                     pane.getValueOfShares().setText(portfolioValue + ".-");
                 }
             }
         }).start();
-    }
+    }*/
 
     public String formatNumber(double number) {
-        String stringValue = String.valueOf(number);
-        if (stringValue.length() < 4) {
-            return stringValue;
-        }
-        ArrayList<Character> chars = new ArrayList<>();
-        fillCharacterList(stringValue, chars);
-
-        for (int i = chars.size(); i > 3; i--) {
-            if (i % 3 == 0) {
-                chars.add(i, '\'');
-            }
-        }
-        return String.join(", ", chars.toString());
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols();
+        symbols.setGroupingSeparator('\'');
+        DecimalFormat df = new DecimalFormat("###,###.##");
+        return String.join(", ", df.format(number));
     }
+
+    private String getCharArrayToString(ArrayList<Character> chars) {
+        StringBuilder sb = new StringBuilder();
+        chars.forEach(sb::append);
+        return sb.toString();
+    }
+
 
     private static void fillCharacterList(String stringValue, ArrayList<Character> chars) {
         for (char character : stringValue.toCharArray()) {
@@ -151,21 +149,34 @@ public class DashboardController extends CustomController {
         }
     }
 
-    public double getRefreshedAccBalance() {
-        double accountBalance = 0;
+    public double getAccBalance() {
         if (user() != null) {
-            accountBalance = user().getAccountBalance();
+            return user().getAccountBalance();
         }
-        return accountBalance;
+        return 0;
     }
 
-    public double getRefreshedShareValue() {
+    public double getValueOfShares() {
         List<Portfolio> portfolioEntries = getUserPortfolio(user().getId());
-        return Math.round(portfolioEntries.stream().mapToDouble(portfolio -> get(portfolio.getShareId()).getPricePerShare() * portfolio.getAmount()).sum());
+        double value = 0;
+        for (Portfolio entry : portfolioEntries) {
+            Share share = shareDao.get(entry.getShareId());
+            value += share.getPricePerShare() * entry.getAmount();
+        }
+        return value;
     }
 
     private User user() {
         return userDao.getByUsername(username);
+    }
+
+    public StringBinding createStringBinding(Supplier<Double> supplier) {
+        return new StringBinding() {
+            @Override
+            protected String computeValue() {
+                return formatNumber(supplier.get());
+            }
+        };
     }
 
 }

@@ -35,7 +35,6 @@ public class DashboardPane extends CustomPane {
         super(stage, eventListeners, user);
         this.controller = new DashboardController(stage, this, eventListeners, user);
         build();
-        controller.reloadValues();
     }
 
 
@@ -181,7 +180,7 @@ public class DashboardPane extends CustomPane {
 
     private Text buildAccountBalanceText() {
         Text text = new Text();
-        text.textProperty().set(Math.round(controller.getRefreshedAccBalance()) + MONEY_ENDING_SYMBOL);
+        text.textProperty().bind(controller.createStringBinding(controller::getAccBalance));
         text.getStyleClass().add("money-text");
         return text;
     }
@@ -192,7 +191,7 @@ public class DashboardPane extends CustomPane {
 
     private Text buildValueOfSharesText() {
         Text text = new Text();
-        text.setText(Math.round(controller.getRefreshedShareValue()) + MONEY_ENDING_SYMBOL);
+        text.textProperty().bind(controller.createStringBinding(controller::getValueOfShares));
         text.getStyleClass().add("money-text");
         return text;
     }
