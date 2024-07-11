@@ -81,21 +81,24 @@ public class StockMarketController extends CustomController {
         double maxVal;
         if (tendency == Tendency.UP) {
             minVal = oldValue;
-            maxVal = calcTendencyVal(oldValue, tendency);
+            maxVal = oldValue + (oldValue * getRandomChangeRate());
         } else {
-            minVal = calcTendencyVal(oldValue, tendency);
+            minVal = oldValue - (oldValue * getRandomChangeRate());
             maxVal = oldValue;
         }
         return rand.nextDouble(minVal, maxVal);
     }
 
-    private double calcTendencyVal(double oldValue, Tendency tendency) {
-        double changeInPercent = rand.nextDouble(0.009, 0.1);
-        if (tendency == Tendency.DOWN) {
-            changeInPercent *= -1;
-        }
+    private double getRandomChangeRate() {
+        return rand.nextDouble(getRandChangeRateOrigin(), getRandChangeRateBound());
+    }
 
-        return oldValue + (oldValue * changeInPercent);
+    private static double getRandChangeRateBound() {
+        return rand.nextDouble(0.009, 0.1);
+    }
+
+    private static double getRandChangeRateOrigin() {
+        return rand.nextDouble(0.0009, 0.01);
     }
 
 
@@ -103,6 +106,7 @@ public class StockMarketController extends CustomController {
         String filePath = System.getProperty("user.dir") + "/src/main/resources/assets/mocks/price_over_time.csv";
         try (FileWriter writer = new FileWriter(filePath)) {
             writer.append("date,price\n");
+            writeValues(values, writer);
             System.out.println("CSV file created successfully at " + filePath);
         } catch (IOException e) {
             System.err.println("Error writing to CSV file.");

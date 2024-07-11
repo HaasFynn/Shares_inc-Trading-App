@@ -36,11 +36,10 @@ public class LoginController extends CustomController {
             setStatusText("login.status.user.not.found", true, "text-danger");
             return;
         }
-        switchScene(user); //Changes Pane TODO Change to MainPanel
+        switchScene(user);
     }
 
     private void switchScene(User user) {
-        Stage stage = (Stage) pane.getScene().getWindow();
         MainPanel mainPanel = new MainPanel(stage, user);
         pane.getScene().setRoot(mainPanel);
     }

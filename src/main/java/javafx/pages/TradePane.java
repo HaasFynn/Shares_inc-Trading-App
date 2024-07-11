@@ -251,13 +251,6 @@ public class TradePane extends CustomPane {
         getStylesheets().addAll(STYLE_PATH + "trade.css", STYLE_PATH + "news_box.css");
     }
 
-    private void bind(StringProperty text, String key) {
-        if (key.isEmpty()) {
-            return;
-        }
-        text.bind(getValueByKey(key));
-    }
-
     public StringBinding getValueByKey(String key) {
         return LanguagePack.createStringBinding(key);
     }

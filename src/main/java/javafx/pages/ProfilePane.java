@@ -3,29 +3,31 @@ package javafx.pages;
 import console.entities.User;
 import javafx.assets.Header;
 import javafx.assets.InputSection;
-import javafx.assets.LanguagePack;
 import javafx.beans.binding.StringBinding;
-import javafx.beans.property.StringProperty;
 import javafx.controllers.ProfileController;
 import javafx.eventlisteners.EventListeners;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import java.util.concurrent.Callable;
+import java.awt.image.BufferedImage;
+import java.util.function.Supplier;
 
 public class ProfilePane extends CustomPane {
-
+    private static final String STYLEPATH = "style/";
     private final ProfileController controller;
 
     public ProfilePane(Stage stage, EventListeners eventListeners, User user) {
         super(stage, eventListeners, user);
-        this.controller = new ProfileController(stage, eventListeners);
+        this.controller = new ProfileController(stage, eventListeners, user);
+        build();
     }
 
     private VBox page;
@@ -33,7 +35,8 @@ public class ProfilePane extends CustomPane {
 
     private VBox body;
 
-    private HBox profileBox;
+    private HBox headingBox;
+    private VBox profileBox;
     private Label profileLabel;
     private VBox profileImageBox;
     private ImageView profileImage;
@@ -59,6 +62,10 @@ public class ProfilePane extends CustomPane {
         add(page, 0, 0);
     }
 
+    private void addStyleSheet() {
+        getStylesheets().add(STYLEPATH + "profile-pane.css");
+    }
+
     private void createNodes() {
         this.header = new Header();
         createBody();
@@ -66,12 +73,27 @@ public class ProfilePane extends CustomPane {
     }
 
     private void createBody() {
-        createProfileBox();
+        createHeadingBox();
         this.firstNameInput = buildFirstnameInput();
         this.lastNameInput = buildLastNameInput();
         this.emailInput = buildEmailInput();
         createPasswordBox();
-        this.body = buildBody(profileBox, firstNameInput, lastNameInput, emailInput, passwordBox, saveButton);
+        this.saveButton = buildSaveButton();
+        this.body = buildBody(headingBox, firstNameInput, lastNameInput, emailInput, passwordBox, saveButton);
+    }
+
+    private Button buildSaveButton() {
+        String[] styleClasses = new String[]{"save-button"};
+        Button button = buildButton(styleClasses, "portfolio_pane.button.save");
+        button.setOnAction(controller::saveInput);
+        return button;
+    }
+
+    private Button buildButton(String[] styleClasses, String bindingKey) {
+        Button button = new Button();
+        bind(button.textProperty(), bindingKey);
+        button.getStyleClass().addAll(styleClasses);
+        return button;
     }
 
     private VBox buildBody(Node... nodes) {
@@ -81,19 +103,26 @@ public class ProfilePane extends CustomPane {
     }
 
     private void createPasswordBox() {
+        this.passwordInputLabel = buildPasswordLabel();
         this.passwordInput = buildPasswordInput();
+        String[] styleClasses = new String[]{"password-box"};
+        this.passwordBox = buildVBox(styleClasses, passwordInputLabel, passwordInput);
+    }
+
+    private Label buildPasswordLabel() {
+        return buildLabel("profile_pane.label.password", "password-label", "label");
     }
 
     private InputSection buildFirstnameInput() {
-        return buildInputSection("profile_pane.input.firstname", controller.user().getFirstname());
+        return new InputSection("profile_pane.input.firstname", controller.user()::getFirstname);
     }
 
     private InputSection buildLastNameInput() {
-        return buildInputSection("profile_pane.input.lastname", controller.user().getLastname());
+        return new InputSection("profile_pane.input.lastname", controller.user()::getLastname);
     }
 
     private InputSection buildEmailInput() {
-        return buildInputSection("profile_pane.input.email", controller.user().getEmail());
+        return new InputSection("profile_pane.input.email", controller.user()::getEmail);
     }
 
     private PasswordField buildPasswordInput() {
@@ -102,15 +131,50 @@ public class ProfilePane extends CustomPane {
         return passwordField;
     }
 
-    private InputSection buildInputSection(String labelBinding, String fieldValue) {
-        InputSection section = new InputSection(labelBinding, fieldValue);
-        bind(section.getLabel().textProperty(), labelBinding);
-        section.getInput().setText(fieldValue);
-        return null;
+    private void createHeadingBox() {
+        createProfileBox();
+        this.usernameInput = buildUsernameInput();
+        this.headingBox = buildHeadingBox(profileBox, usernameInput);
+    }
+
+    private InputSection buildUsernameInput() {
+        return new InputSection("profile_pane.input.username", controller.user()::getUsername);
     }
 
     private void createProfileBox() {
-        this.
+        this.profileLabel = buildProfileLabel();
+        buildProfileImageBox();
+        String[] styleClasses = new String[]{"profile-box"};
+        this.profileBox = buildVBox(styleClasses, profileLabel, profileImageBox);
+    }
+
+    private void buildProfileImageBox() {
+        this.profileImage = buildProfileImage();
+        String[] styleClasses = new String[]{"profile-image-box"};
+        this.profileImageBox = buildVBox(styleClasses, profileImage);
+    }
+
+    private ImageView buildProfileImage() {
+        ImageView image = new ImageView(new Image("assets/image/shares_inc._logo.png"));
+        image.getStyleClass().add("profile-image");
+        return image;
+    }
+
+    private Label buildProfileLabel() {
+        return buildLabel("profile_pane.label.image", "profile-pic-label", "label");
+    }
+
+    private Label buildLabel(String key, String... styleClasses) {
+        Label label = new Label();
+        bind(label.textProperty(), key);
+        label.getStyleClass().addAll(styleClasses);
+        return label;
+    }
+
+    private HBox buildHeadingBox(Node... nodes) {
+        HBox box = new HBox(nodes);
+        box.getStyleClass().add("heading-box");
+        return box;
     }
 
     private VBox buildPage(Header header, VBox body) {
@@ -119,12 +183,18 @@ public class ProfilePane extends CustomPane {
         return page;
     }
 
-    private void addStyleSheet() {
-
+    private VBox buildVBox(String[] styleClasses, Node... nodes) {
+        VBox box = new VBox(nodes);
+        box.getStyleClass().addAll(styleClasses);
+        return box;
     }
 
     private void addListeners() {
-
+        setOnKeyPressed(key -> {
+            if (key.getCode() == KeyCode.ENTER) {
+                controller.handleEnterPressed();
+            }
+        });
     }
 
     @Override

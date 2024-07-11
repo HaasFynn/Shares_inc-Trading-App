@@ -29,11 +29,8 @@ public class MainPanel extends CustomPane {
         return new SideBarPane(stage, eventListeners, user);
     }
 
-    HBox box;
 
     protected void build() {
-        box = buildHBox();
-        getChildren().add(box);
         if (getStage().isShowing()) {
             adjustWindow();
         }
@@ -45,19 +42,13 @@ public class MainPanel extends CustomPane {
         getStage().centerOnScreen();
     }
 
-    private HBox buildHBox() {
-        HBox box = new HBox();
-        box.getChildren().addAll(sideBar, currentPane);
-        return box;
-    }
-
     public void switchPage(CustomPane pane) {
         if (classesEqual(pane)) {
             return;
         }
-        box.getChildren().remove(currentPane);
+        getChildren().remove(currentPane);
         this.currentPane = pane;
-        box.getChildren().add(currentPane);
+        getChildren().add(currentPane);
         System.out.println("Switched Pane to -> " + pane);
     }
 
