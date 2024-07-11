@@ -178,10 +178,11 @@ public class DashboardPane extends CustomPane {
 
     private Text buildAccountBalanceText() {
         Text text = new Text();
-        text.textProperty().bind(controller.createStringBinding(controller::getAccBalance));
+        text.textProperty().bind(getAccBalanceBinding());
         text.getStyleClass().add("money-text");
         return text;
     }
+
 
     private User user() {
         return controller.getUser();
@@ -189,7 +190,7 @@ public class DashboardPane extends CustomPane {
 
     private Text buildValueOfSharesText() {
         Text text = new Text();
-        text.textProperty().bind(controller.createStringBinding(controller::getValueOfShares));
+        text.textProperty().bind(getShareValueBinding());
         text.getStyleClass().add("money-text");
         return text;
     }
@@ -227,6 +228,14 @@ public class DashboardPane extends CustomPane {
         controller.handleSearchViewElementSelection(stockList);
     }
 
+    private StringBinding getAccBalanceBinding() {
+        return controller.createStringBinding(() -> controller.formatNumber(controller.getAccBalance()));
+    }
+
+    private StringBinding getShareValueBinding() {
+        return controller.createStringBinding(() -> controller.formatNumber(controller.getValueOfShares()));
+    }
+
     private Label buildLabel(String key, String... styleClasses) {
         Label label = new Label();
         bind(label.textProperty(), key);
@@ -236,10 +245,5 @@ public class DashboardPane extends CustomPane {
 
     StringBinding getValueByKey(String key) {
         return LanguagePack.createStringBinding(key);
-    }
-
-    @Override
-    public String toString() {
-        return getClass().getName();
     }
 }

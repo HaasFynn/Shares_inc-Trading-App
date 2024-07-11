@@ -8,6 +8,7 @@ import console.functional.EntityManagement;
 import jakarta.persistence.EntityManager;
 import javafx.assets.ShareInfoBox;
 import javafx.beans.binding.StringBinding;
+import javafx.beans.value.ObservableValue;
 import javafx.eventlisteners.EventListeners;
 import javafx.pages.DashboardPane;
 import javafx.pages.ShareViewPane;
@@ -114,6 +115,44 @@ public class DashboardController extends CustomController {
             eventListeners.switchPane(new ShareViewPane(pane.getStage(), eventListeners, getUser(), share));
             searchTableView.getSelectionModel().clearSelection();
         });
+    }
+
+    public StringBinding createStringBinding(Supplier<String> supplier) {
+        return new StringBinding() {
+            @Override
+            protected String computeValue() {
+                return supplier.get();
+            }
+        };
+    }
+
+    public User user() {
+        return userDao.getByUsername(username);
+    }
+
+    public double getAccBalance() {
+        double accountBalance = 0;
+        if (user() != null) {
+            accountBalance = user().getAccountBalance();
+        }
+        return accountBalance;
+    }
+
+    public double getValueOfShares() {
+        List<Portfolio> entries = portfolioDao.getUserPortfolio(user().getId());
+        double value = 0;
+        for (Portfolio entry : entries) {
+            Share share = shareDao.get(entry.getShareId());
+            value += share.getPricePerShare() * entry.getAmount();
+        }
+        return value;
+    }
+
+    public String formatNumber(double number) {
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols();
+        symbols.setDecimalSeparator('\'');
+        DecimalFormat df = new DecimalFormat("###,###.##", symbols);
+        return df.format(number);
     }
 
 }

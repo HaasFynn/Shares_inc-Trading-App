@@ -7,21 +7,8 @@
     <list default="true" id="ea488597-f4e2-49aa-b467-1e44621e87b4" name="Changes" comment="trading-page: add dashboard stockMarketView">
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/SharesInc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/SharesInc.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/javafx/controllers/DashboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/controllers/DashboardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/controllers/TradeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/controllers/TradeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/main_panel/MainPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/main_panel/MainPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/pages/CustomPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/pages/CustomPane.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/javafx/pages/DashboardPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/pages/DashboardPane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/pages/LoginPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/pages/LoginPane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/pages/PortfolioPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/pages/PortfolioPane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/pages/ProfilePane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/pages/ProfilePane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/pages/SettingsPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/pages/SettingsPane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/pages/ShareOverviewPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/pages/ShareOverviewPane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/pages/SideBarPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/pages/SideBarPane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/pages/StockMarketPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/pages/StockMarketPane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/pages/TradePane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/pages/TradePane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/console/functional/CreateShareTagCon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/console/functional/CreateShareTagCon.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,6 +40,17 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="Shares-inc.-Trading-App" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Shares-inc.-Trading-App" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Shares-inc.-Trading-App" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
               </path>
             </expand>
             <select />
@@ -153,7 +151,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "feature/stock-view-share-linking",
+    "git-widget-placeholder": "master",
     "go.import.settings.migrated": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/fhaas/Documents/Ergon/JavaFx/Shares-inc.-Trading-App/src/main/resources/assets/image/icon/black",
@@ -701,7 +699,7 @@
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/Main.java</url>
           <line>9</line>
-          <properties class="Main" method="main">
+          <properties class="Main">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
