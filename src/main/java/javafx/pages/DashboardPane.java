@@ -38,8 +38,6 @@ public class DashboardPane extends CustomPane {
     }
 
 
-
-
     private VBox page;
     private VBox upperPage;
 

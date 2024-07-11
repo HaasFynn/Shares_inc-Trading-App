@@ -19,6 +19,7 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
+import java.util.ArrayList;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
@@ -113,70 +114,6 @@ public class DashboardController extends CustomController {
             eventListeners.switchPane(new ShareViewPane(pane.getStage(), eventListeners, getUser(), share));
             searchTableView.getSelectionModel().clearSelection();
         });
-    }
-
-    /*public void reloadValues() {
-        new Thread(() -> {
-            synchronized (this) {
-                while (true) {
-                    String accBalance = formatNumber(getRefreshedAccBalance());
-                    String portfolioValue = formatNumber(getRefreshedShareValue());
-
-                    pane.getAccBalance().setText(accBalance + ".-");
-                    pane.getValueOfShares().setText(portfolioValue + ".-");
-                }
-            }
-        }).start();
-    }*/
-
-    public String formatNumber(double number) {
-        DecimalFormatSymbols symbols = new DecimalFormatSymbols();
-        symbols.setGroupingSeparator('\'');
-        DecimalFormat df = new DecimalFormat("###,###.##");
-        return String.join(", ", df.format(number));
-    }
-
-    private String getCharArrayToString(ArrayList<Character> chars) {
-        StringBuilder sb = new StringBuilder();
-        chars.forEach(sb::append);
-        return sb.toString();
-    }
-
-
-    private static void fillCharacterList(String stringValue, ArrayList<Character> chars) {
-        for (char character : stringValue.toCharArray()) {
-            chars.add(character);
-        }
-    }
-
-    public double getAccBalance() {
-        if (user() != null) {
-            return user().getAccountBalance();
-        }
-        return 0;
-    }
-
-    public double getValueOfShares() {
-        List<Portfolio> portfolioEntries = getUserPortfolio(user().getId());
-        double value = 0;
-        for (Portfolio entry : portfolioEntries) {
-            Share share = shareDao.get(entry.getShareId());
-            value += share.getPricePerShare() * entry.getAmount();
-        }
-        return value;
-    }
-
-    private User user() {
-        return userDao.getByUsername(username);
-    }
-
-    public StringBinding createStringBinding(Supplier<Double> supplier) {
-        return new StringBinding() {
-            @Override
-            protected String computeValue() {
-                return formatNumber(supplier.get());
-            }
-        };
     }
 
 }

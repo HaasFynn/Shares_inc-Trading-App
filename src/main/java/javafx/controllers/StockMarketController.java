@@ -103,7 +103,6 @@ public class StockMarketController extends CustomController {
         String filePath = System.getProperty("user.dir") + "/src/main/resources/assets/mocks/price_over_time.csv";
         try (FileWriter writer = new FileWriter(filePath)) {
             writer.append("date,price\n");
-            writeValues(values, writer);
             System.out.println("CSV file created successfully at " + filePath);
         } catch (IOException e) {
             System.err.println("Error writing to CSV file.");
