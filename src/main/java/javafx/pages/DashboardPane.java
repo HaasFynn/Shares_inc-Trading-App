@@ -64,7 +64,7 @@ public class DashboardPane extends CustomPane {
     @Override
     protected void build() {
         setMinSize(STAGE_WIDTH, STAGE_HEIGHT);
-        setVgap(10);
+        setVgap(V_GAP);
         addStyleSheet();
         createNodes();
         addListeners();
@@ -217,13 +217,6 @@ public class DashboardPane extends CustomPane {
         return text;
     }
 
-    private void bind(StringProperty text, String key) {
-        if (key.isEmpty()) {
-            return;
-        }
-        text.bind(getValueByKey(key));
-    }
-
     private void addListeners() {
         controller.handleSearchViewElementSelection(stockList);
     }
@@ -243,7 +236,4 @@ public class DashboardPane extends CustomPane {
         return label;
     }
 
-    StringBinding getValueByKey(String key) {
-        return LanguagePack.createStringBinding(key);
-    }
 }

@@ -44,7 +44,7 @@ public class ShareCreatorPane extends CustomPane {
     @Override
     protected void build() {
         setMinSize(STAGE_WIDTH, STAGE_HEIGHT);
-        setVgap(10);
+        setVgap(V_GAP);
         createNodes();
         addListeners();
         add(body, 0, 0);
@@ -140,10 +140,6 @@ public class ShareCreatorPane extends CustomPane {
             }
             event.consume();
         });
-    }
-
-    StringBinding getValueByKey(String key) {
-        return LanguagePack.createStringBinding(key);
     }
 
     @Override

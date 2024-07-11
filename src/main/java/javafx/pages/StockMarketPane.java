@@ -2,6 +2,7 @@ package javafx.pages;
 
 import console.entities.Share;
 import console.entities.User;
+import javafx.assets.Header;
 import javafx.assets.LanguagePack;
 import javafx.beans.binding.StringBinding;
 import javafx.beans.property.StringProperty;
@@ -34,7 +35,7 @@ public class StockMarketPane extends CustomPane {
 
     private VBox page;
 
-    private VBox header;
+    private Header header;
     private Label title;
     private Line headerLine;
 
@@ -44,7 +45,7 @@ public class StockMarketPane extends CustomPane {
     @Override
     protected void build() {
         setMinSize(STAGE_WIDTH, STAGE_HEIGHT);
-        setVgap(10);
+        setVgap(V_GAP);
         addStyleSheet();
         createNodes();
         addListeners();
@@ -56,7 +57,7 @@ public class StockMarketPane extends CustomPane {
     }
 
     private void createNodes() {
-        createHeaderNodes();
+        this.header = new Header();
         createBodyNodes();
         this.page = buildPage(header, body);
     }
@@ -64,32 +65,6 @@ public class StockMarketPane extends CustomPane {
     private VBox buildPage(VBox header, HBox body) {
         VBox box = new VBox(header, body);
         box.getStyleClass().add("page");
-        return box;
-    }
-
-    private void createHeaderNodes() {
-        this.title = buildTitle();
-        this.headerLine = buildHeaderLine();
-        this.header = buildHeader(title, headerLine);
-    }
-
-    private Label buildTitle() {
-        Label label = new Label(controller.share().getName());
-        label.getStyleClass().add("h1");
-        return label;
-    }
-
-    private Line buildHeaderLine() {
-        Line line = new Line();
-        line.setStartX(0);
-        line.setStartY(0);
-        line.endXProperty().bind(getStage().widthProperty());
-        return line;
-    }
-
-    private VBox buildHeader(Label title, Line headerLine) {
-        VBox box = new VBox(title, headerLine);
-        box.getStyleClass().addAll("header");
         return box;
     }
 
@@ -150,14 +125,6 @@ public class StockMarketPane extends CustomPane {
 
     private void addListeners() {
 
-    }
-
-    private void bind(StringProperty stringProperty, String key) {
-        stringProperty.bind(getValueByKey(key));
-    }
-
-    StringBinding getValueByKey(String key) {
-        return LanguagePack.createStringBinding(key);
     }
 
     @Override

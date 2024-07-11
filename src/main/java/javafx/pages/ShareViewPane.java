@@ -70,7 +70,7 @@ public class ShareViewPane extends CustomPane {
     @Override
     protected void build() {
         setMinSize(STAGE_WIDTH, STAGE_HEIGHT);
-        setVgap(10);
+        setVgap(V_GAP);
         addStyleSheet();
         createNodes();
         addListeners();
@@ -273,14 +273,6 @@ public class ShareViewPane extends CustomPane {
         HBox box = new HBox(nodes);
         box.getStyleClass().addAll(styleClasses);
         return box;
-    }
-
-    StringBinding getValueByKey(String key) {
-        return LanguagePack.createStringBinding(key);
-    }
-
-    private void bind(StringProperty stringProperty, String key) {
-        stringProperty.bind(getValueByKey(key));
     }
 
     private void addListeners() {

@@ -50,7 +50,7 @@ public class LoginPane extends CustomPane {
         STAGE_WIDTH = 420;
         STAGE_HEIGHT = 500;
         setMinSize(STAGE_WIDTH, STAGE_HEIGHT);
-        setVgap(10);
+        setVgap(V_GAP);
         addStyleSheets();
         buildNodes();
         addListeners();

@@ -1,6 +1,9 @@
 package javafx.pages;
 
 import console.entities.User;
+import javafx.assets.LanguagePack;
+import javafx.beans.binding.StringBinding;
+import javafx.beans.property.StringProperty;
 import javafx.eventlisteners.EventListeners;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -15,6 +18,8 @@ public abstract class CustomPane extends GridPane {
     protected static double STAGE_WIDTH = 815;
     protected static double STAGE_HEIGHT = 500;
     protected static String STYLE_PATH = "style/";
+    protected static final double V_GAP = 10;
+
 
     protected CustomPane(Stage stage, EventListeners eventListeners, User user) {
         this.stage = stage;
@@ -23,4 +28,15 @@ public abstract class CustomPane extends GridPane {
     }
 
     protected abstract void build();
+
+    protected void bind(StringProperty text, String key) {
+        if (key.isEmpty()) {
+            return;
+        }
+        text.bind(getValueByKey(key));
+    }
+
+    protected StringBinding getValueByKey(String key) {
+        return LanguagePack.createStringBinding(key);
+    }
 }

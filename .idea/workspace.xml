@@ -4,11 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea488597-f4e2-49aa-b467-1e44621e87b4" name="Changes" comment="trading-page: add dashboard stockMarketView">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+    <list default="true" id="ea488597-f4e2-49aa-b467-1e44621e87b4" name="Changes" comment="merge fixes">
+      <change afterPath="$PROJECT_DIR$/src/main/java/javafx/assets/Header.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/javafx/assets/InputSection.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/javafx/controllers/ProfileController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/style/profile-pane.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/controllers/DashboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/controllers/DashboardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/pages/CustomPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/pages/CustomPane.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/javafx/pages/DashboardPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/pages/DashboardPane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/pages/LoginPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/pages/LoginPane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/pages/ProfilePane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/pages/ProfilePane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/pages/ShareCreatorPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/pages/ShareCreatorPane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/pages/ShareViewPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/pages/ShareViewPane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/pages/StockMarketPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/pages/StockMarketPane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/pages/TradePane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/pages/TradePane.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,8 +72,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JUnit5 Test Class" />
-        <option value="CSS File" />
         <option value="Interface" />
+        <option value="CSS File" />
         <option value="Class" />
       </list>
     </option>
@@ -151,7 +160,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "feature/profile-pane",
     "go.import.settings.migrated": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/fhaas/Documents/Ergon/JavaFx/Shares-inc.-Trading-App/src/main/resources/assets/image/icon/black",
@@ -182,6 +191,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="javafx.controllers" />
       <recent name="javafx.main_panel" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
@@ -617,7 +627,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719489195024</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="merge fixes">
+      <option name="closed" value="true" />
+      <created>1720683810639</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1720683810639</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -655,7 +673,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Transaction verwendet&#10;EntityManager verwendet&#10;Dao's erstellt" />
     <MESSAGE value="Databases recreated&#10;Try Catches added to db actions&#10;edited README.md" />
     <MESSAGE value="User_Share Connection Table created" />
     <MESSAGE value="Dao System recreated&#10;Test Area added&#10;Clean Coded" />
@@ -680,7 +697,8 @@
     <MESSAGE value="trading-page: Add Filters -&gt; work but need to add share_tag entries in database, need to disable field when no entry found" />
     <MESSAGE value="trading-page: Fix search, finished" />
     <MESSAGE value="trading-page: add dashboard stockMarketView" />
-    <option name="LAST_COMMIT_MESSAGE" value="trading-page: add dashboard stockMarketView" />
+    <MESSAGE value="merge fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="merge fixes" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>

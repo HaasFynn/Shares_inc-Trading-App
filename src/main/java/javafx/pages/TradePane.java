@@ -74,7 +74,7 @@ public class TradePane extends CustomPane {
     @Override
     protected void build() {
         setMinSize(STAGE_WIDTH, STAGE_HEIGHT);
-        setVgap(10);
+        setVgap(V_GAP);
         addStyleSheet();
         createNodes();
         addListeners();
