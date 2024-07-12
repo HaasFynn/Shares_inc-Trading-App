@@ -8,7 +8,6 @@ import console.functional.EntityManagement;
 import jakarta.persistence.EntityManager;
 import javafx.assets.ShareInfoBox;
 import javafx.beans.binding.StringBinding;
-import javafx.beans.value.ObservableValue;
 import javafx.eventlisteners.EventListeners;
 import javafx.pages.DashboardPane;
 import javafx.pages.ShareViewPane;
@@ -20,10 +19,8 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
-import java.util.ArrayList;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Supplier;
@@ -121,7 +118,7 @@ public class DashboardController extends CustomController {
         return new StringBinding() {
             @Override
             protected String computeValue() {
-                return supplier.get();
+                return supplier.get() + ".-";
             }
         };
     }
@@ -150,9 +147,11 @@ public class DashboardController extends CustomController {
 
     public String formatNumber(double number) {
         DecimalFormatSymbols symbols = new DecimalFormatSymbols();
-        symbols.setDecimalSeparator('\'');
-        DecimalFormat df = new DecimalFormat("###,###.##", symbols);
+        symbols.setGroupingSeparator('\'');
+        symbols.setDecimalSeparator('.');
+        DecimalFormat df = new DecimalFormat("###,###.00", symbols);
         return df.format(number);
+
     }
 
 }

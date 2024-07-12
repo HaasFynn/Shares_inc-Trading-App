@@ -21,11 +21,10 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User getByUsername(String username) {
-        try {
-            return entityManager.createQuery("FROM User u WHERE u.username = :username", User.class).setParameter("username", username).getResultStream().findFirst().orElse(null);
-        } catch (NoResultException e) {
-            return null;
-        }
+        List<User> userList = getAll();
+        return userList.stream().filter(user -> user.getUsername().equals(username))
+                .findFirst()
+                .orElse(null);
     }
 
     @Override

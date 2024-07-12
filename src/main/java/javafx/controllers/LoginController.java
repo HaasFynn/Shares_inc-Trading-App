@@ -5,6 +5,7 @@ import console.dao.UserDaoImpl;
 import console.entities.User;
 import console.functional.EntityManagement;
 import jakarta.persistence.EntityManager;
+import javafx.assets.Authentication;
 import javafx.assets.Hash;
 import javafx.assets.LanguagePack;
 import javafx.eventlisteners.EventListeners;
@@ -69,7 +70,7 @@ public class LoginController extends CustomController {
             return "login.status.empty.fields";
         } else if (!newPassword.equals(repeatPassword)) {
             return "login.status.password.mismatch";
-        } else if (!doesPasswordComplieToPasswordRules(newPassword)) {
+        } else if (!Authentication.doesPasswordComplieToPasswordRules(newPassword)) {
             return "login.status.password.notRuleConform";
         } else {
             return getLoginResponse(user, hashedPassword);
@@ -80,30 +81,6 @@ public class LoginController extends CustomController {
         user.setPassword(Hash.getPasswordHashed(newPassword));
         userHandler.update(user);
         setStatusText("login.reset.succeed", true, "text-success");
-    }
-
-    private boolean doesPasswordComplieToPasswordRules(String newPassword) {
-        return isPW8DigitsLong(newPassword) && doesPWContainRightLetters(newPassword) && doesPWContainSpecialCharacters(newPassword);
-    }
-
-    private static boolean doesPWContainSpecialCharacters(String password) {
-        char[] passwordChar = password.toCharArray();
-
-        for (char letter : passwordChar) {
-            if (!Character.isAlphabetic(letter) && !Character.isDigit(letter)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private static boolean doesPWContainRightLetters(String password) {
-        return (!password.equals(password.toLowerCase()) && !password.equals(password.toUpperCase()));
-    }
-
-    private static boolean isPW8DigitsLong(String password) {
-        char[] passwordLength = password.toCharArray();
-        return passwordLength.length >= 8;
     }
 
     private String getLoginResponse(User user, String hashedPassword) {

@@ -1,23 +1,29 @@
-.header {
-
+.page {
+    -fx-padding: 12px;
 }
 
-.h1 {
-
+.body {
+    -fx-spacing: 10px;
 }
 
-.profile-pic {
-
+.password-field {
+    -fx-min-width: 200px;
 }
 
-.input-field {
-
-}
-
-.input-label {
-
+.password-label {
+    -fx-font-size: 12px;
 }
 
 .save-button {
+    -fx-min-width: 75px;
+    -fx-pref-width: 75px;
+    -fx-max-width: 75px;
+}
 
+.password-box {
+    -fx-spacing: 7px;
+}
+
+.heading-box {
+    -fx-spacing: 12px;
 }

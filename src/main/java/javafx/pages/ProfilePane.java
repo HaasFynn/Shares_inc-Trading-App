@@ -3,7 +3,6 @@ package javafx.pages;
 import console.entities.User;
 import javafx.assets.Header;
 import javafx.assets.InputSection;
-import javafx.beans.binding.StringBinding;
 import javafx.controllers.ProfileController;
 import javafx.eventlisteners.EventListeners;
 import javafx.scene.Node;
@@ -16,17 +15,18 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import lombok.Getter;
 
-import java.awt.image.BufferedImage;
-import java.util.function.Supplier;
-
+@Getter
 public class ProfilePane extends CustomPane {
     private static final String STYLEPATH = "style/";
+    private static final String[] stylesheets = {STYLEPATH + "profile-pane.css", STYLEPATH + "input-section.css"};
+    private static final double IMG_MAX_HEIGHT = 100;
     private final ProfileController controller;
 
     public ProfilePane(Stage stage, EventListeners eventListeners, User user) {
         super(stage, eventListeners, user);
-        this.controller = new ProfileController(stage, eventListeners, user);
+        this.controller = new ProfileController(stage, this, eventListeners, user);
         build();
     }
 
@@ -56,14 +56,14 @@ public class ProfilePane extends CustomPane {
     protected void build() {
         setMinSize(STAGE_WIDTH, STAGE_HEIGHT);
         setVgap(V_GAP);
-        addStyleSheet();
+        addStyleSheets();
         createNodes();
         addListeners();
         add(page, 0, 0);
     }
 
-    private void addStyleSheet() {
-        getStylesheets().add(STYLEPATH + "profile-pane.css");
+    private void addStyleSheets() {
+        getStylesheets().addAll(stylesheets);
     }
 
     private void createNodes() {
@@ -85,7 +85,7 @@ public class ProfilePane extends CustomPane {
     private Button buildSaveButton() {
         String[] styleClasses = new String[]{"save-button"};
         Button button = buildButton(styleClasses, "portfolio_pane.button.save");
-        button.setOnAction(controller::saveInput);
+        button.setOnAction(event -> controller.saveInput());
         return button;
     }
 
@@ -157,6 +157,8 @@ public class ProfilePane extends CustomPane {
     private ImageView buildProfileImage() {
         ImageView image = new ImageView(new Image("assets/image/shares_inc._logo.png"));
         image.getStyleClass().add("profile-image");
+        image.setFitWidth(IMG_MAX_HEIGHT);
+        image.setFitHeight(IMG_MAX_HEIGHT);
         return image;
     }
 

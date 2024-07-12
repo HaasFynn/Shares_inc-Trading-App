@@ -136,7 +136,7 @@ public class InputHandler {
         System.out.println("Portfolio: \n");
         System.out.println("======================");
         for (int i = 0; i < userPortfolio.size(); i++) {
-            System.out.println((i + 1)+ ". Share:");
+            System.out.println((i + 1) + ". Share:");
             System.out.println("Name: " + shareList.get(i).getName());
             System.out.println("Amount of your shares: " + userPortfolio.get(i).getAmount());
             System.out.println("Worth of your shares: " + userPortfolio.get(i).getAmount() * shareList.get(i).getPricePerShare());
@@ -216,7 +216,7 @@ public class InputHandler {
             e.printStackTrace();
         }
         long endTime = System.currentTimeMillis();
-        System.out.println("Generated shares in " + (double) (endTime - startTime)/1000 + "s");
+        System.out.println("Generated shares in " + (double) (endTime - startTime) / 1000 + "s");
         System.out.println("Successfully created " + amount + " shares!");
     }
 

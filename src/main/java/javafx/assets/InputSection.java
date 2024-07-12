@@ -2,7 +2,6 @@ package javafx.assets;
 
 import javafx.beans.binding.StringBinding;
 import javafx.beans.property.StringProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
@@ -12,7 +11,6 @@ import java.util.function.Supplier;
 
 @Getter
 public class InputSection extends VBox {
-    private static final double SPACING = 10;
 
     public InputSection() {
         build();
@@ -31,14 +29,14 @@ public class InputSection extends VBox {
         return new StringBinding() {
             @Override
             protected String computeValue() {
-                return supplier.get();
+                return supplier.get() + ".-";
             }
         };
     }
 
 
     private void build() {
-        setSpacing(SPACING);
+        getStyleClass().add("section");
         createNodes();
         setListener();
         getChildren().addAll(label, input);

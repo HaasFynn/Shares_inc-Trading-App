@@ -4,22 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea488597-f4e2-49aa-b467-1e44621e87b4" name="Changes" comment="merge fixes">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="ea488597-f4e2-49aa-b467-1e44621e87b4" name="Changes" comment="Created ground structure">
+      <change afterPath="$PROJECT_DIR$/src/main/java/javafx/assets/Authentication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/style/input-section.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/null" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/SharesInc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/SharesInc.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/assets/Header.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/assets/Header.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/console/dao/UserDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/console/dao/UserDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/console/functional/InputHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/console/functional/InputHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/javafx/assets/InputSection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/assets/InputSection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/controllers/DashboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/controllers/DashboardController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/javafx/controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/controllers/LoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/javafx/controllers/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/controllers/ProfileController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/controllers/StockMarketController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/controllers/StockMarketController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/main_panel/MainPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/main_panel/MainPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/javafx/pages/ProfilePane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/pages/ProfilePane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/pages/TradePane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/pages/TradePane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/mocks/price_over_time.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/mocks/price_over_time.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/locale/language_de.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/locale/language_de.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/locale/language_en.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/locale/language_en.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/style/profile-pane.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/style/profile-pane.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -155,6 +152,7 @@
     "Gradle.shares_gradle [test].executor": "Run",
     "Java Scratch.ChatGPTAPIExample.executor": "Run",
     "Java Scratch.Scratch.executor": "Run",
+    "Kotlin.TestKt.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.go.formatter.settings.were.checked": "true",
@@ -224,19 +222,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Application.SharesInc">
-    <configuration name="CreateShareTagCon" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="console.functional.CreateShareTagCon" />
-      <module name="Shares-inc.-Trading-App.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="console.functional.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="openjdk-22" />
       <option name="MAIN_CLASS_NAME" value="Main" />
@@ -302,7 +287,6 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.CreateShareTagCon" />
       <item itemvalue="Application.Main" />
       <item itemvalue="Application.SharesInc" />
       <item itemvalue="Gradle.shares_gradle [clean]" />
@@ -314,7 +298,6 @@
         <item itemvalue="Gradle.shares_gradle [clean]" />
         <item itemvalue="Application.SharesInc" />
         <item itemvalue="Application.Main" />
-        <item itemvalue="Application.CreateShareTagCon" />
       </list>
     </recent_temporary>
   </component>
@@ -404,6 +387,7 @@
       <workItem from="1719386389192" duration="869000" />
       <workItem from="1719387269340" duration="14648000" />
       <workItem from="1719475214383" duration="5080000" />
+      <workItem from="1720764335197" duration="6301000" />
     </task>
     <task id="LOCAL-00001" summary="Created Files and Set Properties&#10;setUp Function made&#10;Annotations added">
       <option name="closed" value="true" />
@@ -637,7 +621,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720683810639</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="Created ground structure">
+      <option name="closed" value="true" />
+      <created>1720766177556</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1720766177556</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -675,7 +667,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Databases recreated&#10;Try Catches added to db actions&#10;edited README.md" />
     <MESSAGE value="User_Share Connection Table created" />
     <MESSAGE value="Dao System recreated&#10;Test Area added&#10;Clean Coded" />
     <MESSAGE value="Added JavaFX" />
@@ -700,7 +691,8 @@
     <MESSAGE value="trading-page: Fix search, finished" />
     <MESSAGE value="trading-page: add dashboard stockMarketView" />
     <MESSAGE value="merge fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="merge fixes" />
+    <MESSAGE value="Created ground structure" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created ground structure" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
@@ -724,15 +716,6 @@
             <option name="WATCH_EXIT" value="false" />
           </properties>
           <option name="timeStamp" value="27" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/javafx/main_panel/MainPanel.java</url>
-          <line>19</line>
-          <properties class="javafx.main_panel.MainPanel" method="&lt;init&gt;">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="44" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/console/functional/EntityManagement.java</url>
