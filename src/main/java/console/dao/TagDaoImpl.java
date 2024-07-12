@@ -4,21 +4,14 @@ package console.dao;
 import console.entities.Tag;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.NoResultException;
 
 import java.util.List;
 
-/**
- * The type Tag dao.
- */
 public class TagDaoImpl implements TagDao {
     private final EntityManager entityManager;
 
-    /**
-     * Instantiates a new Tag dao.
-     *
-     * @param entityManager the entity manager
-     */
     public TagDaoImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
@@ -40,6 +33,8 @@ public class TagDaoImpl implements TagDao {
                     .getResultStream()
                     .findFirst().orElse(null);
         } catch (NoResultException e) {
+            entityManager.getTransaction().rollback();
+            System.err.println("No tag found with name " + name + "\n" + e);
             return null;
         }
     }
@@ -55,10 +50,12 @@ public class TagDaoImpl implements TagDao {
             entityManager.getTransaction().begin();
             entityManager.persist(tag);
             entityManager.getTransaction().commit();
+            return true;
         } catch (EntityExistsException e) {
+            entityManager.getTransaction().rollback();
+            System.err.println("Error while adding tag, entity already exists... " + e);
             return false;
         }
-        return true;
     }
 
     @Override
@@ -68,7 +65,10 @@ public class TagDaoImpl implements TagDao {
                 entityManager.getTransaction().begin();
                 entityManager.persist(tag);
                 entityManager.getTransaction().commit();
-            } catch (EntityExistsException ignored) {
+            } catch (EntityExistsException e) {
+                entityManager.getTransaction().rollback();
+                System.err.println("Error while adding tag, entity already exists... " + e);
+                return false;
             }
         }
         return true;
@@ -80,10 +80,12 @@ public class TagDaoImpl implements TagDao {
             entityManager.getTransaction().begin();
             entityManager.merge(tag);
             entityManager.getTransaction().commit();
+            return true;
         } catch (IllegalArgumentException e) {
+            entityManager.getTransaction().rollback();
+            System.err.println("Error while updating tag, entity could not be found... " + e);
             return false;
         }
-        return true;
     }
 
     @Override
@@ -92,9 +94,11 @@ public class TagDaoImpl implements TagDao {
             entityManager.getTransaction().begin();
             entityManager.remove(tag);
             entityManager.getTransaction().commit();
-        } catch (IllegalArgumentException e) {
+            return true;
+        } catch (EntityNotFoundException e) {
+            entityManager.getTransaction().rollback();
+            System.err.println("Error while deleting tag, entity does not exist... " + e);
             return false;
         }
-        return true;
     }
 }

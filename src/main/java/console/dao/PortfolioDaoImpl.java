@@ -3,21 +3,14 @@ package console.dao;
 import console.entities.Portfolio;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.NoResultException;
 
 import java.util.List;
 
-/**
- * The type Portfolio dao.
- */
 public class PortfolioDaoImpl implements PortfolioDao {
     private final EntityManager entityManager;
 
-    /**
-     * Instantiates a new Portfolio dao.
-     *
-     * @param entityManager the entity manager
-     */
     public PortfolioDaoImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
@@ -35,6 +28,8 @@ public class PortfolioDaoImpl implements PortfolioDao {
                     .setParameter("userId", userId)
                     .getResultStream().findFirst().orElse(null);
         } catch (NoResultException e) {
+            entityManager.getTransaction().rollback();
+            System.err.println("No Portfolio found with id " + shareId + " and userId " + userId);
             return null;
         }
     }
@@ -51,6 +46,8 @@ public class PortfolioDaoImpl implements PortfolioDao {
                     .setParameter("userId", userId)
                     .getResultStream().toList();
         } catch (NoResultException e) {
+            entityManager.getTransaction().rollback();
+            System.err.println("No Portfolio found with id " + userId);
             return null;
         }
     }
@@ -62,6 +59,8 @@ public class PortfolioDaoImpl implements PortfolioDao {
             entityManager.persist(portfolio);
             entityManager.getTransaction().commit();
         } catch (EntityExistsException e) {
+            entityManager.getTransaction().rollback();
+            System.err.println("Error adding portfolio, entity already exists" + e);
             return false;
         }
         return true;
@@ -73,7 +72,9 @@ public class PortfolioDaoImpl implements PortfolioDao {
             entityManager.getTransaction().begin();
             entityManager.merge(portfolio);
             entityManager.getTransaction().commit();
-        } catch (IllegalArgumentException e) {
+        } catch (EntityNotFoundException e) {
+            entityManager.getTransaction().rollback();
+            System.err.println("Error updating portfolio, entity does not exist" + e);
             return false;
         }
         return true;
@@ -85,7 +86,9 @@ public class PortfolioDaoImpl implements PortfolioDao {
             entityManager.getTransaction().begin();
             entityManager.remove(portfolio);
             entityManager.getTransaction().commit();
-        } catch (IllegalArgumentException e) {
+        } catch (EntityNotFoundException e) {
+            entityManager.getTransaction().rollback();
+            System.err.println("Error deleting portfolio, entity does not exist" + e);
             return false;
         }
         return true;

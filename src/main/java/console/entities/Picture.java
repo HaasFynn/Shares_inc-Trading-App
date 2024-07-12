@@ -19,5 +19,13 @@ public class Picture {
 
     @Setter
     @Column(name = "user_idfk")
-    private Long userId;
+    private Long userIdfk;
+
+    public Picture(String path, long id) {
+        setFilePath(path);
+        setUserIdfk(id);
+    }
+
+    public Picture() {
+    }
 }

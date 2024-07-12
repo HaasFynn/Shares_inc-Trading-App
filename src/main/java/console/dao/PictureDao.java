@@ -17,6 +17,8 @@ public interface PictureDao {
      */
     Picture get(int id);
 
+    Picture getByUserId(long userId);
+
     /**
      * Gets all.
      *
@@ -30,7 +32,7 @@ public interface PictureDao {
      * @param picture the picture
      * @return the picture
      */
-    Picture save(Picture picture);
+    boolean add(Picture picture);
 
     /**
      * Delete boolean.
@@ -47,4 +49,5 @@ public interface PictureDao {
      * @return the boolean
      */
     boolean update(Picture picture);
+
 }

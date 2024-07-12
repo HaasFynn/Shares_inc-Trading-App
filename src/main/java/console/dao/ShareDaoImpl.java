@@ -3,21 +3,14 @@ package console.dao;
 import console.entities.Share;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.NoResultException;
 
 import java.util.List;
 
-/**
- * The type Share dao.
- */
 public class ShareDaoImpl implements ShareDao {
     private final EntityManager entityManager;
 
-    /**
-     * Instantiates a new Share dao.
-     *
-     * @param entityManager the entity manager
-     */
     public ShareDaoImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
@@ -39,13 +32,16 @@ public class ShareDaoImpl implements ShareDao {
                     .getResultStream()
                     .findFirst().orElse(null);
         } catch (NoResultException e) {
+            entityManager.getTransaction().rollback();
+            System.err.println("No Share found with name " + name + "\n" + "Returned null");
             return null;
         }
     }
 
     @Override
     public List<Share> getAll() {
-        return entityManager.createQuery("FROM Share", Share.class).getResultList();
+        return entityManager.createQuery("FROM Share", Share.class)
+                .getResultList();
     }
 
     @Override
@@ -56,6 +52,8 @@ public class ShareDaoImpl implements ShareDao {
                     .getResultStream()
                     .toList();
         } catch (NoResultException e) {
+            entityManager.getTransaction().rollback();
+            System.err.println("No Share found with name " + prompt + "\n" + "Returned null");
             return null;
         }
     }
@@ -66,10 +64,12 @@ public class ShareDaoImpl implements ShareDao {
             entityManager.getTransaction().begin();
             entityManager.persist(share);
             entityManager.getTransaction().commit();
+            return true;
         } catch (EntityExistsException e) {
+            entityManager.getTransaction().rollback();
+            System.err.println("Entity already exists with name " + share.getName() + "\n" + "Returned null");
             return false;
         }
-        return true;
     }
 
     @Override
@@ -80,7 +80,10 @@ public class ShareDaoImpl implements ShareDao {
                     entityManager.getTransaction().begin();
                     entityManager.persist(share);
                     entityManager.getTransaction().commit();
-                } catch (Exception ignored) {
+                } catch (EntityExistsException e) {
+                    entityManager.getTransaction().rollback();
+                    System.err.println("Error while adding share, entity already exists\n" + e);
+                    return false;
                 }
             }
         }
@@ -93,10 +96,12 @@ public class ShareDaoImpl implements ShareDao {
             entityManager.getTransaction().begin();
             entityManager.merge(share);
             entityManager.getTransaction().commit();
-        } catch (IllegalArgumentException e) {
+            return true;
+        } catch (EntityNotFoundException e) {
+            entityManager.getTransaction().rollback();
+            System.err.println("Error while updating share, not able to find entity " + e.getMessage());
             return false;
         }
-        return true;
     }
 
 
@@ -106,10 +111,12 @@ public class ShareDaoImpl implements ShareDao {
             entityManager.getTransaction().begin();
             entityManager.remove(share);
             entityManager.getTransaction().commit();
-        } catch (IllegalArgumentException e) {
+            return true;
+        } catch (EntityNotFoundException e) {
+            entityManager.getTransaction().rollback();
+            System.err.println("Error deleting share, could not find entity \n" + e);
             return false;
         }
-        return true;
     }
 
 }

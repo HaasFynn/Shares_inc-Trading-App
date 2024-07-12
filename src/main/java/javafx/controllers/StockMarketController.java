@@ -48,8 +48,8 @@ public class StockMarketController extends CustomController {
     }
 
     public void generateSampleData() {
-        LocalDate startDate = LocalDate.of(2024, 1, 1);
-        LocalDate endDate = startDate.plusMonths(6);
+        LocalDate startDate = LocalDate.of(2025, 1, 1);
+        LocalDate endDate = startDate.plusMonths(8);
         HashMap<LocalDate, Double> values = createValueList(startDate, endDate);
         writetoCSV(values);
     }
