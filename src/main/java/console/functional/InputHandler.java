@@ -14,9 +14,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * The type Input handler.
- */
 public class InputHandler {
     @PersistenceContext
     private UserDao userDao;
@@ -24,14 +21,8 @@ public class InputHandler {
     private PortfolioDao portfolioDao;
     private User loggedInUser;
 
-    /**
-     * Instance of the "Reader" class
-     */
     Reader in = new Reader();
 
-    /**
-     * Instantiates a new Input handler.
-     */
 
     public InputHandler(UserDao userDao, ShareDao shareDao, PortfolioDao portfolioDao) {
         this.userDao = userDao;
@@ -39,9 +30,6 @@ public class InputHandler {
         this.portfolioDao = portfolioDao;
     }
 
-    /**
-     * Start.
-     */
     public void start() {
         while (true) {
             switch (in.getIntAnswer("""

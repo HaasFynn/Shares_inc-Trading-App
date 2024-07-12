@@ -155,7 +155,7 @@ public class ProfilePane extends CustomPane {
     }
 
     private ImageView buildProfileImage() {
-        ImageView image = new ImageView(new Image("assets/image/shares_inc._logo.png"));
+        ImageView image = new ImageView(new Image("assets/images/shares_inc._logo.png"));
         image.getStyleClass().add("profile-image");
         image.setFitWidth(IMG_MAX_HEIGHT);
         image.setFitHeight(IMG_MAX_HEIGHT);

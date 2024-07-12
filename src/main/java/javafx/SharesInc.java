@@ -6,9 +6,7 @@ import console.functional.EntityManagement;
 import javafx.application.Application;
 import javafx.assets.LanguagePack;
 import javafx.assets.ScreenBuilder;
-import javafx.eventlisteners.EventListenersImpl;
 import javafx.main_panel.MainPanel;
-import javafx.pages.LoginPane;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Region;
@@ -30,7 +28,7 @@ public class SharesInc extends Application {
 
     private void config(Scene scene) {
         stage.titleProperty().bind(LanguagePack.createStringBinding("window.title"));
-        stage.getIcons().add(new Image("assets/image/shares_inc._logo.png"));
+        stage.getIcons().add(new Image("assets/images/shares_inc._logo.png"));
         //LoginPane loginpane = new LoginPane(stage, null); //Standard
         User user = new UserDaoImpl(EntityManagement.createEntityManagerFactory().createEntityManager()).get(652);
         MainPanel mainPanel = new MainPanel(stage, user);

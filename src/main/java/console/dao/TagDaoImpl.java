@@ -1,7 +1,6 @@
 package console.dao;
 
 
-import console.entities.Share;
 import console.entities.Tag;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityManager;
@@ -9,9 +8,17 @@ import jakarta.persistence.NoResultException;
 
 import java.util.List;
 
+/**
+ * The type Tag dao.
+ */
 public class TagDaoImpl implements TagDao {
     private final EntityManager entityManager;
 
+    /**
+     * Instantiates a new Tag dao.
+     *
+     * @param entityManager the entity manager
+     */
     public TagDaoImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
     }

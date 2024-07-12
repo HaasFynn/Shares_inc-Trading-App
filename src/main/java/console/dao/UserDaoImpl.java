@@ -7,9 +7,17 @@ import jakarta.persistence.NoResultException;
 
 import java.util.List;
 
+/**
+ * The type User dao.
+ */
 public class UserDaoImpl implements UserDao {
     private final EntityManager entityManager;
 
+    /**
+     * Instantiates a new User dao.
+     *
+     * @param entityManager the entity manager
+     */
     public UserDaoImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
     }

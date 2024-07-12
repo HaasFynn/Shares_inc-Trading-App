@@ -27,7 +27,7 @@ public class SideBarPane extends CustomPane {
     private User user;
     private ColorTheme colorTheme = ColorTheme.DARK;
     private VBox currentImageBox;
-    private static final String ICONS_DIR = "assets/image/icon";
+    private static final String ICONS_DIR = "assets/images/icons";
     private static final double ICON_WIDTH = 28;
     private static final double SCENE_WIDTH = 60;
     private static final double SCENE_HEIGHT = 500;

@@ -5,7 +5,6 @@ import javafx.assets.LanguagePack;
 import javafx.assets.NewsBox;
 import javafx.assets.ShareInfoBox;
 import javafx.beans.binding.StringBinding;
-import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 import javafx.controllers.TradeController;
 import javafx.eventlisteners.EventListeners;
@@ -33,7 +32,7 @@ public class TradePane extends CustomPane {
 
     private final EventListeners eventListeners;
     private final TradeController controller;
-    private static final String ICONS_DIR = "assets/image/icon";
+    private static final String ICONS_DIR = "assets/images/icons";
     private static final double ICON_WIDTH = 10;
     private static final int START_AMOUNT_OF_SHARES = 25;
     private String username;
