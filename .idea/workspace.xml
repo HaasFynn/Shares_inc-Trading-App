@@ -6,14 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ea488597-f4e2-49aa-b467-1e44621e87b4" name="Changes" comment="Maintain dao's. Create Save Image Functions, still on getPicture">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/console/dao/PictureDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/console/dao/PictureDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/console/entities/Picture.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/console/entities/Picture.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/assets/Authentication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/assets/Authentication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/controllers/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/controllers/ProfileController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/pages/ProfilePane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/pages/ProfilePane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/mocks/price_over_time.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/mocks/price_over_time.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/hibernate.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/hibernate.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/style/profile-pane.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/style/profile-pane.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/console/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/console/entities/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +70,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="improvement/portfolio-approach" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -133,7 +126,7 @@
     "Gradle.ShareCreatorTest.doesShareCreationWork.executor": "Run",
     "Gradle.Shares-inc.-Trading-App [:CreateShareTagCon.main()].executor": "Run",
     "Gradle.Shares-inc.-Trading-App [:Main.main()].executor": "Run",
-    "Gradle.Shares-inc.-Trading-App [:SharesInc.main()].executor": "Debug",
+    "Gradle.Shares-inc.-Trading-App [:SharesInc.main()].executor": "Run",
     "Gradle.Shares.inc-Remake [:Main.main()].executor": "Run",
     "Gradle.Shares.inc-Remake [:SharesInc.main()].executor": "Run",
     "Gradle.Shares.inc_2 [:Main.main()].executor": "Run",
@@ -158,7 +151,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "feature/profile-pane",
+    "git-widget-placeholder": "master",
     "go.import.settings.migrated": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/fhaas/Documents/Ergon/JavaFx/Shares-inc.-Trading-App/src/main/resources/assets/image/icon/black",
@@ -297,6 +290,7 @@
         <item itemvalue="Gradle.shares_gradle [clean]" />
         <item itemvalue="Application.SharesInc" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="Java Scratch.Scratch" />
       </list>
     </recent_temporary>
   </component>

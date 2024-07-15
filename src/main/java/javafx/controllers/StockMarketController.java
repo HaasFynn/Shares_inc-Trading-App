@@ -5,7 +5,7 @@ import console.entities.Share;
 import console.functional.EntityManagement;
 import jakarta.persistence.EntityManager;
 import javafx.eventlisteners.EventListeners;
-import javafx.pages.StockMarketPane;
+import javafx.panes.StockMarketPane;
 import javafx.stage.Stage;
 
 import java.io.FileWriter;

@@ -7,7 +7,7 @@ import console.entities.User;
 import console.functional.EntityManagement;
 import jakarta.persistence.EntityManager;
 import javafx.eventlisteners.EventListeners;
-import javafx.pages.ShareViewPane;
+import javafx.panes.ShareViewPane;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.TextFormatter;
 import javafx.stage.Stage;

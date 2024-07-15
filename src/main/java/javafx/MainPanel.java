@@ -1,9 +1,9 @@
-package javafx.main_panel;
+package javafx;
 
 import console.entities.User;
 import javafx.eventlisteners.EventListenersImpl;
-import javafx.pages.CustomPane;
-import javafx.pages.*;
+import javafx.panes.CustomPane;
+import javafx.panes.*;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import lombok.Getter;

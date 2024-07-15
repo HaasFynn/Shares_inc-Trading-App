@@ -1,11 +1,8 @@
-package javafx.pages;
+package javafx.panes;
 
 import console.entities.Share;
 import console.entities.User;
-import javafx.assets.LanguagePack;
 import javafx.assets.ShareInfoBox;
-import javafx.beans.binding.StringBinding;
-import javafx.beans.property.StringProperty;
 import javafx.controllers.ShareViewController;
 import javafx.eventlisteners.EventListeners;
 import javafx.geometry.Insets;

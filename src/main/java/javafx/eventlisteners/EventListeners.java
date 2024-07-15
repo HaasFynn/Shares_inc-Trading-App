@@ -1,6 +1,6 @@
 package javafx.eventlisteners;
 
-import javafx.pages.CustomPane;
+import javafx.panes.CustomPane;
 
 public interface EventListeners {
 

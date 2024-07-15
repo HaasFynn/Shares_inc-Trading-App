@@ -1,4 +1,4 @@
-package javafx.pages;
+package javafx.panes;
 
 import javafx.assets.LanguagePack;
 import javafx.beans.binding.StringBinding;
@@ -84,10 +84,10 @@ public class LoginPane extends CustomPane {
 
     private void buildResetComponents() {
         resetText = buildResetText();
-        newPasswordLabel = buildLabel("login.reset.new.label", "p");
-        newPasswordField = buildPasswordField("login.reset.new.field", "p");
-        repeatPasswordLabel = buildLabel("login.reset.repeat.label", "p");
-        repeatPasswordField = buildPasswordField("login.reset.repeat.field", "p");
+        newPasswordLabel = buildLabel("login.reset.label.new", "p");
+        newPasswordField = buildPasswordField("login.reset.field.new", "p");
+        repeatPasswordLabel = buildLabel("login.reset.label.repeat", "p");
+        repeatPasswordField = buildPasswordField("login.reset.field.repeat", "p");
         resetButton = buildResetButton();
     }
 
@@ -144,12 +144,12 @@ public class LoginPane extends CustomPane {
     }
 
     private Label buildUsernameLabel() {
-        return buildLabel("login.username.label", "p");
+        return buildLabel("login.label.username", "p");
     }
 
     private TextField buildUsernameField() {
         TextField field = new TextField();
-        field.promptTextProperty().bind(getValue("login.username.field"));
+        field.promptTextProperty().bind(getValue("login.field.username"));
         field.getStyleClass().addAll("p", "text-field");
         return field;
     }
@@ -162,12 +162,12 @@ public class LoginPane extends CustomPane {
     }
 
     private Label buildPasswordLabel() {
-        return buildLabel("login.password.label", "p");
+        return buildLabel("login.label.password", "p");
     }
 
 
     private PasswordField buildPasswordLoginField() {
-        return buildPasswordField("login.password.field", "p");
+        return buildPasswordField("login.field.password", "p");
     }
 
     private HBox buildButtonBox(Button button, Text text) {

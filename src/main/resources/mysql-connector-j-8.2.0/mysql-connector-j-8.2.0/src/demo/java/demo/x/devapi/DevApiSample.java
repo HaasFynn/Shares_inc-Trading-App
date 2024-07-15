@@ -49,7 +49,7 @@ public class DevApiSample {
         // document walthrough
         Collection coll = schema.createCollection("myBooks", /* reuseExisting? */ true);
         DbDoc newDoc = new DbDocImpl().add("isbn", new JsonString().setValue("12345"));
-        newDoc.add("window.title", new JsonString().setValue("Effi Briest"));
+        newDoc.add("text.window.title", new JsonString().setValue("Effi Briest"));
         newDoc.add("author", new JsonString().setValue("Theodor Fontane"));
         newDoc.add("currentlyReadingPage", new JsonNumber().setValue(String.valueOf(42)));
         coll.add(newDoc).execute();
@@ -57,7 +57,7 @@ public class DevApiSample {
         // note: "$" prefix for document paths is optional. "$.title.somethingElse[0]" is the same as "title.somethingElse[0]" in document expressions
         DocResult docs = coll.find("$.title = 'Effi Briest' and $.currentlyReadingPage > 10").execute();
         DbDoc book = docs.next();
-        System.err.println("Currently reading " + ((JsonString) book.get("window.title")).getString() + " on page "
+        System.err.println("Currently reading " + ((JsonString) book.get("text.window.title")).getString() + " on page "
                 + ((JsonNumber) book.get("currentlyReadingPage")).getInteger());
 
         // increment the page number and fetch it again
@@ -65,7 +65,7 @@ public class DevApiSample {
 
         docs = coll.find("$.title = 'Effi Briest' and $.currentlyReadingPage > 10").execute();
         book = docs.next();
-        System.err.println("Currently reading " + ((JsonString) book.get("window.title")).getString() + " on page "
+        System.err.println("Currently reading " + ((JsonString) book.get("text.window.title")).getString() + " on page "
                 + ((JsonNumber) book.get("currentlyReadingPage")).getInteger());
 
         // remove the doc

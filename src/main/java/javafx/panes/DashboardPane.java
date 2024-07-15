@@ -1,12 +1,10 @@
-package javafx.pages;
+package javafx.panes;
 
 import console.entities.Share;
 import console.entities.User;
-import javafx.assets.LanguagePack;
 import javafx.assets.NewsBox;
 import javafx.assets.ShareInfoBox;
 import javafx.beans.binding.StringBinding;
-import javafx.beans.property.StringProperty;
 import javafx.controllers.DashboardController;
 import javafx.eventlisteners.EventListeners;
 import javafx.geometry.Pos;
@@ -128,7 +126,7 @@ public class DashboardPane extends CustomPane {
     }
 
     private void buildShareChangeOverview() {
-        this.marketOverviewLabel = buildLabel("dashboard.shareinfo.label", "label");
+        this.marketOverviewLabel = buildLabel("dashboard.label.shareinfo", "label");
         this.stockList = buildStockList();
         this.stockMarketBox = buildStockMarketBox(marketOverviewLabel, stockList);
 
@@ -166,7 +164,7 @@ public class DashboardPane extends CustomPane {
     }
 
     private Text buildTitle() {
-        return buildText("dashboard.title", "title");
+        return buildText("dashboard.text.title", "title");
     }
 
     private Text buildWelcomeText() {

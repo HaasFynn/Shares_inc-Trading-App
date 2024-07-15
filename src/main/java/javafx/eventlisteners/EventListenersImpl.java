@@ -1,8 +1,8 @@
 package javafx.eventlisteners;
 
 import console.entities.User;
-import javafx.main_panel.MainPanel;
-import javafx.pages.CustomPane;
+import javafx.MainPanel;
+import javafx.panes.CustomPane;
 import javafx.stage.Stage;
 
 public class EventListenersImpl implements EventListeners {
