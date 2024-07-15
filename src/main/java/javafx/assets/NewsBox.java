@@ -33,7 +33,7 @@ public class NewsBox extends VBox {
     }
 
     private void createNodes() {
-        this.newsBoxLabel = buildLabel("dashboard.newsbox.label", "news-box-label");
+        this.newsBoxLabel = buildLabel("dashboard.label.newsbox", "news-box-label");
         this.newsText = buildNewsText();
         this.newsBox = buildNewsBox(newsBoxLabel, newsText);
 

@@ -1,4 +1,4 @@
-package javafx.pages;
+package javafx.panes;
 
 import console.entities.User;
 import javafx.assets.LanguagePack;
@@ -183,7 +183,7 @@ public class TradePane extends CustomPane {
     }
 
     private void createFilterBoxHeader() {
-        filterTitle = buildLabel("trade.filter.text.title", "body-title");
+        filterTitle = buildLabel("trade.text.title.filter", "body-title");
         filterHeader = buildFilterBoxHeader(filterTitle);
     }
 

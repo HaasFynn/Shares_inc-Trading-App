@@ -1,4 +1,4 @@
-package javafx.pages;
+package javafx.panes;
 
 import console.entities.User;
 import javafx.eventlisteners.EventListeners;

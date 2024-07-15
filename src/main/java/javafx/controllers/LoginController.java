@@ -9,8 +9,8 @@ import javafx.assets.Authentication;
 import javafx.assets.Hash;
 import javafx.assets.LanguagePack;
 import javafx.eventlisteners.EventListeners;
-import javafx.main_panel.MainPanel;
-import javafx.pages.LoginPane;
+import javafx.MainPanel;
+import javafx.panes.LoginPane;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
@@ -34,7 +34,7 @@ public class LoginController extends CustomController {
         String hashedPassword = Hash.getPasswordHashed(pane.getPasswordField().getText());
         User user = userHandler.getByPassword(username, hashedPassword);
         if (user == null) {
-            setStatusText("login.status.user.not.found", true, "text-danger");
+            setStatusText("login.status.user.not_found", true, "text-danger");
             return;
         }
         switchScene(user);
@@ -67,11 +67,11 @@ public class LoginController extends CustomController {
 
     private String getErrorKey(String newPassword, String repeatPassword, User user, String hashedPassword) {
         if (areInputFieldsEmpty()) {
-            return "login.status.empty.fields";
+            return "login.status.empty_fields";
         } else if (!newPassword.equals(repeatPassword)) {
             return "login.status.password.mismatch";
         } else if (!Authentication.doesPasswordComplieToPasswordRules(newPassword)) {
-            return "login.status.password.notRuleConform";
+            return "login.status.password.not_rule_conform";
         } else {
             return getLoginResponse(user, hashedPassword);
         }
@@ -85,7 +85,7 @@ public class LoginController extends CustomController {
 
     private String getLoginResponse(User user, String hashedPassword) {
         if (user == null) {
-            return "login.status.user.not.found";
+            return "login.status.user.not_found";
         }
         if (!doesLoginMatch(user, hashedPassword)) {
             return "login.status.failed";

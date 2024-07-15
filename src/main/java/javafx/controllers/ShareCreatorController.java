@@ -7,7 +7,7 @@ import console.functional.EntityManagement;
 import javafx.assets.LanguagePack;
 import javafx.beans.binding.StringBinding;
 import javafx.eventlisteners.EventListeners;
-import javafx.pages.ShareCreatorPane;
+import javafx.panes.ShareCreatorPane;
 import javafx.scene.Node;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;

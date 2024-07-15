@@ -1,8 +1,6 @@
-package javafx.pages;
+package javafx.panes;
 
 import console.entities.User;
-import javafx.assets.LanguagePack;
-import javafx.beans.binding.StringBinding;
 import javafx.eventlisteners.EventListeners;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
@@ -55,7 +53,7 @@ public class ShareCreatorPane extends CustomPane {
 
     private void createNodes() {
         title = buildTitle();
-        inputLabel = buildLabel("share.creator.input.label", "p");
+        inputLabel = buildLabel("share.creator.label.input", "p");
         inputField = buildInputField();
         submitButton = buildSubmitButton();
         statusText = buildStatusText();
@@ -81,7 +79,7 @@ public class ShareCreatorPane extends CustomPane {
 
     private Text buildTitle() {
         Text text = new Text();
-        text.textProperty().bind(getValueByKey("share.creator.title"));
+        text.textProperty().bind(getValueByKey("share.creator.text.title"));
         text.getStyleClass().addAll("h1", "strong");
         return text;
     }
@@ -108,13 +106,13 @@ public class ShareCreatorPane extends CustomPane {
     }
 
     private Button buildSubmitButton() {
-        Button button = buildButton("share.creator.submit.button", "btn-sm", "btn-success");
+        Button button = buildButton("share.creator.button.submit", "btn-sm", "btn-success");
         button.setOnMouseClicked(event -> controller.handleOnEnter());
         return button;
     }
 
     private TextField buildInputField() {
-        TextField field = buildField("share.creator.input.label", "p");
+        TextField field = buildField("share.creator.label.input", "p");
         field.textProperty().addListener((observable, oldValue, newValue) -> controller.handleInputValidation(oldValue, newValue));
         return field;
     }

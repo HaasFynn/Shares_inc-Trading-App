@@ -1,4 +1,4 @@
-package javafx.pages;
+package javafx.panes;
 
 import console.entities.User;
 import javafx.assets.LanguagePack;
@@ -8,7 +8,6 @@ import javafx.eventlisteners.EventListeners;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import lombok.Getter;
-import lombok.Setter;
 
 public abstract class CustomPane extends GridPane {
     @Getter

@@ -7,7 +7,7 @@ import console.functional.EntityManagement;
 import jakarta.persistence.EntityManager;
 import javafx.assets.Authentication;
 import javafx.eventlisteners.EventListeners;
-import javafx.pages.ProfilePane;
+import javafx.panes.ProfilePane;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;

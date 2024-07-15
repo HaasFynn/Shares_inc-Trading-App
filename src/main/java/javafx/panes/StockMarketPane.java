@@ -1,11 +1,8 @@
-package javafx.pages;
+package javafx.panes;
 
 import console.entities.Share;
 import console.entities.User;
 import javafx.assets.Header;
-import javafx.assets.LanguagePack;
-import javafx.beans.binding.StringBinding;
-import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.controllers.StockMarketController;
 import javafx.eventlisteners.EventListeners;
@@ -79,7 +76,7 @@ public class StockMarketPane extends CustomPane {
         LineChart<String, Number> chart = new LineChart<>(xAxis, yAxis);
 
         XYChart.Series<String, Number> series = new XYChart.Series<>();
-        series.nameProperty().bind(getValueByKey("stock_market_pane.chart.share.series.label"));
+        series.nameProperty().bind(getValueByKey("stock_market_pane.chart.share.label.series"));
 
         controller.generateSampleData();
         fillChartData(series);

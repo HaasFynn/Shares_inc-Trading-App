@@ -1,4 +1,4 @@
-package javafx.pages;
+package javafx.panes;
 
 import console.entities.User;
 import javafx.assets.Header;
@@ -87,7 +87,7 @@ public class ProfilePane extends CustomPane {
 
     private Button buildSaveButton() {
         String[] styleClasses = {"save-button"};
-        Button button = buildButton(styleClasses, "portfolio_pane.button.save");
+        Button button = buildButton(styleClasses, "profile_pane.button.save");
         button.setOnAction(event -> controller.saveInput());
         return button;
     }
