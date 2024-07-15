@@ -22,7 +22,7 @@ public class PictureDaoImpl implements PictureDao {
 
     @Override
     public Picture getByUserId(long userId) {
-        return entityManager.createQuery("from Picture as p where p.userIdfk = :user_idfk", Picture.class)
+        return entityManager.createQuery("from Picture as p where p.userIDFK = :user_idfk", Picture.class)
                 .setParameter("user_idfk", userId)
                 .getSingleResult();
     }

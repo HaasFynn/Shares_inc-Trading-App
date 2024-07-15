@@ -15,15 +15,15 @@ public class Picture {
 
     @Setter
     @Column(name = "file_path")
-    private String filePath;
+    private String fileName;
 
     @Setter
     @Column(name = "user_idfk")
-    private Long userIdfk;
+    private Long userIDFK;
 
     public Picture(String path, long id) {
-        setFilePath(path);
-        setUserIdfk(id);
+        setFileName(path);
+        setUserIDFK(id);
     }
 
     public Picture() {

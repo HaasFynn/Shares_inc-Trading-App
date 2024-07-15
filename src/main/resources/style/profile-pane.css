@@ -27,3 +27,7 @@
 .heading-box {
     -fx-spacing: 12px;
 }
+
+.profile-box {
+    -fx-spacing: 7px;
+}

@@ -40,6 +40,9 @@ public class ProfilePane extends CustomPane {
     private Label profileLabel;
     private VBox profileImageBox;
     private ImageView profileImage;
+    private HBox imageEditBox;
+    private Button deleteIMGButton;
+    private Button uploadButton;
     private InputSection usernameInput;
 
     private InputSection firstNameInput;
@@ -83,7 +86,7 @@ public class ProfilePane extends CustomPane {
     }
 
     private Button buildSaveButton() {
-        String[] styleClasses = new String[]{"save-button"};
+        String[] styleClasses = {"save-button"};
         Button button = buildButton(styleClasses, "portfolio_pane.button.save");
         button.setOnAction(event -> controller.saveInput());
         return button;
@@ -105,7 +108,7 @@ public class ProfilePane extends CustomPane {
     private void createPasswordBox() {
         this.passwordInputLabel = buildPasswordLabel();
         this.passwordInput = buildPasswordInput();
-        String[] styleClasses = new String[]{"password-box"};
+        String[] styleClasses = {"password-box"};
         this.passwordBox = buildVBox(styleClasses, passwordInputLabel, passwordInput);
     }
 
@@ -134,7 +137,8 @@ public class ProfilePane extends CustomPane {
     private void createHeadingBox() {
         createProfileBox();
         this.usernameInput = buildUsernameInput();
-        this.headingBox = buildHeadingBox(profileBox, usernameInput);
+        String[] styleClasses = {"heading-box"};
+        this.headingBox = buildHBox(styleClasses, profileBox, usernameInput);
     }
 
     private InputSection buildUsernameInput() {
@@ -144,14 +148,36 @@ public class ProfilePane extends CustomPane {
     private void createProfileBox() {
         this.profileLabel = buildProfileLabel();
         buildProfileImageBox();
-        String[] styleClasses = new String[]{"profile-box"};
+        String[] styleClasses = {"profile-box"};
         this.profileBox = buildVBox(styleClasses, profileLabel, profileImageBox);
     }
 
     private void buildProfileImageBox() {
         this.profileImage = buildProfileImage();
-        String[] styleClasses = new String[]{"profile-image-box"};
-        this.profileImageBox = buildVBox(styleClasses, profileImage);
+        createImgEditBox();
+        String[] styleClasses = {"profile-image-box"};
+        this.profileImageBox = buildVBox(styleClasses, profileImage, imageEditBox);
+    }
+
+    private void createImgEditBox() {
+        this.uploadButton = buildUploadButton();
+        this.deleteIMGButton = buildImgDelButton();
+        String[] styleClasses = {"profile-image-box"};
+        this.imageEditBox = buildHBox(styleClasses, uploadButton, deleteIMGButton);
+    }
+
+    private Button buildUploadButton() {
+        String[] styleClasses = {"profile-button-image-upload"};
+        Button button = buildButton(styleClasses, "profile_pane.button.upload");
+        button.setOnMouseClicked(controller::handleImageUpload);
+        return button;
+    }
+
+    private Button buildImgDelButton() {
+        String[] styleClasses = {"profile-button-image-delete"};
+        Button button = buildButton(styleClasses, "profile_pane.button.delete");
+        button.setOnMouseClicked(controller::handleImageDeletion);
+        return button;
     }
 
     private ImageView buildProfileImage() {
@@ -173,9 +199,9 @@ public class ProfilePane extends CustomPane {
         return label;
     }
 
-    private HBox buildHeadingBox(Node... nodes) {
+    private HBox buildHBox(String[] styleClasses, Node... nodes) {
         HBox box = new HBox(nodes);
-        box.getStyleClass().add("heading-box");
+        box.getStyleClass().addAll(styleClasses);
         return box;
     }
 
