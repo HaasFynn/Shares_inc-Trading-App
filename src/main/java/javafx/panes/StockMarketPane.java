@@ -8,10 +8,8 @@ import javafx.controllers.StockMarketController;
 import javafx.eventlisteners.EventListeners;
 import javafx.scene.Node;
 import javafx.scene.chart.*;
-import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.Line;
 import javafx.stage.Stage;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
@@ -33,8 +31,6 @@ public class StockMarketPane extends CustomPane {
     private VBox page;
 
     private Header header;
-    private Label title;
-    private Line headerLine;
 
     private HBox body;
     private LineChart<String, Number> shareChart;

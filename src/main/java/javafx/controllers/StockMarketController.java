@@ -17,7 +17,7 @@ import java.util.Random;
 public class StockMarketController extends CustomController {
 
     private static final Random rand = new Random();
-
+    private static Tendency tendency;
     private final StockMarketPane pane;
     private final ShareDao shareDao;
     private Share share;
@@ -41,6 +41,7 @@ public class StockMarketController extends CustomController {
         EntityManager entityManager = EntityManagement.createEntityManagerFactory().createEntityManager();
         this.shareDao = new ShareDaoImpl(entityManager);
         this.share = share;
+        tendency = Tendency.getRandTendency();
     }
 
     public Share share() {
@@ -57,24 +58,26 @@ public class StockMarketController extends CustomController {
     private HashMap<LocalDate, Double> createValueList(LocalDate startDate, LocalDate endDate) {
         HashMap<LocalDate, Double> values = new HashMap<>();
         double oldValue = rand.nextDouble(200, 1000);
-        int i = 0;
-        Tendency tendency = Tendency.getRandTendency();
-        for (LocalDate date = startDate; !date.isAfter(endDate); date = date.plusDays(4)) {
-            tendency = switchTendency(tendency, i);
-            double newValue = getCalculatedVal(oldValue, tendency);
-            values.put(date, newValue);
-            oldValue = newValue;
-            i++;
+        int addDayOrigin = 4;
+        int addDayBound = 10;
+        int additionalDays = rand.nextInt(addDayOrigin, addDayBound);
+        for (LocalDate date = startDate; date.isBefore(endDate); date = date.plusDays(additionalDays)) {
+            switchTendency();
+            for (int i = 0; i < additionalDays; i++) {
+                double newValue = getCalculatedVal(oldValue, tendency);
+                values.put(date, newValue);
+                oldValue = newValue;
+                date.plusDays(2);
+            }
+            additionalDays = rand.nextInt(addDayOrigin, addDayBound);
         }
         return values;
     }
 
-    private Tendency switchTendency(Tendency tendency, int i) {
-        if (i % rand.nextInt(2, 9) == 0) {
-            return Tendency.getRandTendency();
-        }
-        return tendency;
+    private void switchTendency() {
+        tendency = Tendency.getRandTendency();
     }
+
 
     private double getCalculatedVal(double oldValue, Tendency tendency) {
         double minVal;
@@ -90,15 +93,15 @@ public class StockMarketController extends CustomController {
     }
 
     private double getRandomChangeRate() {
-        return rand.nextDouble(getRandChangeRateOrigin(), getRandChangeRateBound());
+        return rand.nextDouble(getChangeRateOrigin(), getChangeRateBound());
     }
 
-    private static double getRandChangeRateBound() {
-        return rand.nextDouble(0.009, 0.1);
+    private double getChangeRateOrigin() {
+        return rand.nextDouble(0.00045, 0.005);
     }
 
-    private static double getRandChangeRateOrigin() {
-        return rand.nextDouble(0.0009, 0.01);
+    private double getChangeRateBound() {
+        return rand.nextDouble(0.005, 0.05);
     }
 
 
