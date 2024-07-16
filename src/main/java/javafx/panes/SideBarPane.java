@@ -45,7 +45,6 @@ public class SideBarPane extends CustomPane {
     VBox home;
     VBox portfolio;
     VBox trade;
-    VBox statistic;
     VBox account;
     VBox settings;
 
@@ -67,7 +66,7 @@ public class SideBarPane extends CustomPane {
         box.getStyleClass().add("body");
         createNodes();
 
-        this.header = buildImageContainer(home, portfolio, trade, statistic);
+        this.header = buildImageContainer(home, portfolio, trade);
         this.footer = buildImageContainer(account, settings);
 
         box.getChildren().addAll(header, footer);
@@ -78,7 +77,6 @@ public class SideBarPane extends CustomPane {
         this.home = buildImageBox("home.png", new DashboardPane(getStage(), eventListeners, user));
         this.portfolio = buildImageBox("document.png", new ShareCreatorPane(getStage(), eventListeners, user));
         this.trade = buildImageBox("handshake.png", new TradePane(getStage(), eventListeners, user));
-        this.statistic = buildImageBox("stock.png", new PortfolioPane(getStage(), eventListeners, user));
         this.account = buildImageBox("profile.png", new ProfilePane(getStage(), eventListeners, user));
         this.settings = buildImageBox("settings.png", new SettingsPane(getStage(), eventListeners, user));
         home.getStyleClass().add("selected-pane");

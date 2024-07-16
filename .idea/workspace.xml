@@ -4,19 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea488597-f4e2-49aa-b467-1e44621e87b4" name="Changes" comment="Resolve Merge Conflict">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/console/dao/PictureDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/console/dao/PictureDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/console/dao/PictureDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/console/dao/PictureDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/console/entities/Picture.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/console/entities/Picture.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/console/functional/EntityManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/console/functional/EntityManagement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/controllers/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/controllers/ProfileController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/panes/ProfilePane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/panes/ProfilePane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/mocks/price_over_time.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/mocks/price_over_time.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/style/profile-pane.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/style/profile.css" afterDir="false" />
-    </list>
+    <list default="true" id="ea488597-f4e2-49aa-b467-1e44621e87b4" name="Changes" comment="Profile Picture Adding works" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -79,7 +67,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="feature/profile-pane" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -160,7 +148,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "feature/profile-pane",
     "go.import.settings.migrated": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/fhaas/Documents/Ergon/JavaFx/Shares-inc.-Trading-App/src/main/resources/assets/image/icon/black",
@@ -396,7 +384,7 @@
       <workItem from="1720814894470" duration="962000" />
       <workItem from="1721024466684" duration="9472000" />
       <workItem from="1721110060714" duration="3663000" />
-      <workItem from="1721114041797" duration="9789000" />
+      <workItem from="1721114041797" duration="10472000" />
     </task>
     <task id="LOCAL-00001" summary="Created Files and Set Properties&#10;setUp Function made&#10;Annotations added">
       <option name="closed" value="true" />
@@ -670,7 +658,15 @@
       <option name="project" value="LOCAL" />
       <updated>1721037682381</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="Profile Picture Adding works">
+      <option name="closed" value="true" />
+      <created>1721125315052</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1721125315052</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -708,7 +704,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add unversioned files" />
     <MESSAGE value="add LoginPane Nodes&#10;repaired ShareCreator&#10;LoginPane starts" />
     <MESSAGE value="add ShareCreatorPane class" />
     <MESSAGE value="finish login&#10;todo:&#10;- fix password reset&#10;- Stage size change" />
@@ -733,7 +728,8 @@
     <MESSAGE value="Create PictureDao and implement in database" />
     <MESSAGE value="Maintain dao's. Create Save Image Functions, still on getPicture" />
     <MESSAGE value="Remove PaneParent.java -&gt; Replace through CustomPane.java" />
-    <option name="LAST_COMMIT_MESSAGE" value="Remove PaneParent.java -&gt; Replace through CustomPane.java" />
+    <MESSAGE value="Profile Picture Adding works" />
+    <option name="LAST_COMMIT_MESSAGE" value="Profile Picture Adding works" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
