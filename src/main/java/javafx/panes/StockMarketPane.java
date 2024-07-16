@@ -39,17 +39,19 @@ public class StockMarketPane extends CustomPane {
     protected void build() {
         setMinSize(STAGE_WIDTH, STAGE_HEIGHT);
         setVgap(V_GAP);
-        addStyleSheet();
-        createNodes();
+        addStyleSheets();
+        buildNodes();
         addListeners();
         add(page, 0, 0);
     }
 
-    private void addStyleSheet() {
+    @Override
+    protected void addStyleSheets() {
         getStyleClass().addAll(STYLE_PATH + "stock-market-pane.css");
     }
 
-    private void createNodes() {
+    @Override
+    protected void buildNodes() {
         this.header = new Header();
         createBodyNodes();
         this.page = buildPage(header, body);

@@ -15,6 +15,16 @@ public class PortfolioPane extends CustomPane {
     }
 
     @Override
+    protected void buildNodes() {
+
+    }
+
+    @Override
+    protected void addStyleSheets() {
+
+    }
+
+    @Override
     public String toString() {
         return getClass().getName();
     }

@@ -5,14 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea488597-f4e2-49aa-b467-1e44621e87b4" name="Changes" comment="Profile Picture Adding works">
+      <change afterPath="$PROJECT_DIR$/src/main/java/javafx/controllers/SettingsController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/style/settings.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/javafx/MainPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/MainPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/controllers/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/controllers/ProfileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/SharesInc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/SharesInc.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/panes/CustomPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/panes/CustomPane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/panes/DashboardPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/panes/DashboardPane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/panes/LoginPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/panes/LoginPane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/panes/PortfolioPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/panes/PortfolioPane.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/javafx/panes/ProfilePane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/panes/ProfilePane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/panes/SettingsPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/panes/SettingsPane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/panes/ShareCreatorPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/panes/ShareCreatorPane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/panes/ShareViewPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/panes/ShareViewPane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/panes/SideBarPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/panes/SideBarPane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/panes/StockMarketPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/panes/StockMarketPane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/panes/TradePane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/panes/TradePane.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/assets/mocks/price_over_time.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/mocks/price_over_time.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/locale/language_de.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/locale/language_de.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/locale/language_en.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/locale/language_en.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/style/profile.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/style/profile.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,10 +78,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="CSS File" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -157,7 +169,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "improvement/logout-button",
+    "git-widget-placeholder": "feature/settings-pane",
     "go.import.settings.migrated": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/fhaas/Documents/Ergon/JavaFx/Shares-inc.-Trading-App/src/main/resources/assets/image/icon/black",
@@ -292,8 +304,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Java Scratch.Scratch" />
         <item itemvalue="Gradle.shares_gradle [clean]" />
+        <item itemvalue="Java Scratch.Scratch" />
         <item itemvalue="Application.SharesInc" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Java Scratch.Scratch" />
@@ -713,7 +725,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add LoginPane Nodes&#10;repaired ShareCreator&#10;LoginPane starts" />
     <MESSAGE value="add ShareCreatorPane class" />
     <MESSAGE value="finish login&#10;todo:&#10;- fix password reset&#10;- Stage size change" />
     <MESSAGE value="created and refactored sidebar" />
@@ -738,7 +749,8 @@
     <MESSAGE value="Maintain dao's. Create Save Image Functions, still on getPicture" />
     <MESSAGE value="Remove PaneParent.java -&gt; Replace through CustomPane.java" />
     <MESSAGE value="Profile Picture Adding works" />
-    <option name="LAST_COMMIT_MESSAGE" value="Profile Picture Adding works" />
+    <MESSAGE value="improvement/logout-button: add logout button" />
+    <option name="LAST_COMMIT_MESSAGE" value="improvement/logout-button: add logout button" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
@@ -754,15 +766,6 @@
           <properties class="org.hibernate.exception.SQLGrammarException" package="org.hibernate.exception" />
           <option name="timeStamp" value="18" />
         </breakpoint>
-        <line-breakpoint type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/Main.java</url>
-          <line>9</line>
-          <properties class="Main">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="27" />
-        </line-breakpoint>
         <line-breakpoint type="java-method">
           <url>jar://$USER_HOME$/.jdks/openjdk-22.0.1/lib/src.zip!/java.desktop/javax/imageio/ImageIO.java</url>
           <line>1531</line>
@@ -784,7 +787,7 @@
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/javafx/controllers/ProfileController.java</url>
           <line>250</line>
-          <properties class="javafx.controllers.ProfileController" method="getUserProfile">
+          <properties class="javafx.controllers.ProfileController">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
@@ -817,6 +820,7 @@
         <watch expression="shares" />
         <watch expression="entityManager" language="JAVA" />
         <watch expression="userPortfolio.get(0).shareId" />
+        <watch expression="observable" />
       </configuration>
     </watches-manager>
   </component>

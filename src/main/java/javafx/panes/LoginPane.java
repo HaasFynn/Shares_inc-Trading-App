@@ -60,11 +60,12 @@ public class LoginPane extends CustomPane {
         adjustWindow();
     }
 
-    private void addStyleSheets() {
+    @Override
+    protected void addStyleSheets() {
         getStylesheets().add(STYLE_PATH + "login.css");
     }
-
-    private void buildNodes() {
+    @Override
+    protected void buildNodes() {
         buildLoginComponents();
         buildResetComponents();
         buildUtilities();

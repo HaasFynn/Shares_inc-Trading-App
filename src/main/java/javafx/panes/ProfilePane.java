@@ -62,16 +62,18 @@ public class ProfilePane extends CustomPane {
         setMinSize(STAGE_WIDTH, STAGE_HEIGHT);
         setVgap(V_GAP);
         addStyleSheets();
-        createNodes();
+        buildNodes();
         addListeners();
         add(page, 0, 0);
     }
 
-    private void addStyleSheets() {
+    @Override
+    protected void addStyleSheets() {
         getStylesheets().addAll(stylesheets);
     }
 
-    private void createNodes() {
+    @Override
+    protected void buildNodes() {
         this.header = new Header();
         createBody();
         this.page = buildPage(header, body);

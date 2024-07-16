@@ -68,13 +68,14 @@ public class ShareViewPane extends CustomPane {
     protected void build() {
         setMinSize(STAGE_WIDTH, STAGE_HEIGHT);
         setVgap(V_GAP);
-        addStyleSheet();
-        createNodes();
+        addStyleSheets();
+        buildNodes();
         addListeners();
         add(page, 0, 0);
     }
 
-    private void createNodes() {
+    @Override
+    protected void buildNodes() {
         createHeaderNodes();
         createBodyNodes();
         this.page = buildPage(header, body);
@@ -223,7 +224,7 @@ public class ShareViewPane extends CustomPane {
     private void createBuyButton() {
         this.buyButton = buildTradeButton("share_view.button.buy", "buy-button");
         this.buyButton.setOnMouseClicked(event -> {
-            if(event.getButton() == MouseButton.PRIMARY) {
+            if (event.getButton() == MouseButton.PRIMARY) {
                 controller.buy();
             }
         });
@@ -232,7 +233,7 @@ public class ShareViewPane extends CustomPane {
     private void createSellButton() {
         this.sellButton = buildTradeButton("share_view.button.sell", "sell-button");
         this.sellButton.setOnMouseClicked(event -> {
-            if(event.getButton() == MouseButton.PRIMARY) {
+            if (event.getButton() == MouseButton.PRIMARY) {
                 controller.sell();
             }
         });
@@ -276,7 +277,8 @@ public class ShareViewPane extends CustomPane {
 
     }
 
-    private void addStyleSheet() {
+    @Override
+    protected void addStyleSheets() {
         getStylesheets().addAll(STYLE_PATH + "share-view.css");
     }
 

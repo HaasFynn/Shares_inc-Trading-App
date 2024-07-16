@@ -51,20 +51,21 @@ public class SideBarPane extends CustomPane {
     @Override
     protected void build() {
         setMinSize(SCENE_WIDTH, SCENE_HEIGHT);
-        addStyleSheet();
+        addStyleSheets();
         this.body = buildBody();
         getChildren().add(body);
         getStyleClass().add("page");
     }
 
-    private void addStyleSheet() {
+    @Override
+    protected void addStyleSheets() {
         getStylesheets().add(STYLE_PATH + "sidebar.css");
     }
 
     private VBox buildBody() {
         VBox box = new VBox();
         box.getStyleClass().add("body");
-        createNodes();
+        buildNodes();
 
         this.header = buildImageContainer(home, portfolio, trade);
         this.footer = buildImageContainer(account, settings);
@@ -73,7 +74,8 @@ public class SideBarPane extends CustomPane {
         return box;
     }
 
-    private void createNodes() {
+    @Override
+    protected void buildNodes() {
         this.home = buildImageBox("home.png", new DashboardPane(getStage(), eventListeners, user));
         this.portfolio = buildImageBox("document.png", new ShareCreatorPane(getStage(), eventListeners, user));
         this.trade = buildImageBox("handshake.png", new TradePane(getStage(), eventListeners, user));
