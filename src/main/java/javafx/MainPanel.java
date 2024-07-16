@@ -39,6 +39,14 @@ public class MainPanel extends CustomPane {
         }
     }
 
+    @Override
+    protected void buildNodes() {
+    }
+
+    @Override
+    protected void addStyleSheets() {
+    }
+
     private void adjustWindow() {
         getStage().setHeight(STAGE_HEIGHT);
         getStage().setWidth(STAGE_WIDTH);

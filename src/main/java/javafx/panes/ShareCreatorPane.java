@@ -43,7 +43,7 @@ public class ShareCreatorPane extends CustomPane {
     protected void build() {
         setMinSize(STAGE_WIDTH, STAGE_HEIGHT);
         setVgap(V_GAP);
-        createNodes();
+        buildNodes();
         addListeners();
         add(body, 0, 0);
         if (getStage().isShowing()) {
@@ -51,7 +51,8 @@ public class ShareCreatorPane extends CustomPane {
         }
     }
 
-    private void createNodes() {
+    @Override
+    protected void buildNodes() {
         title = buildTitle();
         inputLabel = buildLabel("share.creator.label.input", "p");
         inputField = buildInputField();
@@ -60,6 +61,13 @@ public class ShareCreatorPane extends CustomPane {
 
         inputBox = buildInputBox(inputLabel, inputField, submitButton, statusText);
         body = buildBody(title, inputBox);
+    }
+
+    /**
+     *
+     */
+    @Override
+    protected void addStyleSheets() {
     }
 
     private void adjustWindow() {

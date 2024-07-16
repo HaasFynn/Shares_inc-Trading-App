@@ -28,7 +28,7 @@ public class SharesInc extends Application {
     private void config(Scene scene) {
         stage.titleProperty().bind(LanguagePack.createStringBinding("text.window.title"));
         stage.getIcons().add(new Image("assets/images/shares_inc._logo.png"));
-        //LoginPane loginpane = new LoginPane(stage, null); //Standard
+        //LoginPane loginPane = new LoginPane(stage, null); //Standard
         User user = new UserDaoImpl(EntityManagement.createEntityManagerFactory().createEntityManager()).get(652);
         MainPanel mainPanel = new MainPanel(stage, user);
         scene.setRoot(mainPanel);

@@ -63,13 +63,14 @@ public class DashboardPane extends CustomPane {
     protected void build() {
         setMinSize(STAGE_WIDTH, STAGE_HEIGHT);
         setVgap(V_GAP);
-        addStyleSheet();
-        createNodes();
+        addStyleSheets();
+        buildNodes();
         addListeners();
         add(page, 0, 0);
     }
 
-    private void addStyleSheet() {
+    @Override
+    protected void addStyleSheets() {
         getStylesheets().addAll(STYLE_PATH + "dashboard.css", STYLE_PATH + "news_box.css");
     }
 
@@ -79,7 +80,8 @@ public class DashboardPane extends CustomPane {
         this.header = buildHeader(title, welcomeText);
     }
 
-    private void createNodes() {
+    @Override
+    protected void buildNodes() {
         buildUpperPage();
         buildNewsBox();
         buildPage(upperPage, newsBox);

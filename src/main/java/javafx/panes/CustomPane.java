@@ -28,6 +28,10 @@ public abstract class CustomPane extends GridPane {
 
     protected abstract void build();
 
+    protected abstract void buildNodes();
+
+    protected abstract void addStyleSheets();
+
     protected void bind(StringProperty text, String key) {
         if (key.isEmpty()) {
             return;

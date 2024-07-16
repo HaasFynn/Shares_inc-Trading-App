@@ -74,13 +74,14 @@ public class TradePane extends CustomPane {
     protected void build() {
         setMinSize(STAGE_WIDTH, STAGE_HEIGHT);
         setVgap(V_GAP);
-        addStyleSheet();
-        createNodes();
+        addStyleSheets();
+        buildNodes();
         addListeners();
         add(page, 0, 0);
     }
 
-    private void createNodes() {
+    @Override
+    protected void buildNodes() {
         buildHeader();
         createBody();
         page = buildPage(header, body);
@@ -246,7 +247,8 @@ public class TradePane extends CustomPane {
         return box;
     }
 
-    private void addStyleSheet() {
+    @Override
+    protected void addStyleSheets() {
         getStylesheets().addAll(STYLE_PATH + "trade.css", STYLE_PATH + "news_box.css");
     }
 
