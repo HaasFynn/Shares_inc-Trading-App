@@ -20,7 +20,7 @@ import lombok.Getter;
 @Getter
 public class ProfilePane extends CustomPane {
     private static final String STYLEPATH = "style/";
-    private static final String[] stylesheets = {STYLEPATH + "profile-pane.css", STYLEPATH + "input-section.css"};
+    private static final String[] stylesheets = {STYLEPATH + "profile.css", STYLEPATH + "input-section.css"};
     private static final double IMG_MAX_HEIGHT = 100;
     private final ProfileController controller;
 
@@ -39,6 +39,7 @@ public class ProfilePane extends CustomPane {
     private VBox profileBox;
     private Label profileLabel;
     private VBox profileImageBox;
+    private VBox imageSurrounder;
     private ImageView profileImage;
     private HBox imageEditBox;
     private Button deleteIMGButton;
@@ -153,16 +154,22 @@ public class ProfilePane extends CustomPane {
     }
 
     private void buildProfileImageBox() {
-        this.profileImage = buildProfileImage();
+        buildImageSurrounder();
         createImgEditBox();
-        String[] styleClasses = {"profile-image-box"};
-        this.profileImageBox = buildVBox(styleClasses, profileImage, imageEditBox);
+        String[] styleClasses = {"image-element-box"};
+        this.profileImageBox = buildVBox(styleClasses, imageSurrounder, imageEditBox);
+    }
+
+    private void buildImageSurrounder() {
+        this.profileImage = buildProfileImage();
+        String[] styleClasses = {"image-box"};
+        this.imageSurrounder = buildVBox(styleClasses, profileImage);
     }
 
     private void createImgEditBox() {
         this.uploadButton = buildUploadButton();
         this.deleteIMGButton = buildImgDelButton();
-        String[] styleClasses = {"profile-image-box"};
+        String[] styleClasses = {"image-edit-box"};
         this.imageEditBox = buildHBox(styleClasses, uploadButton, deleteIMGButton);
     }
 
@@ -181,7 +188,7 @@ public class ProfilePane extends CustomPane {
     }
 
     private ImageView buildProfileImage() {
-        ImageView image = new ImageView(new Image("assets/images/shares_inc._logo.png"));
+        ImageView image = new ImageView(controller.getUserProfile());
         image.getStyleClass().add("profile-image");
         image.setFitWidth(IMG_MAX_HEIGHT);
         image.setFitHeight(IMG_MAX_HEIGHT);

@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Getter
 @Entity
-@Table(name = "profile_picture_path")
+@Table(name = "profile_picture")
 public class Picture {
     @Id
     @GeneratedValue
@@ -14,16 +14,16 @@ public class Picture {
     private Long id;
 
     @Setter
-    @Column(name = "file_path")
+    @Column(name = "file_name")
     private String fileName;
 
     @Setter
     @Column(name = "user_idfk")
     private Long userIDFK;
 
-    public Picture(String path, long id) {
+    public Picture(String path, long userIDFK) {
         setFileName(path);
-        setUserIDFK(id);
+        setUserIDFK(userIDFK);
     }
 
     public Picture() {

@@ -16,18 +16,21 @@ import javafx.stage.Stage;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.UUID;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class ProfileController extends CustomController {
-    public static final String PROFILE_PICTURE_PATH = "/src/main/resources/assets/profile_pictures";
-    public static final String IMG_TYPE = ".png";
+    private static final String URL_PROTOCOL = "file://";
+    private static final String PROFILE_PICTURE_PATH = "C:/Users/fhaas/Documents/Ergon/JavaFx/Shares-inc.-Trading-App/src/main/resources/assets/images/profile_pictures/";
+    private static final String IMG_TYPE = "png";
     private final ProfilePane pane;
     private final UserDao userDao;
     private final PortfolioDao portfolioDao;
@@ -109,130 +112,110 @@ public class ProfileController extends CustomController {
         return null;
     }
 
-    public boolean saveImage(Image image) {
+    public boolean saveImage(File file) {
         String name = createImageName();
-        String filePath = getProfileImagePath(name);
-        BufferedImage buffImage = writeBuffImage(image);
-        if (buffImage == null) return false;
-        if (writeImage(buffImage, filePath)) {
-            return saveImagePath(name);
+        if (pictureDao.getByName(name) != null) {
+            return false;
+        }
+        if (writeImage(file, name)) {
+            return saveImageName(name);
         }
         return false;
     }
 
-    private BufferedImage writeBuffImage(Image image) {
-        //TODO: Stackoverflow: https://stackoverflow.com/questions/21540378/convert-javafx-image-to-bufferedimage
-        return null;
-    }
+    private boolean writeImage(File file, String name) {
+        String path = PROFILE_PICTURE_PATH + name + "." + IMG_TYPE;
+        try {
+            BufferedImage image = ImageIO.read(file);
+            if (image == null) {
+                return false;
+            }
+            File destination = new File(path);
+            if (!destination.getParentFile().exists()) {
+                destination.getParentFile().mkdirs();
+            }
+            System.out.println(destination.getAbsolutePath());
 
-    private boolean writeImage(BufferedImage image, String name) {
-        String filePath = PROFILE_PICTURE_PATH + name + IMG_TYPE;
-        try (FileWriter writer = new FileWriter(filePath)) {
-            writer.write(image.toString());
-            System.out.println("Image file created successfully at " + filePath);
-            return true;
+            return ImageIO.write(image, IMG_TYPE, destination);
         } catch (IOException e) {
-            System.err.println("Error saving image file. " + filePath);
-            e.printStackTrace();
             return false;
         }
     }
 
-    private boolean saveImagePath(String path) {
-        return pictureDao.add(new Picture(path, user().getId()));
-    }
-
-    private String getProfileImagePath(String name) {
-        return System.getProperty("user.dir") + PROFILE_PICTURE_PATH + name + IMG_TYPE;
+    private boolean saveImageName(String name) {
+        Picture picture = pictureDao.getByUserId(userId);
+        picture.setFileName(name);
+        if (pictureDao.getByUserId(userId) != null) {
+            return pictureDao.update(picture);
+        }
+        return pictureDao.add(picture);
     }
 
     /*
      *   Name-creation:
-     *  "Profile-Picture" + first 10 letters from uuid + (amount of existing files + 1)
+     *  (amount of existing files + 1) + "Profile-Picture" + first 8 letters from uuid
      */
     private String createImageName() {
         String separator = "-";
-        String beginning = "profile-picture";
+        String index = String.valueOf(getAmountOfFiles() + 1);
+        String title = "profile-picture";
         String uuid = getUUIDValues();
-        String fileAmount = String.valueOf(getAmountOfFiles() + 1);
 
-        return String.join(separator, beginning, uuid, fileAmount);
+        return String.join(separator, index, title, uuid);
     }
 
     private static long getAmountOfFiles() {
         try (Stream<Path> path = Files.list(Path.of(PROFILE_PICTURE_PATH))) {
-            return path.filter(Files::isRegularFile).count();
+            return path.count();
         } catch (IOException e) {
-            throw new RuntimeException("Was not able to get amount of files...\n\n" + e);
+            e.printStackTrace();
+            return 0;
         }
     }
 
     private String getUUIDValues() {
         char[] uuidArray = UUID.randomUUID().toString().toCharArray();
-        StringBuilder sb = new StringBuilder();
-        Stream.of(uuidArray).limit(UUID_LENGTH).forEach(sb::append);
-        return sb.toString();
-    }
-
-
-    public BufferedImage getProfilePicture() {
-        String name = pictureDao.getByUserId(userId).getFileName();
-        File file = new File(getProfileImagePath(name));
-        try {
-            return ImageIO.read(file);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        return IntStream.range(0, 8).mapToObj(i -> String.valueOf(uuidArray[i])).collect(Collectors.joining());
     }
 
     public boolean uploadImage() {
-        Image image = getImage();
-        if (saveImage(image)) {
-            pane.getProfileImage().setImage(image);
-            return true;
+        File file = getImageAsFile();
+        if (file == null) {
+            return false;
         }
-        return false;
+        if (!saveImage(file)) {
+            return false;
+        }
+        String URI = file.toURI().toString();
+        Image image = new Image(URI);
+        pane.getProfileImage().setImage(image);
+        return true;
     }
 
     private static boolean isPrimaryButton(MouseEvent mouseEvent) {
         return mouseEvent.getButton() == MouseButton.PRIMARY;
     }
 
-    private Image getImage() {
+    private File getImageAsFile() {
         JFileChooser chooser = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("img files (*.png, *.jpg)", "png", "jpg");
+        chooser.setFileFilter(filter);
         int status = chooser.showOpenDialog(null);
         if (status != JFileChooser.APPROVE_OPTION) {
             return null;
         }
 
-        File file = chooser.getSelectedFile();
-        if (file == null) {
-            return null;
-        }
-
-        String fileName = file.getAbsolutePath();
-        return new Image(fileName);
+        return chooser.getSelectedFile();
     }
 
     public boolean deleteImage() {
         String fileName = pictureDao.getByUserId(userId).getFileName();
-        File file = new File(fileName);
+        File file = new File(PROFILE_PICTURE_PATH + fileName + "." + IMG_TYPE);
         if (file.delete()) {
             pane.getProfileImage().setImage(null);
             return true;
         }
         return false;
-    }
-
-    public void handleImageDeletion(MouseEvent click) {
-        if (!isPrimaryButton(click)) {
-            return;
-        }
-        if (deleteImage()) {
-            System.out.println("Image deleted successfully!");
-            return;
-        }
-        System.out.println("Image could not be deleted!");
     }
 
     public void handleImageUpload(MouseEvent click) {
@@ -244,5 +227,33 @@ public class ProfileController extends CustomController {
             return;
         }
         System.out.println("Image could not be uploaded!");
+    }
+
+    public void handleImageDeletion(MouseEvent click) {
+        if (!isPrimaryButton(click) | isImageNull()) {
+            return;
+        }
+        if (deleteImage()) {
+            System.out.println("Image deleted successfully!");
+            return;
+        }
+        System.out.println("Image could not be deleted!");
+    }
+
+    private boolean isImageNull() {
+        return pane.getProfileImage().getImage() == null;
+    }
+
+    public Image getUserProfile() {
+        Picture picture = pictureDao.getByUserId(userId);
+        if (picture != null) {
+            try {
+                File file = new File(PROFILE_PICTURE_PATH + picture.getFileName() + "." + IMG_TYPE);
+                return new Image(file.toURI().toString());
+            } catch (IllegalArgumentException e) {
+                System.out.println("User does not have Profile-Picture...");
+            }
+        }
+        return null;
     }
 }

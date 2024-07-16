@@ -25,9 +25,25 @@
 }
 
 .heading-box {
-    -fx-spacing: 12px;
+    -fx-spacing: 7px;
 }
 
 .profile-box {
-    -fx-spacing: 7px;
+    -fx-spacing: 5px;
+}
+
+.profile-image {
+    -fx-padding: 10px;
+}
+
+.image-edit-box {
+    -fx-spacing: 5px;
+}
+
+.image-element-box {
+
+}
+
+.image-box {
+    -fx-padding: 5 5 5 0;
 }

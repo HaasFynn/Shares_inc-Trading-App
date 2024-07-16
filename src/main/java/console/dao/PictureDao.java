@@ -35,14 +35,6 @@ public interface PictureDao {
     boolean add(Picture picture);
 
     /**
-     * Delete boolean.
-     *
-     * @param picture the picture
-     * @return the boolean
-     */
-    boolean delete(Picture picture);
-
-    /**
      * Update boolean.
      *
      * @param picture the picture
@@ -50,4 +42,13 @@ public interface PictureDao {
      */
     boolean update(Picture picture);
 
+    /**
+     * Delete boolean.
+     *
+     * @param picture the picture
+     * @return the boolean
+     */
+    boolean delete(Picture picture);
+
+    Picture getByName(String name);
 }
