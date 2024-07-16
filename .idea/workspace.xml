@@ -4,7 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea488597-f4e2-49aa-b467-1e44621e87b4" name="Changes" comment="Profile Picture Adding works" />
+    <list default="true" id="ea488597-f4e2-49aa-b467-1e44621e87b4" name="Changes" comment="Profile Picture Adding works">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/MainPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/MainPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/controllers/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/controllers/ProfileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/panes/ProfilePane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/panes/ProfilePane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/mocks/price_over_time.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/mocks/price_over_time.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/locale/language_de.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/locale/language_de.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/locale/language_en.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/locale/language_en.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/style/profile.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/style/profile.css" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -148,7 +157,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "feature/profile-pane",
+    "git-widget-placeholder": "improvement/logout-button",
     "go.import.settings.migrated": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/fhaas/Documents/Ergon/JavaFx/Shares-inc.-Trading-App/src/main/resources/assets/image/icon/black",
@@ -774,7 +783,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/javafx/controllers/ProfileController.java</url>
-          <line>246</line>
+          <line>250</line>
           <properties class="javafx.controllers.ProfileController" method="getUserProfile">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
