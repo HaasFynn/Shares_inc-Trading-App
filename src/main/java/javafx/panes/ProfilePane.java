@@ -9,7 +9,6 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.HBox;
@@ -54,7 +53,9 @@ public class ProfilePane extends CustomPane {
     private Label passwordInputLabel;
     private PasswordField passwordInput;
 
+    private HBox buttonBox;
     private Button saveButton;
+    private Button logoutButton;
 
     @Override
     protected void build() {
@@ -82,14 +83,28 @@ public class ProfilePane extends CustomPane {
         this.lastNameInput = buildLastNameInput();
         this.emailInput = buildEmailInput();
         createPasswordBox();
+        createButtonBox();
+        this.body = buildBody(headingBox, firstNameInput, lastNameInput, emailInput, passwordBox, buttonBox);
+    }
+
+    private void createButtonBox() {
         this.saveButton = buildSaveButton();
-        this.body = buildBody(headingBox, firstNameInput, lastNameInput, emailInput, passwordBox, saveButton);
+        this.logoutButton = buildLogoutButton();
+        String[] styleClasses = {"button-box"};
+        this.buttonBox = buildHBox(styleClasses, saveButton, logoutButton);
     }
 
     private Button buildSaveButton() {
         String[] styleClasses = {"save-button"};
         Button button = buildButton(styleClasses, "profile_pane.button.save");
-        button.setOnAction(event -> controller.saveInput());
+        button.setOnMouseClicked(event -> controller.saveInput());
+        return button;
+    }
+
+    private Button buildLogoutButton() {
+        String[] styleClasses = {"logout-button"};
+        Button button = buildButton(styleClasses, "profile_pane.button.logout");
+        button.setOnMouseClicked(controller::handleLogoutAction);
         return button;
     }
 

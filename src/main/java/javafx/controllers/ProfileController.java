@@ -6,7 +6,9 @@ import console.entities.User;
 import console.functional.EntityManagement;
 import jakarta.persistence.EntityManager;
 import javafx.assets.Authentication;
+import javafx.assets.Hash;
 import javafx.eventlisteners.EventListeners;
+import javafx.panes.LoginPane;
 import javafx.panes.ProfilePane;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
@@ -106,7 +108,7 @@ public class ProfileController extends CustomController {
     private String getVerifiedPassword() {
         String password = pane.getPasswordInput().getText();
         if (Authentication.doesPasswordComplieToPasswordRules(password)) {
-            return password;
+            return Hash.getPasswordHashed(password);
         }
         System.err.println("Invalid password");
         return null;
@@ -255,5 +257,12 @@ public class ProfileController extends CustomController {
             }
         }
         return null;
+    }
+
+    public void handleLogoutAction(MouseEvent click) {
+        if (!(click.getButton() == MouseButton.PRIMARY) | click.getClickCount() != 2) {
+            return;
+        }
+        stage.getScene().setRoot(new LoginPane(stage, eventListeners));
     }
 }

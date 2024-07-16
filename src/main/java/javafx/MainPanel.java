@@ -14,8 +14,8 @@ public class MainPanel extends CustomPane {
     EventListenersImpl eventListeners;
     private final SideBarPane sideBar;
     private CustomPane currentPane;
-    private static final double STAGE_WIDTH = 815;
-    private static final double STAGE_HEIGHT = 500;
+    private static final double STAGE_WIDTH = 946;
+    private static final double STAGE_HEIGHT = 539;
 
     public MainPanel(Stage stage, User user) {
         super(stage, null, user);
