@@ -4,13 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea488597-f4e2-49aa-b467-1e44621e87b4" name="Changes" comment="Profile Picture Adding works">
-      <change afterPath="$PROJECT_DIR$/src/main/java/javafx/controllers/SettingsController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/style/settings.css" afterDir="false" />
+    <list default="true" id="ea488597-f4e2-49aa-b467-1e44621e87b4" name="Changes" comment="feature/settings-pane: create pane, controller. Language change and account deletion work -&gt; Appearance change needs to be done">
+      <change afterPath="$PROJECT_DIR$/src/main/java/javafx/assets/ColorTheme.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/console/dao/PictureDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/console/dao/PictureDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/console/entities/Picture.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/console/entities/Picture.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/javafx/MainPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/MainPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/SharesInc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/SharesInc.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/controllers/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/controllers/ProfileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/controllers/SettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/controllers/SettingsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/controllers/StockMarketController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/controllers/StockMarketController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/eventlisteners/EventListeners.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/eventlisteners/EventListeners.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/eventlisteners/EventListenersImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/eventlisteners/EventListenersImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/javafx/panes/CustomPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/panes/CustomPane.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/javafx/panes/DashboardPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/panes/DashboardPane.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/javafx/panes/LoginPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/panes/LoginPane.java" afterDir="false" />
@@ -22,9 +27,22 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/javafx/panes/SideBarPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/panes/SideBarPane.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/javafx/panes/StockMarketPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/panes/StockMarketPane.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/javafx/panes/TradePane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/panes/TradePane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/images/profile_pictures/1-profile-picture-4a5db50c.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/assets/mocks/price_over_time.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/mocks/price_over_time.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/locale/language_de.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/locale/language_de.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/locale/language_en.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/locale/language_en.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mysql-connector-j-8.2.0/mysql-connector-j-8.2.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mysql-connector-j-8.2.0/mysql-connector-j-8.2.0.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mysql-connector-j-8.2.0/mysql-connector-j-8.2.0/mysql-connector-j-8.2.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mysql-connector-j-8.2.0/mysql-connector-j-8.2.0/mysql-connector-j-8.2.0.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mysql-connector-j-8.2.0/mysql-connector-j-8.2.0/src/test/config/ssl-test-certs/ca-truststore" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mysql-connector-j-8.2.0/mysql-connector-j-8.2.0/src/test/config/ssl-test-certs/ca-truststore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mysql-connector-j-8.2.0/mysql-connector-j-8.2.0/src/test/config/ssl-test-certs/ca-truststore-ext" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mysql-connector-j-8.2.0/mysql-connector-j-8.2.0/src/test/config/ssl-test-certs/ca-truststore-ext" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mysql-connector-j-8.2.0/mysql-connector-j-8.2.0/src/test/config/ssl-test-certs/client-keystore" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mysql-connector-j-8.2.0/mysql-connector-j-8.2.0/src/test/config/ssl-test-certs/client-keystore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mysql-connector-j-8.2.0/mysql-connector-j-8.2.0/src/test/config/ssl-test-certs/client-keystore-ext" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mysql-connector-j-8.2.0/mysql-connector-j-8.2.0/src/test/config/ssl-test-certs/client-keystore-ext" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mysql-connector-j-8.2.0/src/test/config/ssl-test-certs/ca-truststore" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mysql-connector-j-8.2.0/src/test/config/ssl-test-certs/ca-truststore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mysql-connector-j-8.2.0/src/test/config/ssl-test-certs/ca-truststore-ext" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mysql-connector-j-8.2.0/src/test/config/ssl-test-certs/ca-truststore-ext" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mysql-connector-j-8.2.0/src/test/config/ssl-test-certs/client-keystore" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mysql-connector-j-8.2.0/src/test/config/ssl-test-certs/client-keystore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mysql-connector-j-8.2.0/src/test/config/ssl-test-certs/client-keystore-ext" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mysql-connector-j-8.2.0/src/test/config/ssl-test-certs/client-keystore-ext" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/style/profile.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/style/profile.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/style/settings.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/style/settings.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,6 +100,7 @@
         <option value="JUnit5 Test Class" />
         <option value="Class" />
         <option value="CSS File" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -182,7 +201,7 @@
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "com.maddyhome.idea.vim.ui.VimEmulationConfigurable",
+    "settings.editor.selected.configurable": "reference.settings.project.statistic.project.settings",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -406,6 +425,7 @@
       <workItem from="1721024466684" duration="9472000" />
       <workItem from="1721110060714" duration="3663000" />
       <workItem from="1721114041797" duration="10472000" />
+      <workItem from="1721195920134" duration="14855000" />
     </task>
     <task id="LOCAL-00001" summary="Created Files and Set Properties&#10;setUp Function made&#10;Annotations added">
       <option name="closed" value="true" />
@@ -687,7 +707,15 @@
       <option name="project" value="LOCAL" />
       <updated>1721125315052</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="feature/settings-pane: create pane, controller. Language change and account deletion work -&gt; Appearance change needs to be done">
+      <option name="closed" value="true" />
+      <created>1721141674802</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1721141674802</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -725,7 +753,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add ShareCreatorPane class" />
     <MESSAGE value="finish login&#10;todo:&#10;- fix password reset&#10;- Stage size change" />
     <MESSAGE value="created and refactored sidebar" />
     <MESSAGE value="add black icons" />
@@ -750,7 +777,8 @@
     <MESSAGE value="Remove PaneParent.java -&gt; Replace through CustomPane.java" />
     <MESSAGE value="Profile Picture Adding works" />
     <MESSAGE value="improvement/logout-button: add logout button" />
-    <option name="LAST_COMMIT_MESSAGE" value="improvement/logout-button: add logout button" />
+    <MESSAGE value="feature/settings-pane: create pane, controller. Language change and account deletion work -&gt; Appearance change needs to be done" />
+    <option name="LAST_COMMIT_MESSAGE" value="feature/settings-pane: create pane, controller. Language change and account deletion work -&gt; Appearance change needs to be done" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
@@ -785,13 +813,13 @@
           <option name="timeStamp" value="47" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/javafx/controllers/ProfileController.java</url>
-          <line>250</line>
-          <properties class="javafx.controllers.ProfileController">
+          <url>file://$PROJECT_DIR$/src/main/java/javafx/MainPanel.java</url>
+          <line>62</line>
+          <properties class="javafx.MainPanel" method="switchPage">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
-          <option name="timeStamp" value="59" />
+          <option name="timeStamp" value="60" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/console/functional/EntityManagement.java</url>

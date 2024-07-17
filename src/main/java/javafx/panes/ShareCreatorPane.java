@@ -26,7 +26,7 @@ public class ShareCreatorPane extends CustomPane {
     private static final double STANDARD_PADDING = 20;
 
     public ShareCreatorPane(Stage stage, EventListeners eventListeners, User user) {
-        super(stage, eventListeners, user);
+        super(stage, eventListeners, user, eventListeners.getColorTheme());
         this.controller = new ShareCreatorController(stage, this, eventListeners);
         build();
     }
@@ -146,10 +146,5 @@ public class ShareCreatorPane extends CustomPane {
             }
             event.consume();
         });
-    }
-
-    @Override
-    public String toString() {
-        return getClass().getName();
     }
 }

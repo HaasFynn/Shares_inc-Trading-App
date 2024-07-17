@@ -19,7 +19,7 @@ public class LoginPane extends CustomPane {
     private final LoginController controller;
 
     public LoginPane(Stage stage, EventListeners eventListeners) {
-        super(stage, eventListeners, null);
+        super(stage, eventListeners, null, eventListeners.getColorTheme());
         this.controller = new LoginController(stage, this, eventListeners);
         build();
     }
@@ -64,6 +64,7 @@ public class LoginPane extends CustomPane {
     protected void addStyleSheets() {
         getStylesheets().add(STYLE_PATH + "login.css");
     }
+
     @Override
     protected void buildNodes() {
         buildLoginComponents();
@@ -241,10 +242,5 @@ public class LoginPane extends CustomPane {
 
     public StringBinding getValue(String key) {
         return LanguagePack.createStringBinding(key);
-    }
-
-    @Override
-    public String toString() {
-        return getClass().getName();
     }
 }

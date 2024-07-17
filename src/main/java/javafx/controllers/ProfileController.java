@@ -20,8 +20,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.UUID;
@@ -30,7 +29,6 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class ProfileController extends CustomController {
-    private static final String URL_PROTOCOL = "file://";
     private static final String PROFILE_PICTURE_PATH = "C:/Users/fhaas/Documents/Ergon/JavaFx/Shares-inc.-Trading-App/src/main/resources/assets/images/profile_pictures/";
     private static final String IMG_TYPE = "png";
     private final ProfilePane pane;
@@ -39,7 +37,7 @@ public class ProfileController extends CustomController {
     private final ShareDao shareDao;
     private final PictureDao pictureDao;
     private final long userId;
-    private final static int UUID_LENGTH = 10;
+    private final static int UUID_LEN = 10;
 
     public ProfileController(Stage stage, ProfilePane pane, EventListeners eventListeners, User user) {
         super(stage, eventListeners);
@@ -115,15 +113,24 @@ public class ProfileController extends CustomController {
     }
 
     public boolean saveImage(File file) {
-        String name = createImageName();
-        if (pictureDao.getByName(name) != null) {
-            return false;
-        }
-        if (writeImage(file, name)) {
-            return saveImageName(name);
-        }
-        return false;
+        byte[] fileArray = convertFileToByteArray(file);
+        return saveImgToDatabase(fileArray);
     }
+
+    private byte[] convertFileToByteArray(File file) {
+        try (FileInputStream fileInputStream = new FileInputStream(file);
+             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream()) {
+            byte[] buffer = new byte[1024];
+            for (int len; (len = fileInputStream.read(buffer)) != -1; ) {
+                byteArrayOutputStream.write(buffer, 0, len);
+            }
+            return byteArrayOutputStream.toByteArray();
+        } catch (IOException e) {
+            System.err.println("File could not be converted to byte array");
+            return null;
+        }
+    }
+
 
     private boolean writeImage(File file, String name) {
         String path = PROFILE_PICTURE_PATH + name + "." + IMG_TYPE;
@@ -133,9 +140,6 @@ public class ProfileController extends CustomController {
                 return false;
             }
             File destination = new File(path);
-            if (!destination.getParentFile().exists()) {
-                destination.getParentFile().mkdirs();
-            }
             System.out.println(destination.getAbsolutePath());
 
             return ImageIO.write(image, IMG_TYPE, destination);
@@ -144,19 +148,15 @@ public class ProfileController extends CustomController {
         }
     }
 
-    private boolean saveImageName(String name) {
+    private boolean saveImgToDatabase(byte[] image) {
         Picture picture = pictureDao.getByUserId(userId);
-        picture.setFileName(name);
-        if (pictureDao.getByUserId(userId) != null) {
-            return pictureDao.update(picture);
+        if (picture == null) {
+            return pictureDao.add(new Picture(image, userId));
         }
-        return pictureDao.add(picture);
+        picture.setImg(image);
+        return pictureDao.update(picture);
     }
 
-    /*
-     *   Name-creation:
-     *  (amount of existing files + 1) + "Profile-Picture" + first 8 letters from uuid
-     */
     private String createImageName() {
         String separator = "-";
         String index = String.valueOf(getAmountOfFiles() + 1);
@@ -177,7 +177,7 @@ public class ProfileController extends CustomController {
 
     private String getUUIDValues() {
         char[] uuidArray = UUID.randomUUID().toString().toCharArray();
-        return IntStream.range(0, 8).mapToObj(i -> String.valueOf(uuidArray[i])).collect(Collectors.joining());
+        return IntStream.range(0, UUID_LEN).mapToObj(i -> String.valueOf(uuidArray[i])).collect(Collectors.joining());
     }
 
     public boolean uploadImage() {
@@ -202,6 +202,7 @@ public class ProfileController extends CustomController {
         JFileChooser chooser = new JFileChooser();
         FileNameExtensionFilter filter = new FileNameExtensionFilter("img files (*.png, *.jpg)", "png", "jpg");
         chooser.setFileFilter(filter);
+
         int status = chooser.showOpenDialog(null);
         if (status != JFileChooser.APPROVE_OPTION) {
             return null;
@@ -211,13 +212,8 @@ public class ProfileController extends CustomController {
     }
 
     public boolean deleteImage() {
-        String fileName = pictureDao.getByUserId(userId).getFileName();
-        File file = new File(PROFILE_PICTURE_PATH + fileName + "." + IMG_TYPE);
-        if (file.delete()) {
-            pane.getProfileImage().setImage(null);
-            return true;
-        }
-        return false;
+        Picture picture = pictureDao.getByUserId(userId);
+        return pictureDao.delete(picture);
     }
 
     public void handleImageUpload(MouseEvent click) {
@@ -247,16 +243,16 @@ public class ProfileController extends CustomController {
     }
 
     public Image getUserProfile() {
-        Picture picture = pictureDao.getByUserId(userId);
-        if (picture != null) {
-            try {
-                File file = new File(PROFILE_PICTURE_PATH + picture.getFileName() + "." + IMG_TYPE);
-                return new Image(file.toURI().toString());
-            } catch (IllegalArgumentException e) {
-                System.out.println("User does not have Profile-Picture...");
-            }
+        byte[] blob = pictureDao.getByUserId(userId).getImg();
+        if (blob != null) {
+            return getImgFromBlob(blob);
         }
         return null;
+    }
+
+    private Image getImgFromBlob(byte[] blob) {
+        ByteArrayInputStream input = new ByteArrayInputStream(blob);
+        return new Image(input);
     }
 
     public void handleLogoutAction(MouseEvent click) {

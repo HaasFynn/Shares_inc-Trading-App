@@ -24,7 +24,7 @@ public class ProfilePane extends CustomPane {
     private final ProfileController controller;
 
     public ProfilePane(Stage stage, EventListeners eventListeners, User user) {
-        super(stage, eventListeners, user);
+        super(stage, eventListeners, user, eventListeners.getColorTheme());
         this.controller = new ProfileController(stage, this, eventListeners, user);
         build();
     }
@@ -249,8 +249,4 @@ public class ProfilePane extends CustomPane {
         });
     }
 
-    @Override
-    public String toString() {
-        return getClass().getName();
-    }
 }

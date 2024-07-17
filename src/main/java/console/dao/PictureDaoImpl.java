@@ -10,10 +10,10 @@ import java.util.List;
 
 public class PictureDaoImpl implements PictureDao {
     @Override
-    public Picture getByName(String name) {
+    public Picture getByName(String img) {
         try {
-            return entityManager.createQuery("from Picture p where p.fileName=:name", Picture.class)
-                    .setParameter("name", name)
+            return entityManager.createQuery("from Picture p where p.img=:img", Picture.class)
+                    .setParameter("img", img)
                     .getSingleResult();
         } catch (NoResultException e) {
             System.err.println("Error while getting Picture by name: " + e.getMessage());

@@ -6,7 +6,7 @@ import javafx.stage.Stage;
 
 public class PortfolioPane extends CustomPane {
     public PortfolioPane(Stage stage, EventListeners eventListeners, User user) {
-        super(stage,eventListeners, user);
+        super(stage, eventListeners, user, eventListeners.getColorTheme());
     }
 
     @Override
@@ -24,8 +24,4 @@ public class PortfolioPane extends CustomPane {
 
     }
 
-    @Override
-    public String toString() {
-        return getClass().getName();
-    }
 }

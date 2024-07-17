@@ -29,7 +29,7 @@ public class ShareViewPane extends CustomPane {
     private static final int SPINNER_STEP_SIZE = 1;
 
     public ShareViewPane(Stage stage, EventListeners eventListeners, User user, Share share) {
-        super(stage, eventListeners, user);
+        super(stage, eventListeners, user, eventListeners.getColorTheme());
         this.user = user;
         this.share = share;
         this.controller = new ShareViewController(stage, this, eventListeners, share, user);
@@ -282,8 +282,4 @@ public class ShareViewPane extends CustomPane {
         getStylesheets().addAll(STYLE_PATH + "share-view.css");
     }
 
-    @Override
-    public String toString() {
-        return getClass().getName();
-    }
 }

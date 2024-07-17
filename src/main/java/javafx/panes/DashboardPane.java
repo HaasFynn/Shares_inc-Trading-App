@@ -30,7 +30,7 @@ public class DashboardPane extends CustomPane {
     private final Random rand = new Random();
 
     public DashboardPane(Stage stage, EventListeners eventListeners, User user) {
-        super(stage, eventListeners, user);
+        super(stage, eventListeners, user, eventListeners.getColorTheme());
         this.controller = new DashboardController(stage, this, eventListeners, user);
         build();
     }
@@ -84,7 +84,7 @@ public class DashboardPane extends CustomPane {
     protected void buildNodes() {
         buildUpperPage();
         buildNewsBox();
-        buildPage(upperPage, newsBox);
+        this.page = buildPage(upperPage, newsBox);
     }
 
     private void buildNewsBox() {
@@ -99,10 +99,11 @@ public class DashboardPane extends CustomPane {
         upperPage.getStyleClass().add("upper-page");
     }
 
-    private void buildPage(VBox header, VBox box2) {
-        page = new VBox();
-        page.getStyleClass().add("page");
-        page.getChildren().addAll(header, box2);
+    private VBox buildPage(VBox header, VBox box2) {
+        VBox box = new VBox();
+        box.getStyleClass().add("page");
+        box.getChildren().addAll(header, box2);
+        return box;
     }
 
     private void buildBody() {

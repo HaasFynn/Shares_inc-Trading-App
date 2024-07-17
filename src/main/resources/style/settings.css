@@ -1,0 +1,41 @@
+.page {
+    -fx-spacing: 10;
+    -fx-padding: 15;
+}
+
+.body {
+    -fx-spacing: 15;
+}
+
+.language-change-box {
+    -fx-spacing: 7;
+}
+
+.language-change-label {
+
+}
+
+.language-choice-box {
+    -fx-padding: 0 0 0 10;
+}
+
+.appearance-box {
+    -fx-spacing: 5;
+}
+
+.appearance-choices-box {
+    -fx-spacing: 10;
+    -fx-padding: 0 0 0 10;
+}
+
+.button-box {
+    -fx-padding: 300 0 0 0;
+}
+
+.acc-del-btn {
+
+}
+
+.button {
+
+}

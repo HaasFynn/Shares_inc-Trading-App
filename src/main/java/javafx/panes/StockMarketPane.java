@@ -23,7 +23,7 @@ public class StockMarketPane extends CustomPane {
     private final StockMarketController controller;
 
     public StockMarketPane(Stage stage, EventListeners eventListeners, Share share, User user) {
-        super(stage, eventListeners, user);
+        super(stage, eventListeners, user, eventListeners.getColorTheme());
         this.controller = new StockMarketController(stage, this, eventListeners, share);
         build();
     }
@@ -122,8 +122,4 @@ public class StockMarketPane extends CustomPane {
 
     }
 
-    @Override
-    public String toString() {
-        return getClass().getName();
-    }
 }
