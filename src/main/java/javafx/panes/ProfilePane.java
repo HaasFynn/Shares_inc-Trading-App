@@ -74,7 +74,7 @@ public class ProfilePane extends CustomPane {
 
     @Override
     protected void buildNodes() {
-        this.header = new Header();
+        this.header = new Header(getStage(), "profile.label.title");
         createBody();
         this.page = buildPage(header, body);
     }
@@ -98,14 +98,14 @@ public class ProfilePane extends CustomPane {
 
     private Button buildSaveButton() {
         String[] styleClasses = {"save-button"};
-        Button button = buildButton(styleClasses, "profile_pane.button.save");
+        Button button = buildButton(styleClasses, "profile.button.save");
         button.setOnMouseClicked(event -> controller.saveInput());
         return button;
     }
 
     private Button buildLogoutButton() {
         String[] styleClasses = {"logout-button"};
-        Button button = buildButton(styleClasses, "profile_pane.button.logout");
+        Button button = buildButton(styleClasses, "profile.button.logout");
         button.setOnMouseClicked(controller::handleLogoutAction);
         return button;
     }
@@ -131,19 +131,19 @@ public class ProfilePane extends CustomPane {
     }
 
     private Label buildPasswordLabel() {
-        return buildLabel("profile_pane.label.password", "password-label", "label");
+        return buildLabel("profile.label.password", "password-label", "label");
     }
 
     private InputSection buildFirstnameInput() {
-        return new InputSection("profile_pane.input.firstname", controller.user()::getFirstname);
+        return new InputSection("profile.input.firstname", controller.user()::getFirstname);
     }
 
     private InputSection buildLastNameInput() {
-        return new InputSection("profile_pane.input.lastname", controller.user()::getLastname);
+        return new InputSection("profile.input.lastname", controller.user()::getLastname);
     }
 
     private InputSection buildEmailInput() {
-        return new InputSection("profile_pane.input.email", controller.user()::getEmail);
+        return new InputSection("profile.input.email", controller.user()::getEmail);
     }
 
     private PasswordField buildPasswordInput() {
@@ -160,7 +160,7 @@ public class ProfilePane extends CustomPane {
     }
 
     private InputSection buildUsernameInput() {
-        return new InputSection("profile_pane.input.username", controller.user()::getUsername);
+        return new InputSection("profile.input.username", controller.user()::getUsername);
     }
 
     private void createProfileBox() {
@@ -192,14 +192,14 @@ public class ProfilePane extends CustomPane {
 
     private Button buildUploadButton() {
         String[] styleClasses = {"profile-button-image-upload"};
-        Button button = buildButton(styleClasses, "profile_pane.button.upload");
+        Button button = buildButton(styleClasses, "profile.button.upload");
         button.setOnMouseClicked(controller::handleImageUpload);
         return button;
     }
 
     private Button buildImgDelButton() {
         String[] styleClasses = {"profile-button-image-delete"};
-        Button button = buildButton(styleClasses, "profile_pane.button.delete");
+        Button button = buildButton(styleClasses, "profile.button.delete");
         button.setOnMouseClicked(controller::handleImageDeletion);
         return button;
     }
@@ -213,7 +213,7 @@ public class ProfilePane extends CustomPane {
     }
 
     private Label buildProfileLabel() {
-        return buildLabel("profile_pane.label.image", "profile-pic-label", "label");
+        return buildLabel("profile.label.image", "profile-pic-label", "label");
     }
 
     private Label buildLabel(String key, String... styleClasses) {

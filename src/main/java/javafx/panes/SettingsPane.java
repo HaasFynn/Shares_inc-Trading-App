@@ -62,7 +62,7 @@ public class SettingsPane extends CustomPane {
 
     @Override
     protected void buildNodes() {
-        this.header = new Header();
+        this.header = new Header(getStage(), "settings.label.title");
         createBody();
         this.page = buildPage(header, body);
     }

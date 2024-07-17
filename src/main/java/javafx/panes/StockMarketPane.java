@@ -2,14 +2,15 @@ package javafx.panes;
 
 import console.entities.Share;
 import console.entities.User;
-import javafx.assets.Header;
 import javafx.collections.FXCollections;
 import javafx.controllers.StockMarketController;
 import javafx.eventlisteners.EventListeners;
 import javafx.scene.Node;
 import javafx.scene.chart.*;
+import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Line;
 import javafx.stage.Stage;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
@@ -28,9 +29,12 @@ public class StockMarketPane extends CustomPane {
         build();
     }
 
+
     private VBox page;
 
-    private Header header;
+    private VBox header;
+    private Label title;
+    private Line line;
 
     private HBox body;
     private LineChart<String, Number> shareChart;
@@ -52,10 +56,37 @@ public class StockMarketPane extends CustomPane {
 
     @Override
     protected void buildNodes() {
-        this.header = new Header();
+        createHeader();
         createBodyNodes();
         this.page = buildPage(header, body);
     }
+
+    private void createHeader() {
+        this.title = buildTitle();
+        this.line = buildLine();
+        this.header = buildHeader(title, line);
+    }
+
+    private VBox buildHeader(Label title, Line line) {
+        VBox box = new VBox(title, line);
+        box.getStyleClass().add("header");
+        return box;
+    }
+
+    private Label buildTitle() {
+        Label label = new Label(controller.share().getName());
+        label.getStyleClass().addAll("h2", "title");
+        return label;
+    }
+
+    private Line buildLine() {
+        Line line = new Line();
+        line.setStartX(0);
+        line.setStartY(0);
+        line.endXProperty().bind(getStage().widthProperty());
+        return line;
+    }
+
 
     private VBox buildPage(VBox header, HBox body) {
         VBox box = new VBox(header, body);

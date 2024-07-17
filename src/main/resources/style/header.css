@@ -1,0 +1,7 @@
+.header {
+    -fx-spacing: 10;
+}
+
+.title {
+    -fx-font-weight: bold;
+}
