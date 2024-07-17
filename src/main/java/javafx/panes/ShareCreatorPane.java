@@ -28,6 +28,8 @@ public class ShareCreatorPane extends CustomPane {
     public ShareCreatorPane(Stage stage, EventListeners eventListeners, User user) {
         super(stage, eventListeners, user, eventListeners.getColorTheme());
         this.controller = new ShareCreatorController(stage, this, eventListeners);
+        styleClasses = new String[]{};
+
         build();
     }
 
@@ -44,6 +46,7 @@ public class ShareCreatorPane extends CustomPane {
         setMinSize(STAGE_WIDTH, STAGE_HEIGHT);
         setVgap(V_GAP);
         buildNodes();
+        addStyleSheets();
         addListeners();
         add(body, 0, 0);
         if (getStage().isShowing()) {

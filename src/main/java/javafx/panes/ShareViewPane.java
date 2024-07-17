@@ -33,7 +33,10 @@ public class ShareViewPane extends CustomPane {
         this.user = user;
         this.share = share;
         this.controller = new ShareViewController(stage, this, eventListeners, share, user);
-
+        styleClasses = new String[]{
+                "settings.css",
+                "share-view.css"
+        };
         build();
     }
 
@@ -276,10 +279,4 @@ public class ShareViewPane extends CustomPane {
     private void addListeners() {
 
     }
-
-    @Override
-    protected void addStyleSheets() {
-        getStylesheets().addAll(STYLE_PATH + "share-view.css");
-    }
-
 }

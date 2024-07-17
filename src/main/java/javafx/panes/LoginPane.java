@@ -21,6 +21,10 @@ public class LoginPane extends CustomPane {
     public LoginPane(Stage stage, EventListeners eventListeners) {
         super(stage, eventListeners, null, eventListeners.getColorTheme());
         this.controller = new LoginController(stage, this, eventListeners);
+        styleClasses = new String[]{
+                "login.css"
+        };
+
         build();
     }
 
@@ -58,11 +62,6 @@ public class LoginPane extends CustomPane {
         add(loginBox, 1, 2);
         setAlignment(Pos.CENTER);
         adjustWindow();
-    }
-
-    @Override
-    protected void addStyleSheets() {
-        getStylesheets().add(STYLE_PATH + "login.css");
     }
 
     @Override

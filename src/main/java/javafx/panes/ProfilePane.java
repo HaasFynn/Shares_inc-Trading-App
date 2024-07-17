@@ -19,13 +19,17 @@ import lombok.Getter;
 @Getter
 public class ProfilePane extends CustomPane {
     private static final String STYLEPATH = "style/";
-    private static final String[] stylesheets = {STYLEPATH + "profile.css", STYLEPATH + "input-section.css"};
     private static final double IMG_MAX_HEIGHT = 100;
     private final ProfileController controller;
 
     public ProfilePane(Stage stage, EventListeners eventListeners, User user) {
         super(stage, eventListeners, user, eventListeners.getColorTheme());
         this.controller = new ProfileController(stage, this, eventListeners, user);
+        styleClasses = new String[]{
+                "profile.css",
+                "input-section.css"
+        };
+
         build();
     }
 
@@ -65,11 +69,6 @@ public class ProfilePane extends CustomPane {
         buildNodes();
         addListeners();
         add(page, 0, 0);
-    }
-
-    @Override
-    protected void addStyleSheets() {
-        getStylesheets().addAll(stylesheets);
     }
 
     @Override

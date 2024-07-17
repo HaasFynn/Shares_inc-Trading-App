@@ -11,6 +11,8 @@ import javafx.stage.Stage;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.stream.IntStream;
+
 public abstract class CustomPane extends GridPane {
     @Getter
     private final Stage stage;
@@ -20,6 +22,7 @@ public abstract class CustomPane extends GridPane {
     protected static double STAGE_HEIGHT = 500;
     protected static String STYLE_PATH = "style/";
     protected static final double V_GAP = 10;
+    protected String[] styleClasses;
 
     @Setter
     @Getter
@@ -37,7 +40,9 @@ public abstract class CustomPane extends GridPane {
 
     protected abstract void buildNodes();
 
-    protected abstract void addStyleSheets();
+    protected void addStyleSheets() {
+        IntStream.range(0, styleClasses.length).forEach(i -> getStylesheets().add(STYLE_PATH + styleClasses[i]));
+    }
 
     protected void bind(StringProperty text, String key) {
         if (key.isEmpty()) {

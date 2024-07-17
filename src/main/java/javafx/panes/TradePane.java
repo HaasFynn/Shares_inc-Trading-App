@@ -21,16 +21,6 @@ import java.util.List;
 @Getter
 public class TradePane extends CustomPane {
 
-    @Getter
-    private enum ColorTheme {
-        LIGHT("black"), DARK("grey");
-        private final String colorPathFragment;
-
-        ColorTheme(String pathFragment) {
-            this.colorPathFragment = pathFragment;
-        }
-    }
-
     private final EventListeners eventListeners;
     private final TradeController controller;
     private static final String ICONS_DIR = "assets/images/icons";
@@ -43,6 +33,11 @@ public class TradePane extends CustomPane {
         this.eventListeners = eventListeners;
         this.username = user.getUsername();
         this.controller = new TradeController(stage, this, eventListeners, user);
+        styleClasses = new String[]{
+                "trade.css",
+                "news_box.css"
+        };
+
         build();
     }
 
@@ -245,11 +240,6 @@ public class TradePane extends CustomPane {
         VBox box = new VBox(box1, box2);
         box.getStyleClass().add("page");
         return box;
-    }
-
-    @Override
-    protected void addStyleSheets() {
-        getStylesheets().addAll(STYLE_PATH + "trade.css", STYLE_PATH + "news_box.css");
     }
 
     public StringBinding getValueByKey(String key) {

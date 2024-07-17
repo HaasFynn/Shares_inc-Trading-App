@@ -21,6 +21,10 @@ public class SideBarPane extends CustomPane {
         super(stage, eventListeners, user, eventListeners.getColorTheme());
         this.user = user;
         this.eventListeners = eventListeners;
+        styleClasses = new String[]{
+                "sidebar.css"
+        };
+
         build();
     }
 
@@ -40,11 +44,6 @@ public class SideBarPane extends CustomPane {
         this.body = buildBody();
         getChildren().add(body);
         getStyleClass().add("page");
-    }
-
-    @Override
-    protected void addStyleSheets() {
-        getStylesheets().add(STYLE_PATH + "sidebar.css");
     }
 
     private VBox buildBody() {

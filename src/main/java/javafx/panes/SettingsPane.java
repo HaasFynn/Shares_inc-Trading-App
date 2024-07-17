@@ -29,6 +29,9 @@ public class SettingsPane extends CustomPane {
     public SettingsPane(Stage stage, EventListeners eventListeners, User user) {
         super(stage, eventListeners, user, eventListeners.getColorTheme());
         this.controller = new SettingsController(stage, this, eventListeners, user);
+        styleClasses = new String[]{
+            "settings.css"
+        };
         build();
     }
 
@@ -161,11 +164,6 @@ public class SettingsPane extends CustomPane {
         VBox body = new VBox(nodes);
         body.getStyleClass().add("body");
         return body;
-    }
-
-    @Override
-    protected void addStyleSheets() {
-        getStylesheets().addAll(STYLE_PATH + "settings.css");
     }
 
     private Label buildLabel(String key, String... styleClasses) {
