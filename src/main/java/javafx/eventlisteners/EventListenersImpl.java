@@ -2,6 +2,7 @@ package javafx.eventlisteners;
 
 import console.entities.User;
 import javafx.MainPanel;
+import javafx.assets.ColorTheme;
 import javafx.panes.CustomPane;
 import javafx.stage.Stage;
 
@@ -22,4 +23,13 @@ public class EventListenersImpl implements EventListeners {
         mainPanel.switchPage(pane);
     }
 
+    @Override
+    public void changeColor(CustomPane pane, ColorTheme color) {
+        mainPanel.getSideBar().setColorTheme(color);
+    }
+
+    @Override
+    public ColorTheme getColorTheme() {
+        return mainPanel.getColorTheme();
+    }
 }

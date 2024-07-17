@@ -7,33 +7,18 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
-import lombok.Getter;
 
 public class SideBarPane extends CustomPane {
 
-    @Getter
-    private enum ColorTheme {
-        LIGHT("black"), DARK("grey");
-
-        private final String colorPathFragment;
-
-        ColorTheme(String pathFragment) {
-            this.colorPathFragment = pathFragment;
-        }
-
-    }
-
     private final EventListeners eventListeners;
     private User user;
-    private ColorTheme colorTheme = ColorTheme.DARK;
-    private VBox currentImageBox;
     private static final String ICONS_DIR = "assets/images/icons";
     private static final double ICON_WIDTH = 28;
     private static final double SCENE_WIDTH = 60;
     private static final double SCENE_HEIGHT = 500;
 
     public SideBarPane(Stage stage, EventListeners eventListeners, User user) {
-        super(stage, eventListeners, user);
+        super(stage, eventListeners, user, eventListeners.getColorTheme());
         this.user = user;
         this.eventListeners = eventListeners;
         build();
@@ -132,8 +117,4 @@ public class SideBarPane extends CustomPane {
         return null;
     }
 
-    @Override
-    public String toString() {
-        return getClass().getName();
-    }
 }

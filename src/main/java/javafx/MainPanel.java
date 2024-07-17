@@ -1,6 +1,7 @@
 package javafx;
 
 import console.entities.User;
+import javafx.assets.ColorTheme;
 import javafx.eventlisteners.EventListenersImpl;
 import javafx.panes.CustomPane;
 import javafx.panes.*;
@@ -18,7 +19,7 @@ public class MainPanel extends CustomPane {
     private static final double STAGE_HEIGHT = 539;
 
     public MainPanel(Stage stage, User user) {
-        super(stage, null, user);
+        super(stage, null, user, ColorTheme.DARK);
         this.eventListeners = new EventListenersImpl(stage, this, user);
         this.currentPane = new DashboardPane(stage, eventListeners, user);
         sideBar = getSideBarPane(stage, user);
@@ -66,6 +67,7 @@ public class MainPanel extends CustomPane {
         box.getChildren().remove(currentPane);
         this.currentPane = pane;
         box.getChildren().add(currentPane);
+        getScene().setRoot(this);
         System.out.println("Switched Pane to -> " + pane);
     }
 

@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import lombok.Getter;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 public class TradePane extends CustomPane {
@@ -36,10 +37,9 @@ public class TradePane extends CustomPane {
     private static final double ICON_WIDTH = 10;
     private static final int START_AMOUNT_OF_SHARES = 25;
     private String username;
-    private ColorTheme colorTheme = ColorTheme.DARK;
 
     public TradePane(Stage stage, EventListeners eventListeners, User user) {
-        super(stage, eventListeners, user);
+        super(stage, eventListeners, user, eventListeners.getColorTheme());
         this.eventListeners = eventListeners;
         this.username = user.getUsername();
         this.controller = new TradeController(stage, this, eventListeners, user);
@@ -125,7 +125,7 @@ public class TradePane extends CustomPane {
 
     private TableView<ShareInfoBox> buildSearchResponseBox(TableColumn<ShareInfoBox, String> nameColumn, TableColumn<ShareInfoBox, String> revenueColumn) {
         TableView<ShareInfoBox> tableView = new TableView<>();
-        tableView.getColumns().addAll(nameColumn, revenueColumn);
+        tableView.getColumns().addAll(List.of(nameColumn, revenueColumn));
         tableView.setEditable(true);
         tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_ALL_COLUMNS);
         fillTableList(tableView);
@@ -259,10 +259,5 @@ public class TradePane extends CustomPane {
     private void addListeners() {
         controller.handleSearchViewElementSelection(searchTableView);
         controller.handleTextFieldOnPromptChange(searchField);
-    }
-
-    @Override
-    public String toString() {
-        return getClass().getName();
     }
 }

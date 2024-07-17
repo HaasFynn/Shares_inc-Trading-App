@@ -1,6 +1,7 @@
 package javafx.panes;
 
 import console.entities.User;
+import javafx.assets.ColorTheme;
 import javafx.assets.Header;
 import javafx.assets.LanguagePack;
 import javafx.collections.FXCollections;
@@ -8,10 +9,7 @@ import javafx.collections.ObservableList;
 import javafx.controllers.SettingsController;
 import javafx.eventlisteners.EventListeners;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -29,8 +27,8 @@ public class SettingsPane extends CustomPane {
     };
 
     public SettingsPane(Stage stage, EventListeners eventListeners, User user) {
-        super(stage, eventListeners, user);
-        this.controller = new SettingsController(stage, eventListeners, user);
+        super(stage, eventListeners, user, eventListeners.getColorTheme());
+        this.controller = new SettingsController(stage, this, eventListeners, user);
         build();
     }
 
@@ -42,19 +40,16 @@ public class SettingsPane extends CustomPane {
     private Label languageChangeLabel;
     private ChoiceBox<String> languageChoiceBox;
 
-    private Label appearanceLabel;
     private VBox appearanceBox;
+    private Label appearanceLabel;
     private VBox appearanceChoicesBox;
 
-    private HBox whiteModeBox;
-    private Label whiteModeLabel;
-    private CheckBox whiteModeCheckbox;
+    private RadioButton whiteModeBox;
+    private RadioButton darkModeBox;
 
-    private HBox darkModeBox;
-    private Label darkModeLabel;
-    private CheckBox darkModeCheckbox;
-
+    private HBox buttonBox;
     private Button deleteAccountButton;
+    private Button insuranceButton;
 
     @Override
     protected void build() {
@@ -75,8 +70,24 @@ public class SettingsPane extends CustomPane {
     private void createBody() {
         createLanguageChangeBox();
         createAppearanceBox();
+        createButtonBox();
+        this.body = buildBody(languageChangeBox, appearanceBox, buttonBox);
+    }
+
+    private void createButtonBox() {
         this.deleteAccountButton = buildAccDelButton();
-        this.body = buildBody(languageChangeBox,/* appearanceBox, */deleteAccountButton);
+        this.insuranceButton = buildInsuranceButton();
+        String[] styleClasses = {"button-box"};
+        this.buttonBox = buildHBox(styleClasses, deleteAccountButton, insuranceButton);
+    }
+
+    private Button buildInsuranceButton() {
+        Button button = new Button();
+        button.getStyleClass().addAll("insurance-btn", "button");
+        bind(button.textProperty(), "settings.button.insurance");
+        button.setOnMouseClicked(controller::handleAccountInsurance);
+        button.setVisible(false);
+        return button;
     }
 
     private void createLanguageChangeBox() {
@@ -101,12 +112,46 @@ public class SettingsPane extends CustomPane {
     }
 
     private void createAppearanceBox() {
+        this.appearanceLabel = buildLabel("settings.label.appearance", "appearance-label", "label");
+        createAppearanceChoicesBox();
+        String[] styleClasses = {"appearance-box"};
+        this.appearanceBox = buildVBox(styleClasses, appearanceLabel, appearanceChoicesBox);
+    }
 
+    private void createAppearanceChoicesBox() {
+        this.whiteModeBox = buildWhiteCheckBox();
+        this.darkModeBox = buildDarkCheckBox();
+        ToggleGroup group = new ToggleGroup();
+        group.getToggles().addAll(whiteModeBox, darkModeBox);
+        String[] styleClasses = {"appearance-choices-box"};
+        this.appearanceChoicesBox = buildVBox(styleClasses, whiteModeBox, darkModeBox);
+    }
+
+    private RadioButton buildWhiteCheckBox() {
+        String[] styleClasses = {"white-check-box"};
+        RadioButton checkBox = buildCheckBox("settings.label.appearance.white_mode", styleClasses, false);
+        checkBox.setOnAction(event -> controller.handleThemeChange(checkBox, ColorTheme.LIGHT));
+        return checkBox;
+    }
+
+    private RadioButton buildDarkCheckBox() {
+        String[] styleClasses = {"dark-check-box"};
+        RadioButton checkBox = buildCheckBox("settings.label.appearance.dark_mode", styleClasses, true);
+        checkBox.setOnAction(event -> controller.handleThemeChange(checkBox, ColorTheme.DARK));
+        return checkBox;
+    }
+
+    private RadioButton buildCheckBox(String nameKey, String[] styleClasses, boolean isSelected) {
+        RadioButton checkBox = new RadioButton();
+        bind(checkBox.textProperty(), nameKey);
+        checkBox.getStyleClass().addAll(styleClasses);
+        checkBox.setSelected(isSelected);
+        return checkBox;
     }
 
     private Button buildAccDelButton() {
         Button button = new Button();
-        button.getStyleClass().addAll("button");
+        button.getStyleClass().addAll("acc-del-btn", "button");
         bind(button.textProperty(), "settings.button.delete_account");
         button.setOnMouseClicked(controller::handleAccountDeletion);
         return button;
@@ -148,8 +193,4 @@ public class SettingsPane extends CustomPane {
         return box;
     }
 
-    @Override
-    public String toString() {
-        return getClass().getName();
-    }
 }

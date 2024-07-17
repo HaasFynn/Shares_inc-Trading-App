@@ -14,15 +14,15 @@ public class Picture {
     private Long id;
 
     @Setter
-    @Column(name = "file_name")
-    private String fileName;
+    @Column(name = "img")
+    private byte[] img;
 
     @Setter
     @Column(name = "user_idfk")
     private Long userIDFK;
 
-    public Picture(String path, long userIDFK) {
-        setFileName(path);
+    public Picture(byte[] img, long userIDFK) {
+        setImg(img);
         setUserIDFK(userIDFK);
     }
 
