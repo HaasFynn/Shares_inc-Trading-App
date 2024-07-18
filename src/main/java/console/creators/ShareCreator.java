@@ -8,6 +8,9 @@ import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.*;
 
+/**
+ * The type Share creator.
+ */
 public class ShareCreator {
     private final static Random random = new Random();
 
@@ -20,6 +23,12 @@ public class ShareCreator {
     private static final Integer[] existingShares = new Integer[]{1500, 321, 800, 243, 1200, 198, 1000, 276, 500, 154, 1500, 232, 700, 189, 900, 211, 1100, 176, 1000, 209, 1300, 245, 600, 132, 1400, 267, 800, 190, 1000, 212, 1200, 154, 900, 232};
 
 
+    /**
+     * Create new shares share [ ].
+     *
+     * @param givenAmount the given amount
+     * @return the share [ ]
+     */
     public static Share[] createNewShares(int givenAmount) {
         String[] nameList = getNameList(givenAmount);
         Share[] shares = new Share[nameList.length];
@@ -49,6 +58,12 @@ public class ShareCreator {
         return random.nextInt(list.length - 1);
     }
 
+    /**
+     * Get name list string [ ].
+     *
+     * @param amount the amount
+     * @return the string [ ]
+     */
     public static String[] getNameList(int amount) {
         Set<String> nameSet = new HashSet<>();
         //while (nameSet.size() < amount) {

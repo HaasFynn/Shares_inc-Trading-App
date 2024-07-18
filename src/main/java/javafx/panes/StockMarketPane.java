@@ -19,10 +19,21 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
 
+/**
+ * The type Stock market pane.
+ */
 public class StockMarketPane extends CustomPane {
 
     private final StockMarketController controller;
 
+    /**
+     * Instantiates a new Stock market pane.
+     *
+     * @param stage          the stage
+     * @param eventListeners the event listeners
+     * @param share          the share
+     * @param user           the user
+     */
     public StockMarketPane(Stage stage, EventListeners eventListeners, Share share, User user) {
         super(stage, eventListeners, user, eventListeners.getColorTheme());
         this.controller = new StockMarketController(stage, this, eventListeners, share);

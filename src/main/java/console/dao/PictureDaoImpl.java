@@ -8,6 +8,9 @@ import jakarta.persistence.NoResultException;
 
 import java.util.List;
 
+/**
+ * The type Picture dao.
+ */
 public class PictureDaoImpl implements PictureDao {
     @Override
     public Picture getByName(String img) {
@@ -23,6 +26,11 @@ public class PictureDaoImpl implements PictureDao {
 
     private final EntityManager entityManager;
 
+    /**
+     * Instantiates a new Picture dao.
+     *
+     * @param entityManager the entity manager
+     */
     public PictureDaoImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
     }

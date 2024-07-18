@@ -4,6 +4,7 @@ import console.dao.*;
 import console.entities.Share;
 import console.functional.EntityManagement;
 import jakarta.persistence.EntityManager;
+import javafx.assets.StockEntry;
 import javafx.eventlisteners.EventListeners;
 import javafx.panes.StockMarketPane;
 import javafx.stage.Stage;
@@ -11,7 +12,7 @@ import javafx.stage.Stage;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class StockMarketController extends CustomController {
@@ -26,6 +27,11 @@ public class StockMarketController extends CustomController {
         UP,
         DOWN;
 
+        /**
+         * Gets random tendency.
+         *
+         * @return random tendency
+         */
         public static Tendency getRandTendency() {
             if (rand.nextBoolean()) {
                 return Tendency.UP;
@@ -35,6 +41,14 @@ public class StockMarketController extends CustomController {
     }
 
 
+    /**
+     * Instantiates a new Stock market controller.
+     *
+     * @param stage          JavaFX stage
+     * @param pane           JavaFX pane
+     * @param eventListeners Interface with certain CallBacks
+     * @param share          Share, which price should be represented
+     */
     public StockMarketController(Stage stage, StockMarketPane pane, EventListeners eventListeners, Share share) {
         super(stage, eventListeners);
         this.pane = pane;
@@ -44,68 +58,41 @@ public class StockMarketController extends CustomController {
         tendency = Tendency.getRandTendency();
     }
 
+    /**
+     * Gets the newest Version of the Share
+     *
+     * @return Share out of Database
+     */
     public Share share() {
         return shareDao.get(share.getId());
     }
 
+    /**
+     * Generate sample data.
+     */
     public void generateSampleData() {
         LocalDate startDate = LocalDate.of(2025, 1, 1);
-        LocalDate endDate = startDate.plusMonths(8);
-        HashMap<LocalDate, Double> values = createValueList(startDate, endDate);
+        LocalDate endDate = startDate.plusMonths(6);
+        ArrayList<StockEntry> values = createValueList(startDate, endDate);
         writetoCSV(values);
     }
 
-    private HashMap<LocalDate, Double> createValueList(LocalDate startDate, LocalDate endDate) {
-        HashMap<LocalDate, Double> values = new HashMap<>();
+    private ArrayList<StockEntry> createValueList(LocalDate startDate, LocalDate endDate) {
+        ArrayList<StockEntry> values = new ArrayList<>();
         double oldValue = rand.nextDouble(200, 1000);
-        int addDayOrigin = 4;
-        int addDayBound = 10;
-        int additionalDays = rand.nextInt(addDayOrigin, addDayBound);
-        for (LocalDate date = startDate; date.isBefore(endDate); date = date.plusDays(additionalDays)) {
-            switchTendency();
-            for (int i = 0; i < additionalDays; i++) {
-                double newValue = getCalculatedVal(oldValue, tendency);
-                values.put(date, newValue);
-                oldValue = newValue;
-                date.plusDays(2);
-            }
-            additionalDays = rand.nextInt(addDayOrigin, addDayBound);
+        for (LocalDate date = startDate; date.isBefore(endDate); date = date.plusDays(1)) {
+            double newValue = getNextValue(oldValue);
+            values.add(new StockEntry(date, newValue));
+            oldValue = newValue;
         }
         return values;
     }
 
-    private void switchTendency() {
-        tendency = Tendency.getRandTendency();
+    private static double getNextValue(double oldValue) {
+        return oldValue + (oldValue * rand.nextDouble(-0.05, 0.05));
     }
 
-
-    private double getCalculatedVal(double oldValue, Tendency tendency) {
-        double minVal;
-        double maxVal;
-        if (tendency == Tendency.UP) {
-            minVal = oldValue;
-            maxVal = oldValue + (oldValue * getRandomChangeRate());
-        } else {
-            minVal = oldValue - (oldValue * getRandomChangeRate());
-            maxVal = oldValue;
-        }
-        return rand.nextDouble(minVal, maxVal);
-    }
-
-    private double getRandomChangeRate() {
-        return rand.nextDouble(getChangeRateOrigin(), getChangeRateBound());
-    }
-
-    private double getChangeRateOrigin() {
-        return rand.nextDouble(0.00045, 0.005);
-    }
-
-    private double getChangeRateBound() {
-        return rand.nextDouble(0.005, 0.05);
-    }
-
-
-    private static void writetoCSV(HashMap<LocalDate, Double> values) {
+    private static void writetoCSV(ArrayList<StockEntry> values) {
         String filePath = System.getProperty("user.dir") + "/src/main/resources/assets/mocks/price_over_time.csv";
         try (FileWriter writer = new FileWriter(filePath)) {
             writer.append("date,price\n");
@@ -117,9 +104,11 @@ public class StockMarketController extends CustomController {
         }
     }
 
-    private static void writeValues(HashMap<LocalDate, Double> values, FileWriter writer) {
-        values.forEach((date, value) -> {
+    private static void writeValues(ArrayList<StockEntry> values, FileWriter writer) {
+        values.forEach((entry) -> {
             try {
+                LocalDate date = entry.date();
+                double value = entry.price();
                 writer.append(date.toString()).append(",").append(String.format("%.2f", value)).append("\n");
             } catch (IOException e) {
                 System.err.println("Error while writing to CSV file.");

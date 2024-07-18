@@ -28,6 +28,9 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+/**
+ * The type Profile controller.
+ */
 public class ProfileController extends CustomController {
     private static final String PROFILE_PICTURE_PATH = "C:/Users/fhaas/Documents/Ergon/JavaFx/Shares-inc.-Trading-App/src/main/resources/assets/images/profile_pictures/";
     private static final String IMG_TYPE = "png";
@@ -39,6 +42,14 @@ public class ProfileController extends CustomController {
     private final long userId;
     private final static int UUID_LEN = 10;
 
+    /**
+     * Instantiates a new Profile controller.
+     *
+     * @param stage          the stage
+     * @param pane           the pane
+     * @param eventListeners the event listeners
+     * @param user           the user
+     */
     public ProfileController(Stage stage, ProfilePane pane, EventListeners eventListeners, User user) {
         super(stage, eventListeners);
         this.userId = user.getId();
@@ -52,10 +63,18 @@ public class ProfileController extends CustomController {
     }
 
 
+    /**
+     * User user.
+     *
+     * @return the user
+     */
     public User user() {
         return userDao.get(userId);
     }
 
+    /**
+     * Handle enter pressed.
+     */
     public void handleEnterPressed() {
         pane.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
@@ -64,6 +83,9 @@ public class ProfileController extends CustomController {
         });
     }
 
+    /**
+     * Save input.
+     */
     public void saveInput() {
         User user = userDao.get(userId);
         user.setUsername(getVerifiedUsername());
@@ -112,6 +134,12 @@ public class ProfileController extends CustomController {
         return null;
     }
 
+    /**
+     * Save image boolean.
+     *
+     * @param file the file
+     * @return the boolean
+     */
     public boolean saveImage(File file) {
         byte[] fileArray = convertFileToByteArray(file);
         return saveImgToDatabase(fileArray);
@@ -180,6 +208,11 @@ public class ProfileController extends CustomController {
         return IntStream.range(0, UUID_LEN).mapToObj(i -> String.valueOf(uuidArray[i])).collect(Collectors.joining());
     }
 
+    /**
+     * Upload image boolean.
+     *
+     * @return the boolean
+     */
     public boolean uploadImage() {
         File file = getImageAsFile();
         if (file == null) {
@@ -211,11 +244,21 @@ public class ProfileController extends CustomController {
         return chooser.getSelectedFile();
     }
 
+    /**
+     * Delete image boolean.
+     *
+     * @return the boolean
+     */
     public boolean deleteImage() {
         Picture picture = pictureDao.getByUserId(userId);
         return pictureDao.delete(picture);
     }
 
+    /**
+     * Handle image upload.
+     *
+     * @param click the click
+     */
     public void handleImageUpload(MouseEvent click) {
         if (!isPrimaryButton(click)) {
             return;
@@ -227,6 +270,11 @@ public class ProfileController extends CustomController {
         System.out.println("Image could not be uploaded!");
     }
 
+    /**
+     * Handle image deletion.
+     *
+     * @param click the click
+     */
     public void handleImageDeletion(MouseEvent click) {
         if (!isPrimaryButton(click) | isImageNull()) {
             return;
@@ -242,6 +290,11 @@ public class ProfileController extends CustomController {
         return pane.getProfileImage().getImage() == null;
     }
 
+    /**
+     * Gets user profile.
+     *
+     * @return the user profile
+     */
     public Image getUserProfile() {
         byte[] blob = pictureDao.getByUserId(userId).getImg();
         if (blob != null) {
@@ -255,6 +308,11 @@ public class ProfileController extends CustomController {
         return new Image(input);
     }
 
+    /**
+     * Handle logout action.
+     *
+     * @param click the click
+     */
     public void handleLogoutAction(MouseEvent click) {
         if (!(click.getButton() == MouseButton.PRIMARY) | click.getClickCount() != 2) {
             return;

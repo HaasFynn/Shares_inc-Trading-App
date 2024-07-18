@@ -8,6 +8,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
+/**
+ * The type Side bar pane.
+ */
 public class SideBarPane extends CustomPane {
 
     private final EventListeners eventListeners;
@@ -17,6 +20,13 @@ public class SideBarPane extends CustomPane {
     private static final double SCENE_WIDTH = 60;
     private static final double SCENE_HEIGHT = 500;
 
+    /**
+     * Instantiates a new Side bar pane.
+     *
+     * @param stage          the stage
+     * @param eventListeners the event listeners
+     * @param user           the user
+     */
     public SideBarPane(Stage stage, EventListeners eventListeners, User user) {
         super(stage, eventListeners, user, eventListeners.getColorTheme());
         this.user = user;
@@ -28,13 +38,37 @@ public class SideBarPane extends CustomPane {
         build();
     }
 
+    /**
+     * The Body.
+     */
     VBox body;
+    /**
+     * The Header.
+     */
     VBox header;
+    /**
+     * The Footer.
+     */
     VBox footer;
+    /**
+     * The Home.
+     */
     VBox home;
+    /**
+     * The Portfolio.
+     */
     VBox portfolio;
+    /**
+     * The Trade.
+     */
     VBox trade;
+    /**
+     * The Account.
+     */
     VBox account;
+    /**
+     * The Settings.
+     */
     VBox settings;
 
     @Override

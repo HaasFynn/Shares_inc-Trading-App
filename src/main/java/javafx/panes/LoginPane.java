@@ -1,5 +1,6 @@
 package javafx.panes;
 
+import javafx.assets.ColorTheme;
 import javafx.assets.LanguagePack;
 import javafx.beans.binding.StringBinding;
 import javafx.collections.FXCollections;
@@ -14,12 +15,21 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import lombok.Getter;
 
+/**
+ * The type Login pane.
+ */
 @Getter
 public class LoginPane extends CustomPane {
     private final LoginController controller;
 
+    /**
+     * Instantiates a new Login pane.
+     *
+     * @param stage          the stage
+     * @param eventListeners the event listeners
+     */
     public LoginPane(Stage stage, EventListeners eventListeners) {
-        super(stage, eventListeners, null, eventListeners.getColorTheme());
+        super(stage, eventListeners, null, ColorTheme.DARK);
         this.controller = new LoginController(stage, this, eventListeners);
         styleClasses = new String[]{
                 "login.css"
@@ -239,6 +249,12 @@ public class LoginPane extends CustomPane {
         controller.handleOnEnter();
     }
 
+    /**
+     * Gets price.
+     *
+     * @param key the key
+     * @return the price
+     */
     public StringBinding getValue(String key) {
         return LanguagePack.createStringBinding(key);
     }

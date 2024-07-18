@@ -17,6 +17,12 @@ public interface PictureDao {
      */
     Picture get(int id);
 
+    /**
+     * Gets by user id.
+     *
+     * @param userId the user id
+     * @return the by user id
+     */
     Picture getByUserId(long userId);
 
     /**
@@ -50,5 +56,11 @@ public interface PictureDao {
      */
     boolean delete(Picture picture);
 
+    /**
+     * Gets by name.
+     *
+     * @param name the name
+     * @return the by name
+     */
     Picture getByName(String name);
 }

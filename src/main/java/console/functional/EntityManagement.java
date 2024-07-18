@@ -6,10 +6,18 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
+/**
+ * The type Entity management.
+ */
 public class EntityManagement {
 
     private static EntityManagerFactory entityManagerFactory = null;
 
+    /**
+     * Create entity manager factory entity manager factory.
+     *
+     * @return the entity manager factory
+     */
     public static EntityManagerFactory createEntityManagerFactory() {
         if (entityManagerFactory != null) {
             return entityManagerFactory;

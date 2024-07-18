@@ -19,16 +19,29 @@ import lombok.Getter;
 import java.util.Random;
 import java.util.stream.IntStream;
 
+/**
+ * The type Dashboard pane.
+ */
 @Getter
 public class DashboardPane extends CustomPane {
 
     private static final double STAGE_WIDTH = 815;
     private static final double STAGE_HEIGHT = 500;
     private static final String MONEY_ENDING_SYMBOL = ".-";
+    /**
+     * The constant SHARE_BOX_AMOUNT.
+     */
     public static final int SHARE_BOX_AMOUNT = 4;
     private final DashboardController controller;
     private final Random rand = new Random();
 
+    /**
+     * Instantiates a new Dashboard pane.
+     *
+     * @param stage          the stage
+     * @param eventListeners the event listeners
+     * @param user           the user
+     */
     public DashboardPane(Stage stage, EventListeners eventListeners, User user) {
         super(stage, eventListeners, user, eventListeners.getColorTheme());
         this.controller = new DashboardController(stage, this, eventListeners, user);

@@ -8,9 +8,17 @@ import jakarta.persistence.NoResultException;
 
 import java.util.List;
 
+/**
+ * The type Share dao.
+ */
 public class ShareDaoImpl implements ShareDao {
     private final EntityManager entityManager;
 
+    /**
+     * Instantiates a new Share dao.
+     *
+     * @param entityManager the entity manager
+     */
     public ShareDaoImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
     }

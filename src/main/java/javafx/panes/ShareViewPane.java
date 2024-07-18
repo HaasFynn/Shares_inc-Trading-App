@@ -16,6 +16,9 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import lombok.Getter;
 
+/**
+ * The type Share view pane.
+ */
 @Getter
 public class ShareViewPane extends CustomPane {
 
@@ -27,6 +30,14 @@ public class ShareViewPane extends CustomPane {
     private static final int SPINNER_START_VALUE = 1;
     private static final int SPINNER_STEP_SIZE = 1;
 
+    /**
+     * Instantiates a new Share view pane.
+     *
+     * @param stage          the stage
+     * @param eventListeners the event listeners
+     * @param user           the user
+     * @param share          the share
+     */
     public ShareViewPane(Stage stage, EventListeners eventListeners, User user, Share share) {
         super(stage, eventListeners, user, eventListeners.getColorTheme());
         this.user = user;
@@ -125,7 +136,7 @@ public class ShareViewPane extends CustomPane {
     private void createValueInformationBox() {
         createInformationBox();
         createDescriptionBox();
-        this.valueBox = buildVBox(new String[]{"value-box"}, informationBox, descriptionBox);
+        this.valueBox = buildVBox(new String[]{"price-box"}, informationBox, descriptionBox);
     }
 
     private void createInformationBox() {

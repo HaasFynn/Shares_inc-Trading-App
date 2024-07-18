@@ -4,22 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea488597-f4e2-49aa-b467-1e44621e87b4" name="Changes" comment="feature/header-node: implement Header.java">
+    <list default="true" id="ea488597-f4e2-49aa-b467-1e44621e87b4" name="Changes" comment="final commit&#10;- minor styling changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/panes/SettingsPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/panes/SettingsPane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/panes/ShareViewPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/panes/ShareViewPane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/panes/StockMarketPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/panes/StockMarketPane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/mocks/price_over_time.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/mocks/price_over_time.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/locale/language_de.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/locale/language_de.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/style/dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/style/dashboard.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/style/header.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/style/header.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/style/input-section.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/style/input-section.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/style/news_box.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/style/news_box.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/style/profile.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/style/profile.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/style/share-view.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/style/share-view.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/style/sidebar.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/style/sidebar.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/style/stock-market.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/style/stock-market.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/style/trade.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/style/trade.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/controllers/CustomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/controllers/CustomController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/controllers/DashboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/controllers/DashboardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/controllers/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/controllers/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/controllers/ProfileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/controllers/SettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/controllers/SettingsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/controllers/ShareCreatorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/controllers/ShareCreatorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/controllers/ShareViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/controllers/ShareViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/controllers/StockMarketController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/controllers/StockMarketController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/controllers/TradeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/controllers/TradeController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -405,6 +400,8 @@
       <workItem from="1721195920134" duration="14855000" />
       <workItem from="1721222814526" duration="2446000" />
       <workItem from="1721282484974" duration="3335000" />
+      <workItem from="1721287471358" duration="4741000" />
+      <workItem from="1721293332390" duration="830000" />
     </task>
     <task id="LOCAL-00001" summary="Created Files and Set Properties&#10;setUp Function made&#10;Annotations added">
       <option name="closed" value="true" />
@@ -702,7 +699,15 @@
       <option name="project" value="LOCAL" />
       <updated>1721224662957</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="final commit&#10;- minor styling changes">
+      <option name="closed" value="true" />
+      <created>1721287688151</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1721287688151</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -740,7 +745,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="created and refactored sidebar" />
     <MESSAGE value="add black icons" />
     <MESSAGE value="Pane-Field-Approach-1: create DashboardPane.java and SideBarPane.java" />
     <MESSAGE value="css-integration: initial commit" />
@@ -765,7 +769,8 @@
     <MESSAGE value="improvement/logout-button: add logout button" />
     <MESSAGE value="feature/settings-pane: create pane, controller. Language change and account deletion work -&gt; Appearance change needs to be done" />
     <MESSAGE value="feature/header-node: implement Header.java" />
-    <option name="LAST_COMMIT_MESSAGE" value="feature/header-node: implement Header.java" />
+    <MESSAGE value="final commit&#10;- minor styling changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="final commit&#10;- minor styling changes" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>

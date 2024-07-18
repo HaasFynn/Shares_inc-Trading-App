@@ -7,9 +7,19 @@ Building System Gradle and Hibernate for my Database connection.
 
 The branching/commiting may be a bit wrong. Reason for that is that i had problems with certain changes and manual rebasing. This Issues occures mostly while visualizing my project with javaFX**.
 
-## **Current:**
+## **Currently:**
 Visualization with JavaFX
 
 
-## To start
-Add following JVM Options: --module-path "your Path" --add-modules javafx.controls,javafx.fxml
+## Test-User Credentials
+
+### Username
+    John_Doe
+### Firstname
+    John
+### Lastname
+    Doe
+### E-Mail
+    john.doe@gmail.com
+### Password
+    SecurePassword1234!

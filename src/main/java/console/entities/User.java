@@ -13,6 +13,9 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "users")
 public class User {
+    /**
+     * The Id.
+     */
     @Column(name = "id")
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -46,6 +49,9 @@ public class User {
     @Setter
     private LocalDateTime date;
 
+    /**
+     * Instantiates a new User.
+     */
     public User() {
         this.accountBalance = 1000.0;
         this.date = LocalDateTime.now();

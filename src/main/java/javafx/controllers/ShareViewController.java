@@ -14,6 +14,9 @@ import javafx.stage.Stage;
 
 import java.util.function.UnaryOperator;
 
+/**
+ * The type Share view controller.
+ */
 public class ShareViewController extends CustomController {
 
     private final ShareViewPane pane;
@@ -23,6 +26,15 @@ public class ShareViewController extends CustomController {
     private final User user;
     private final Share share;
 
+    /**
+     * Instantiates a new Share view controller.
+     *
+     * @param stage          the stage
+     * @param pane           the pane
+     * @param eventListeners the event listeners
+     * @param share          the share
+     * @param user           the user
+     */
     public ShareViewController(Stage stage, ShareViewPane pane, EventListeners eventListeners, Share share, User user) {
         super(stage, eventListeners);
         this.pane = pane;
@@ -35,14 +47,29 @@ public class ShareViewController extends CustomController {
         this.user = user;
     }
 
+    /**
+     * Share share.
+     *
+     * @return the share
+     */
     public Share share() {
         return shareDao.get(share.getId());
     }
 
+    /**
+     * User user.
+     *
+     * @return the user
+     */
     public User user() {
         return userDao.get(user.getId());
     }
 
+    /**
+     * Add integer filter.
+     *
+     * @param spinner the spinner
+     */
     public void addIntegerFilter(Spinner<Integer> spinner) {
         addFilter(spinner);
         addSpinnerListener(spinner);
@@ -68,12 +95,15 @@ public class ShareViewController extends CustomController {
                     int value = Integer.parseInt(newValue);
                     spinner.getValueFactory().setValue(value);
                 } catch (NumberFormatException e) {
-                    spinner.getEditor().setText(oldValue); // Reset to old value if not valid
+                    spinner.getEditor().setText(oldValue); // Reset to old price if not valid
                 }
             }
         });
     }
 
+    /**
+     * Buy.
+     */
     public void buy() {
         if (share() == null) {
             System.out.println("No Such Share"); //TODO: Change to StatusText
@@ -117,6 +147,9 @@ public class ShareViewController extends CustomController {
         user().setAccountBalance(user().getAccountBalance() - share().getPricePerShare());
     }
 
+    /**
+     * Sell.
+     */
     public void sell() {
         if (share() == null) {
             System.out.println("No Such Share");//TODO: Change to StatusText

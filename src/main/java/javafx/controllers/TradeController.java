@@ -23,6 +23,9 @@ import lombok.Getter;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * The type Trade controller.
+ */
 public class TradeController extends CustomController {
 
     private final TradePane pane;
@@ -34,6 +37,14 @@ public class TradeController extends CustomController {
     private final TagDaoImpl tagDao;
     private String username;
 
+    /**
+     * Instantiates a new Trade controller.
+     *
+     * @param stage         the stage
+     * @param pane          the pane
+     * @param eventListener the event listener
+     * @param user          the user
+     */
     public TradeController(Stage stage, TradePane pane, EventListeners eventListener, User user) {
         super(stage, eventListener);
         this.pane = pane;
@@ -45,6 +56,12 @@ public class TradeController extends CustomController {
         this.tagDao = new TagDaoImpl(entityManager);
     }
 
+    /**
+     * Gets shares by prompt.
+     *
+     * @param prompt the prompt
+     * @return the shares by prompt
+     */
     public ObservableList<ShareInfoBox> getSharesByPrompt(String prompt) {
         return getShareInfoBoxes(shareDao.getByNamePrompt(prompt).toArray(new Share[0]));
     }
@@ -54,20 +71,43 @@ public class TradeController extends CustomController {
         return FXCollections.observableArrayList(box);
     }
 
+    /**
+     * Gets user.
+     *
+     * @return the user
+     */
     public User getUser() {
         return userDao.getByUsername(username);
     }
 
+    /**
+     * Gets share.
+     *
+     * @param name the name
+     * @return the share
+     */
     public Share getShare(String name) {
         return shareDao.getByName(name);
     }
 
+    /**
+     * Get shares share [ ].
+     *
+     * @param amountOfShares the amount of shares
+     * @return the share [ ]
+     */
     public Share[] getShares(int amountOfShares) {
         Share[] shares = shareDao.getAll().toArray(new Share[0]);
         amountOfShares = Math.min(amountOfShares, shares.length);
         return Arrays.copyOfRange(shares, 0, amountOfShares);
     }
 
+    /**
+     * Gets share info boxes.
+     *
+     * @param shares the shares
+     * @return the share info boxes
+     */
     public ObservableList<ShareInfoBox> getShareInfoBoxes(Share[] shares) {
         ArrayList<ShareInfoBox> infoBoxes = new ArrayList<>();
         if (shares.length == 0) {
@@ -82,6 +122,11 @@ public class TradeController extends CustomController {
         return FXCollections.observableArrayList(infoBoxes);
     }
 
+    /**
+     * Handle search view element selection.
+     *
+     * @param searchTableView the search table view
+     */
     public void handleSearchViewElementSelection(TableView<ShareInfoBox> searchTableView) {
         searchTableView.setOnMouseClicked(event -> {
             if (event.getClickCount() != 2) {
@@ -97,10 +142,20 @@ public class TradeController extends CustomController {
         });
     }
 
+    /**
+     * Gets filter tags.
+     *
+     * @return the filter tags
+     */
     public ArrayList<Tag> getFilterTags() {
         return new ArrayList<>(tagDao.getAll());
     }
 
+    /**
+     * Handle text field on prompt change.
+     *
+     * @param inputField the input field
+     */
     public void handleTextFieldOnPromptChange(TextField inputField) {
         inputField.setOnKeyPressed(event -> {
             pane.getSearchTableView().setDisable(false);
@@ -108,10 +163,21 @@ public class TradeController extends CustomController {
         });
     }
 
+    /**
+     * Gets filter tag by name.
+     *
+     * @param name the name
+     * @return the filter tag by name
+     */
     public Tag getFilterTagByName(String name) {
         return tagDao.getByName(name);
     }
 
+    /**
+     * Handle check box selection change.
+     *
+     * @param box the box
+     */
     public void handleCheckBoxSelectionChange(CheckBox box) {
         box.selectedProperty().addListener(event -> {
             if (box.isSelected()) {
