@@ -23,3 +23,8 @@ Visualization with JavaFX
     john.doe@gmail.com
 ### Password
     SecurePassword1234!
+
+## Database
+To use the database you can import the __*/database/shares.sql*__ into your MySQl-Server.
+After that you need to configure the hibernate credentials in the src/main/resources/hibernate.properties file
+

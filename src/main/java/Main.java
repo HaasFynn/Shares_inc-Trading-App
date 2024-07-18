@@ -1,5 +1,3 @@
-package javafx;
-
 import console.dao.*;
 import console.functional.EntityManagement;
 import console.functional.InputHandler;
@@ -25,6 +23,10 @@ public class Main extends Application {
     public void start(Stage stage) {
         Main.stage = stage;
         openChooser();
+    }
+
+    public static void main(String[] args) {
+
     }
 
     private void openChooser() {
