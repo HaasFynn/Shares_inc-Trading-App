@@ -1,9 +1,9 @@
 .news-surround-box {
     -fx-background-color: #343434;
-    -fx-background-radius: 5px;
-    -fx-padding: 5px;
-    -fx-max-width: 300px;
-    -fx-max-height: 150px;
+    -fx-background-radius: 5;
+    -fx-padding: 5;
+    -fx-max-width: 300;
+    -fx-max-height: 150;
 }
 
 .news-surround-box:hover {

@@ -1,13 +1,14 @@
 .section {
-    -fx-spacing: 7px;
+    -fx-spacing: 7;
 }
 
 .input-field {
-    -fx-min-width: 200px;
+    -fx-min-width: 200;
+    -fx-max-width: 200;
 }
 
 .input-label {
-    -fx-font-size: 12px;
+    -fx-font-size: 12;
 }
 
 .label {

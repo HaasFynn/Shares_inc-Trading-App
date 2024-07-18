@@ -1,43 +1,45 @@
 .page {
-    -fx-padding: 12px;
+    -fx-padding: 12;
+    -fx-spacing: 10;
 }
 
 .body {
-    -fx-spacing: 10px;
+    -fx-spacing: 10;
 }
 
 .password-field {
-    -fx-min-width: 200px;
+    -fx-min-width: 200;
+    -fx-max-width: 200;
 }
 
 .password-label {
-    -fx-font-size: 12px;
+    -fx-font-size: 12;
 }
 
 .save-button {
-    -fx-min-width: 75px;
-    -fx-pref-width: 75px;
-    -fx-max-width: 75px;
+    -fx-min-width: 75;
+    -fx-pref-width: 75;
+    -fx-max-width: 75;
 }
 
 .password-box {
-    -fx-spacing: 7px;
+    -fx-spacing: 7;
 }
 
 .heading-box {
-    -fx-spacing: 7px;
+    -fx-spacing: 20;
 }
 
 .profile-box {
-    -fx-spacing: 5px;
+    -fx-spacing: 5;
 }
 
 .profile-image {
-    -fx-padding: 10px;
+    -fx-padding: 10;
 }
 
 .image-edit-box {
-    -fx-spacing: 5px;
+    -fx-spacing: 5;
 }
 
 .image-element-box {
@@ -50,5 +52,5 @@
 
 
 .button-box {
-    -fx-spacing: 5px;
+    -fx-spacing: 5;
 }

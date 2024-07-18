@@ -30,7 +30,8 @@ public class SettingsPane extends CustomPane {
         super(stage, eventListeners, user, eventListeners.getColorTheme());
         this.controller = new SettingsController(stage, this, eventListeners, user);
         styleClasses = new String[]{
-            "settings.css"
+                "settings.css",
+                "header.css"
         };
         build();
     }

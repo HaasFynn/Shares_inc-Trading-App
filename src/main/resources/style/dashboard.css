@@ -1,14 +1,14 @@
 .page {
-    -fx-spacing: 45px;
-    -fx-padding: 15px;
+    -fx-spacing: 45;
+    -fx-padding: 15;
 }
 
 .upper-page {
-    -fx-spacing: 30px;
+    -fx-spacing: 30;
 }
 
 .header {
-    -fx-spacing: 8px;
+    -fx-spacing: 8;
 }
 
 .title {
@@ -22,22 +22,22 @@
 }
 
 .body {
-    -fx-spacing: 140px;
+    -fx-spacing: 140;
 }
 
 .surround-box {
     -fx-background-color: #343434;
-    -fx-background-radius: 5px;
-    -fx-padding: 5px;
-    -fx-max-width: 300px;
-    -fx-max-height: 150px;
+    -fx-background-radius: 5;
+    -fx-padding: 5;
+    -fx-max-width: 300;
+    -fx-max-height: 150;
 }
 
 .money-box {
-    -fx-min-width: 340px;
-    -fx-pref-height: 150px;
-    -fx-padding: 10px;
-    -fx-spacing: 8px;
+    -fx-min-width: 340;
+    -fx-pref-height: 150;
+    -fx-padding: 10;
+    -fx-spacing: 8;
 }
 
 .label {
@@ -47,9 +47,9 @@
 }
 
 .stock-market-box {
-    -fx-padding: 10px;
-    -fx-spacing: 8px;
-    -fx-min-width: 340px;
+    -fx-padding: 10;
+    -fx-spacing: 8;
+    -fx-min-width: 340;
 }
 
 .money-text {
@@ -59,13 +59,13 @@
 }
 
 .news-box {
-    -fx-min-width: 830px;
-    -fx-max-width: 830px;
-    -fx-min-height: 75px;
-    -fx-spacing: 8px;
-    -fx-padding: 5px;
+    -fx-min-width: 830;
+    -fx-max-width: 830;
+    -fx-min-height: 75;
+    -fx-spacing: 8;
+    -fx-padding: 5;
 }
 
 .stock-list {
-    -fx-border-radius: 5px;
+    -fx-border-radius: 5;
 }

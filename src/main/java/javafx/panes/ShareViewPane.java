@@ -16,7 +16,6 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import lombok.Getter;
 
-
 @Getter
 public class ShareViewPane extends CustomPane {
 
@@ -34,8 +33,8 @@ public class ShareViewPane extends CustomPane {
         this.share = share;
         this.controller = new ShareViewController(stage, this, eventListeners, share, user);
         styleClasses = new String[]{
-                "settings.css",
-                "share-view.css"
+                "share-view.css",
+                "header.css"
         };
         build();
     }
@@ -98,7 +97,7 @@ public class ShareViewPane extends CustomPane {
 
     private Label buildTitle() {
         Label label = new Label(controller.share().getName());
-        label.getStyleClass().add("title");
+        label.getStyleClass().addAll("title");
         return label;
     }
 
@@ -107,12 +106,13 @@ public class ShareViewPane extends CustomPane {
         line.setStartX(0);
         line.setStartY(0);
         line.endXProperty().bind(getStage().widthProperty());
+        line.getStyleClass().add("line");
         return line;
     }
 
     private VBox buildHeader(Label title, Line headerLine) {
         VBox box = new VBox(title, headerLine);
-        box.getStyleClass().addAll("h1");
+        box.getStyleClass().addAll("h1", "title");
         return box;
     }
 

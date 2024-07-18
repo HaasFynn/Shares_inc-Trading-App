@@ -1,10 +1,10 @@
 .page {
-    -fx-spacing: 45px;
-    -fx-padding: 15px;
+    -fx-spacing: 45;
+    -fx-padding: 15;
 }
 
 .header {
-    -fx-spacing: 8px;
+    -fx-spacing: 8;
 }
 
 .title {
@@ -16,18 +16,18 @@
     -fx-font-size: 13pt;
     -fx-font-weight: bold;
     -fx-text-fill: #faf9f9;
-    -fx-padding: 5px;
+    -fx-padding: 5;
 }
 
 .body {
-    -fx-spacing: 20px;
+    -fx-spacing: 20;
 }
 
 .surround-box {
     -fx-background-color: #343434;
-    -fx-background-radius: 5px;
-    -fx-max-height: 250px;
-    -fx-padding: 5px;
+    -fx-background-radius: 5;
+    -fx-max-height: 250;
+    -fx-padding: 5;
     -fx-fit-to-height: true;
     -fx-fit-to-width: true;
 }
@@ -38,21 +38,21 @@
 }
 
 .share-search-box {
-    -fx-min-width: 500px;
-    -fx-min-height: 200px;
+    -fx-min-width: 500;
+    -fx-min-height: 200;
 }
 
 .input-field {
-    -fx-pref-width: 500px;
+    -fx-pref-width: 500;
 }
 
 .share-search-box-heading {
-    -fx-pref-height: 30px;
+    -fx-pref-height: 30;
 }
 
 .icon-box {
-    -fx-pref-width: 20px;
-    -fx-pref-height: 20px;
+    -fx-pref-width: 20;
+    -fx-pref-height: 20;
 }
 
 .filter-list {
@@ -63,14 +63,14 @@
 }
 
 .search-box {
-    -fx-spacing: 20px;
+    -fx-spacing: 20;
 }
 
 .news-box {
-    -fx-min-width: 780px;
-    -fx-max-width: 780px;
-    -fx-min-height: 75px;
-    -fx-spacing: 8px;
-    -fx-padding: 5px;
+    -fx-min-width: 780;
+    -fx-max-width: 780;
+    -fx-min-height: 75;
+    -fx-spacing: 8;
+    -fx-padding: 5;
 }
 

@@ -1,5 +1,6 @@
 .header {
     -fx-spacing: 10;
+    -fx-padding: 0 0 0 10;
 }
 
 .title {

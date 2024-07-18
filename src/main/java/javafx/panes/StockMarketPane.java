@@ -27,7 +27,8 @@ public class StockMarketPane extends CustomPane {
         super(stage, eventListeners, user, eventListeners.getColorTheme());
         this.controller = new StockMarketController(stage, this, eventListeners, share);
         styleClasses = new String[]{
-                "stock-market.css"
+                "stock-market.css",
+                "header.css"
         };
         build();
     }
