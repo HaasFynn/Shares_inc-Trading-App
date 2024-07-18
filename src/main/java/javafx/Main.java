@@ -15,9 +15,7 @@ import javafx.stage.Stage;
 import org.kordamp.bootstrapfx.BootstrapFX;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Scanner;
 
 public class Main extends Application {
 
@@ -89,8 +87,8 @@ public class Main extends Application {
         setIcon();
     }
 
-    private boolean setIcon() {
-        return stage.getIcons().add(new Image("assets/images/shares_inc._logo.png"));
+    private void setIcon() {
+        stage.getIcons().add(new Image("assets/images/shares_inc._logo.png"));
     }
 
     private void setTitle() {
