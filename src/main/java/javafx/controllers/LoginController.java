@@ -18,10 +18,23 @@ import javafx.stage.Stage;
 
 import java.util.Locale;
 
+/**
+ * The type Login controller.
+ */
 public class LoginController extends CustomController {
+    /**
+     * The Pane.
+     */
     public final LoginPane pane;
     private final UserDao userHandler;
 
+    /**
+     * Instantiates a new Login controller.
+     *
+     * @param stage          the stage
+     * @param pane           the pane
+     * @param eventListeners the event listeners
+     */
     public LoginController(Stage stage,LoginPane pane, EventListeners eventListeners) {
         super(stage, eventListeners);
         this.pane = pane;
@@ -29,6 +42,9 @@ public class LoginController extends CustomController {
         this.userHandler = new UserDaoImpl(entityManager);
     }
 
+    /**
+     * Handle login action.
+     */
     public void handleLoginAction() {
         String username = pane.getUsernameField().getText();
         String hashedPassword = Hash.getPasswordHashed(pane.getPasswordField().getText());
@@ -49,6 +65,9 @@ public class LoginController extends CustomController {
         return pane.getUsernameField().getText().isEmpty() || pane.getPasswordField().getText().isEmpty();
     }
 
+    /**
+     * Handle password reset button action.
+     */
     public void handlePasswordResetButtonAction() {
         String username = pane.getUsernameField().getText();
         String hashedPassword = Hash.getPasswordHashed(pane.getPasswordField().getText());
@@ -104,10 +123,16 @@ public class LoginController extends CustomController {
         return user.getPassword().equals(hashedPassword);
     }
 
+    /**
+     * Handle open reset box.
+     */
     public void handleOpenResetBox() {
         pane.getChangePasswordBox().setVisible(!pane.getChangePasswordBox().isVisible());
     }
 
+    /**
+     * Handle on enter.
+     */
     public void handleOnEnter() {
         pane.setOnKeyPressed((KeyEvent event) -> {
             if (event.getCode() == KeyCode.ENTER) {
@@ -121,6 +146,11 @@ public class LoginController extends CustomController {
         });
     }
 
+    /**
+     * Handle language change.
+     *
+     * @param newLanguage the new language
+     */
     public void handleLanguageChange(String newLanguage) {
         LanguagePack.setLocale(Locale.forLanguageTag(newLanguage));
     }

@@ -16,12 +16,22 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import lombok.Getter;
 
+/**
+ * The type Profile pane.
+ */
 @Getter
 public class ProfilePane extends CustomPane {
     private static final String STYLEPATH = "style/";
     private static final double IMG_MAX_HEIGHT = 100;
     private final ProfileController controller;
 
+    /**
+     * Instantiates a new Profile pane.
+     *
+     * @param stage          the stage
+     * @param eventListeners the event listeners
+     * @param user           the user
+     */
     public ProfilePane(Stage stage, EventListeners eventListeners, User user) {
         super(stage, eventListeners, user, eventListeners.getColorTheme());
         this.controller = new ProfileController(stage, this, eventListeners, user);

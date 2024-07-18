@@ -53,6 +53,13 @@ public class UserManager {
         return Objects.equals(user.getUsername(), "") || Objects.equals(user.getEmail(), "");
     }
 
+    /**
+     * Gets user with pass.
+     *
+     * @param username the username
+     * @param pass     the pass
+     * @return the user with pass
+     */
     public User getUserWithPass(String username, String pass) {
         try (Session session = sessionFactory.openSession()) {
             return session
@@ -64,6 +71,12 @@ public class UserManager {
         }
     }
 
+    /**
+     * Gets user by username.
+     *
+     * @param username the username
+     * @return the user by username
+     */
     public User getUserByUsername(String username) {
         try (Session session = sessionFactory.openSession()) {
             return session

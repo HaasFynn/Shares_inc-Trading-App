@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * The type Portfolio.
+ */
 @Entity
 @Getter
 @Table(name = "share_portfolio")
@@ -25,9 +28,19 @@ public class Portfolio {
     @Setter
     private int amount;
 
+    /**
+     * Instantiates a new Portfolio.
+     */
     public Portfolio() {
     }
 
+    /**
+     * Instantiates a new Portfolio.
+     *
+     * @param userId  the user id
+     * @param shareId the share id
+     * @param amount  the amount
+     */
     public Portfolio(long userId, long shareId, int amount) {
         this.userId = userId;
         this.shareId = shareId;

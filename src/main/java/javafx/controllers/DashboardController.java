@@ -25,6 +25,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Supplier;
 
+/**
+ * The type Dashboard controller.
+ */
 public class DashboardController extends CustomController {
 
     private final DashboardPane pane;
@@ -34,6 +37,14 @@ public class DashboardController extends CustomController {
     private final ShareDao shareDao;
     private final String username;
 
+    /**
+     * Instantiates a new Dashboard controller.
+     *
+     * @param stage          the stage
+     * @param pane           the pane
+     * @param eventListeners the event listeners
+     * @param user           the user
+     */
     public DashboardController(Stage stage, DashboardPane pane, EventListeners eventListeners, User user) {
         super(stage, eventListeners);
         this.pane = pane;
@@ -45,24 +56,52 @@ public class DashboardController extends CustomController {
         this.username = user.getUsername();
     }
 
+    /**
+     * Get top shares share [ ].
+     *
+     * @param amountOfShares the amount of shares
+     * @return the share [ ]
+     */
     public Share[] getTopShares(int amountOfShares) {
         Share[] shares = shareDao.getAll().toArray(new Share[0]);
         amountOfShares = Math.min(amountOfShares, shares.length);
         return Arrays.copyOfRange(shares, 0, amountOfShares);
     }
 
+    /**
+     * Gets user.
+     *
+     * @return the user
+     */
     public User getUser() {
         return userDao.getByUsername(username);
     }
 
+    /**
+     * Gets user portfolio.
+     *
+     * @param id the id
+     * @return the user portfolio
+     */
     public List<Portfolio> getUserPortfolio(long id) {
         return portfolioDao.getUserPortfolio(id);
     }
 
+    /**
+     * Get share.
+     *
+     * @param id the id
+     * @return the share
+     */
     public Share get(long id) {
         return shareDao.get(id);
     }
 
+    /**
+     * Gets stock list cell factory.
+     *
+     * @return the stock list cell factory
+     */
     public Callback<ListView<ShareInfoBox>, ListCell<ShareInfoBox>> getStockListCellFactory() {
         Callback<ListView<ShareInfoBox>, ListCell<ShareInfoBox>> cellFactory = new Callback<>() {
             @Override
@@ -99,6 +138,11 @@ public class DashboardController extends CustomController {
         return item;
     }
 
+    /**
+     * Handle search view element selection.
+     *
+     * @param searchTableView the search table view
+     */
     public void handleSearchViewElementSelection(ListView<ShareInfoBox> searchTableView) {
         searchTableView.setOnMouseClicked(event -> {
             if (event.getClickCount() != 2) {
@@ -114,6 +158,12 @@ public class DashboardController extends CustomController {
         });
     }
 
+    /**
+     * Create string binding string binding.
+     *
+     * @param supplier the supplier
+     * @return the string binding
+     */
     public StringBinding createStringBinding(Supplier<String> supplier) {
         return new StringBinding() {
             @Override
@@ -123,10 +173,20 @@ public class DashboardController extends CustomController {
         };
     }
 
+    /**
+     * User user.
+     *
+     * @return the user
+     */
     public User user() {
         return userDao.getByUsername(username);
     }
 
+    /**
+     * Gets acc balance.
+     *
+     * @return the acc balance
+     */
     public double getAccBalance() {
         double accountBalance = 0;
         if (user() != null) {
@@ -135,6 +195,11 @@ public class DashboardController extends CustomController {
         return accountBalance;
     }
 
+    /**
+     * Gets price of shares.
+     *
+     * @return the price of shares
+     */
     public double getValueOfShares() {
         List<Portfolio> entries = portfolioDao.getUserPortfolio(user().getId());
         double value = 0;
@@ -145,6 +210,12 @@ public class DashboardController extends CustomController {
         return value;
     }
 
+    /**
+     * Format number string.
+     *
+     * @param number the number
+     * @return the string
+     */
     public String formatNumber(double number) {
         DecimalFormatSymbols symbols = new DecimalFormatSymbols();
         symbols.setGroupingSeparator('\'');

@@ -17,6 +17,9 @@ import lombok.Getter;
 
 import java.util.Locale;
 
+/**
+ * The type Settings pane.
+ */
 @Getter
 public class SettingsPane extends CustomPane {
 
@@ -26,6 +29,13 @@ public class SettingsPane extends CustomPane {
             Locale.ENGLISH
     };
 
+    /**
+     * Instantiates a new Settings pane.
+     *
+     * @param stage          the stage
+     * @param eventListeners the event listeners
+     * @param user           the user
+     */
     public SettingsPane(Stage stage, EventListeners eventListeners, User user) {
         super(stage, eventListeners, user, eventListeners.getColorTheme());
         this.controller = new SettingsController(stage, this, eventListeners, user);

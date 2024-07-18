@@ -13,16 +13,29 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 
+/**
+ * The type Share creator controller.
+ */
 public class ShareCreatorController extends CustomController {
     private final ShareCreatorPane pane;
     private final ShareDao shareHandler;
 
+    /**
+     * Instantiates a new Share creator controller.
+     *
+     * @param stage          the stage
+     * @param pane           the pane
+     * @param eventListeners the event listeners
+     */
     public ShareCreatorController(Stage stage, ShareCreatorPane pane, EventListeners eventListeners) {
         super(stage, eventListeners);
         this.pane = pane;
         this.shareHandler = new ShareDaoImpl(EntityManagement.createEntityManagerFactory().createEntityManager());
     }
 
+    /**
+     * Handle on enter.
+     */
     public void handleOnEnter() {
         if (pane.getInputField().getText().isEmpty()) {
             setStatusText("share.creator.statusText.number.min", true, "text-danger");
@@ -59,6 +72,12 @@ public class ShareCreatorController extends CustomController {
     }
 
 
+    /**
+     * Handle input validation.
+     *
+     * @param oldValue the old price
+     * @param newValue the new price
+     */
     public void handleInputValidation(String oldValue, String newValue) {
         if (newValue.isEmpty()) return;
         try {
@@ -76,11 +95,20 @@ public class ShareCreatorController extends CustomController {
         pane.getInputField().setText(newValue.replaceAll("[^\\d]", ""));
     }
 
+    /**
+     * Handle pane change.
+     */
     public void handlePaneChange() {
         //remove Listeners etc. if needed
         //function is called by main panel
     }
 
+    /**
+     * Gets price by key.
+     *
+     * @param key the key
+     * @return the price by key
+     */
     StringBinding getValueByKey(String key) {
         return LanguagePack.createStringBinding(key);
     }

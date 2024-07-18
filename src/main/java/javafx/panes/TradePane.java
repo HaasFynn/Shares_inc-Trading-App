@@ -18,6 +18,9 @@ import lombok.Getter;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Trade pane.
+ */
 @Getter
 public class TradePane extends CustomPane {
 
@@ -28,6 +31,13 @@ public class TradePane extends CustomPane {
     private static final int START_AMOUNT_OF_SHARES = 25;
     private String username;
 
+    /**
+     * Instantiates a new Trade pane.
+     *
+     * @param stage          the stage
+     * @param eventListeners the event listeners
+     * @param user           the user
+     */
     public TradePane(Stage stage, EventListeners eventListeners, User user) {
         super(stage, eventListeners, user, eventListeners.getColorTheme());
         this.eventListeners = eventListeners;

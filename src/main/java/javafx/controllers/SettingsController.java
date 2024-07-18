@@ -17,12 +17,23 @@ import javafx.stage.Stage;
 
 import java.util.Locale;
 
+/**
+ * The type Settings controller.
+ */
 public class SettingsController extends CustomController {
 
     private final SettingsPane pane;
     private final long userId;
     private final UserDao userDao;
 
+    /**
+     * Instantiates a new Settings controller.
+     *
+     * @param stage          the stage
+     * @param pane           the pane
+     * @param eventListeners the event listeners
+     * @param user           the user
+     */
     public SettingsController(Stage stage, SettingsPane pane, EventListeners eventListeners, User user) {
         super(stage, eventListeners);
         this.userId = user.getId();
@@ -32,10 +43,20 @@ public class SettingsController extends CustomController {
     }
 
 
+    /**
+     * Handle language change.
+     *
+     * @param language the language
+     */
     public void handleLanguageChange(String language) {
         LanguagePack.setLocale(Locale.forLanguageTag(language));
     }
 
+    /**
+     * Handle account deletion.
+     *
+     * @param click the click
+     */
     public void handleAccountDeletion(MouseEvent click) {
         if (!(click.getButton() == MouseButton.PRIMARY) | click.getClickCount() != 2) {
             return;
@@ -47,6 +68,12 @@ public class SettingsController extends CustomController {
         stage.getScene().setRoot(new LoginPane(stage, eventListeners));
     }
 
+    /**
+     * Handle theme change.
+     *
+     * @param button the button
+     * @param color  the color
+     */
     public void handleThemeChange(RadioButton button, ColorTheme color) {
         if (button.isSelected()) {
             pane.setColorTheme(color);
@@ -54,6 +81,11 @@ public class SettingsController extends CustomController {
         System.out.println("Theme switched to: " + color);
     }
 
+    /**
+     * Handle account insurance.
+     *
+     * @param click the click
+     */
     public void handleAccountInsurance(MouseEvent click) {
         if (!isPrimaryButton(click) || click.getClickCount() != 2) {
             return;

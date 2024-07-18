@@ -8,9 +8,17 @@ import jakarta.persistence.NoResultException;
 
 import java.util.List;
 
+/**
+ * The type Portfolio dao.
+ */
 public class PortfolioDaoImpl implements PortfolioDao {
     private final EntityManager entityManager;
 
+    /**
+     * Instantiates a new Portfolio dao.
+     *
+     * @param entityManager the entity manager
+     */
     public PortfolioDaoImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
     }

@@ -14,6 +14,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Input handler.
+ */
 public class InputHandler {
     @PersistenceContext
     private UserDao userDao;
@@ -21,17 +24,29 @@ public class InputHandler {
     private PortfolioDao portfolioDao;
     private User loggedInUser;
 
+    /**
+     * The In.
+     */
     Reader in = new Reader();
 
 
+    /**
+     * Instantiates a new Input handler.
+     *
+     * @param userDao      the user dao
+     * @param shareDao     the share dao
+     * @param portfolioDao the portfolio dao
+     */
     public InputHandler(UserDao userDao, ShareDao shareDao, PortfolioDao portfolioDao) {
         this.userDao = userDao;
         this.shareDao = shareDao;
         this.portfolioDao = portfolioDao;
     }
 
+    /**
+     * Start.
+     */
     public void start() {
-        while (true) {
             switch (in.getIntAnswer("""
                     [1] User management
                     [2] Share actions
@@ -40,9 +55,11 @@ public class InputHandler {
                 case 1 -> userStart();
                 case 2 -> shareStart();
                 case 3 -> trade();
-                default -> System.out.println("Wrong Input!");
+                default -> {
+                    System.err.println("Wrong Input!");
+                    start();
+                }
             }
-        }
     }
 
     private void trade() {
@@ -295,6 +312,9 @@ public class InputHandler {
         return oldPass.equals(loggedInUser.getPassword());
     }
 
+    /**
+     * Login.
+     */
     public void login() {
         //TODO: Implement Hashing
         String username = in.getStringAnswer("Username:");

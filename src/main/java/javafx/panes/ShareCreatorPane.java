@@ -14,10 +14,19 @@ import javafx.controllers.ShareCreatorController;
 import javafx.stage.Stage;
 import lombok.Getter;
 
+/**
+ * The type Share creator pane.
+ */
 @Getter
 public class ShareCreatorPane extends CustomPane {
     private final ShareCreatorController controller;
+    /**
+     * The constant STAGE_WIDTH.
+     */
     public static final double STAGE_WIDTH = 815;
+    /**
+     * The constant STAGE_HEIGHT.
+     */
     public static final double STAGE_HEIGHT = 500;
     private static final double TEXTFIELD_MIN_WIDTH = 320;
     private static final double TEXTFIELD_MIN_HEIGHT = 23;
@@ -25,6 +34,13 @@ public class ShareCreatorPane extends CustomPane {
     private static final double BUTTON_HEIGHT = 23;
     private static final double STANDARD_PADDING = 20;
 
+    /**
+     * Instantiates a new Share creator pane.
+     *
+     * @param stage          the stage
+     * @param eventListeners the event listeners
+     * @param user           the user
+     */
     public ShareCreatorPane(Stage stage, EventListeners eventListeners, User user) {
         super(stage, eventListeners, user, eventListeners.getColorTheme());
         this.controller = new ShareCreatorController(stage, this, eventListeners);
