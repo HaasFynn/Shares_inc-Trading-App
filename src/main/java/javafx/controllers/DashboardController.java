@@ -6,7 +6,7 @@ import console.entities.Share;
 import console.entities.User;
 import console.functional.EntityManagement;
 import jakarta.persistence.EntityManager;
-import javafx.assets.ShareInfoBox;
+import javafx.custom_nodes.ShareInfoBox;
 import javafx.beans.binding.StringBinding;
 import javafx.eventlisteners.EventListeners;
 import javafx.panes.DashboardPane;

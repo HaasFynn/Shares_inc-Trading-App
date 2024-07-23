@@ -38,7 +38,7 @@ public class LanguagePack {
     }
 
     public static Locale getLocale() {
-        return locale.get();
+        return Locale.GERMAN;
     }
 
     public static List<Locale> getSupportedLocales() {

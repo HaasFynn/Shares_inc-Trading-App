@@ -49,3 +49,21 @@ tasks.withType(JavaCompile).configureEach {
     options.compilerArgs += ['-Xlint:none']
 }
 
+tasks.withType(jar.class).configureEach {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+mainClassName = 'SharesInc'
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'Launcher'
+        )
+    }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+    destinationDirectory.set(file("C:/Users/fhaas/Documents/project_jars"))
+}
+

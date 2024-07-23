@@ -8,7 +8,7 @@ import console.entities.Tag;
 import console.entities.User;
 import console.functional.EntityManagement;
 import jakarta.persistence.EntityManager;
-import javafx.assets.ShareInfoBox;
+import javafx.custom_nodes.ShareInfoBox;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.eventlisteners.EventListeners;

@@ -15,18 +15,18 @@ import org.kordamp.bootstrapfx.BootstrapFX;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-public class Main extends Application {
+public class SharesInc extends Application {
 
     private static Stage stage;
 
-    @Override
-    public void start(Stage stage) {
-        Main.stage = stage;
-        openChooser();
+    public static void main(String[] args) {
+        launch(args);
     }
 
-    public static void main(String[] args) {
-
+    @Override
+    public void start(Stage stage) {
+        SharesInc.stage = stage;
+        openChooser();
     }
 
     private void openChooser() {

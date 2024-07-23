@@ -10,6 +10,7 @@ import javafx.assets.LanguagePack;
 import javafx.eventlisteners.EventListeners;
 import javafx.panes.LoginPane;
 import javafx.panes.SettingsPane;
+import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -25,6 +26,8 @@ public class SettingsController extends CustomController {
     private final SettingsPane pane;
     private final long userId;
     private final UserDao userDao;
+    private static boolean accDelState = false;
+
 
     /**
      * Instantiates a new Settings controller.
@@ -61,7 +64,17 @@ public class SettingsController extends CustomController {
         if (!(click.getButton() == MouseButton.PRIMARY) | click.getClickCount() != 2) {
             return;
         }
-        pane.getInsuranceButton().setVisible(true);
+        if (accDelState) {
+            deleteAccount();
+            accDelState = false;
+            return;
+        }
+        handleAccDel();
+    }
+
+    private void handleAccDel() {
+        Button button = pane.getDeleteAccDelButton();
+        pane.bind(button.textProperty(), "settings.button.ensure_acc_del");
     }
 
     private void openLoginPane() {
@@ -79,18 +92,6 @@ public class SettingsController extends CustomController {
             pane.setColorTheme(color);
         }
         System.out.println("Theme switched to: " + color);
-    }
-
-    /**
-     * Handle account insurance.
-     *
-     * @param click the click
-     */
-    public void handleAccountInsurance(MouseEvent click) {
-        if (!isPrimaryButton(click) || click.getClickCount() != 2) {
-            return;
-        }
-        deleteAccount();
     }
 
     private void deleteAccount() {

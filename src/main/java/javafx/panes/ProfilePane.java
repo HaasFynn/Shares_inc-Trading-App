@@ -1,8 +1,8 @@
 package javafx.panes;
 
 import console.entities.User;
-import javafx.assets.Header;
-import javafx.assets.InputSection;
+import javafx.custom_nodes.Header;
+import javafx.custom_nodes.InputSection;
 import javafx.controllers.ProfileController;
 import javafx.eventlisteners.EventListeners;
 import javafx.scene.Node;

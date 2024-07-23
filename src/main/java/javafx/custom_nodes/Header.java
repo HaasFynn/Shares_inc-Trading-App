@@ -1,5 +1,6 @@
-package javafx.assets;
+package javafx.custom_nodes;
 
+import javafx.assets.LanguagePack;
 import javafx.beans.property.StringProperty;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;

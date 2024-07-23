@@ -2,8 +2,8 @@ package javafx.panes;
 
 import console.entities.Share;
 import console.entities.User;
-import javafx.assets.NewsBox;
-import javafx.assets.ShareInfoBox;
+import javafx.custom_nodes.NewsBox;
+import javafx.custom_nodes.ShareInfoBox;
 import javafx.beans.binding.StringBinding;
 import javafx.controllers.DashboardController;
 import javafx.eventlisteners.EventListeners;

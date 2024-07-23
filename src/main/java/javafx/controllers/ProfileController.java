@@ -10,6 +10,7 @@ import javafx.assets.Hash;
 import javafx.eventlisteners.EventListeners;
 import javafx.panes.LoginPane;
 import javafx.panes.ProfilePane;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
@@ -41,6 +42,7 @@ public class ProfileController extends CustomController {
     private final PictureDao pictureDao;
     private final long userId;
     private final static int UUID_LEN = 10;
+    private static boolean logoutState = false;
 
     /**
      * Instantiates a new Profile controller.
@@ -317,6 +319,21 @@ public class ProfileController extends CustomController {
         if (!(click.getButton() == MouseButton.PRIMARY) | click.getClickCount() != 2) {
             return;
         }
+        if (logoutState) {
+            logout();
+            logoutState = false;
+            return;
+        }
+        validateLogout();
+    }
+
+    private void logout() {
         stage.getScene().setRoot(new LoginPane(stage, eventListeners));
+    }
+
+    private void validateLogout() {
+        Button button = pane.getLogoutButton();
+        pane.bind(button.textProperty(), "profile.button.validate_logout");
+        logoutState = true;
     }
 }

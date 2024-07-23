@@ -2,7 +2,7 @@ package javafx.panes;
 
 import console.entities.User;
 import javafx.assets.ColorTheme;
-import javafx.assets.Header;
+import javafx.custom_nodes.Header;
 import javafx.assets.LanguagePack;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -62,8 +62,7 @@ public class SettingsPane extends CustomPane {
     private RadioButton darkModeBox;
 
     private HBox buttonBox;
-    private Button deleteAccountButton;
-    private Button insuranceButton;
+    private Button deleteAccDelButton;
 
     @Override
     protected void build() {
@@ -89,19 +88,9 @@ public class SettingsPane extends CustomPane {
     }
 
     private void createButtonBox() {
-        this.deleteAccountButton = buildAccDelButton();
-        this.insuranceButton = buildInsuranceButton();
+        this.deleteAccDelButton = buildAccDelButton();
         String[] styleClasses = {"button-box"};
-        this.buttonBox = buildHBox(styleClasses, deleteAccountButton, insuranceButton);
-    }
-
-    private Button buildInsuranceButton() {
-        Button button = new Button();
-        button.getStyleClass().addAll("insurance-btn", "button");
-        bind(button.textProperty(), "settings.button.insurance");
-        button.setOnMouseClicked(controller::handleAccountInsurance);
-        button.setVisible(false);
-        return button;
+        this.buttonBox = buildHBox(styleClasses, deleteAccDelButton);
     }
 
     private void createLanguageChangeBox() {

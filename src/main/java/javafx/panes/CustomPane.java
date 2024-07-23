@@ -18,36 +18,15 @@ import java.util.stream.IntStream;
  */
 public abstract class CustomPane extends GridPane {
     @Getter
-    private final Stage stage;
-    /**
-     * The Event listeners.
-     */
-    protected EventListeners eventListeners;
-    private User user;
-    /**
-     * The constant STAGE_WIDTH.
-     */
-    protected static double STAGE_WIDTH = 815;
-    /**
-     * The constant STAGE_HEIGHT.
-     */
-    protected static double STAGE_HEIGHT = 500;
-    /**
-     * The constant STYLE_PATH.
-     */
-    protected static String STYLE_PATH = "style/";
-    /**
-     * The constant V_GAP.
-     */
-    protected static final double V_GAP = 10;
-    /**
-     * The Style classes.
-     */
-    protected String[] styleClasses;
+private final Stage stage;
+protected EventListeners eventListeners;
+private User user;
+protected static double STAGE_WIDTH = 815;
+protected static double STAGE_HEIGHT = 500;
+protected static String STYLE_PATH = "style/";
+protected static final double V_GAP = 10;
+protected String[] styleClasses;
 
-    /**
-     * The Color theme.
-     */
     @Setter
     @Getter
     protected ColorTheme colorTheme;
@@ -91,7 +70,7 @@ public abstract class CustomPane extends GridPane {
      * @param text the text
      * @param key  the key
      */
-    protected void bind(StringProperty text, String key) {
+    public void bind(StringProperty text, String key) {
         if (key.isEmpty()) {
             return;
         }

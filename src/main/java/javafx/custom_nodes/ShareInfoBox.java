@@ -1,4 +1,4 @@
-package javafx.assets;
+package javafx.custom_nodes;
 
 import console.entities.Share;
 import console.entities.Tag;

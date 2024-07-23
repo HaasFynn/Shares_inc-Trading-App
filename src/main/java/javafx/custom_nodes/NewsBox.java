@@ -1,5 +1,6 @@
-package javafx.assets;
+package javafx.custom_nodes;
 
+import javafx.assets.LanguagePack;
 import javafx.beans.binding.StringBinding;
 import javafx.beans.property.StringProperty;
 import javafx.geometry.Pos;
@@ -7,10 +8,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
+import java.io.*;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Random;
 
 public class NewsBox extends VBox {
@@ -58,8 +58,7 @@ public class NewsBox extends VBox {
     private String getRandomNewsText() {
         String nextString;
         ArrayList<String> newsList = new ArrayList<>();
-        File file = new File("src/main/resources/assets/articles.txt");
-        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(Objects.requireNonNull(getClass().getResourceAsStream("articles.txt"))))) {
             while ((nextString = br.readLine()) != null) {
                 newsList.add(nextString);
             }

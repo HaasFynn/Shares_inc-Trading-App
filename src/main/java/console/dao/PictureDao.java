@@ -56,11 +56,4 @@ public interface PictureDao {
      */
     boolean delete(Picture picture);
 
-    /**
-     * Gets by name.
-     *
-     * @param name the name
-     * @return the by name
-     */
-    Picture getByName(String name);
 }

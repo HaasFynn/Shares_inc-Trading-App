@@ -2,7 +2,7 @@ package javafx.panes;
 
 import console.entities.Share;
 import console.entities.User;
-import javafx.assets.ShareInfoBox;
+import javafx.custom_nodes.ShareInfoBox;
 import javafx.controllers.ShareViewController;
 import javafx.eventlisteners.EventListeners;
 import javafx.geometry.Insets;

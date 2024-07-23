@@ -12,18 +12,6 @@ import java.util.List;
  * The type Picture dao.
  */
 public class PictureDaoImpl implements PictureDao {
-    @Override
-    public Picture getByName(String img) {
-        try {
-            return entityManager.createQuery("from Picture p where p.img=:img", Picture.class)
-                    .setParameter("img", img)
-                    .getSingleResult();
-        } catch (NoResultException e) {
-            System.err.println("Error while getting Picture by name: " + e.getMessage());
-            return null;
-        }
-    }
-
     private final EntityManager entityManager;
 
     /**
@@ -41,17 +29,17 @@ public class PictureDaoImpl implements PictureDao {
     }
 
     @Override
-    public Picture getByUserId(long userId) {
-        try {
-            return entityManager.createQuery("from Picture as p where p.userIDFK = :user_idfk", Picture.class)
-                    .setParameter("user_idfk", userId)
-                    .getSingleResult();
-        } catch (NoResultException e) {
-            entityManager.getTransaction().rollback();
-            System.err.println("Picture not found for User with userId: " + userId);
-            return null;
-        }
+public Picture getByUserId(long userId) {
+    try {
+        return entityManager.createQuery("from Picture as p where p.userIDFK = :user_idfk", Picture.class)
+                .setParameter("user_idfk", userId)
+                .getSingleResult();
+    } catch (NoResultException e) {
+        entityManager.getTransaction().rollback();
+        System.err.println("Picture not found for User with userId: " + userId);
+        return null;
     }
+}
 
     @Override
     public List<Picture> getAll() {
